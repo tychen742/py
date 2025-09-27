@@ -1,8 +1,7 @@
-# Think Python, 3rd edition
+# Based on Think Python, 3rd edition, by Allen B. Downey
 
 Jupyter notebooks and other material for the 3rd edition of *Think Python: How to Think Like a Computer Scientist*
 
-by Allen B. Downey
 
 You can order print and electronic versions of *Think Python 3e* from 
 [Bookshop.org](https://bookshop.org/a/98697/9781098155438) and
