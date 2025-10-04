@@ -1,0 +1,18 @@
+num = int(input("Please enter a number: "))
+# print(num)
+nums = range(1, num)
+
+
+def prime(num):
+    # print(num)
+    for x in range(2, num):
+        if num % x != 0:
+            return True
+        else:
+            return False
+
+
+# print(prime(1000))
+# primes=filter(prime, num)
+primes = list(filter(prime, nums))
+print(primes)
