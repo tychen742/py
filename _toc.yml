@@ -1,22 +1,38 @@
 format: jb-book
 root: chapters/chap00
-chapters:
-- file: chapters/chap01
-- file: chapters/chap02
-- file: chapters/chap04
-- file: chapters/chap05
-- file: chapters/chap06
-- file: chapters/chap07
-- file: chapters/chap08
-- file: chapters/chap09
-- file: chapters/chap10
-- file: chapters/chap11
-- file: chapters/chap12
-- file: chapters/chap13
-- file: chapters/chap14
-- file: chapters/chap15
-- file: chapters/chap16
-- file: chapters/chap17
+parts:
+- caption: "Part I: Fundamentals"
+  numbered: true
+  chapters: 
+  - file: chapters/chap01
+  - file: chapters/chap02
+  - file: chapters/chap03
+  - file: chapters/chap04
+  - file: chapters/chap05
+  - file: chapters/chap06
+- caption: "Part II: Strings"
+  numbered: true
+  chapters: 
+  - file: chapters/chap07
+  - file: chapters/chap08
+- caption: "Part III: Data Structures"
+  numbered: true
+  chapters: 
+  - file: chapters/chap09
+  - file: chapters/chap10
+  - file: chapters/chap11
+  - file: chapters/chap12
+- caption: "Part IV: Files & Databases"
+  numbered: true
+  chapters: 
+  - file: chapters/chap13
+- caption: "Part V: OOP"
+  numbered: true
+  chapters: 
+  - file: chapters/chap14
+  - file: chapters/chap15
+  - file: chapters/chap16
+  - file: chapters/chap17
 - file: chapters/chap18
 - file: chapters/chap19
 - file: chapters/jupyter_intro
