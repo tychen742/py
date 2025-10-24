@@ -33,8 +33,8 @@ parts:
   - file: chapters/chap15
   - file: chapters/chap16
   - file: chapters/chap17
-- file: chapters/chap18
-- file: chapters/chap19
-- file: chapters/jupyter_intro
-  title: Jupyter intro
+# - file: chapters/chap18
+# - file: chapters/chap19
+# - file: chapters/jupyter_intro
+#   title: Jupyter intro
 
