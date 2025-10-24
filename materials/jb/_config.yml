@@ -1,6 +1,6 @@
 # Book settings
-title: Think Python
-author: Allen B. Downey
+title: thinkpy
+author: 
 
 latex:
   latex_documents:
@@ -10,7 +10,7 @@ execute:
   execute_notebooks: 'off'
 
 repository:
-  url: https://github.com/AllenDowney/ThinkPython/tree/v3
+  url: 
 html:
   use_repository_button: true
 
@@ -52,3 +52,17 @@ sphinx:
       tex2jax:
         inlineMath: [["$","$"], ["\\(", "\\)"]]
     myst_update_mathjax: false
+
+html:
+  # use_issues_button: true
+  # use_repository_button: true
+  use_numbered_headings: true
+  number_toc_depth: 3
+  favicon: ./images/favicon.ico   
+exclude_patterns:
+  - '.venv'
+  - 'assignments'
+  - 'materials'
+  - 'otter_files'
+  - 'temps'
+  - 'tests'
