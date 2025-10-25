@@ -11,6 +11,7 @@ logo: logo.png
 execute:
   # execute_notebooks: force
   execute_notebooks: auto
+  exclude_tags: [skip-execution]
   timeout: 100
 
 # Define the name of the latex output file for PDF builds
