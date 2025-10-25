@@ -5,6 +5,8 @@ parts:
   numbered: true
   chapters: 
   - file: chapters/chap01
+    sections:
+    - file: chapters/02-jupyter-basics
   - file: chapters/chap02
   - file: chapters/chap03
   - file: chapters/chap04
