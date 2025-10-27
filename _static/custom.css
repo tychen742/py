@@ -56,7 +56,7 @@ p {
 html[data-theme=light] {
     --sbt-color-announcement: #616161;
     /* --pst-color-primary: #176de8; */
-    --pst-color-primary: #176de8;
+    --pst-color-primary: #176de8
 }
 
 .bd-sidebar-primary {
