@@ -71,6 +71,9 @@ html[data-theme=light] {
     --pst-color-primary: #176de8;
 }
 
+.bd-sidebar-primary {
+    line-height: 1..25;
+}   
 
 .bd-content .sd-tab-set>input:checked+label {
     background-color: var(--pst-color-on-background);
