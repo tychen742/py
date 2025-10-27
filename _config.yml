@@ -4,7 +4,9 @@
 title: thinkpy
 # author: "Tsangyao Chen"
 copyright                   : "2025" 
-logo: logo.png
+logo: ./_static/favicon_io/android-chrome-192x192.png
+# description: "A book about Jupyter Book"
+language: en
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
