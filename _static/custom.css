@@ -72,7 +72,7 @@ html[data-theme=light] {
 }
 
 .bd-sidebar-primary {
-    line-height: 1..25;
+    line-height: 1.25!important;
 }   
 
 .bd-content .sd-tab-set>input:checked+label {
