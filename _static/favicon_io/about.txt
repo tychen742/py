@@ -1,6 +1,6 @@
 This favicon was generated using the following font:
 
-- Font Title: Libre Franklin
+- Font Title: Imperial Script
 - Font Author: undefined
-- Font Source: https://fonts.gstatic.com/s/librefranklin/v19/jizMREVItHgc8qDIbSTKq4XkRiUawTk7f45UM9y05obVQ9DMTedX1sGE.ttf
+- Font Source: https://fonts.gstatic.com/s/imperialscript/v7/5DCPAKrpzy_H98IV2ISnZBbGrVNvPenlvttWNg.ttf
 - Font License: undefined)
