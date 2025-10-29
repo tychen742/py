@@ -39,7 +39,8 @@ parts:
   numbered: false
   chapters:
   - file: chapters/chap18
-  - file: chapters/chap19
+  - file: chapters/index.md
+  # - file: chapters/chap19
 # - file: chapters/jupyter_intro
 #   title: Jupyter intro
 
