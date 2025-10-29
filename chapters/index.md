@@ -3,5 +3,5 @@
 ```{eval-rst}
 .. only:: html
 
-   :ref:`genindex`
+   :ref:`index`
 ```
