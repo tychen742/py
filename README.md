@@ -5,7 +5,7 @@ pip install sphinx_new_tab_link
 
 
 
-### download
+## download
 from os.path import basename, exists
 
 def download(url):

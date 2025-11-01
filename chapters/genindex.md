@@ -1,6 +1,6 @@
 (index)=
 
-# Index
+# General Index
 
 <!-- ```{eval-rst}
 .. only:: html
