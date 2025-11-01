@@ -28,11 +28,13 @@ bibtex_bibfiles:
 sphinx:
   extra_extensions:
     - sphinx_new_tab_link
+    - sphinx.ext.autodoc
   config:
     bibtex_reference_style: author_year
     new_tab_link_show_external_link_icon: true      ### default
     new_tab_link_enable_referrer: false             ### adds rel="noreferrer" by default
-  
+    html_use_index: true           # default is true, but set it explicitly if unsure
+    html_domain_indices: true      # keeps domain-specific indices on
 
 scholar:
   style: apa
@@ -60,7 +62,7 @@ exclude_patterns:
   - 'tests'
   - 'chapters_blank'
   - 'data'
-  - '*_worksheet.ipynb'
+  - "*_worksheet.ipynb"
   # - 'code'        ### no need for trailing slash
   - 'README.md'
   # - '.ipynb_checkpoints'
