@@ -4,7 +4,7 @@
 title: thinkpy
 # author: "Tsangyao Chen"
 copyright                   : "2025" 
-logo: _static/favicon_io_green_white/favicon.ico
+logo: _static/logo.png
 # description: "A book about Jupyter Book"
 language: en
 
@@ -50,7 +50,7 @@ html:
   # use_repository_button: true
   use_numbered_headings: true
   number_toc_depth: 3
-  favicon: ./_static/favicon_io/favicon.ico
+  favicon: ./_static/favicon_io_gw/favicon.ico
 exclude_patterns:
   - '.venv'
   - 'assignments'
