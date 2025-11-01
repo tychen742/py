@@ -1,7 +1,7 @@
-# Index
+# General Index
 
 ```{eval-rst}
 .. only:: html
 
-   <!-- :ref:`genindex` -->
+   :ref:`genindex`
 ```
