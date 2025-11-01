@@ -59,9 +59,9 @@ exclude_patterns:
   - 'temps'
   - 'tests'
   - 'chapters_blank'
-  # - 'data'
+  - 'data'
   # - 'code'        ### no need for trailing slash
-  # - 'README.md'
+  - 'README.md'
   # - '.ipynb_checkpoints'
   # - '.DS_Store'
 
