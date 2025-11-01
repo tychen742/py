@@ -179,7 +179,7 @@ table tbody tr:hover {
 
 
 /* ### styling for function definition terms in the glossary */
-#term-function-definition>strong {
-    font-size: 0.9rem!important;
-    font-weight: 500!important;
+.simple.glossary > dt {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
 }
