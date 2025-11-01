@@ -1,7 +1,9 @@
+(index)=
+
 # Index
 
-```{eval-rst}
+<!-- ```{eval-rst}
 .. only:: html
 
    :ref:`index`
-```
+``` -->
