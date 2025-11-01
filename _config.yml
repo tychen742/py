@@ -60,6 +60,7 @@ exclude_patterns:
   - 'tests'
   - 'chapters_blank'
   - 'data'
+  - '*_worksheet'
   # - 'code'        ### no need for trailing slash
   - 'README.md'
   # - '.ipynb_checkpoints'
