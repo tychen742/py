@@ -51,10 +51,10 @@ p {
 }
  */
 
- nav.bd-links p.caption{
+nav.bd-links p.caption {
     margin-top: 0.45rem !important;
     margin-bottom: 0.15rem !important;
- }
+}
 
 
 html[data-theme=light] {
@@ -64,11 +64,13 @@ html[data-theme=light] {
 }
 
 .bd-sidebar-primary {
-    line-height: 1.25!important;
-}   
-nav.bd-links li>a {
-    padding: .1rem .25rem!important;    
+    line-height: 1.25 !important;
 }
+
+nav.bd-links li>a {
+    padding: .1rem .25rem !important;
+}
+
 .bd-content .sd-tab-set>input:checked+label {
     background-color: var(--pst-color-on-background);
     border-color: var(--pst-color-primary) var(--pst-color-primary) transparent;
@@ -95,7 +97,7 @@ table.dataframe,
 table {
     border-collapse: collapse !important;
     /* border-collapse: separate !important; */
-    width: auto !important; 
+    width: auto !important;
     margin: 0 auto 1em auto !important;
 }
 
@@ -118,7 +120,7 @@ table th {
 table td p,
 table th p,
 table.dataframe th,
-table.dataframe td  {
+table.dataframe td {
     font-size: 0.8rem !important;
     /* tweak: 0.75–0.9rem */
     color: #333 !important;
@@ -172,4 +174,12 @@ table.dataframe tbody tr:hover,
 table.dataframe tbody tr th:hover,
 table tbody tr:hover {
     background-color: #ebf7ee !important;
+}
+
+
+
+/* ### styling for function definition terms in the glossary */
+#term-function-definition>strong {
+    font-size: 0.9rem;
+    font-weight: 500;
 }
