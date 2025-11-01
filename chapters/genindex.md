@@ -1,4 +1,4 @@
-# General Index
+# Index
 
 ```{eval-rst}
 .. only:: html
