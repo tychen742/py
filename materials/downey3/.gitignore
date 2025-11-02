@@ -25,12 +25,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-<<<<<<< HEAD
-.DS_Store
-=======
 
 .DS_Store
-
 .venv/*
 .venv*/*
->>>>>>> c8b13fe (committed @ 2024-1211-155301)
