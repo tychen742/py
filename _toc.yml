@@ -36,7 +36,7 @@ parts:
       - file: chapters/chap16
       - file: chapters/chap17
   - caption: "Appendices"
-    numbered: true
+    numbered: false
     chapters:
       - file: chapters/appendices/jupyter/0200-intro-jupyter
         sections:
@@ -44,7 +44,7 @@ parts:
           - file: chapters/appendices/jupyter/0202-virtual-environment
           - file: chapters/appendices/jupyter/0203-the-notebook
           - file: chapters/appendices/jupyter/0204-jupyter-bonus
-      - file: chapters/chap18
+      - file: chapters/appendices/chap18
       - file: genindex
     # - file: chapters/chap19
 # - file: chapters/jupyter_intro
