@@ -39,6 +39,7 @@ parts:
     numbered: false
     chapters:
       - file: chapters/appendices/jupyter/0200-intro-jupyter
+        numbered: true
         sections:
           - file: chapters/appendices/jupyter/0201-python-installation
           - file: chapters/appendices/jupyter/0202-virtual-environment
