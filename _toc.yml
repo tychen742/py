@@ -1,47 +1,52 @@
 format: jb-book
 root: chapters/chap00
 parts:
-- caption: "Part I: Fundamentals"
-  numbered: true
-  chapters: 
-  - file: chapters/chap01
-    # sections:
-    # - file: chapters/02-jupyter-basics
-  - file: chapters/chap02
-  - file: chapters/chap03
-  - file: chapters/chap04
-  - file: chapters/chap05
-  - file: chapters/chap06
-- caption: "Part II: Strings"
-  numbered: true
-  chapters: 
-  - file: chapters/chap07
-  - file: chapters/chap08
-- caption: "Part III: Data Structures"
-  numbered: true
-  chapters: 
-  - file: chapters/chap09
-  - file: chapters/chap10
-  - file: chapters/chap11
-  - file: chapters/chap12
-- caption: "Part IV: Files & Databases"
-  numbered: true
-  chapters: 
-  - file: chapters/chap13
-- caption: "Part V: OOP"
-  numbered: true
-  chapters: 
-  - file: chapters/chap14
-  - file: chapters/chap15
-  - file: chapters/chap16
-  - file: chapters/chap17
-- caption: "Appendices"
-  numbered: true
-  chapters:
-  - file: chapters/jupyter-environment.ipynb
-  - file: chapters/chap18
-  - file: genindex
-  # - file: chapters/chap19
+  - caption: "Part I: Fundamentals"
+    numbered: true
+    chapters:
+      - file: chapters/chap01-on-programming
+        # sections:
+        # - file: chapters/02-jupyter-basics
+      - file: chapters/chap02
+      - file: chapters/chap03
+      - file: chapters/chap04
+      - file: chapters/chap05
+      - file: chapters/chap06
+  - caption: "Part II: Strings"
+    numbered: true
+    chapters:
+      - file: chapters/chap07
+      - file: chapters/chap08
+  - caption: "Part III: Data Structures"
+    numbered: true
+    chapters:
+      - file: chapters/chap09
+      - file: chapters/chap10
+      - file: chapters/chap11
+      - file: chapters/chap12
+  - caption: "Part IV: Files & Databases"
+    numbered: true
+    chapters:
+      - file: chapters/chap13
+  - caption: "Part V: OOP"
+    numbered: true
+    chapters:
+      - file: chapters/chap14
+      - file: chapters/chap15
+      - file: chapters/chap16
+      - file: chapters/chap17
+  - caption: "Appendices"
+    numbered: true
+    chapters:
+      - file: chapters/appendices/jupyter/0200-intro-jupyter
+        sections:
+          - file: chapters/appendices/jupyter/0201-python-installation
+          - file: chapters/appendices/jupyter/0202-virtual-environment
+          - file: chapters/appendices/jupyter/0203-the-notebook
+          - file: chapters/appendices/jupyter/0204-jupyter-bonus
+      - file: chapters/chap18
+      - file: genindex
+    # - file: chapters/chap19
 # - file: chapters/jupyter_intro
 #   title: Jupyter intro
 
