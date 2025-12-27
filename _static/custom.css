@@ -4,6 +4,10 @@ body {
     /* default 1.65*/
 }
 
+h1 {
+    font-size: 2.2em;
+}
+
 h1,
 h2,
 h3,
@@ -179,7 +183,7 @@ table tbody tr:hover {
 
 
 /* ### styling for function definition terms in the glossary */
-.simple.glossary > dt {
+.simple.glossary>dt {
     font-size: 0.9rem !important;
     font-weight: 500 !important;
 }

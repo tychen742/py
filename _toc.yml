@@ -35,8 +35,8 @@ parts:
   - file: chapters/chap15
   - file: chapters/chap16
   - file: chapters/chap17
-- caption: "End Matter"
-  numbered: false
+- caption: "Appendices"
+  numbered: true
   chapters:
   - file: chapters/jupyter-environment.ipynb
   - file: chapters/chap18
