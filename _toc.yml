@@ -36,7 +36,7 @@ parts:
       - file: chapters/chap16
       - file: chapters/chap17
   - caption: "Appendices"
-    numbered: false
+    numbered: true
     chapters:
       - file: chapters/appendices/jupyter/0200-intro-jupyter
         sections:
