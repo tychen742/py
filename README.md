@@ -1,8 +1,9 @@
-# Based on Think Python, 3rd edition, by Allen B. Downey
+## Based on Think Python, 3rd edition, by Allen B. Downey
 
+```python
 pip install jupyter-book
 pip install sphinx_new_tab_link
-
+```
 
 
 ## download
