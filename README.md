@@ -1,12 +1,14 @@
-## Based on Think Python, 3rd edition, by Allen B. Downey
+## the projuect 
+This project is based on Think Python, 3rd edition, by Allen B. Downey
 
+## installation
 ```python
 pip install jupyter-book
 pip install sphinx_new_tab_link
 ```
 
 
-## download
+## downloads
 ```python
 from os.path import basename, exists
 
