@@ -1,4 +1,4 @@
-## the projuect 
+## the project 
 This project is based on Think Python, 3rd edition, by Allen B. Downey
 
 ## installation
