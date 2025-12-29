@@ -1,7 +1,7 @@
 ## the project 
 This project is based on Think Python, 3rd edition, by Allen B. Downey
 
-## installation
+## installations
 ```python
 pip install jupyter-book
 pip install sphinx_new_tab_link
