@@ -54,10 +54,12 @@ html:
   use_numbered_headings: true
   number_toc_depth: 3
   favicon: ./_static/favicon-io_green-gold/favicon.ico
-    use_thebe: true
-  thebe_config:
-    # repository_url: https://github.com/your/repo
-    kernel_name: python3
+  use_thebe: true
+
+launch_buttons:
+  thebe: true      # show "Activate" button
+  binderhub_url: ""  # optional if you want Binder
+
 exclude_patterns:
   - '.venv'
   - 'assignments'
