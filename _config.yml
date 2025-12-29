@@ -61,7 +61,7 @@ launch_buttons:
   # binderhub_url: ""  # optional if you want Binder
 
 thebe_config:
-  repository_url: https://github.com/your/repo
+  repository_url: https://github.com/tychen742/py
   kernel_name: python3
 
 exclude_patterns:
