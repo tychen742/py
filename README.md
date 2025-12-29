@@ -17,7 +17,8 @@ def download(url):
         local, _ = urlretrieve(url, filename)
         print("Downloaded " + str(local))
     return filename
-```
+
 download('https://github.com/AllenDowney/ThinkPython/raw/v3/thinkpython.py');
 download('https://github.com/AllenDowney/ThinkPython/raw/v3/diagram.py');
 download('https://github.com/ramalho/jupyturtle/releases/download/2024-03/jupyturtle.py');
+```
