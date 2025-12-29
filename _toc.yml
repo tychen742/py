@@ -16,7 +16,7 @@ parts:
     numbered: true
     chapters:
       - file: chapters/chap07
-      - file: chapters/chap08
+      - file: chapters/chap08-strings
   - caption: "Part III: Data Structures"
     numbered: true
     chapters:

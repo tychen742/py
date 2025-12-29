@@ -29,6 +29,7 @@ sphinx:
   extra_extensions:
     - sphinx_new_tab_link
     - sphinx.ext.autodoc
+    - sphinx_thebe
   config:
     bibtex_reference_style: author_year
     new_tab_link_show_external_link_icon: true      ### default
@@ -69,5 +70,7 @@ exclude_patterns:
   # - '.DS_Store'
 
 # Table of contents
-
+launch_buttons:
+  thebe: true      # show "Activate" button
+  binderhub_url: ""  # optional if you want Binder
   
