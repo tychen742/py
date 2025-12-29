@@ -62,6 +62,7 @@ launch_buttons:
   # binderhub_url: ""  # optional if you want Binder
   notebook_interface: "classic"
   binderhub_url: "https://mybinder.org"
+
 thebe_config:
   repository_url: https://github.com/tychen742/py
   kernel_name: python3
