@@ -60,6 +60,10 @@ launch_buttons:
   thebe: true      # show "Activate" button
   # binderhub_url: ""  # optional if you want Binder
 
+thebe_config:
+  repository_url: https://github.com/your/repo
+  kernel_name: python3
+
 exclude_patterns:
   - '.venv'
   - 'assignments'
