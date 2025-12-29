@@ -54,6 +54,10 @@ html:
   use_numbered_headings: true
   number_toc_depth: 3
   favicon: ./_static/favicon-io_green-gold/favicon.ico
+    use_thebe: true
+  thebe_config:
+    # repository_url: https://github.com/your/repo
+    kernel_name: python3
 exclude_patterns:
   - '.venv'
   - 'assignments'
