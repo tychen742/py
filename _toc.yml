@@ -6,11 +6,11 @@ parts:
     chapters:
       - file: chapters/chap01-on-programming
         sections:
-        - file: chapters/chap01-on-programming#Expressions-and-Statements
-        - file: chapters/chap01-on-programming#Operators
-        - file: chapters/chap01-on-programming#Built-in-Data-Types
-        - file: chapters/chap01-on-programming#Built-in-Functions
-        - file: chapters/chap01-on-programming#Modules-and-Packages
+          - file: chapters/chap01-on-programming#Expressions-and-Statements
+          - file: chapters/chap01-on-programming#Operators
+          - file: chapters/chap01-on-programming#Built-in-Data-Types
+          - file: chapters/chap01-on-programming#Built-in-Functions
+          - file: chapters/chap01-on-programming#Modules-and-Packages
       - file: chapters/chap02
       - file: chapters/chap03
       - file: chapters/chap04
