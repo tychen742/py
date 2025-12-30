@@ -15,6 +15,9 @@ execute:
   execute_notebooks: off
   exclude_tags: [skip-execution]
   timeout: 100
+  allow_errors: true
+  stderr_output: show
+  output_cache: false
 
 # Define the name of the latex output file for PDF builds
 # latex:
