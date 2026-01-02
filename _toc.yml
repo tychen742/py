@@ -11,7 +11,11 @@ parts:
           - file: chapters/chap01-on-programming.ipynb#Built-in-Data-Types
           - file: chapters/chap01-on-programming.ipynb#Built-in-Functions
           - file: chapters/chap01-on-programming.ipynb#Modules-and-Packages
-      - file: chapters/chap02
+      - file: chapters/chap02-variables-and-data-types
+        sections:
+          - file: chapters/chap02-variables.ipynb#Variables-and-Data-Types
+          - file: chapters/chap02-variables.ipynb#Type-Conversion
+          - file: chapters/chap02-variables.ipynb#Input-and-Output
       - file: chapters/chap03
       - file: chapters/chap04
       - file: chapters/chap05
