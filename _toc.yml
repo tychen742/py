@@ -8,30 +8,31 @@ parts:
       - file: chapters/ch02-variables-types
       - file: chapters/ch03-conditionals
       - file: chapters/ch04-iteration
+      - file: chapters/ch05-functions
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/ch05-lists-tuples
-      - file: chapters/ch06-dictionaries-sets
-      - file: chapters/ch07-strings
-  - caption: "Part III: Modular Programming"
+      - file: chapters/ch06-lists-tuples
+      - file: chapters/ch07-dictionaries-sets
+  - caption: "Part III: Strings & Analysis"
     numbered: true
     chapters:
-      - file: chapters/ch08-functions
-      - file: chapters/ch09-modules-packages
-  - caption: "Part IV: Files & Data"
+      - file: chapters/ch08-strings
+      - file: chapters/ch09-text-analysis
+  - caption: "Part IV: OOP"
     numbered: true
     chapters:
-      - file: chapters/ch10-files-databases
-      - file: chapters/ch11-exception-handling
-  - caption: "Part V: OOP"
+      - file: chapters/ch10-oop-intro
+      - file: chapters/ch11-oop-inheritance-polymorphism
+  - caption: "Part V: Applications"
     numbered: true
     chapters:
-      - file: chapters/ch12-oop-intro
-      - file: chapters/ch13-oop-inheritance-polymorphism
-      - file: chapters/ch14-working-with-data
-      - file: chapters/ch15-advanced-topics
-      - file: chapters/ch16-iterators-generators
+      - file: chapters/ch12-files-databases
+      - file: chapters/ch13-modules-packages
+      - file: chapters/ch14-exception-handling
+      - file: chapters/ch15-working-with-data
+      - file: chapters/ch16-advanced-topics
+      # - file: chapters/ch17-iterators-generators
   - caption: "Appendices"
     numbered: true
     chapters:
