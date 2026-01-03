@@ -42,7 +42,7 @@ parts:
           - file: chapters/appendices/jupyter/0202-virtual-environment
           - file: chapters/appendices/jupyter/0203-the-notebook
           - file: chapters/appendices/jupyter/0204-jupyter-bonus
-      - file: chapters/appendices/chap18
+      # - file: chapters/appendices/chap18
       - file: genindex
     # - file: chapters/chap19
 # - file: chapters/jupyter_intro
