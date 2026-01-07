@@ -5,7 +5,6 @@ title: thinkpy
 author: "Tsangyao Chen"
 copyright                   : "2026" 
 logo: _static/thinkpy-logo-com.png
-# description: "A book about Jupyter Book"
 language: en
 
 # Force re-execution of notebooks on each build.
@@ -58,7 +57,7 @@ launch_buttons:
   thebe: true      # show "Activate" button
   # binderhub_url: ""  # optional if you want Binder
   notebook_interface: "classic"
-  binderhub_url: "https://mybinder.org"
+  # binderhub_url: "https://mybinder.org"
 
 thebe_config:
    repository_url: https://github.com/tychen742/py
