@@ -11,18 +11,12 @@ language: en
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  # execute_notebooks: force
   execute_notebooks: off
   exclude_tags: [skip-execution]
   timeout: 100
   allow_errors: true
   stderr_output: show
   output_cache: false
-
-# Define the name of the latex output file for PDF builds
-# latex:
-#   latex_documents:
-#     targetname: book.tex
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
@@ -69,6 +63,7 @@ launch_buttons:
 thebe_config:
    repository_url: https://github.com/tychen742/py
    kernel_name: python3
+
 
 exclude_patterns:
   - '.venv'
