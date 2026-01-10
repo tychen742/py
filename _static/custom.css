@@ -195,7 +195,7 @@ table tbody tr:hover {
 
 
 .thebelab-cell {
-    background-color: #f9f9f9;
+    background-color: grey;
     /* border: 2px solid #ccc; */
     border: 5px dashed black;  /* dashed border */
     border-radius: 6px;
