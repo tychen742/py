@@ -218,3 +218,9 @@ table tbody tr:hover {
     padding: 4px 8px;
     /* default 6px 12px */
 }
+
+/* Target specifically the hide-input toggle */
+.tag_hide-input .admonition-title,
+.tag_hide-input summary {
+    font-weight: normal;
+}
