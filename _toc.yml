@@ -27,10 +27,10 @@ parts:
   - caption: "Part V: Applications"
     numbered: true
     chapters:
-      - file: chapters/ch12-files-databases
-      - file: chapters/ch13-modules-packages
+      - file: chapters/ch12-files
+      - file: chapters/ch13-databases
       - file: chapters/ch14-exception-handling
-      - file: chapters/ch15-working-with-data
+      - file: chapters/ch15-algorithms
       - file: chapters/ch16-advanced-topics
       # - file: chapters/ch17-iterators-generators
   - caption: "Appendices"
