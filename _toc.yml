@@ -4,6 +4,12 @@ parts:
   - caption: "Part I: Fundamentals"
     numbered: true
     chapters:
+      - file: chapters/appendices/jupyter/0200-intro-jupyter
+        sections:
+          - file: chapters/appendices/jupyter/0201-python-installation
+          - file: chapters/appendices/jupyter/0202-virtual-environment
+          - file: chapters/appendices/jupyter/0203-the-notebook
+          - file: chapters/appendices/jupyter/0204-jupyter-bonus
       - file: chapters/ch01-on-programming
       - file: chapters/ch02-variables-types
       - file: chapters/ch03-conditionals
@@ -36,13 +42,6 @@ parts:
   - caption: "Appendices"
     numbered: true
     chapters:
-      - file: chapters/appendices/jupyter/0200-intro-jupyter
-        sections:
-          - file: chapters/appendices/jupyter/0201-python-installation
-          - file: chapters/appendices/jupyter/0202-virtual-environment
-          - file: chapters/appendices/jupyter/0203-the-notebook
-          - file: chapters/appendices/jupyter/0204-jupyter-bonus
-      # - file: chapters/appendices/chap18
       - file: genindex
     # - file: chapters/chap19
 # - file: chapters/jupyter_intro
