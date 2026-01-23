@@ -3,6 +3,8 @@ This project is based on Think Python, 3rd edition, by Allen B. Downey
 
 ## installations
 - use jupyter book v1
+- install sphinx_new_tab_link
+After these two, jb will build.
   
 ```python
 pip install "jupyter-book==1.0.4.post1"
