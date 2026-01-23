@@ -4,6 +4,7 @@ This project is based on Think Python, 3rd edition, by Allen B. Downey
 ## installations
 - use jupyter book v1
 - install sphinx_new_tab_link
+- create www folder: /var/www/py/
 After these two, jb will build.
   
 ```python
