@@ -1,0 +1,49 @@
+format: jb-book
+root: chapters/ch00-intro
+parts:
+  - caption: "Part I: Fundamentals"
+    numbered: true
+    chapters:
+      - file: chapters/appendices/jupyter/0200-intro-jupyter
+        sections:
+          - file: chapters/appendices/jupyter/0201-python-installation
+          - file: chapters/appendices/jupyter/0202-virtual-environment
+          - file: chapters/appendices/jupyter/0203-the-notebook
+          - file: chapters/appendices/jupyter/0204-jupyter-bonus
+      - file: chapters/ch01-on-programming
+      - file: chapters/ch02-variables-types
+      - file: chapters/ch03-conditionals
+      - file: chapters/ch04-iteration
+      - file: chapters/ch05-functions
+  - caption: "Part II: Data Structures"
+    numbered: true
+    chapters:
+      - file: chapters/ch06-lists-tuples
+      - file: chapters/ch07-dictionaries-sets
+  - caption: "Part III: Strings & Analysis"
+    numbered: true
+    chapters:
+      - file: chapters/ch08-strings
+      - file: chapters/ch09-text-analysis
+  - caption: "Part IV: OOP"
+    numbered: true
+    chapters:
+      - file: chapters/ch10-oop-intro
+      - file: chapters/ch11-oop-inheritance-polymorphism
+  - caption: "Part V: Applications"
+    numbered: true
+    chapters:
+      - file: chapters/ch12-files
+      - file: chapters/ch13-databases
+      - file: chapters/ch14-exception-handling
+      - file: chapters/ch15-algorithms
+      - file: chapters/ch16-advanced-topics
+      # - file: chapters/ch17-iterators-generators
+  - caption: "Appendices"
+    numbered: true
+    chapters:
+      - file: genindex
+    # - file: chapters/chap19
+# - file: chapters/jupyter_intro
+#   title: Jupyter intro
+
