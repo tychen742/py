@@ -4,13 +4,12 @@ parts:
   - caption: "Part I: Fundamentals"
     numbered: true
     chapters:
-      - file: chapters/appendices/jupyter/0200-intro-jupyter
+      - file: chapters/01-intro/0100-py-intro
         sections:
-          - file: chapters/appendices/jupyter/0201-python-installation
-          - file: chapters/appendices/jupyter/0202-virtual-environment
-          - file: chapters/appendices/jupyter/0203-the-notebook
-          - file: chapters/appendices/jupyter/0204-jupyter-bonus
-      - file: chapters/ch01-on-programming
+          - file: chapters/01-intro/0101-prog-constructs
+          - file: chapters/01-intro/0102-the-shells
+          - file: chapters/01-intro/0103-programming
+      - file: chapters/02-py-overview/0104-py-syntax
       - file: chapters/ch02-variables-types
       - file: chapters/ch03-conditionals
       - file: chapters/ch04-iteration
