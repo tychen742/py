@@ -6,7 +6,7 @@ parts:
     chapters:
       - file: chapters/01-intro/0100-py-intro
         sections:
-          - file: chapters/01-intro/0101-prog-constructs
+          # - file: chapters/01-intro/0101-prog-constructs
           - file: chapters/01-intro/0102-the-shells
           - file: chapters/01-intro/0103-programming
       - file: chapters/02-py-overview/0104-py-syntax
