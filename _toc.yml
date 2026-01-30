@@ -49,9 +49,11 @@ parts:
       - file: chapters/10-algorithms/1001-searching
       - file: chapters/10-algorithms/1002-sorting
       - file: chapters/11-libs/1101-3party-libs
-      - file: chapters/ch15-algorithms
-      - file: chapters/ch16-advanced-topics
-      # - file: chapters/ch17-iterators-generators
+  - caption: "Select Topics"
+    numbered: true
+    chapters:
+      - file: chapters/12-select-topics/1201-recursion
+      - file: chapters/12-select-topics/1202-idioms
   - caption: "Appendices"
     numbered: true
     chapters:
