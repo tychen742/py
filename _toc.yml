@@ -24,7 +24,7 @@ parts:
       - file: chapters/05-data-structures/0500-intro-ds2
         sections:
           - file: chapters/05-data-structures/0503-dictionary
-          - file: chapters/05-data-structures/0504-sets
+          - file: chapters/05-data-structures/0504-set
   - caption: "Part III: Strings & Analysis"
     numbered: true
     chapters:
@@ -37,7 +37,7 @@ parts:
   - caption: "Part IV: OOP"
     numbered: true
     chapters:
-      - file: chapters/08-oop/0801-oop
+      - file: chapters/08-oop/0801-intro-oop
       - file: chapters/08-oop/0802-oop-implementation
   - caption: "Part V: Applications"
     numbered: true
