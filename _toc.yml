@@ -48,7 +48,7 @@ parts:
           - file: chapters/09-exceptions/0902-testing
       - file: chapters/10-algorithms/1001-searching
       - file: chapters/10-algorithms/1002-sorting
-      - file: chapters/11-libs/1101-3party-libs
+      # - file: chapters/11-libs/1101-3party-libs
   - caption: "Select Topics"
     numbered: true
     chapters:
