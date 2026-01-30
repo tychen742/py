@@ -6,24 +6,32 @@ parts:
     chapters:
       - file: chapters/01-intro/0100-py-intro
         sections:
-          # - file: chapters/01-intro/0101-prog-constructs
-          - file: chapters/01-intro/0102-the-shells
           - file: chapters/01-intro/0103-programming
-      - file: chapters/02-py-overview/0104-py-syntax
-      - file: chapters/ch02-variables-types
-      - file: chapters/ch03-conditionals
-      - file: chapters/ch04-iteration
-      - file: chapters/ch05-functions
+      - file: chapters/02-py-overview/0200-intro-py
+        sections:
+          - file: chapters/02-py-overview/0201-syntax
+          - file: chapters/02-py-overview/0202-data-types
+      - file: chapters/03-control-structures/0301-conditionals
+      - file: chapters/03-control-structures/0302-iteration
+      - file: chapters/04-functions/0401-functions
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/ch06-lists-tuples
-      - file: chapters/ch07-dictionaries-sets
+      - file: chapters/05-data-structures/0700-into-ds
+        sections:
+          - file: chapters/05-data-structures/0701-list
+          - file: chapters/05-data-structures/0702-tuple
+          - file: chapters/05-data-structures/0703-dictionary
+          - file: chapters/05-data-structures/0704-sets
   - caption: "Part III: Strings & Analysis"
     numbered: true
     chapters:
-      - file: chapters/ch08-strings
-      - file: chapters/ch09-text-analysis
+      - file: chapters/06-file-strings/0800-intro-strings
+        sections:
+          - file: chapters/06-file-strings/0601-files
+          - file: chapters/06-file-strings/0602-strings
+          - file: chapters/06-file-strings/0603-text-analysis
+      - file: chapters/07-databases/0701-databases
   - caption: "Part IV: OOP"
     numbered: true
     chapters:
@@ -41,7 +49,14 @@ parts:
   - caption: "Appendices"
     numbered: true
     chapters:
-      - file: genindex
+      - file: chapters/appendices/0102-the-shells
+      - file: chapters/appendices/0200-intro-jupyter
+        sections:
+          - file: chapters/appendices/0201-python-installation
+          - file: chapters/appendices/0202-virtual-environment
+          - file: chapters/appendices/0203-the-notebooks
+          - file: chapters/appendices/0204-jupyter-bonus
+      # - file: chapters/appendices/genindex
     # - file: chapters/chap19
 # - file: chapters/jupyter_intro
 #   title: Jupyter intro
