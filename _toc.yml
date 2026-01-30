@@ -21,6 +21,8 @@ parts:
         sections:
           - file: chapters/05-data-structures/0701-list
           - file: chapters/05-data-structures/0702-tuple
+      - file: chapters/05-data-structures/0700-into-ds
+        sections:
           - file: chapters/05-data-structures/0703-dictionary
           - file: chapters/05-data-structures/0704-sets
   - caption: "Part III: Strings & Analysis"
@@ -30,19 +32,23 @@ parts:
         sections:
           - file: chapters/06-file-strings/0601-files
           - file: chapters/06-file-strings/0602-strings
-          - file: chapters/06-file-strings/0603-text-analysis
+      - file: chapters/06-file-strings/0603-text-analysis
       - file: chapters/07-databases/0701-databases
   - caption: "Part IV: OOP"
     numbered: true
     chapters:
-      - file: chapters/ch10-oop-intro
-      - file: chapters/ch11-oop-inheritance-polymorphism
+      - file: chapters/08-oop/0801-oop
+      - file: chapters/08-oop/0802-oop-implementation
   - caption: "Part V: Applications"
     numbered: true
     chapters:
-      - file: chapters/ch12-files
-      - file: chapters/ch13-databases
-      - file: chapters/ch14-exception-handling
+      - file: chapters/09-exceptions/0900-intro-exceptions
+        sections:
+          - file: chapters/09-exceptions/0901-exception-handling
+          - file: chapters/09-exceptions/0902-testing
+      - file: chapters/10-algorithms/1001-searching
+      - file: chapters/10-algorithms/1002-sorting
+      - file: chapters/11-libs/1101-3party-libs
       - file: chapters/ch15-algorithms
       - file: chapters/ch16-advanced-topics
       # - file: chapters/ch17-iterators-generators
