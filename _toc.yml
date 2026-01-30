@@ -9,7 +9,7 @@ parts:
           - file: chapters/01-intro/0103-programming
       - file: chapters/02-py-overview/0200-intro-py
         sections:
-          - file: chapters/02-py-overview/0201-syntax
+          - file: chapters/02-py-overview/0201-py-syntax
           - file: chapters/02-py-overview/0202-data-types
       - file: chapters/03-control-structures/0301-conditionals
       - file: chapters/03-control-structures/0302-iteration
