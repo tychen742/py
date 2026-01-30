@@ -27,7 +27,7 @@ parts:
         # sections:
       - file: chapters/05-data-structures/0503-dictionary
       - file: chapters/05-data-structures/0504-set
-  - caption: "Part III: Strings & Analysis"
+  - caption: "Part III: Strings & Data"
     numbered: true
     chapters:
       - file: chapters/06-file-strings/0600-intro-strings
