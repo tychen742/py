@@ -11,20 +11,22 @@ parts:
         sections:
           - file: chapters/02-py-overview/0201-py-syntax
           - file: chapters/02-py-overview/0202-data-types
-      - file: chapters/03-control-structures/0301-conditionals
-      - file: chapters/03-control-structures/0302-iteration
+      - file: chapters/03-control-structures/0300-intro-control
+        sections:
+          - file: chapters/03-control-structures/0301-conditionals
+          - file: chapters/03-control-structures/0302-iteration
       - file: chapters/04-functions/0401-functions
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/05-data-structures/0500-intro-ds1
-        sections:
-          - file: chapters/05-data-structures/0501-list
-          - file: chapters/05-data-structures/0502-tuple
-      - file: chapters/05-data-structures/0500-intro-ds2
-        sections:
-          - file: chapters/05-data-structures/0503-dictionary
-          - file: chapters/05-data-structures/0504-set
+      # - file: chapters/05-data-structures/0500-intro-ds1
+      #   sections:
+      - file: chapters/05-data-structures/0501-list
+      - file: chapters/05-data-structures/0502-tuple
+      # - file: chapters/05-data-structures/0500-intro-ds2
+        # sections:
+      - file: chapters/05-data-structures/0503-dictionary
+      - file: chapters/05-data-structures/0504-set
   - caption: "Part III: Strings & Analysis"
     numbered: true
     chapters:
