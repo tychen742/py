@@ -60,7 +60,7 @@ parts:
         sections:
           - file: chapters/appendices/0201-python-installation
           - file: chapters/appendices/0202-virtual-environment
-          - file: chapters/appendices/0203-the-notebooks
+          - file: chapters/appendices/0203-the-notebook
           - file: chapters/appendices/0204-jupyter-bonus
       # - file: chapters/appendices/genindex
     # - file: chapters/chap19
