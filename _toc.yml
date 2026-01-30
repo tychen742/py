@@ -17,18 +17,18 @@ parts:
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/05-data-structures/0500-intro-ds
+      - file: chapters/05-data-structures/0500-intro-ds1
         sections:
           - file: chapters/05-data-structures/0501-list
           - file: chapters/05-data-structures/0502-tuple
-      - file: chapters/05-data-structures/0500-into-ds
+      - file: chapters/05-data-structures/0500-intro-ds2
         sections:
           - file: chapters/05-data-structures/0503-dictionary
           - file: chapters/05-data-structures/0504-sets
   - caption: "Part III: Strings & Analysis"
     numbered: true
     chapters:
-      - file: chapters/06-file-strings/0800-intro-strings
+      - file: chapters/06-file-strings/0600-intro-strings
         sections:
           - file: chapters/06-file-strings/0601-files
           - file: chapters/06-file-strings/0602-strings
