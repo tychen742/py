@@ -1,12 +1,12 @@
 # Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
-
 title: thinkpy
 author: "Tsangyao Chen"
 copyright: "2026"
 logo: _static/thinkpy-logo-com.png
 language: en
 
+
+# Execution settings
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
@@ -17,6 +17,7 @@ execute:
   stderr_output: show
   output_cache: true
 
+# Sphinx settings
 sphinx:
   extra_extensions:
     - sphinx_new_tab_link
@@ -38,13 +39,16 @@ sphinx:
       selector: "div.cell.tag_thebe-interactive"
       selector_input: "div.cell_input"
       selector_output: "div.cell_output"
+    
+    
+    
     html_theme_options:
       repository_url: https://github.com/tychen742/py
       repository_branch: main
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
-      # show_prev_next: true
+      show_prev_next: true
       navigation_with_keys: true
       launch_buttons:
         thebe: true
@@ -55,23 +59,28 @@ repository:
   url: https://github.com/tychen742/py # Online location of your book
   branch: main # Which branch of the repository should be used when creating links (optional)
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# HTML/theme settings
 html:
   use_numbered_headings: true
   number_toc_depth: 3
   favicon: ./_static/favicon-io_green-gold/favicon.ico
   # use_thebe: true
 
-latex:
-  latex_engine: pdflatex
 
-parse:
-  myst_enable_extensions:
-    - dollarmath      # For LaTeX math
-    - colon_fence     # For ::: fenced divs
-    - deflist         # For definition lists
-    - linkify         # Auto-convert URLs to links
+# Bibliography
+bibtex_bibfiles:
+  - chapters/references.bib
+bibtex_reference_style: label
+
+# latex:
+#   latex_engine: pdflatex
+
+# parse:
+#   myst_enable_extensions:
+#     - dollarmath      # For LaTeX math
+#     - colon_fence     # For ::: fenced divs
+#     - deflist         # For definition lists
+#     - linkify         # Auto-convert URLs to links
     
 exclude_patterns:
   - ".venv"
