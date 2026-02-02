@@ -258,3 +258,9 @@ div.cell.tag_thebe-interactive::before {
     font-weight: bold;
     margin-bottom: 8px;
 }
+
+.mermaid svg {
+  width: 80%;
+  max-width: 1000px;
+  height: auto;
+}
