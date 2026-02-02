@@ -263,5 +263,5 @@ div.cell.tag_thebe-interactive::before {
   width: 80%;
   max-width: 1000px;
   height: auto;
-  font-size: 0.8rem;
+  font-size: 0.5rem !important;
 }
