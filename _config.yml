@@ -25,6 +25,7 @@ sphinx:
     - sphinx_thebe
     - sphinxcontrib.mermaid
   config:
+    # mermaid_version: "10.6.1" 
     html_static_path: ['_static']
     html_css_files:
       - custom.css
