@@ -25,11 +25,11 @@ sphinx:
     - sphinx_thebe
     - sphinxcontrib.mermaid
   config:
-    # mermaid_version: "10.6.1" 
     html_static_path: ['_static']
     html_css_files:
       - custom.css
     bibtex_reference_style: author_year
+    bibtex_default_style: plain        # NEW: controls bibliography formatting (plain is closer to APA)
     bibtex_bibfiles: ./chapters/references.bib
     new_tab_link_show_external_link_icon: true  ### default
     new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
@@ -43,7 +43,6 @@ sphinx:
       selector_output: "div.cell_output"
     
     
-    
     html_theme_options:
       repository_url: https://github.com/tychen742/py
       repository_branch: main
@@ -55,6 +54,9 @@ sphinx:
       launch_buttons:
         thebe: true
         binderhub_url: "https://mybinder.org"
+
+citeproc:
+    style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
 # Information about where the book exists on the web
 repository:
