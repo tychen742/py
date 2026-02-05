@@ -66,6 +66,8 @@ parts:
           - file: chapters/appendices/0202-virtual-environment
           - file: chapters/appendices/0203-the-notebook
           - file: chapters/appendices/0204-jupyter-bonus
+      - file: chapters/bibliography
+        title: Bibliography
       # - file: chapters/appendices/genindex
     # - file: chapters/chap19
 # - file: chapters/jupyter_intro
