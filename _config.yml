@@ -53,8 +53,8 @@ sphinx:
         thebe: true
         binderhub_url: "https://mybinder.org"
 
-# citeproc:
-#     style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+citeproc:
+    style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
 # Information about where the book exists on the web
 repository:
