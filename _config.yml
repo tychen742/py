@@ -33,7 +33,7 @@ sphinx:
     # Bibliography
     bibtex_bibfiles:
       - chapters/references.bib
-    bibtex_reference_style: label
+    bibtex_reference_style: author_year
     new_tab_link_show_external_link_icon: true  ### default
     new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
     html_use_index: true        # default is true, but set it explicitly if unsure
