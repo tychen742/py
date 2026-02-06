@@ -39,7 +39,7 @@ sphinx:
       selector_input: "div.cell_input"
       selector_output: "div.cell_output"
     
-      html_theme_options:
+    html_theme_options:
       repository_url: https://github.com/tychen742/py
       repository_branch: main
       use_issues_button: true
