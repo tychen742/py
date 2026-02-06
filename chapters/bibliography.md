@@ -1,14 +1,9 @@
 ---
-bibliography: chapters/references.bib
+bibliography: references.bib
 ---
 
 # Bibliography
 
 ```{bibliography}
-:style: plain
-:cited:
+:style: author_year
 ```
-
-@misc{=TechVida_2017, title={Python Syntax - Take your first step in the Python Programming World - DataFlair}, url={https://data-flair.training/blogs/python-syntax-semantics/}, journal={DataFlair}, author={Team, DataFlair}, year={2017}, month={Dec} }
-
-‌
