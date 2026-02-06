@@ -24,16 +24,12 @@ sphinx:
     - sphinx.ext.autodoc
     - sphinx_thebe
     - sphinxcontrib.mermaid
-    - sphinxcontrib.bibtex  # ADD THIS LINE
-
   config:
     html_static_path: ['_static']
     html_css_files:
       - custom.css
     # Bibliography
-    bibtex_bibfiles:
-      - chapters/references.bib
-    bibtex_reference_style: author_year
+
     new_tab_link_show_external_link_icon: true  ### default
     new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
     html_use_index: true        # default is true, but set it explicitly if unsure
@@ -70,7 +66,9 @@ html:
   use_numbered_headings: true
   number_toc_depth: 3
   favicon: ./_static/favicon-io_green-gold/favicon.ico
-  # use_thebe: true
+  bibtex_bibfiles:
+    - chapters/references.bib
+  bibtex_reference_style: author_year
 
 # MyST parsing
 parse:
