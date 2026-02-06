@@ -29,7 +29,9 @@ sphinx:
     html_css_files:
       - custom.css
     # Bibliography
-
+    bibtex_bibfiles:
+      - chapters/references.bib
+    bibtex_reference_style: author_year
     new_tab_link_show_external_link_icon: true  ### default
     new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
     html_use_index: true        # default is true, but set it explicitly if unsure
@@ -53,8 +55,8 @@ sphinx:
         thebe: true
         binderhub_url: "https://mybinder.org"
 
-citeproc:
-    style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+# citeproc:
+#     style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
 # Information about where the book exists on the web
 repository:
@@ -66,9 +68,7 @@ html:
   use_numbered_headings: true
   number_toc_depth: 3
   favicon: ./_static/favicon-io_green-gold/favicon.ico
-  bibtex_bibfiles:
-    - chapters/references.bib
-  bibtex_reference_style: author_year
+  # use_thebe: true
 
 # MyST parsing
 parse:
