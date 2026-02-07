@@ -25,15 +25,15 @@ sphinx:
     - sphinx_thebe
     - sphinxcontrib.mermaid
     - sphinxcontrib.bibtex  # ADD THIS LINE
-
   config:
-    html_static_path: ['_static']
-    html_css_files:
-      - custom.css
-    # Bibliography
     bibtex_bibfiles:
       - chapters/references.bib
     bibtex_reference_style: author_year
+    # Keep bibliography numeric/ordered
+    bibtex_default_style: unsrt
+    html_static_path: ['_static']
+    html_css_files:
+      - custom.css
     new_tab_link_show_external_link_icon: true  ### default
     new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
     html_use_index: true        # default is true, but set it explicitly if unsure
@@ -44,7 +44,9 @@ sphinx:
       selector: "div.cell.tag_thebe-interactive"
       selector_input: "div.cell_input"
       selector_output: "div.cell_output"
-    
+      # bootstrap: false
+      # requestKernel: true
+      # predefinedOutput: false  # Keep this true to show static output before execution    
     html_theme_options:
       repository_url: https://github.com/tychen742/py
       repository_branch: main
@@ -60,7 +62,6 @@ sphinx:
 # citeproc:
 #     style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 
-# Information about where the book exists on the web
 repository:
   url: https://github.com/tychen742/py # Online location of your book
   branch: main # Which branch of the repository should be used when creating links (optional)
