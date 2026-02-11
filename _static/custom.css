@@ -240,7 +240,10 @@ table tbody tr:hover {
     border: 1px solid #e0e0e0;
     border-left: 4px solid #1b5e20;
     /* background-color: #f0f8ff; */
-    box-shadow: none;
+    border-color: #2980b9;
+    background-color: #f0f8ff;
+    box-shadow: 0 0 8px rgba(41, 128, 185, 0.6);
+    /* box-shadow: none; */
 }
 
 .thebelab-button {
@@ -259,6 +262,7 @@ table tbody tr:hover {
 
 .thebelab-button:hover {
     background-color: #efefef !important;
+    padding: 1px 1px !important;
     color: #333 !important;
 }
 
