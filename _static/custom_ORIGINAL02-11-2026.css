@@ -1,5 +1,5 @@
 body {
-    font-size: 0.9rem;
+    font-size: 0.9em;
     line-height: 1.25;
     /* default 1.65*/
 }
@@ -29,12 +29,12 @@ h2 {
 
 h3 {
     margin: 1rem 0 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 h4 {
-    margin-top: 0.75rem;
-    font-size: 1.05rem;
+    margin-top: 0.75em;
+    font-size: 1.15em;
 }
 
 p {
@@ -59,7 +59,7 @@ nav.bd-links p.caption {
 html[data-theme=light] {
     --sbt-color-announcement: #616161;
     /* --pst-color-primary: #176de8; */
-    --pst-color-primary: #176de8;
+    --pst-color-primary: #176de8
 }
 
 .bd-sidebar-primary {
@@ -85,16 +85,9 @@ pre {
     background-color: #f7f7f7 !important;
     color: #222 !important;
     border: 1px solid #ddd;
-    border-left: 2px solid #1b5e20;
     border-radius: 6px;
     padding: 8px;
     font-size: 0.8em;
-}
-
-/* Code cell input styling */
-.cell_input,
-.highlight-ipython3 {
-    border-left: 2px solid #1b5e20 !important;
 }
 
 
@@ -199,48 +192,22 @@ table tbody tr:hover {
     font-size: 0.9rem !important;
 }
 
-.thebelab-cell.thebelab-cell {
-    padding: 0 !important;
-    margin: 1em 0 !important;
-    margin-left: 0 !important;
-    transition: border-color 0.3s ease, box-shadow 0.3s !important;
-    border: 1px solid #ddd !important;
-    border-left: 2px solid #1b5e20 !important;
-    border-radius: 6px !important;
-    background-color: #f7f7f7 !important;
-}
-
-.thebelab-cell.thebelab-cell .thebelab-input {
-    background-color: inherit !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 8px !important;
-    display: block !important;
-    overflow: visible !important;
-}
-
-.thebelab-cell.thebelab-cell .highlight-python {
-    border: none !important;
-    background: transparent !important;
-}
-
-.thebelab-cell .thebelab-input > * {
-    margin: 0 !important;
-}
-
-.thebelab-cell .thebelab-input pre {
-    margin: 0 !important;
-    border: none !important;
-    background: transparent !important;
-    padding: 0 !important;
-    color: inherit !important;
+.thebelab-cell {
+    background-color: grey;
+    /* border: 2px solid #ccc; */
+    border: 2px solid #bdc3c7;
+    /* background-color: rgb(145, 148, 151); */
+    background-color: lightgrey;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 1em 0;
+    transition: border-color 0.3s ease, box-shadow 0.3s
 }
 
 .thebelab-cell:hover {
-    border: 1px solid #e0e0e0;
-    border-left: 4px solid #1b5e20;
-    /* background-color: #f0f8ff; */
-    box-shadow: none;
+    border-color: #2980b9;
+    background-color: #f0f8ff;
+    box-shadow: 0 0 8px rgba(41, 128, 185, 0.6);
 }
 
 .thebelab-button {
@@ -248,34 +215,6 @@ table tbody tr:hover {
     /* default 0.9rem */
     padding: 4px 8px;
     /* default 6px 12px */
-    background-color: #f7f7f7 !important;
-    color: #999 !important;
-    border: 1px solid #f0f0f0 !important;
-    transition: all 0.2s ease;
-    display: inline-block;
-    margin-right: 4px;
-    margin-top: 2px;
-}
-
-.thebelab-button:hover {
-    background-color: #efefef !important;
-    color: #333 !important;
-}
-
-/* Button container styling */
-.thebelab-buttons {
-    text-align: left !important;
-    margin-top: 2px !important;
-}
-
-/* Output cell styling */
-.cell_output,
-.thebelab-output {
-    font-size: 0.8rem !important;
-    border-top: 0.5px solid #f5f5f5 !important;
-    margin-top: 4px !important;
-    margin-bottom: 1em !important;
-    padding-top: 4px !important;
 }
 
 /* Target specifically the hide-input toggle */
@@ -287,12 +226,6 @@ table tbody tr:hover {
 p.admonition-title {
     margin: 0px 10px 5px 0px;
     font-weight: normal !important;
-}
-
-/* Admonition styling */
-.admonition,
-.sd-admonition {
-    border-left: 4px solid !important;
 }
 
 
@@ -309,31 +242,9 @@ p.admonition-title {
     content: "";
 }
 
-/* Hide static output when Thebe is active */
-.thebelab-active ~ .output_stream,
-.thebelab-active ~ .cell_output {
-    display: none !important;
-}
-
-/* Ensure output text size is small */
-div.output_stream,
-div.cell_output {
-    font-size: 0.75rem !important;
-}
-
-div.output_stream pre,
-div.cell_output pre {
-    font-size: 0.75rem !important;
-}
-
-div.output_stream pre span,
-div.cell_output pre span {
-    font-size: 0.75rem !important;
-}
-
 /* Highlight interactive cells */
 div.cell.tag_thebe-interactive {
-    border-left: 4px solid #AD2327;
+    border-left: 4px solid #4CAF50;
     padding-left: 10px;
     /* background-color: #f9fff9; */
 }
@@ -343,7 +254,14 @@ div.cell.tag_thebe-interactive::before {
     content: "✏️ Interactive Exercise";
     display: block;
     font-size: 0.85em;
-    color: #AD2327;
+    color: #4CAF50;
     font-weight: bold;
     margin-bottom: 8px;
+}
+
+.mermaid svg {
+  width: 80%;
+  max-width: 1000px;
+  height: auto;
+  font-size: 0.5rem !important;
 }
