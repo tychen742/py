@@ -200,7 +200,7 @@ table tbody tr:hover {
 }
 
 .thebelab-cell.thebelab-cell {
-    padding: 0 !important;
+    padding: 8px !important;
     margin: 1em 0 !important;
     margin-left: 0 !important;
     transition: border-color 0.3s ease, box-shadow 0.3s !important;
