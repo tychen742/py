@@ -320,18 +320,21 @@ p.admonition-title {
 }
 
 /* Ensure output text size is small */
-div.output_stream,
-div.cell_output {
+div.output.stream,
+div.cell_output,
+.jp-RenderedHTMLCommon {
     font-size: 0.75rem !important;
 }
 
-div.output_stream pre,
-div.cell_output pre {
+div.output.stream pre,
+div.cell_output pre,
+.jp-RenderedHTMLCommon pre {
     font-size: 0.75rem !important;
 }
 
-div.output_stream pre span,
-div.cell_output pre span {
+div.output.stream pre span,
+div.cell_output pre span,
+.jp-RenderedHTMLCommon pre span {
     font-size: 0.75rem !important;
 }
 
