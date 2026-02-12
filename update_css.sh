@@ -45,7 +45,11 @@ cp "$SOURCE_CSS" "$BUILD_CSS"
 BUILD_STATUS=$?
 
 # Also copy to /var/www/{project_name}/_static/
-PROJECT_NAME=$(basename "$WORKSPACE_DIR")
+if [ "$WORKSPACE_DIR" = "." ]; then
+    PROJECT_NAME=$(basename "$PWD")
+else
+    PROJECT_NAME=$(basename "$WORKSPACE_DIR")
+fi
 WWW_STATIC_DIR="/var/www/${PROJECT_NAME}/_static"
 if [ -d "$WWW_STATIC_DIR" ]; then
     echo "📋 Copying custom.css to $WWW_STATIC_DIR ..."
