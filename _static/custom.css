@@ -1,3 +1,7 @@
+/* Set output pre font size for Thebe cells */
+.thebelab-cell > div > .output > pre {
+    font-size: 0.75rem !important;
+}
 body {
     font-size: 0.9rem;
     line-height: 1.25;
