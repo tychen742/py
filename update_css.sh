@@ -12,8 +12,8 @@ if [ -z "$1" ]; then
     if [ -f "_static/custom.css" ]; then
         WORKSPACE_DIR="."
     else
-        # Otherwise use default
-        WORKSPACE_DIR="${HOME}/workspace/dsm"
+        # Otherwise use default: $HOME/{current folder name}
+        WORKSPACE_DIR="${HOME}/$(basename \"$PWD\")"
     fi
 else
     WORKSPACE_DIR="$1"
@@ -38,11 +38,25 @@ if [ ! -d "$WORKSPACE_DIR/_build/html/_static" ]; then
     jupyter-book build . --quiet
 fi
 
-# Copy the CSS file
+
+# Copy the CSS file to build output
 echo "📋 Copying custom.css to build output..."
 cp "$SOURCE_CSS" "$BUILD_CSS"
+BUILD_STATUS=$?
 
-if [ $? -eq 0 ]; then
+# Also copy to /var/www/{project_name}/_static/
+PROJECT_NAME=$(basename "$WORKSPACE_DIR")
+WWW_STATIC_DIR="/var/www/${PROJECT_NAME}/_static"
+if [ -d "$WWW_STATIC_DIR" ]; then
+    echo "📋 Copying custom.css to $WWW_STATIC_DIR ..."
+    cp "$SOURCE_CSS" "$WWW_STATIC_DIR/custom.css"
+    WWW_STATUS=$?
+else
+    echo "⚠️  Target directory $WWW_STATIC_DIR does not exist. Skipping copy to web server."
+    WWW_STATUS=0
+fi
+
+if [ $BUILD_STATUS -eq 0 ] && [ $WWW_STATUS -eq 0 ]; then
     echo "✅ CSS updated successfully!"
     echo ""
     echo "Next steps:"
