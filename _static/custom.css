@@ -3,7 +3,7 @@ button.thebelab-button.thebelab-run-button {
 }
 /* Force output part to have zero left margin and no border, only input has green border */
 div.thebelab-cell.thebelab-cell > div.thebelab-input {
-    border-left: 3px solid #6cbf47 !important;
+    border-left: 2px solid #6cbf47 !important;
     margin-left: 0 !important;
 }
 
