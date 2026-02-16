@@ -69,6 +69,8 @@ body {
     font-size: 0.9rem;
     line-height: 1.25;
     /* default 1.65*/
+    /* Initialize exercise counter */
+    counter-reset: exercise-counter;
 }
 
 h1,
@@ -427,11 +429,12 @@ div.cell.tag_thebe-interactive {
 div.cell.tag_thebe-interactive {
     border-left: 1px solid #AD2327;
     /* background-color: #f9fff9; */
+    counter-increment: exercise-counter;
 }
 
-/* Optional: Add exercise label */
+/* Optional: Add exercise label with automatic numbering */
 div.cell.tag_thebe-interactive::before {
-    content: "✏️ Interactive Exercise";
+    content: "✏️ Interactive Exercise " counter(exercise-counter);
     display: block;
     font-size: 0.85em;
     color: #AD2327;
