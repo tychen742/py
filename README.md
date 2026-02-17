@@ -8,7 +8,10 @@ Install jupyter-notebook and sphinx_new_tab_link and jb will build:
 pip install "jupyter-book==1.0.4.post1" ### same as pip install "jupyter-book<2"
 pip install sphinx_new_tab_link ### current: 0.8.1
 ```
-
+Additional stuff:
+```python
+pip install sphinxcontrib.mermaid
+```
 jupyter-book1.0.4.post1 will install:
 ```python
   - sphinx 7.4.7
