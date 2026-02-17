@@ -2,16 +2,27 @@
 This project is based on Think Python, 3rd edition, by Allen B. Downey
 
 ## installations
-- use jupyter book v1
-- install sphinx_new_tab_link
-- create www folder: /var/www/py/
-After these two, jb will build.
+Install jupyter-notebook and sphinx_new_tab_link and jb will build.
   
 ```python
-pip install "jupyter-book==1.0.4.post1"
-pip install sphinx_new_tab_link
+pip install "jupyter-book==1.0.4.post1" ### same as pip install "jupyter-book<2"
+pip install sphinx_new_tab_link ### current: 0.8.1
 ```
 
+jupyter-book1.0.4.post1 will install:
+```python
+  - sphinx 7.4.7
+  - sphinx_thebe
+  - docutils 0.21.2
+  - sphinx_external_toc 1.1.0
+  - sphinx-thebe 0.3.1
+```
+
+If you want earlier versions:
+```python
+pip install "jupyter-book<2"
+pip install "sphinx<7.2" "sphinx-new-tab-link<0.5" "docutils<0.21" "sphinx-external-toc~=1.0.1" jupyter-book==1.0.4.post1 sphinx==7.1.2 sphinx-new-tab-link==0.4.0 docutils==0.20.1 sphinx-external-toc==1.0.1
+```
 
 ## downloads
 ```python
