@@ -2,7 +2,7 @@
 This project is based on Think Python, 3rd edition, by Allen B. Downey
 
 ## installations
-Install jupyter-notebook and sphinx_new_tab_link and jb will build.
+Install jupyter-notebook and sphinx_new_tab_link and jb will build:
   
 ```python
 pip install "jupyter-book==1.0.4.post1" ### same as pip install "jupyter-book<2"
