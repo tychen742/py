@@ -28,22 +28,11 @@ document.addEventListener('click', function(e) {
     }
 }, true);
 
+// ---- SINGLE DOMContentLoaded handler ----
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM ready!");
 
-    // -----------------------------------------------------------
-    // FIX B: Demo cells — hide jp-OutputArea when Thebe activates.
-    //
-    // Since body.thebelab-active is never set by Thebe 0.8.2,
-    // we detect activation by watching for the first
-    // .thebelab-run-button to appear in the DOM, then add our own
-    // class 'thebe-is-active' to body so CSS can target it.
-    //
-    // NOTE: thinkpy uses predefinedOutput: true (default), so
-    // static outputs are visible. No Fix A needed — exercise cell
-    // outputs are not hidden by Thebe in this config.
-    // -----------------------------------------------------------
-
+    // Thebe activation detection
     var thebeActivated = false;
 
     var activationObserver = new MutationObserver(function() {
@@ -54,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('thebe-is-active');
             console.log("[fix B] Thebe detected — added thebe-is-active to body");
 
-            // Bind directly to every run button now that they exist
             document.querySelectorAll('.thebelab-run-button').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     var cell = btn.closest('.cell');
@@ -67,19 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     activationObserver.observe(document.body, { childList: true, subtree: true });
-});
 
-// Dynamically update interactive exercise counters to show X/Total per page
-document.addEventListener('DOMContentLoaded', function() {
-    // Find all interactive exercise cells
+    // Exercise counter labels
     const exercises = document.querySelectorAll('div.cell.tag_thebe-interactive');
     const total = exercises.length;
-    
-    // Update each exercise with its number and the total
+
     exercises.forEach((exercise, index) => {
         const counter = index + 1;
-        
-        // Create or update the exercise label
         const label = document.createElement('div');
         label.className = 'exercise-label';
         label.innerHTML = `✏️ Interactive Exercise ${counter}/${total}`;
@@ -90,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
             font-weight: bold;
             margin-bottom: 8px;
         `;
-        
-        // Insert at the beginning of the cell
         exercise.insertBefore(label, exercise.firstChild);
     });
 });
