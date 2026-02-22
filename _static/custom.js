@@ -1,7 +1,7 @@
 console.log("Custom JS loaded!");
 
 // Handle sidebar toggle using event delegation (more reliable)
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     const toggleButton = e.target.closest('button.sidebar-toggle.primary-toggle');
 
     if (toggleButton) {
@@ -29,13 +29,77 @@ document.addEventListener('click', function(e) {
 }, true);
 
 // ---- SINGLE DOMContentLoaded handler ----
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM ready!");
 
-    // Thebe activation detection
+    // -----------------------------------------------------------
+    // FIX A: tag_hide-input (exercise answer) cells
+    //
+    // Thebe wraps the entire .thebelab-cell inside <details>, hiding
+    // everything. We watch each cell and move the jp-OutputArea wrapper
+    // outside <details> the instant Thebe creates it.
+    // -----------------------------------------------------------
+    // // Thebe activation detection
+    function moveOutputOutsideDetails(cell) {
+        var details = cell.querySelector('details');
+        if (!details) return;
+        var thebelabCell = details.querySelector('.thebelab-cell');
+        if (!thebelabCell) return;
+
+        var outputWrapper = null;
+        thebelabCell.querySelectorAll(':scope > div').forEach(function (div) {
+            if (div.querySelector('.jp-OutputArea')) outputWrapper = div;
+        });
+
+        if (outputWrapper && !outputWrapper.dataset.movedOut) {
+            outputWrapper.dataset.movedOut = '1';
+            details.after(outputWrapper);
+            console.log("[fix A] Moved output outside <details> for", cell.id);
+        }
+    }
+
+    function watchExerciseCell(cell) {
+        var details = cell.querySelector('details');
+        if (!details) return;
+
+        var observer = new MutationObserver(function () {
+            var thebelabCell = details.querySelector('.thebelab-cell');
+            if (!thebelabCell) return;
+
+            var outputObserver = new MutationObserver(function () {
+                var outputWrapper = null;
+                thebelabCell.querySelectorAll(':scope > div').forEach(function (div) {
+                    if (div.querySelector('.jp-OutputArea')) outputWrapper = div;
+                });
+                if (outputWrapper && !outputWrapper.dataset.movedOut) {
+                    outputWrapper.dataset.movedOut = '1';
+                    details.after(outputWrapper);
+                    console.log("[fix A] (delayed) Moved output outside <details> for", cell.id);
+                    outputObserver.disconnect();
+                }
+            });
+            outputObserver.observe(thebelabCell, { childList: true, subtree: true });
+            moveOutputOutsideDetails(cell);
+            observer.disconnect();
+        });
+
+        observer.observe(details, { childList: true, subtree: true });
+    }
+
+    document.querySelectorAll('.tag_hide-input').forEach(watchExerciseCell);
+
+    // -----------------------------------------------------------
+    // FIX B: Demo cells — hide jp-OutputArea when Thebe activates.
+    //
+    // Since body.thebelab-active is never set by Thebe 0.8.2,
+    // we detect activation by watching for the first
+    // .thebelab-run-button to appear in the DOM, then add our own
+    // class 'thebe-is-active' to body so CSS can target it.
+    // -----------------------------------------------------------
+
     var thebeActivated = false;
 
-    var activationObserver = new MutationObserver(function() {
+    var activationObserver = new MutationObserver(function () {
         if (thebeActivated) return;
         if (document.querySelector('.thebelab-run-button')) {
             thebeActivated = true;
@@ -43,8 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('thebe-is-active');
             console.log("[fix B] Thebe detected — added thebe-is-active to body");
 
-            document.querySelectorAll('.thebelab-run-button').forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            // Bind directly to every run button now that they exist
+            document.querySelectorAll('.thebelab-run-button').forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     var cell = btn.closest('.cell');
                     if (cell && !cell.classList.contains('tag_hide-input')) {
                         cell.classList.add('cell-has-run');
