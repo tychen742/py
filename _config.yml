@@ -35,7 +35,6 @@ sphinx:
     html_css_files:
       - custom.css
     html_js_files:
-      # - exercise-counter.js
       - custom.js
     new_tab_link_show_external_link_icon: true  ### default
     new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
