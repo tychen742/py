@@ -79,8 +79,8 @@ html:
   use_numbered_headings: true
   number_toc_depth: 4
   favicon: ./_static/favicon-io_green-gold/favicon.ico
-  # use_thebe: true
-
+extra_js:
+  - custom.js
 # MyST parsing
 parse:
   myst_enable_extensions:
