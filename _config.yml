@@ -4,7 +4,7 @@ author: "Tsangyao Chen"
 copyright: "2026"
 logo: _static/thinkpy-logo-com.png
 language: en
-
+only_build_toc_files: true
 
 # Execution settings
 # Force re-execution of notebooks on each build.
@@ -13,7 +13,7 @@ execute:
   execute_notebooks: auto
   kernel_name: python3
   exclude_tags: [skip-execution]
-  timeout: 100
+  timeout: 300
   allow_errors: false
   stderr_output: show
   output_cache: true
@@ -25,21 +25,21 @@ sphinx:
     - sphinx.ext.autodoc
     - sphinx_thebe
     - sphinxcontrib.mermaid
-    - sphinxcontrib.bibtex  
+    - sphinxcontrib.bibtex
   config:
     bibtex_bibfiles:
       - chapters/references.bib
     bibtex_reference_style: author_year
-    bibtex_default_style: unsrt    ### Keep bibliography numeric/ordered  
-    html_static_path: ['_static']
+    bibtex_default_style: unsrt ### Keep bibliography numeric/ordered
+    html_static_path: ["_static"]
     html_css_files:
       - custom.css
     html_js_files:
       - custom.js
-    new_tab_link_show_external_link_icon: true  ### default
-    new_tab_link_enable_referrer: false         ### adds rel="noreferrer" by default
-    html_use_index: true        # default is true, but set it explicitly if unsure
-    html_domain_indices: true   # keeps domain-specific indices on
+    new_tab_link_show_external_link_icon: true ### default
+    new_tab_link_enable_referrer: false ### adds rel="noreferrer" by default
+    html_use_index: true # default is true, but set it explicitly if unsure
+    html_domain_indices: true # keeps domain-specific indices on
     thebe_config:
       repository_url: https://github.com/tychen742/py
       kernel_name: python3
@@ -49,12 +49,12 @@ sphinx:
       # - CSS styling (red bar + label) still targets only .tag_thebe-interactive cells
       # - Exercise cells are visually distinguished but all cells are interactive
       # selector: "div.tag_thebe-interactive"  # Old: only exercise cells were interactive
-      selector: "div.cell"  # New: all code cells are interactive
+      selector: "div.cell" # New: all code cells are interactive
       selector_input: "div.cell_input"
       selector_output: "div.cell_output"
       bootstrap: false
       requestKernel: true
-      predefinedOutput: false  # Keep this true to show static output before execution    
+      predefinedOutput: false # Keep this true to show static output before execution
     html_theme_options:
       repository_url: https://github.com/tychen742/py
       repository_branch: main
@@ -79,8 +79,7 @@ html:
   use_numbered_headings: true
   number_toc_depth: 4
   favicon: ./_static/favicon-io_green-gold/favicon.ico
-extra_js:
-  - custom.js
+
 # MyST parsing
 parse:
   myst_enable_extensions:
@@ -91,7 +90,7 @@ parse:
     - html_admonition
     - html_image
     # - citations            # REMOVE: not supported in myst-parser 3.0
-    
+
 exclude_patterns:
   - ".venv"
   - "assignments"
@@ -104,6 +103,6 @@ exclude_patterns:
   - "*_worksheet.ipynb"
   # - 'code'        ### no need for trailing slash
   - "README.md"
-  - '.ipynb_checkpoints'
-  - '.DS_Store'
+  - ".ipynb_checkpoints"
+  - ".DS_Store"
 # Table of contents
