@@ -52,9 +52,9 @@ sphinx:
       selector: "div.cell"  # New: all code cells are interactive
       selector_input: "div.cell_input"
       selector_output: "div.cell_output"
-      # bootstrap: false
-      # requestKernel: true
-      # predefinedOutput: false  # Keep this true to show static output before execution    
+      bootstrap: false
+      requestKernel: true
+      predefinedOutput: false  # Keep this true to show static output before execution    
     html_theme_options:
       repository_url: https://github.com/tychen742/py
       repository_branch: main
