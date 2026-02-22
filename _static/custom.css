@@ -2,13 +2,13 @@ button.thebelab-button.thebelab-run-button {
     padding-left: 0 !important;
 }
 
-div.thebelab-cell.thebelab-cell > div.thebelab-input {
+div.thebelab-cell.thebelab-cell>div.thebelab-input {
     border-left: 1px solid #1b5e20 !important;
     margin-left: 0 !important;
 }
 
-div.thebelab-cell.thebelab-cell > div.thebelab-output,
-div.thebelab-cell > div.thebelab-output,
+div.thebelab-cell.thebelab-cell>div.thebelab-output,
+div.thebelab-cell>div.thebelab-output,
 div.thebelab-output {
     border-left: none !important;
     margin-left: 0 !important;
@@ -21,7 +21,7 @@ div.cell_output.docutils.container {
     padding-left: 0 !important;
 }
 
-div.thebelab-cell.thebelab-cell > div.thebelab-input {
+div.thebelab-cell.thebelab-cell>div.thebelab-input {
     padding: 0 !important;
     border: none !important;
 }
@@ -62,13 +62,18 @@ body {
     counter-reset: exercise-counter;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     line-height: 1.25;
     margin-bottom: 0.3em;
     font-weight: 600;
 }
 
-h1 { font-size: 2.2em !important; }
+h1 {
+    font-size: 2.2em !important;
+}
 
 h2 {
     margin: 1.5rem 0 0.75rem 0;
@@ -122,6 +127,14 @@ nav.bd-links li>a {
     color: var(--pst-color-primary);
     transform: translateY(.125rem);
 }
+
+/* =============================================================
+   STATIC PAGE: code cell input/output styling
+   
+   - Cell input: green left border, light background
+   - Cell output: no left border, separated from input by top border
+   - pre inside output: no green left border (that's only for input)
+   ============================================================= */
 
 /* Base pre styling - no green by default */
 pre {
@@ -264,7 +277,7 @@ table tbody tr:hover {
     background: transparent !important;
 }
 
-.thebelab-cell .thebelab-input > * {
+.thebelab-cell .thebelab-input>* {
     margin: 0 !important;
 }
 
@@ -324,6 +337,7 @@ p.admonition-title {
 
 div.cell.tag_thebe-interactive {
     border-left: 1px solid #AD2327;
+    /* counter-increment */
     padding: 0 !important;
 }
 
@@ -360,8 +374,22 @@ div.cell {
 }
 
 div.cell.tag_thebe-interactive {
+    /* counter-increment: exercise-counter; */
     margin-bottom: 0.75rem !important;
     padding: 8px !important;
+}
+
+div.cell.tag_thebe-interactive::before {
+    /* content: "✏️ Interactive Exercise " counter(exercise-counter); */
+    display: block;
+    font-size: 0.85em;
+    color: #66010b;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+div.cell.tag_thebe-interactive {
+    padding: 8px;
 }
 
 button.sidebar-toggle.primary-toggle {
@@ -387,9 +415,31 @@ button.sidebar-toggle.primary-toggle {
     }
 }
 
-/* NOTE: do NOT put border:none here — it overrides the green border-left */
-.thebelab-cell > .thebelab-input {
+.thebelab-cell>.thebelab-input {
     padding: 0 !important;
+}
+
+/* NOTE: do NOT put border:none here — it overrides the green border-left 
+   set in .thebelab-cell.thebelab-cell .thebelab-input above */
+
+/* Ensure exercise cell output (moved outside <details> by JS) is always visible */
+div.thebelab-output,
+.thebelab-cell .thebelab-output {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Style the jp-OutputArea wrapper that JS moved outside <details> for exercise cells */
+.tag_hide-input>div[data-moved-out="1"] {
+    border-top: 1px solid #e8e8e8 !important;
+    margin-top: 6px !important;
+    padding-top: 6px !important;
+    padding-bottom: 4px !important;
+    padding-left: 12px !important;
+    background-color: #fafafa !important;
+    border-radius: 0 0 6px 6px !important;
 }
 
 /* =============================================================
@@ -397,7 +447,7 @@ button.sidebar-toggle.primary-toggle {
    'thebe-is-active' is added to body by our own JS (custom.js)
    when Thebe activates (Thebe 0.8.2 never sets thebelab-active).
 
-   thinkpy has predefinedOutput: true (default), so static outputs
+   _config.yml predefinedOutput: true (default) (made false 02-21-2026), so static outputs
    are visible. When Thebe activates, demo cell outputs are hidden
    until student clicks run. Exercise cells (tag_hide-input) are
    exempt — their static output stays visible always.
