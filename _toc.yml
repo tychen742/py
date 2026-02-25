@@ -33,7 +33,7 @@ parts:
           - file: chapters/08-dict-set/0802-set
       - file: chapters/09-strings/0900-intro-strings
         sections:
-          - file: chapters/09-strings/0901-string
+          - file: chapters/09-strings/0901-strings
           - file: chapters/09-strings/0902-text-analysis
           - file: chapters/09-strings/0903-regex
   - caption: "Part III: Advanced Concepts"
