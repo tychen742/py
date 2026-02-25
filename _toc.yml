@@ -7,11 +7,11 @@ parts:
       - file: chapters/01-intro/0100-py-intro
         sections:
           - file: chapters/01-intro/0101-programming
-      - file: chapters/02-syntax/0200-intro-control
+      - file: chapters/02-syntax/0102-py-syntax
         sections:
-          - file: chapters/02-syntax/0201-variables
-          - file: chapters/02-syntax/0202-operators
-          - file: chapters/02-syntax/0202-builtin-types
+          - file: chapters/02-syntax/0101-variables
+          - file: chapters/02-syntax/0102-operators
+          - file: chapters/02-syntax/0103-builtin-types
       - file: chapters/03-control-flow/0200-intro-control
         sections:
           - file: chapters/03-control-flow/0201-conditionals
@@ -26,8 +26,8 @@ parts:
     numbered: true
     chapters:
       - file: chapters/06-lists/0601-lists
-      - file: chapters/07-tuples/0701-tuples
-      - file: chapters/08-dict-set/08800-intro-dict-set
+      - file: chapters/07-tuples/0701-tuple
+      - file: chapters/08-dict-set/0800-intro-dict-set
         sections:
           - file: chapters/08-dict-set/0801-dict 
           - file: chapters/08-dict-set/0802-set
@@ -43,15 +43,14 @@ parts:
         sections:
           - file: chapters/10-algorithms/1001-searching
           - file: chapters/10-algorithms/1002-sorting
-      - file: chapters/11-testing/1100-intro-testing
+      - file: chapters/11-testing/1101-exceptions
         sections:
-          - file: chapters/11-testing/1101-exceptions
           - file: chapters/11-testing/1102-unit-testing
   - caption: "Part IV: OOP"
     numbered: true
     chapters:
-      - file: chapters/12-oop/1200-intro-oop
-      - file: chapters/12-oop/1201-oop-basics
+      - file: chapters/12-oop/1201-intro-oop
+      - file: chapters/12-oop/1202-oop-basics
   - caption: "Part V: Applications"
     numbered: true
     chapters:
@@ -62,7 +61,7 @@ parts:
         sections:
           - file: chapters/14-iter-gen/1401-iterators
           - file: chapters/14-iter-gen/1402-generators
-      - file: chapters/15-apis/1501-apis
+      - file: chapters/15-apis/1401-apis
       
     
       # - file: chapters/11-libs/1101-3party-libs
@@ -87,4 +86,3 @@ parts:
     # - file: chapters/chap19
 # - file: chapters/jupyter_intro
 #   title: Jupyter intro
-
