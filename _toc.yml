@@ -1,5 +1,5 @@
 format: jb-book
-root: preface
+root: chapters/preface
 parts:
   - caption: "Part I: Fundamentals"
     numbered: true
@@ -7,51 +7,64 @@ parts:
       - file: chapters/01-intro/0100-py-intro
         sections:
           - file: chapters/01-intro/0101-programming
-          - file: chapters/01-intro/0102-py-syntax
-          - file: chapters/01-intro/0103-builtin-types
-      - file: chapters/02-control-flow/0200-intro-control
+      - file: chapters/02-syntax/0200-intro-control
         sections:
-          - file: chapters/02-control-flow/0201-conditionals
-          - file: chapters/02-control-flow/0202-iteration
-      - file: chapters/03-functions/0301-functions
-      - file: chapters/04-modules/0400-intro-modules
+          - file: chapters/02-syntax/0201-variables
+          - file: chapters/02-syntax/0202-operators
+          - file: chapters/02-syntax/0202-builtin-types
+      - file: chapters/03-control-flow/0200-intro-control
         sections:
-          - file: chapters/04-modules/0401-exceptions
-          - file: chapters/04-modules/0402-testing
-          - file: chapters/04-modules/0403-3party-libs
+          - file: chapters/03-control-flow/0201-conditionals
+          - file: chapters/03-control-flow/0202-iteration
+      - file: chapters/04-functions/0301-functions
+      - file: chapters/05-modules/0500-intro-modules
+        sections:
+          - file: chapters/05-modules/0501-files
+          - file: chapters/05-modules/0502-modules
+          - file: chapters/05-modules/0503-packaging
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/05-lists/0501-lists
-      - file: chapters/06-tuples/0601-tuples
-      - file: chapters/07-dict-set/0700-intro-dict-set
+      - file: chapters/06-lists/0601-lists
+      - file: chapters/07-tuples/0701-tuples
+      - file: chapters/08-dict-set/08800-intro-dict-set
         sections:
-          - file: chapters/07-dict-set/0701-dict 
-          - file: chapters/07-dict-set/0702-set
-      - file: chapters/08-strings/0800-intro-strings
-  - caption: "Part III: Strings & Data"
+          - file: chapters/08-dict-set/0801-dict 
+          - file: chapters/08-dict-set/0802-set
+      - file: chapters/09-strings/0900-intro-strings
+        sections:
+          - file: chapters/09-strings/0901-string
+          - file: chapters/09-strings/0902-text-analysis
+          - file: chapters/09-strings/0903-regex
+  - caption: "Part III: Advanced Concepts"
     numbered: true
     chapters:
-      - file: chapters/06-file-strings/0600-intro-strings
+      - file: chapters/10-algorithms/1000-intro-algorithms
         sections:
-          - file: chapters/06-file-strings/0601-files
-          - file: chapters/06-file-strings/0602-strings
-      - file: chapters/06-file-strings/0603-text-analysis
-      - file: chapters/07-databases/0701-databases
+          - file: chapters/10-algorithms/1001-searching
+          - file: chapters/10-algorithms/1002-sorting
+      - file: chapters/11-testing/1100-intro-testing
+        sections:
+          - file: chapters/11-testing/1101-exceptions
+          - file: chapters/11-testing/1102-unit-testing
   - caption: "Part IV: OOP"
     numbered: true
     chapters:
-      - file: chapters/08-oop/0801-intro-oop
-      - file: chapters/08-oop/0802-oop-implementation
+      - file: chapters/12-oop/1200-intro-oop
+      - file: chapters/12-oop/1201-oop-basics
   - caption: "Part V: Applications"
     numbered: true
     chapters:
-      - file: chapters/09-exceptions/0900-intro-exceptions
+      - file: chapters/13-functional/1300-intro-func-prog
         sections:
-          - file: chapters/09-exceptions/0901-exception-handling
-          - file: chapters/09-exceptions/0902-testing
-      - file: chapters/10-algorithms/1001-searching
-      - file: chapters/10-algorithms/1002-sorting
+          - file: chapters/13-functional/1301-func-prog
+      - file: chapters/14-iter-gen/1400-intro-iter-gen
+        sections:
+          - file: chapters/14-iter-gen/1401-iterators
+          - file: chapters/14-iter-gen/1402-generators
+      - file: chapters/15-apis/1501-apis
+      
+    
       # - file: chapters/11-libs/1101-3party-libs
   # - caption: "Select Topics"
   #   numbered: true
