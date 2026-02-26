@@ -48,7 +48,7 @@ parts:
         sections:
           - file: chapters/11-testing/1102-unit-testing
       - file: chapters/12-oop/1201-intro-oop
-      - file: chapters/12-oop/1202-oop-basics
+      - file: chapters/12-oop/1202-oop-practice
       - file: chapters/13-functional/1300-intro-func-prog
         sections:
           - file: chapters/13-functional/1301-func-prog
