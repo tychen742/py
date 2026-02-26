@@ -44,11 +44,14 @@ parts:
         sections:
           - file: chapters/10-algorithms/1001-searching
           - file: chapters/10-algorithms/1002-sorting
-      - file: chapters/11-testing/1101-exceptions
+      - file: chapters/11-testing/1100-exceptions-testing
         sections:
+          - file: chapters/11-testing/1101-exceptions
           - file: chapters/11-testing/1102-unit-testing
-      - file: chapters/12-oop/1201-intro-oop
-      - file: chapters/12-oop/1202-oop-practice
+      - file: chapters/12-oop/1200-intro-oop
+        sections:
+          - file: chapters/12-oop/1201-oop-design
+          - file: chapters/12-oop/1202-oop-practice
       - file: chapters/13-functional/1300-intro-func-prog
         sections:
           - file: chapters/13-functional/1301-func-prog
