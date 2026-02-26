@@ -7,16 +7,17 @@ parts:
       - file: chapters/01-intro/0100-py-intro
         sections:
           - file: chapters/01-intro/0101-programming
-      - file: chapters/02-syntax/0102-py-syntax
+          - file: chapters/01-intro/0102-basic-syntax
+      - file: chapters/02-basics/0200-py-basics
         sections:
-          - file: chapters/02-syntax/0101-variables
-          - file: chapters/02-syntax/0102-operators
-          - file: chapters/02-syntax/0103-builtin-types
-      - file: chapters/03-control-flow/0200-intro-control
+          - file: chapters/02-basics/0201-variables
+          - file: chapters/02-basics/0202-operators
+          - file: chapters/02-basics/0203-builtin-types
+      - file: chapters/03-control-flow/0300-intro-control
         sections:
-          - file: chapters/03-control-flow/0201-conditionals
-          - file: chapters/03-control-flow/0202-iteration
-      - file: chapters/04-functions/0301-functions
+          - file: chapters/03-control-flow/0301-conditionals
+          - file: chapters/03-control-flow/0302-iteration
+      - file: chapters/04-functions/0401-functions
       - file: chapters/05-modules/0500-intro-modules
         sections:
           - file: chapters/05-modules/0501-files
@@ -36,7 +37,7 @@ parts:
           - file: chapters/09-strings/0901-strings
           - file: chapters/09-strings/0902-text-analysis
           - file: chapters/09-strings/0903-regex
-  - caption: "Part III: Advanced Concepts"
+  - caption: "Part III: Advanced Topics"
     numbered: true
     chapters:
       - file: chapters/10-algorithms/1000-intro-algorithms
@@ -46,14 +47,8 @@ parts:
       - file: chapters/11-testing/1101-exceptions
         sections:
           - file: chapters/11-testing/1102-unit-testing
-  - caption: "Part IV: OOP"
-    numbered: true
-    chapters:
       - file: chapters/12-oop/1201-intro-oop
       - file: chapters/12-oop/1202-oop-basics
-  - caption: "Part V: Applications"
-    numbered: true
-    chapters:
       - file: chapters/13-functional/1300-intro-func-prog
         sections:
           - file: chapters/13-functional/1301-func-prog
