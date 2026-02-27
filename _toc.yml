@@ -44,7 +44,7 @@ parts:
         sections:
           - file: chapters/10-algorithms/1001-searching
           - file: chapters/10-algorithms/1002-sorting
-      - file: chapters/11-testing/1100-exceptions-testing
+      - file: chapters/11-testing/1100-exception-testing
         sections:
           - file: chapters/11-testing/1101-exceptions
           - file: chapters/11-testing/1102-unit-testing
