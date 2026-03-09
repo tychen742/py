@@ -35,8 +35,8 @@ parts:
       - file: chapters/09-strings/0900-intro-strings
         sections:
           - file: chapters/09-strings/0901-strings
-          - file: chapters/09-strings/0902-text-analysis
-          - file: chapters/09-strings/0903-regex
+          - file: chapters/09-strings/0902-regex
+          - file: chapters/09-strings/0903-text-analysis
   - caption: "Part III: Advanced Topics"
     numbered: true
     chapters:
