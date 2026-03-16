@@ -149,3 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
         exercise.insertBefore(label, exercise.firstChild);
     });
 });
+
+// Override Thebe launch button message
+const thebeObserver = new MutationObserver(function () {
+    const msg = document.querySelector('.launch_msg');
+    if (msg && msg.textContent !== 'live code: ') {
+        msg.textContent = 'live code: ';
+    }
+});
+thebeObserver.observe(document.body, { childList: true, subtree: true });
