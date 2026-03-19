@@ -23,6 +23,7 @@ parts:
           - file: chapters/05-modules/0501-files
           - file: chapters/05-modules/0502-modules
           - file: chapters/05-modules/0503-packaging
+          - file: chapters/05-modules/0504-coding-tooling
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
