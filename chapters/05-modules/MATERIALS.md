@@ -66,3 +66,7 @@ This checklist is for building and delivering:
 ## Coordination Note
 
 Chapter 05 planning and delivery are scoped to `chapters/05-modules/` only.
+
+type hint:
+class Solution:
+    def romanToInt(self, s: str) -> int:
