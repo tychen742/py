@@ -6,6 +6,8 @@ This checklist is for building and delivering:
 - `1001-searching.ipynb`
 - `1002-sorting.ipynb`
 
+> Note: `1000` is an intro notebook (no exercises per AI_guidelines). Exercises live in `1001` and `1002`.
+
 ## Must-Have Teaching Materials
 
 - Slide deck or markdown notes for complexity classes:
@@ -26,27 +28,32 @@ This checklist is for building and delivering:
 
 ### `1000-intro-algorithms.ipynb`
 
-- Definitions and motivation
-- Runtime measurement basics (`time.perf_counter` or `timeit`)
-- Why asymptotic analysis matters
-- Preview of search and sort as chapter core
+- Algorithm input-process-output model (max_value example)
+- Algorithm building blocks (sequence, decision, repetition)
+- Runtime measurement basics (`timeit` module vs `time.perf_counter`)
+- Why asymptotic analysis matters; Big O growth table
+- Algorithm design checklist (5-step)
+- Algorithm Selection Guide table
+- Think Ahead teasing questions for 1001 and 1002
 
 ### `1001-searching.ipynb`
 
 - Implement linear search
-- Implement binary search
-- Compare correctness and complexity
-- Practice prompts:
-  - first occurrence in sorted data
-  - membership test with duplicates
-  - choose search strategy from scenario constraints
+- Implement binary search (with sorted-index caveat)
+- Hash-based lookup (`set`/`dict`) — compared with linear and binary
+- Correctness checks including hash-based edge cases
+- Benchmark timing comparison across methods
+- Exercises: min_value warm-up, classify_scores warm-up, O(n log n) reasoning, binary_search_first
 
 ### `1002-sorting.ipynb`
 
-- Demonstrate Python `sorted()` and `.sort()`
-- Implement at least two educational sorts (e.g., insertion + merge)
-- Compare runtime trends with input patterns
-- Discuss stability and memory trade-offs
+- Demonstrate Python `sorted()` and `.sort()` with stability demo
+- Insertion sort and bubble sort (in-place, O(1) extra space)
+- Merge sort and quick sort (divide-and-conquer)
+- Order: insertion → bubble → merge → quick (simple to advanced)
+- Benchmark across input patterns: random, sorted, reverse, duplicates
+- Extension exercise: counting sort (non-comparison sort)
+- Note: pass `data[:]` copies when calling in-place sorts in tests/benchmarks
 
 ## Practice and Assessment Pack
 
@@ -66,8 +73,8 @@ This checklist is for building and delivering:
 
 ## Reusable Assets to Prepare
 
-- Utility timing cell/snippet shared by `1001` and `1002`
-- Common test helper for randomized correctness checks
+- `average_runtime` utility: defined in both `1001` (repeats=30) and `1002` (repeats=8); duplication is intentional for standalone notebook execution
+- Common test pattern: `data[:]` copies for in-place sorts (insertion, bubble); merge and quick are non-mutating
 - Optional plotting helper for timing vs input size
 
 ## Chapter 10 Delivery Order (Recommended)
