@@ -13,28 +13,46 @@ This checklist is for building and delivering:
   - Raising and custom exceptions
   - `logging` module: log levels, `basicConfig`, logging vs `print`
   - Unit testing with `unittest`; doctests
-  - `pytest`: test discovery, assert style, `pytest.raises`
+  - `pytest`: test discovery, assert style, `pytest.raises`, `pytest.mark.parametrize`
+  - Mocking/stubbing dependencies (`unittest.mock`, monkeypatch) and basic coverage interpretation
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
 ## Notebook Content Targets
 
+Use a two-tier model for one chapter per week:
+
+- **Required core**: must be covered in lecture/lab and assessed
+- **Enrichment/project track**: optional, extra credit, or follow-up content
+
 ### `1100-exception-testing.ipynb`
 
-- Chapter intro: learning goals, error-type motivation, chapter flow map (no exercises)
+- Required core:
+  - Chapter intro: learning goals, error-type motivation, chapter flow map (no exercises)
 
 ### `1101-exceptions.ipynb`
 
-- Error types; `try/except/else/finally`; multiple exception handling; raising exceptions;
-  custom exception classes; debugging philosophy; reading tracebacks; debugging techniques;
-  `logging` module (log levels, `basicConfig`, `info/warning/error`, logging vs `print`)
-- Exercises: Safe Division with Cleanup; Custom Exception Class; Add Logging
+- Required core:
+  - Error types; `try/except/else/finally`; multiple exception handling
+  - Raising exceptions and custom exception classes
+  - Reading tracebacks and one systematic debugging technique
+  - `logging` fundamentals (levels, `basicConfig`, logging vs `print`)
+  - Exercises: Safe Division with Cleanup; Custom Exception Class
+- Enrichment/project track:
+  - Additional debugging-technique demonstrations
+  - Extended logging exercise and instrumentation patterns
 
 ### `1102-unit-testing.ipynb`
 
-- `unittest.TestCase`: writing and running tests, `setUp`/`tearDown`; doctest module;
-  `pytest` (test function discovery, assert style, `pytest.raises`, comparison with `unittest`)
-- Exercises: Fix the Failing Doctest; Write pytest-style tests
+- Required core:
+  - `unittest.TestCase`: writing/running tests, `setUp`/`tearDown`
+  - Doctest module and pytest core workflow (`assert` style, discovery)
+  - `pytest.mark.parametrize` and one mocking example
+  - Coverage basics (what % means and how to read gaps)
+  - Exercises: Fix the Failing Doctest; Write pytest-style tests
+- Enrichment/project track:
+  - Expanded mocking/stubbing cases (dependency boundaries)
+  - Deeper coverage analysis and targeted test-improvement workflow
 
 ## Practice and Assessment Pack
 

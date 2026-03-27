@@ -1,6 +1,6 @@
 # Chapter 14 Organization (Iterators and Generators)
 
-This chapter is currently split into:
+This chapter is split into:
 
 - `1400-intro-iter-gen.ipynb`
 - `1401-iterators.ipynb`
@@ -20,7 +20,31 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Generator functions (`yield`); generator expressions; memory efficiency (`sys.getsizeof`);
      infinite sequences; `itertools.islice`, `itertools.chain`;
      `yield from` (generator delegation); `itertools.count`, `itertools.cycle`,
-     `itertools.combinations`, `itertools.permutations`; 2 exercises
+      `itertools.combinations`, `itertools.permutations`;
+      conceptual bridge to asynchronous iteration (`async for`, async generators);
+      2 exercises
+
+## One-Week Delivery Scope (Required vs Enrichment)
+
+### Required Core (in-class + required homework)
+
+- `1400-intro-iter-gen.ipynb`
+  - Full notebook
+- `1401-iterators.ipynb`
+  - Iterator protocol, `iter()`/`next()`, and one custom iterator class
+  - Built-in lazy iterators (`enumerate`, `zip`, `map`, `filter`, `reversed`)
+- `1402-generators.ipynb`
+  - Generator functions, generator expressions, memory-efficiency framing
+  - `itertools.islice`, `itertools.chain`, and one infinite-sequence pattern
+  - `yield from` concept and async-iteration bridge (conceptual)
+
+### Enrichment / Project Track (optional, extra credit, or follow-up week)
+
+- `1401-iterators.ipynb`
+  - Additional custom iterator design drills
+- `1402-generators.ipynb`
+  - Extended `itertools` combinatorics (`count`, `cycle`, `combinations`, `permutations`)
+  - Additional streaming-data mini-projects and benchmarking exercises
 
 ## File Roles
 

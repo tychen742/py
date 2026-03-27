@@ -51,19 +51,32 @@ parts:
           - file: chapters/11-testing/1101-exceptions
           - file: chapters/11-testing/1102-unit-testing
       - file: chapters/12-oop/1200-intro-oop
+        title: OOP
         sections:
           - file: chapters/12-oop/1201-oop-design
+            title: OOP Basics
+          - file: chapters/12-oop/1201b-oop-objects
+            title: OOP Objects
           - file: chapters/12-oop/1202-oop-practice
+            title: Inheritance
       - file: chapters/13-functional/1300-intro-func-prog
+        title: Functional Programming
         sections:
           - file: chapters/13-functional/1301-func-prog
+            title: Functional Concepts
+          - file: chapters/13-functional/1302-func-practice
+            title: Functional Practice
       - file: chapters/14-iter-gen/1400-intro-iter-gen
         sections:
           - file: chapters/14-iter-gen/1401-iterators
           - file: chapters/14-iter-gen/1402-generators
       - file: chapters/15-apis/1500-intro-apis
+        title: APIs
         sections:
           - file: chapters/15-apis/1501-apis
+            title: API Basics
+          - file: chapters/15-apis/1502-api-reliability
+            title: API Reliability
       
     
       # - file: chapters/11-libs/1101-3party-libs
@@ -73,7 +86,7 @@ parts:
   #     - file: chapters/12-select-topics/1201-recursion
   #     - file: chapters/12-select-topics/1202-idioms
   - caption: "Appendices"
-    numbered: true
+    numbered: false
     chapters:
       - file: chapters/appendices/0101-tooling
       - file: chapters/appendices/0200-intro-jupyter

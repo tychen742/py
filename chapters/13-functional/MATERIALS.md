@@ -4,6 +4,7 @@ This checklist is for building and delivering:
 
 - `1300-intro-func-prog.ipynb`
 - `1301-func-prog.ipynb`
+- `1302-func-practice.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -12,6 +13,7 @@ This checklist is for building and delivering:
   - Decorators (function-based and class-based, `@wraps`, timer decorator)
   - List, dict, and set comprehensions
   - Lambda with `map()`, `filter()`, `sorted()`
+  - When to prefer comprehensions/generator expressions vs `map()`/`filter()`
   - `functools.reduce()`, `functools.partial()`, `functools.lru_cache()`
   - Recursion (factorial, Fibonacci, tree traversal) and recursion vs. iteration
   - Context managers with `@contextmanager`
@@ -20,19 +22,40 @@ This checklist is for building and delivering:
 
 ## Notebook Content Targets
 
+Use a two-tier model for one chapter per week:
+
+- **Required core**: must be covered in lecture/lab and assessed
+- **Enrichment/project track**: optional, extra credit, or follow-up content
+
 ### `1300-intro-func-prog.ipynb`
 
-- Chapter intro: learning goals, motivation, chapter flow map (no exercises)
-- Conceptual framing: pure functions vs. side effects; immutability; first-class functions
+- Required core:
+  - Chapter intro: learning goals, motivation, chapter flow map (no exercises)
+  - Conceptual framing: pure functions vs. side effects; immutability; first-class functions
+- Enrichment/project track:
+  - Additional conceptual discussion prompts or short reflection tasks
 
 ### `1301-func-prog.ipynb`
 
-- Decorators (`@wraps`, timer); list/dict/set comprehensions; lambda with
-  `map()`/`filter()`/`sorted()`; `functools.reduce()` (fold/accumulate);
-  `functools.partial()` (partial application); `functools.lru_cache()` (memoization);
-  recursion (factorial, Fibonacci, tree traversal);
-  recursion vs. iteration table; context managers with `@contextmanager`
-- Exercises: Sorting and Filtering with Lambda; Recursive Functions; functools
+- Required core:
+  - Decorators (`@wraps`, timer baseline)
+  - List/dict/set comprehensions; lambda with `map()`/`filter()`/`sorted()`
+  - Decision guide: comprehension/generator expression vs `map()`/`filter()`
+  - Functional pipeline readability checks
+- Enrichment/project track:
+  - Class-based decorators and advanced decorator composition
+  - Functional pipeline readability refactor challenge
+
+### `1302-func-practice.ipynb`
+
+- Required core:
+  - Recursion fundamentals (factorial/Fibonacci) and recursion-vs-iteration table
+  - `functools.reduce()` (fold), `functools.partial()`, `functools.lru_cache()`
+  - Context managers with `@contextmanager`
+  - Exercises: Sorting and Filtering with Lambda; one recursion exercise
+- Enrichment/project track:
+  - Tree-recursion variants and deeper recursion tracing
+  - Context-manager implementation exercises with `@contextmanager`
 
 ## Practice and Assessment Pack
 
@@ -57,7 +80,8 @@ This checklist is for building and delivering:
 ## Chapter 13 Delivery Order (Recommended)
 
 1. `1300-intro-func-prog.ipynb` — Chapter intro: learning goals and chapter flow map
-2. `1301-func-prog.ipynb` — Decorators; comprehensions; lambda/map/filter; recursion; context managers
+2. `1301-func-prog.ipynb` — Functional concepts: decorators; comprehensions; lambda/map/filter; decision criteria
+3. `1302-func-practice.ipynb` — Functional practice: recursion; context managers; `functools`
 
 ## Coordination Note
 

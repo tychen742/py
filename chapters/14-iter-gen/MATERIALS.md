@@ -14,30 +14,42 @@ This checklist is for building and delivering:
   - Generator functions (`yield`, lazy evaluation); `yield from` (delegation)
   - Generator expressions; `itertools.islice`, `itertools.chain`
   - `itertools.count`, `itertools.cycle`, `itertools.combinations`, `itertools.permutations`
+  - Conceptual bridge to asynchronous iteration (`async for`, async generators)
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
 ## Notebook Content Targets
 
+Use a two-tier model for one chapter per week:
+
+- **Required core**: must be covered in lecture/lab and assessed
+- **Enrichment/project track**: optional, extra credit, or follow-up content
+
 ### `1400-intro-iter-gen.ipynb`
 
-- Chapter intro: learning goals, motivation, chapter flow map (no exercises)
+- Required core:
+  - Chapter intro: learning goals, motivation, chapter flow map (no exercises)
 
 ### `1401-iterators.ipynb`
 
-- Iterator protocol; `iter()`/`next()` manually; `StopIteration`; built-in lazy
-  iterators (`enumerate`, `zip`, `map`, `filter`, `reversed`); custom iterator
-  classes (`__iter__`/`__next__`)
-- Exercise: Cycling Iterator (infinite `Cycle` class using `itertools.islice`)
+- Required core:
+  - Iterator protocol; `iter()`/`next()` manually; `StopIteration`
+  - Built-in lazy iterators (`enumerate`, `zip`, `map`, `filter`, `reversed`)
+  - One custom iterator implementation (`__iter__`/`__next__`)
+  - Exercise: Cycling Iterator (or equivalent)
+- Enrichment/project track:
+  - Additional custom iterator classes with edge-case handling
 
 ### `1402-generators.ipynb`
 
-- Generator functions (`yield`, lazy evaluation); generator expressions;
-  memory efficiency (`sys.getsizeof`); infinite sequences;
-  `itertools.islice`, `itertools.chain`;
-  `yield from` (generator delegation to sub-generators);
-  `itertools.count`, `itertools.cycle`, `itertools.combinations`, `itertools.permutations`
-- Exercises: Running Total Generator + even squares generator expression; itertools
+- Required core:
+  - Generator functions (`yield`), generator expressions, memory efficiency framing
+  - `itertools.islice`, `itertools.chain`, and one infinite-sequence example
+  - `yield from` concept and async iteration bridge (`async for`) at overview level
+  - Exercises: Running Total Generator + one generator-expression task
+- Enrichment/project track:
+  - Extended `itertools` combinatorics (`count`, `cycle`, `combinations`, `permutations`)
+  - Streaming-data mini-project and memory benchmark extension
 
 ## Practice and Assessment Pack
 

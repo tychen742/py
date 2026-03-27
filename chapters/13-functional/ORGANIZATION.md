@@ -1,9 +1,10 @@
 # Chapter 13 Organization (Functional Programming)
 
-This chapter is currently split into:
+This chapter is split into:
 
 - `1300-intro-func-prog.ipynb`
 - `1301-func-prog.ipynb`
+- `1302-func-practice.ipynb`
 
 ## Scope and Sequencing
 
@@ -13,17 +14,46 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Chapter intro: learning goals, motivation, chapter flow map. No exercises.
    - Conceptual framing: pure functions vs. side effects; immutability; first-class functions
 2. `1301-func-prog.ipynb`
-   - Decorators (function-based and class-based, `@wraps`, timer);
-     list/dict/set comprehensions; lambda with `map()`/`filter()`/`sorted()`;
-     recursion (factorial, Fibonacci, tree traversal); context managers
-     with `@contextmanager`;
-     `functools`: `reduce()` (fold/accumulate), `partial()` (partial application),
-     `lru_cache()` (memoization); 3 exercises
+  - Decorators (function-based and class-based, `@wraps`, timer)
+  - list/dict/set comprehensions; lambda with `map()`/`filter()`/`sorted()`
+  - decision criteria for comprehensions vs `map`/`filter` pipelines
+  - readability and maintainability checks for functional pipelines
+3. `1302-func-practice.ipynb`
+  - Recursion (factorial, Fibonacci, tree traversal)
+  - Context managers with `@contextmanager`
+  - `functools`: `reduce()` (fold/accumulate), `partial()` (partial application),
+    `lru_cache()` (memoization)
+  - Practice-focused exercises
+
+## One-Week Delivery Scope (Required vs Enrichment)
+
+### Required Core (in-class + required homework)
+
+- `1300-intro-func-prog.ipynb`
+  - Full notebook
+- `1301-func-prog.ipynb`
+  - Decorators (core pattern + one example)
+  - Comprehensions and lambda/map/filter with decision rubric
+  - Functional style readability checks
+- `1302-func-practice.ipynb`
+  - Recursion fundamentals (factorial/Fibonacci-level depth)
+  - `functools` essentials: `reduce`, `partial`, `lru_cache`
+  - Context-manager essentials
+
+### Enrichment / Project Track (optional, extra credit, or follow-up week)
+
+- `1301-func-prog.ipynb`
+  - Class-based decorators in depth
+  - Multi-step functional pipeline refactoring challenge
+- `1302-func-practice.ipynb`
+  - Tree-recursion variants and extended recursion exercises
+  - Extended context-manager design with `@contextmanager`
 
 ## File Roles
 
 - `1300-intro-func-prog.ipynb`: Chapter intro — learning goals and chapter map; pure functions/immutability framing. No exercises.
-- `1301-func-prog.ipynb`: Decorators; comprehensions; lambda/map/filter; recursion; context managers; `functools.reduce`, `functools.partial`, `functools.lru_cache`.
+- `1301-func-prog.ipynb`: Conceptual foundations — decorators; comprehensions; lambda/map/filter; decision guide for choosing comprehension vs map/filter; functional pipeline readability checks.
+- `1302-func-practice.ipynb`: Practice notebook — recursion; context managers; `functools.reduce`, `functools.partial`, `functools.lru_cache`.
   Exercises: Sorting and Filtering with Lambda; Recursive Functions; functools.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 

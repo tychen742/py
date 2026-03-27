@@ -16,6 +16,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 2. `1001-algorithms.ipynb`
    - What algorithms are; design process; control patterns (sequence/decision/repetition)
    - Time complexity and space complexity; Big O intuition (O(1) through O(n²))
+   - Best/average/worst-case reasoning and trade-offs by input pattern
    - Benchmarking basics (`time.perf_counter`, `timeit.timeit`, `timeit.repeat`)
    - Algorithm design checklist (input → process → output)
    - Algorithm Selection Guide table
@@ -31,7 +32,30 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Insertion sort (educational baseline, in-place)
    - Bubble sort (teaching baseline, in-place, for contrast)
    - Merge sort and quick sort (divide-and-conquer framing)
+   - Stability and in-place vs out-of-place decision criteria
    - Benchmarking across input patterns (random, sorted, reverse, duplicates)
+
+## One-Week Delivery Scope (Required vs Enrichment)
+
+### Required Core (in-class + required homework)
+
+- `1000-intro-algorithms.ipynb`
+   - Full notebook
+- `1001-algorithms.ipynb`
+   - Big O intuition, best/average/worst-case framing, selection guide
+- `1002-searching.ipynb`
+   - Linear and binary search, plus one `bisect` and one hash-lookup comparison
+- `1003-sorting.ipynb`
+   - Built-in sort, insertion and merge (required implementations)
+   - Space complexity and stability trade-off discussion
+
+### Enrichment / Project Track (optional, extra credit, or follow-up week)
+
+- `1002-searching.ipynb`
+   - Full `bisect`/`insort` comparison extensions and extra benchmarking variants
+- `1003-sorting.ipynb`
+   - Bubble and quick sort deeper comparison labs
+   - Counting-sort extension and expanded benchmark matrix
 
 ## File Roles
 

@@ -27,38 +27,48 @@ This checklist is for building and delivering:
 
 ## Notebook Content Targets
 
+Use a two-tier model for one chapter per week:
+
+- **Required core**: must be covered in lecture/lab and assessed
+- **Enrichment/project track**: optional, extra credit, or follow-up content
+
 ### `1000-intro-algorithms.ipynb`
 
-- Algorithm input-process-output model (max_value example)
-- Algorithm building blocks (sequence, decision, repetition)
-- Runtime measurement basics (`timeit` module vs `time.perf_counter`)
-- Why asymptotic analysis matters; Big O growth table
-- Algorithm design checklist (5-step)
-- Algorithm Selection Guide table
-- Think Ahead teasing questions for 1001 and 1002
+- Required core:
+  - Chapter intro stub only: title and chapter flow map
 
-### `1001-searching.ipynb`
+### `1001-algorithms.ipynb`
 
-- Implement linear search
-- Implement binary search (manual; with sorted-index caveat)
-- `bisect` module as its own section:
-  - `bisect_left`/`bisect_right`: sorted-position lookup (stdlib binary search)
-  - `insort_left`/`insort_right`: maintaining a sorted list on insertion
-  - Cross-reference to 1002: `insort` as "incremental sorted insert" vs. sorting from scratch
-- Hash-based lookup (`set`/`dict`) — compared with linear and binary
-- Correctness checks including hash-based edge cases
-- Benchmark timing comparison across methods
-- Exercises: min_value warm-up, classify_scores warm-up, O(n log n) reasoning, binary_search_first
+- Required core:
+  - Algorithm input-process-output model (max_value example)
+  - Runtime measurement basics (`timeit` module vs `time.perf_counter`)
+  - Big O growth table and best/average/worst-case framing
+  - Algorithm Selection Guide table
+- Enrichment/project track:
+  - Extended design checklist drills and additional Think Ahead prompts
 
-### `1002-sorting.ipynb`
+### `1002-searching.ipynb`
 
-- Demonstrate Python `sorted()` and `.sort()` with stability demo
-- Insertion sort and bubble sort (in-place, O(1) extra space)
-- Merge sort and quick sort (divide-and-conquer)
-- Order: insertion → bubble → merge → quick (simple to advanced)
-- Benchmark across input patterns: random, sorted, reverse, duplicates
-- Extension exercise: counting sort (non-comparison sort)
-- Note: pass `data[:]` copies when calling in-place sorts in tests/benchmarks
+- Required core:
+  - Implement linear search and binary search (manual)
+  - One `bisect` usage example and one hash-based lookup comparison
+  - Basic timing comparison across methods
+  - Exercises: core binary-search and correctness checks
+- Enrichment/project track:
+  - Full `bisect_left/right` + `insort_left/right` comparison lab
+  - Expanded edge-case and benchmarking matrix
+
+### `1003-sorting.ipynb`
+
+- Required core:
+  - Demonstrate Python `sorted()` and `.sort()` with stability demo
+  - Insertion sort and merge sort (required implementations)
+  - Space complexity comparison and in-place vs out-of-place trade-offs
+  - Baseline benchmark across key input patterns
+- Enrichment/project track:
+  - Bubble and quick sort comparative analysis
+  - Counting sort extension
+  - Expanded benchmark experiments and reflection
 
 ## Practice and Assessment Pack
 

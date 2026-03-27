@@ -4,6 +4,7 @@ This checklist is for building and delivering:
 
 - `1200-intro-oop.ipynb`
 - `1201-oop-design.ipynb`
+- `1201b-oop-objects.ipynb`
 - `1202-oop-practice.ipynb`
 
 ## Must-Have Teaching Materials
@@ -14,27 +15,51 @@ This checklist is for building and delivering:
   - Encapsulation; operator overloading
   - Inheritance; polymorphism; method overriding; `super()`
   - `issubclass()`; `@dataclass`
+  - Composition vs inheritance trade-offs; ABC/Protocol concepts for interface design
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
 ## Notebook Content Targets
 
+Use a two-tier model for one chapter per week:
+
+- **Required core**: must be covered in lecture/lab and assessed
+- **Enrichment/project track**: optional, extra credit, or follow-up content
+
 ### `1200-intro-oop.ipynb`
 
-- What OOP is; classes vs instances; motivation; first class (`Point`); `isinstance()`, `type()`
+- Required core:
+  - What OOP is; classes vs instances; motivation; first class (`Point`); `isinstance()`, `type()`
+- Enrichment/project track:
+  - Additional analogy-driven examples as time permits
 
 ### `1201-oop-design.ipynb`
 
-- Programmer-defined types; `__init__`, `__str__`, `__repr__`; object mutation and copying;
-  pure functions vs. modifier methods; `@staticmethod`; `@classmethod` (alternative constructors);
-  `@property` (controlled read-only access); operator overloading (`__add__`, etc.);
-  Point, Line, Rectangle examples; equivalence vs. identity; deep copy
+- Required core:
+  - Programmer-defined types; `__init__`, `__str__`, `__repr__`; object mutation and copying
+  - Pure functions vs. modifier methods; `@staticmethod`; `@classmethod`; `@property`
+  - One operator-overloading example (`__add__` or equivalent)
+- Enrichment/project track:
+  - Additional operator-overloading variants and extended design drills
+
+### `1201b-oop-objects.ipynb`
+
+- Required core:
+  - Point and Line construction
+  - Equivalence vs identity (`==` vs `is`)
+- Enrichment/project track:
+  - Rectangle mutation walkthroughs
+  - Deep-copy edge cases and extra geometry exercises
 
 ### `1202-oop-practice.ipynb`
 
-- Inheritance; method overriding; polymorphism; `super()` (calling parent `__init__`);
-  `issubclass()` (runtime class relationship checks); `@dataclass` (boilerplate-free data classes);
-  applied design: card game (Deck, Card, Hand as Deck subclass)
+- Required core:
+  - Inheritance; method overriding; polymorphism
+  - `super()`; `issubclass()`; `@dataclass`
+  - Composition vs inheritance rubric with one short design checkpoint
+- Enrichment/project track:
+  - Full applied card game (Deck, Card, Hand as Deck subclass)
+  - Extended ABC/Protocol implementations for interchangeable designs
 
 ## Practice and Assessment Pack
 
@@ -60,7 +85,8 @@ This checklist is for building and delivering:
 
 1. `1200-intro-oop.ipynb` — What OOP is; classes vs instances; motivation
 2. `1201-oop-design.ipynb` — `__init__`, attributes, methods, self; encapsulation principles
-3. `1202-oop-practice.ipynb` — Inheritance, overriding, polymorphism; hands-on class design
+3. `1201b-oop-objects.ipynb` — Point/Line object modeling and identity/equivalence checks
+4. `1202-oop-practice.ipynb` — Inheritance/polymorphism core first; card-game extension as enrichment
 
 ## Coordination Note
 
