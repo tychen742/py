@@ -63,6 +63,7 @@ sphinx:
       use_edit_page_button: true
       show_prev_next: true
       navigation_with_keys: true
+      show_toc_level: 2
       launch_buttons:
         thebe: true
         binderhub_url: "https://mybinder.org"
