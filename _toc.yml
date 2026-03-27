@@ -56,9 +56,13 @@ parts:
           - file: chapters/12-oop/1201-oop-design
             title: OOP Basics
           - file: chapters/12-oop/1201b-oop-objects
-            title: OOP Objects
-          - file: chapters/12-oop/1202-oop-practice
-            title: Inheritance
+            title: OOP Applied
+          - file: chapters/12-oop/1202-oop-methods
+            title: Methods and Design
+          - file: chapters/12-oop/1203-oop-pillars
+            title: The Four Pillars
+          - file: chapters/12-oop/1204-oop-advanced
+            title: Advanced OOP
       - file: chapters/13-functional/1300-intro-func-prog
         title: Functional Programming
         sections:
