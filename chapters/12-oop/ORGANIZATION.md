@@ -17,19 +17,22 @@ Use this sequence to avoid overlap and keep pacing clear:
 2. `1201-oop-design.ipynb`
    - Programmer-defined types, attributes, object mutation, copying
    - Pure functions vs. modifier methods; prototype-and-patch design
-   - Classes and methods: `__init__`, `__str__`, static methods
+   - Classes and methods: `__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`
+   - `@property` for controlled read-only access
    - Operator overloading (`__add__`, etc.)
    - Point, Line, Rectangle class examples; equivalence vs. identity; deep copy
 3. `1202-oop-practice.ipynb`
-   - Polymorphism; inheritance; parent and child classes
+   - Inheritance; polymorphism; method overriding; parent and child classes
+   - `super()` for calling parent `__init__`; `issubclass()` for runtime class relationship checks
+   - `@dataclass` for boilerplate-free data classes
    - Applied class design: card game (representing, comparing, deck operations)
    - Specialization: Hand as a subclass of Deck
 
 ## File Roles
 
 - `1200-intro-oop.ipynb`: Chapter intro — OOP motivation, class/instance concepts, first class, exercise.
-- `1201-oop-design.ipynb`: Core OOP mechanics (256 cells, ~1400 lines). Contains two logical sections that may be split later: (a) classes-as-data and method design, (b) Point/Line/Rectangle object examples.
-- `1202-oop-practice.ipynb`: Inheritance, polymorphism, and applied OOP via the card game case study.
+- `1201-oop-design.ipynb`: Core OOP mechanics. Classes, methods, `__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`, `@property`, operator overloading, Point/Line/Rectangle examples.
+- `1202-oop-practice.ipynb`: Inheritance, polymorphism, method overriding; `super()`, `issubclass()`, `@dataclass`; applied OOP via the card game case study.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Known Structural Issues (to address in a future pass)

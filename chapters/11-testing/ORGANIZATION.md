@@ -14,17 +14,18 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Chapter introduction: learning goals, motivation, chapter flow map
 2. `1101-exceptions.ipynb`
    - Error types (syntax/runtime/semantic); `try/except/else/finally`; multiple exception
-     handling; raising exceptions; custom exception classes; debugging philosophy,
-     traceback reading, and debugging techniques; 2 exercises
+     handling; raising exceptions; custom exception classes;
+     debugging philosophy, traceback reading, and debugging techniques; 2 exercises
 3. `1102-unit-testing.ipynb`
    - `unittest.TestCase` (writing, running, setUp/tearDown); doctests and `doctest` module;
-     1 exercise (fix a failing doctest)
+     `pytest` (test discovery via `test_*.py`; assert-based syntax; comparison with `unittest`);
+     2 exercises
 
 ## File Roles
 
 - `1100-exception-testing.ipynb`: Chapter intro — learning goals and chapter flow map. No exercises.
-- `1101-exceptions.ipynb`: Full exception handling and debugging content. Exercises: Safe Division with Cleanup (`finally`); Custom Exception Class.
-- `1102-unit-testing.ipynb`: Unit testing with `unittest`; doctest introduction. Exercise: Fix the Failing Doctest.
+- `1101-exceptions.ipynb`: Full exception handling and debugging content; `logging` module (levels, `basicConfig`, logging vs `print`). Exercises: Safe Division with Cleanup (`finally`); Custom Exception Class; Add Logging.
+- `1102-unit-testing.ipynb`: Unit testing with `unittest`; doctest introduction; `pytest` (test functions, discovery, assert style). Exercises: Fix the Failing Doctest; Write pytest-style tests.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth

@@ -9,10 +9,11 @@ This checklist is for building and delivering:
 ## Must-Have Teaching Materials
 
 - Slide deck or notes covering:
-  - Iteration protocol
-  - Custom iterators
-  - Generator functions and yield
-  - Generator expressions
+  - Iteration protocol; `iter()`/`next()`/`StopIteration`
+  - Custom iterator classes (`__iter__`/`__next__`)
+  - Generator functions (`yield`, lazy evaluation); `yield from` (delegation)
+  - Generator expressions; `itertools.islice`, `itertools.chain`
+  - `itertools.count`, `itertools.cycle`, `itertools.combinations`, `itertools.permutations`
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
@@ -20,15 +21,23 @@ This checklist is for building and delivering:
 
 ### `1400-intro-iter-gen.ipynb`
 
-- Iteration protocol; iter() and next(); lazy evaluation motivation
+- Chapter intro: learning goals, motivation, chapter flow map (no exercises)
 
 ### `1401-iterators.ipynb`
 
-- Custom iterator classes; __iter__ and __next__
+- Iterator protocol; `iter()`/`next()` manually; `StopIteration`; built-in lazy
+  iterators (`enumerate`, `zip`, `map`, `filter`, `reversed`); custom iterator
+  classes (`__iter__`/`__next__`)
+- Exercise: Cycling Iterator (infinite `Cycle` class using `itertools.islice`)
 
 ### `1402-generators.ipynb`
 
-- Generator functions (yield); generator expressions; memory efficiency
+- Generator functions (`yield`, lazy evaluation); generator expressions;
+  memory efficiency (`sys.getsizeof`); infinite sequences;
+  `itertools.islice`, `itertools.chain`;
+  `yield from` (generator delegation to sub-generators);
+  `itertools.count`, `itertools.cycle`, `itertools.combinations`, `itertools.permutations`
+- Exercises: Running Total Generator + even squares generator expression; itertools
 
 ## Practice and Assessment Pack
 
@@ -52,7 +61,10 @@ This checklist is for building and delivering:
 
 ## Chapter 14 Delivery Order (Recommended)
 
-1. `1400-intro-iter-gen.ipynb` — Iteration protocol; iter() and next(); lazy evaluation motivation\n2. `1401-iterators.ipynb` — Custom iterator classes; __iter__ and __next__\n3. `1402-generators.ipynb` — Generator functions (yield); generator expressions; memory efficiency\n
+1. `1400-intro-iter-gen.ipynb` — Chapter intro: learning goals and chapter flow map
+2. `1401-iterators.ipynb` — Iterator protocol; built-in iterators; custom iterator classes
+3. `1402-generators.ipynb` — Generator functions; generator expressions; infinite sequences
+
 ## Coordination Note
 
 Chapter 14 planning and delivery are scoped to `chapters/14-iter-gen/` only.

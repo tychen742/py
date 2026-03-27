@@ -2,25 +2,31 @@
 
 This chapter is split into:
 
-- `1000-intro-algorithms.ipynb` (intro: concept framing, Big O, algorithm design, selection guide)
-- `1001-searching.ipynb` (searching: linear, binary, hash-based, benchmarking)
-- `1002-sorting.ipynb` (sorting: built-in, insertion, bubble, merge, quick, benchmarking)
+- `1000-intro-algorithms.ipynb` (chapter intro stub — title and chapter map only)
+- `1001-algorithms.ipynb` (algorithm concepts: design, Big O, benchmarking, selection guide)
+- `1002-searching.ipynb` (searching: linear, binary, bisect module, hash-based, benchmarking)
+- `1003-sorting.ipynb` (sorting: built-in, insertion, bubble, merge, quick, benchmarking)
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `1000-intro-algorithms.ipynb`
-   - What algorithms are
-   - Time/space complexity and Big O intuition
+   - Chapter intro stub: title and chapter flow map. No exercises.
+2. `1001-algorithms.ipynb`
+   - What algorithms are; design process; control patterns (sequence/decision/repetition)
+   - Time complexity and space complexity; Big O intuition (O(1) through O(n²))
+   - Benchmarking basics (`time.perf_counter`, `timeit.timeit`, `timeit.repeat`)
    - Algorithm design checklist (input → process → output)
-   - Algorithm selection guide (table: condition → recommended approach)
-   - Think Ahead preview questions
-2. `1001-searching.ipynb`
+   - Algorithm Selection Guide table
+3. `1002-searching.ipynb`
    - Linear search
-   - Binary search
+   - Binary search (manual iterative implementation with sorted-input caveat)
+   - `bisect` module (own `##` section): `bisect_left`/`bisect_right` for lookup;
+     `insort` for maintaining sorted order; compare with manual implementation
+   - Hash-based lookup (`set`/`dict`) — compared with linear and binary
    - Search trade-offs by data condition (sorted vs unsorted, static vs dynamic)
-3. `1002-sorting.ipynb`
+4. `1003-sorting.ipynb`
    - Built-in sort with `key=` and stability
    - Insertion sort (educational baseline, in-place)
    - Bubble sort (teaching baseline, in-place, for contrast)
@@ -29,9 +35,10 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `1000-intro-algorithms.ipynb`: concept framing only; no exercises (intro notebook rule).
-- `1001-searching.ipynb`: coding lab + complexity comparison + exercises.
-- `1002-sorting.ipynb`: coding lab + benchmarking + exercises.
+- `1000-intro-algorithms.ipynb`: Chapter intro stub. No exercises.
+- `1001-algorithms.ipynb`: Algorithm concepts, Big O, benchmarking, selection guide. No exercises (intro-level framing notebook).
+- `1002-searching.ipynb`: coding lab + bisect module + hash-based lookup + exercises.
+- `1003-sorting.ipynb`: coding lab + benchmarking + exercises.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth
@@ -43,7 +50,7 @@ Use `chapters/10-algorithms/*` as the only Chapter 10 track for planning, delive
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Prefer small benchmark inputs in notebooks to keep runtime fast.
-- `1000` must have no exercises (intro notebook rule per AI_guidelines).
-- `1001` and `1002` each have exercises per section.
+- `1000` and `1001` have no exercises (`1001` is concept framing).
+- `1002` and `1003` each have exercises per section.
 - Pass fresh copies to in-place sorts (insertion, bubble) in tests and benchmarks.
 - Ensure chapter outcomes align with any Chapter 10 assignment/quiz prompt.

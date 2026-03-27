@@ -9,9 +9,11 @@ This checklist is for building and delivering:
 ## Must-Have Teaching Materials
 
 - Slide deck or notes covering:
-  - Exception handling (try/except/finally)
+  - Exception handling (try/except/else/finally)
   - Raising and custom exceptions
-  - Unit testing with unittest
+  - `logging` module: log levels, `basicConfig`, logging vs `print`
+  - Unit testing with `unittest`; doctests
+  - `pytest`: test discovery, assert style, `pytest.raises`
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
@@ -24,13 +26,15 @@ This checklist is for building and delivering:
 ### `1101-exceptions.ipynb`
 
 - Error types; `try/except/else/finally`; multiple exception handling; raising exceptions;
-  custom exception classes; debugging philosophy; reading tracebacks; debugging techniques
-- Exercises: Safe Division with Cleanup; Custom Exception Class
+  custom exception classes; debugging philosophy; reading tracebacks; debugging techniques;
+  `logging` module (log levels, `basicConfig`, `info/warning/error`, logging vs `print`)
+- Exercises: Safe Division with Cleanup; Custom Exception Class; Add Logging
 
 ### `1102-unit-testing.ipynb`
 
-- `unittest.TestCase`: writing and running tests, `setUp`/`tearDown`; doctest module
-- Exercise: Fix the Failing Doctest
+- `unittest.TestCase`: writing and running tests, `setUp`/`tearDown`; doctest module;
+  `pytest` (test function discovery, assert style, `pytest.raises`, comparison with `unittest`)
+- Exercises: Fix the Failing Doctest; Write pytest-style tests
 
 ## Practice and Assessment Pack
 

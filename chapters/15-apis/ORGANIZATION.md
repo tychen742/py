@@ -2,18 +2,29 @@
 
 This chapter is currently split into:
 
+- `1500-intro-apis.ipynb`
 - `1501-apis.ipynb`
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `1501-apis.ipynb`
-   - What APIs are; HTTP basics; requests library; parsing JSON responses
+1. `1500-intro-apis.ipynb`
+   - Chapter title; learning goals; chapter flow (tableofcontents)
+
+2. `1501-apis.ipynb`
+   - What APIs are; HTTP methods and status codes; `requests.get()` and `response.json()`;
+     query parameters (`params={}`);
+     error handling (`raise_for_status`, timeout, `RequestException`);
+     `requests.post()` with JSON body (`json={}`);
+     request headers (`headers={}`) and API key patterns (Bearer token, `X-API-Key`);
+     navigating nested JSON (chained `[]` subscripts, `.get()` for safe access);
+     2 exercises
 
 ## File Roles
 
-- `1501-apis.ipynb`: What APIs are; HTTP basics; requests library; parsing JSON responses.
+- `1500-intro-apis.ipynb`: Chapter title; learning goals; brief motivation; chapter flow (`{tableofcontents}`).
+- `1501-apis.ipynb`: REST API concepts; `requests.get()` and `requests.post()`; query parameters; headers and API key patterns; error handling; navigating nested JSON. Exercises: Weather API; Working with APIs (POST + nested JSON).
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth

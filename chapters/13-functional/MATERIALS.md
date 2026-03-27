@@ -8,10 +8,13 @@ This checklist is for building and delivering:
 ## Must-Have Teaching Materials
 
 - Slide deck or notes covering:
-  - Pure functions and side effects
-  - map, filter, reduce
-  - Lambda expressions
-  - Higher-order functions
+  - Pure functions vs. side effects; immutability; first-class functions
+  - Decorators (function-based and class-based, `@wraps`, timer decorator)
+  - List, dict, and set comprehensions
+  - Lambda with `map()`, `filter()`, `sorted()`
+  - `functools.reduce()`, `functools.partial()`, `functools.lru_cache()`
+  - Recursion (factorial, Fibonacci, tree traversal) and recursion vs. iteration
+  - Context managers with `@contextmanager`
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
@@ -19,11 +22,17 @@ This checklist is for building and delivering:
 
 ### `1300-intro-func-prog.ipynb`
 
-- Functional programming concepts; pure functions; immutability
+- Chapter intro: learning goals, motivation, chapter flow map (no exercises)
+- Conceptual framing: pure functions vs. side effects; immutability; first-class functions
 
 ### `1301-func-prog.ipynb`
 
-- map, filter, reduce; lambda; functools; higher-order functions
+- Decorators (`@wraps`, timer); list/dict/set comprehensions; lambda with
+  `map()`/`filter()`/`sorted()`; `functools.reduce()` (fold/accumulate);
+  `functools.partial()` (partial application); `functools.lru_cache()` (memoization);
+  recursion (factorial, Fibonacci, tree traversal);
+  recursion vs. iteration table; context managers with `@contextmanager`
+- Exercises: Sorting and Filtering with Lambda; Recursive Functions; functools
 
 ## Practice and Assessment Pack
 
@@ -31,9 +40,9 @@ This checklist is for building and delivering:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
 - Lab tasks:
-  - Rewrite loops as map/filter; compose functions with reduce
+  - Write a decorator; rewrite a loop as a comprehension; filter/sort with lambda
 - Homework:
-  - Solve a data transformation task using only functional tools
+  - Implement a recursive solution and compare it to an iterative equivalent
 - Grading anchors:
   - Correctness
   - Code clarity and style
@@ -47,7 +56,9 @@ This checklist is for building and delivering:
 
 ## Chapter 13 Delivery Order (Recommended)
 
-1. `1300-intro-func-prog.ipynb` — Functional programming concepts; pure functions; immutability\n2. `1301-func-prog.ipynb` — map, filter, reduce; lambda; functools; higher-order functions\n
+1. `1300-intro-func-prog.ipynb` — Chapter intro: learning goals and chapter flow map
+2. `1301-func-prog.ipynb` — Decorators; comprehensions; lambda/map/filter; recursion; context managers
+
 ## Coordination Note
 
 Chapter 13 planning and delivery are scoped to `chapters/13-functional/` only.

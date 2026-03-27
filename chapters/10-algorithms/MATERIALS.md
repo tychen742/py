@@ -3,10 +3,11 @@
 This checklist is for building and delivering:
 
 - `1000-intro-algorithms.ipynb`
-- `1001-searching.ipynb`
-- `1002-sorting.ipynb`
+- `1001-algorithms.ipynb`
+- `1002-searching.ipynb`
+- `1003-sorting.ipynb`
 
-> Note: `1000` is an intro notebook (no exercises per AI_guidelines). Exercises live in `1001` and `1002`.
+> Note: `1000` is the chapter intro stub; `1001` is the concept framing notebook (no exercises). Exercises live in `1002` and `1003`.
 
 ## Must-Have Teaching Materials
 
@@ -39,7 +40,11 @@ This checklist is for building and delivering:
 ### `1001-searching.ipynb`
 
 - Implement linear search
-- Implement binary search (with sorted-index caveat)
+- Implement binary search (manual; with sorted-index caveat)
+- `bisect` module as its own section:
+  - `bisect_left`/`bisect_right`: sorted-position lookup (stdlib binary search)
+  - `insort_left`/`insort_right`: maintaining a sorted list on insertion
+  - Cross-reference to 1002: `insort` as "incremental sorted insert" vs. sorting from scratch
 - Hash-based lookup (`set`/`dict`) — compared with linear and binary
 - Correctness checks including hash-based edge cases
 - Benchmark timing comparison across methods
@@ -73,16 +78,17 @@ This checklist is for building and delivering:
 
 ## Reusable Assets to Prepare
 
-- `average_runtime` utility: defined in both `1001` (repeats=30) and `1002` (repeats=8); duplication is intentional for standalone notebook execution
+- `average_runtime` utility: defined in both `1002` (repeats=30) and `1003` (repeats=8); duplication is intentional for standalone notebook execution
 - Common test pattern: `data[:]` copies for in-place sorts (insertion, bubble); merge and quick are non-mutating
 - Optional plotting helper for timing vs input size
 
 ## Chapter 10 Delivery Order (Recommended)
 
-1. Intro + complexity framing (`1000`)
-2. Search implementation and reasoning (`1001`)
-3. Sorting implementation and benchmarking (`1002`)
-4. Combined wrap-up: choose the right algorithm under constraints
+1. Chapter intro stub (`1000`)
+2. Algorithm concepts + Big O + benchmarking (`1001`)
+3. Search implementation and reasoning (`1002`)
+4. Sorting implementation and benchmarking (`1003`)
+5. Combined wrap-up: choose the right algorithm under constraints
 
 ## Coordination Note
 
