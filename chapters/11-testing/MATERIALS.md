@@ -19,15 +19,18 @@ This checklist is for building and delivering:
 
 ### `1100-exception-testing.ipynb`
 
-- Chapter overview; why testing and error handling matter
+- Chapter intro: learning goals, error-type motivation, chapter flow map (no exercises)
 
 ### `1101-exceptions.ipynb`
 
-- try/except/finally; raising exceptions; custom exceptions
+- Error types; `try/except/else/finally`; multiple exception handling; raising exceptions;
+  custom exception classes; debugging philosophy; reading tracebacks; debugging techniques
+- Exercises: Safe Division with Cleanup; Custom Exception Class
 
 ### `1102-unit-testing.ipynb`
 
-- unittest basics; writing test cases; test runners
+- `unittest.TestCase`: writing and running tests, `setUp`/`tearDown`; doctest module
+- Exercise: Fix the Failing Doctest
 
 ## Practice and Assessment Pack
 
@@ -51,7 +54,10 @@ This checklist is for building and delivering:
 
 ## Chapter 11 Delivery Order (Recommended)
 
-1. `1100-exception-testing.ipynb` — Chapter overview; why testing and error handling matter\n2. `1101-exceptions.ipynb` — try/except/finally; raising exceptions; custom exceptions\n3. `1102-unit-testing.ipynb` — unittest basics; writing test cases; test runners\n
+1. `1100-exception-testing.ipynb` — Chapter intro: learning goals and chapter map
+2. `1101-exceptions.ipynb` — Exception handling, raising, custom exceptions, debugging
+3. `1102-unit-testing.ipynb` — unittest and doctests
+
 ## Coordination Note
 
 Chapter 11 planning and delivery are scoped to `chapters/11-testing/` only.

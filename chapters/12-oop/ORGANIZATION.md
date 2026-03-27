@@ -11,18 +11,32 @@ This chapter is currently split into:
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `1200-intro-oop.ipynb`
-   - What OOP is; classes vs instances; motivation
+   - What OOP is and why it exists; class vs. instance analogy
+   - `__init__`, `__str__`, `isinstance()`, `type()`
+   - A first class (`Point`); `Temperature` exercise
 2. `1201-oop-design.ipynb`
-   - __init__, attributes, methods, self; encapsulation principles
+   - Programmer-defined types, attributes, object mutation, copying
+   - Pure functions vs. modifier methods; prototype-and-patch design
+   - Classes and methods: `__init__`, `__str__`, static methods
+   - Operator overloading (`__add__`, etc.)
+   - Point, Line, Rectangle class examples; equivalence vs. identity; deep copy
 3. `1202-oop-practice.ipynb`
-   - Inheritance, overriding, polymorphism; hands-on class design
+   - Polymorphism; inheritance; parent and child classes
+   - Applied class design: card game (representing, comparing, deck operations)
+   - Specialization: Hand as a subclass of Deck
 
 ## File Roles
 
-- `1200-intro-oop.ipynb`: What OOP is; classes vs instances; motivation.
-- `1201-oop-design.ipynb`: __init__, attributes, methods, self; encapsulation principles.
-- `1202-oop-practice.ipynb`: Inheritance, overriding, polymorphism; hands-on class design.
+- `1200-intro-oop.ipynb`: Chapter intro — OOP motivation, class/instance concepts, first class, exercise.
+- `1201-oop-design.ipynb`: Core OOP mechanics (256 cells, ~1400 lines). Contains two logical sections that may be split later: (a) classes-as-data and method design, (b) Point/Line/Rectangle object examples.
+- `1202-oop-practice.ipynb`: Inheritance, polymorphism, and applied OOP via the card game case study.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
+
+## Known Structural Issues (to address in a future pass)
+
+- `1201` is oversized — two ThinkPython chapters merged into one notebook. Candidate split: keep `## Classes and Functions` + `## Design-First Development` in `1201`; move `## Classes and Objects` (Point/Line/Rectangle) to a new `1201b` or restructured `1202`.
+- `1202` mixes conceptual content (inheritance/polymorphism) with a long applied project (card game). Consider splitting into a concepts notebook and a project notebook.
+- The card game section is essentially a direct port from ThinkPython and may benefit from a fresher motivating example.
 
 ## Source of Truth
 

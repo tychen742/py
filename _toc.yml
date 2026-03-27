@@ -43,8 +43,9 @@ parts:
     chapters:
       - file: chapters/10-algorithms/1000-intro-algorithms
         sections:
-          - file: chapters/10-algorithms/1001-searching
-          - file: chapters/10-algorithms/1002-sorting
+          - file: chapters/10-algorithms/1001-algorithms
+          - file: chapters/10-algorithms/1002-searching
+          - file: chapters/10-algorithms/1003-sorting
       - file: chapters/11-testing/1100-exception-testing
         sections:
           - file: chapters/11-testing/1101-exceptions
