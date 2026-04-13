@@ -32,7 +32,6 @@ sphinx:
     bibtex_reference_style: author_year
     bibtex_default_style: unsrt ### Keep bibliography numeric/ordered
     html_static_path: ["_static"]
-    html_extra_path: ["images"]
     html_css_files:
       - custom.css
     html_js_files:
