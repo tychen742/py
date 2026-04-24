@@ -63,24 +63,24 @@ parts:
             title: The Four Pillars
           - file: chapters/12-oop/1204-oop-advanced
             title: Advanced OOP
-      - file: chapters/13-functional/1300-intro-func-prog
-        title: Functional Programming
-        sections:
-          - file: chapters/13-functional/1301-func-prog
-            title: Functional Concepts
-          - file: chapters/13-functional/1302-func-practice
-            title: Functional Practice
-      - file: chapters/14-iter-gen/1400-intro-iter-gen
-        sections:
-          - file: chapters/14-iter-gen/1401-iterators
-          - file: chapters/14-iter-gen/1402-generators
-      - file: chapters/15-apis/1500-intro-apis
-        title: APIs
-        sections:
-          - file: chapters/15-apis/1501-apis
-            title: API Basics
-          - file: chapters/15-apis/1502-api-reliability
-            title: API Reliability
+      # - file: chapters/13-functional/1300-intro-func-prog
+      #   title: Functional Programming
+      #   sections:
+      #     - file: chapters/13-functional/1301-func-prog
+      #       title: Functional Concepts
+      #     - file: chapters/13-functional/1302-func-practice
+      #       title: Functional Practice
+      # - file: chapters/14-iter-gen/1400-intro-iter-gen
+      #   sections:
+      #     - file: chapters/14-iter-gen/1401-iterators
+      #     - file: chapters/14-iter-gen/1402-generators
+      # - file: chapters/15-apis/1500-intro-apis
+      #   title: APIs
+      #   sections:
+      #     - file: chapters/15-apis/1501-apis
+      #       title: API Basics
+      #     - file: chapters/15-apis/1502-api-reliability
+      #       title: API Reliability
       
     
       # - file: chapters/11-libs/1101-3party-libs
