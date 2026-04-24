@@ -3,9 +3,11 @@
 This chapter is split into:
 
 - `1200-intro-oop.ipynb`
-- `1201-oop-design.ipynb`
+- `1201-oop-design.ipynb` *(merged from former `1202-oop-methods`)*
 - `1201b-oop-objects.ipynb`
 - `1202-oop-practice.ipynb`
+- `1203-oop-pillars.ipynb`
+- `1204-oop-advanced.ipynb`
 
 ## Scope and Sequencing
 
@@ -17,7 +19,7 @@ Use this sequence to avoid overlap and keep pacing clear:
    - A first class (`Point`); `Temperature` exercise
 2. `1201-oop-design.ipynb`
    - Programmer-defined types, attributes, object mutation, copying
-   - Pure functions vs. modifier methods; prototype-and-patch design
+   - Pure functions vs. modifier methods; design-first development (`Time` as base-60 example)
    - Classes and methods: `__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`
    - `@property` for controlled read-only access
    - Operator overloading (`__add__`, etc.)
@@ -33,6 +35,13 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Interface-oriented design with ABC/Protocol-level concepts
    - Applied class design: card game (representing, comparing, deck operations)
    - Specialization: Hand as a subclass of Deck
+5. `1203-oop-pillars.ipynb`
+   - The Four Pillars of OOP: encapsulation, inheritance, polymorphism, abstraction
+   - Each pillar shown with a focused, self-contained code example
+6. `1204-oop-advanced.ipynb`
+   - Object copying: shallow copy vs. deep copy
+   - Object identity vs. equality (`is` vs. `==`)
+   - Additional advanced object-state topics
 
 ## One-Week Delivery Scope (Required vs Enrichment)
 
@@ -43,36 +52,43 @@ To keep Chapter 12 realistic for one week, deliver in two tiers.
 - `1200-intro-oop.ipynb`
    - Full notebook
 - `1201-oop-design.ipynb`
-   - Required sections: `## Classes and Functions`, `## Design-First Development`
+   - Required sections: classes and methods (`__init__`, `__str__`, `__repr__`), design-first development
    - Keep one operator-overloading example only (minimal demonstration)
 - `1201b-oop-objects.ipynb`
    - Required sections: Point creation, Line creation, equivalence vs identity (`==` vs `is`)
 - `1202-oop-practice.ipynb`
    - Required sections: inheritance basics, method overriding, polymorphism,
       `super()`, `issubclass()`, `@dataclass`, composition vs inheritance rubric
+- `1203-oop-pillars.ipynb`
+   - Full notebook (concise; good conceptual anchoring)
 
 ### Enrichment / Project Track (optional, extra credit, or follow-up week)
 
 - `1201-oop-design.ipynb`
-   - Remaining deep operator-overloading patterns
+   - Remaining deep operator-overloading patterns; `@classmethod`, `@property` deep dives
 - `1201b-oop-objects.ipynb`
    - Extended rectangle mutation/copying drills beyond first pass
 - `1202-oop-practice.ipynb`
    - Full card-game build-out and Hand-as-Deck specialization
    - Extended interface-oriented design patterns (ABC/Protocol implementations)
+- `1204-oop-advanced.ipynb`
+   - Full notebook (copying, identity, advanced object-state topics)
 
 ## File Roles
 
 - `1200-intro-oop.ipynb`: Chapter intro — OOP motivation, class/instance concepts, first class, exercise.
-- `1201-oop-design.ipynb`: Core OOP mechanics — classes and functions, design-first development, operator overloading.
+- `1201-oop-design.ipynb`: Core OOP mechanics — design-first development, all method types (`__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`, `@property`), operator overloading. *(Merged from former `1202-oop-methods`.)*
 - `1201b-oop-objects.ipynb`: Applied geometry library — Point, Line, Rectangle; equivalence, mutation, deep copy.
 - `1202-oop-practice.ipynb`: Inheritance, polymorphism, method overriding; `super()`, `issubclass()`, `@dataclass`; applied OOP via the card game case study.
+- `1203-oop-pillars.ipynb`: The Four Pillars of OOP — encapsulation, inheritance, polymorphism, abstraction; one example each.
+- `1204-oop-advanced.ipynb`: Advanced object-state topics — shallow vs. deep copy, identity vs. equality.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Known Structural Issues (to address in a future pass)
 
-- `1202` still mixes conceptual content (inheritance/polymorphism) with a long applied project (card game). Keep project sections optional in one-week delivery, or split into a concepts notebook and project notebook.
+- `1202-oop-practice` still mixes conceptual content (inheritance/polymorphism) with a long applied project (card game). Keep project sections optional in one-week delivery, or split into a concepts notebook and project notebook.
 - The card game section is essentially a direct port from ThinkPython and may benefit from a fresher motivating example.
+- `1204-oop-advanced` title is misleading — its content (copying, identity) is not advanced. Consider renaming to `1204-oop-copying` or similar in a future pass.
 
 ## Source of Truth
 

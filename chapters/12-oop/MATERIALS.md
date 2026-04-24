@@ -3,9 +3,11 @@
 This checklist is for building and delivering:
 
 - `1200-intro-oop.ipynb`
-- `1201-oop-design.ipynb`
+- `1201-oop-design.ipynb` *(merged from former `1202-oop-methods`)*
 - `1201b-oop-objects.ipynb`
 - `1202-oop-practice.ipynb`
+- `1203-oop-pillars.ipynb`
+- `1204-oop-advanced.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -60,6 +62,21 @@ Use a two-tier model for one chapter per week:
 - Enrichment/project track:
   - Full applied card game (Deck, Card, Hand as Deck subclass)
   - Extended ABC/Protocol implementations for interchangeable designs
+
+### `1203-oop-pillars.ipynb`
+
+- Required core:
+  - The Four Pillars: encapsulation, inheritance, polymorphism, abstraction
+  - One focused code example per pillar
+- Enrichment/project track:
+  - Extended examples comparing pillar trade-offs across different class designs
+
+### `1204-oop-advanced.ipynb`
+
+- Required core: none (enrichment-only)
+- Enrichment/project track:
+  - Shallow copy vs. deep copy; `copy.copy` vs. `copy.deepcopy`
+  - Object identity vs. equality (`is` vs. `==`) extended examples
 
 ## Practice and Assessment Pack
 
