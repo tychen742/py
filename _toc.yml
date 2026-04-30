@@ -60,7 +60,7 @@ parts:
           - file: chapters/12-oop/1203-oop-advanced
             title: Advanced OOP
       - file: chapters/13-functional/1300-intro-func-prog
-        title: Functional Programming
+        title: FP in Python
         sections:
           - file: chapters/13-functional/1301-func-prog
             title: Functional Concepts
