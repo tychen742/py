@@ -97,6 +97,21 @@ h4 {
     font-size: 1.05rem !important;
 }
 
+/* Keep generated section outlines and heading anchors visually clean */
+.contents.local a,
+.topic.contents a,
+.toctree-wrapper a,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+a.headerlink {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
 p {
     font-size: inherit !important;
     margin-bottom: 0.5rem;
