@@ -97,40 +97,6 @@ h4 {
     font-size: 1.05rem !important;
 }
 
-/* Keep generated section outlines and heading anchors visually clean */
-.contents.local a,
-.topic.contents a,
-.toctree-wrapper a {
-    color: #1f3a5f !important;
-}
-
-.contents.local a:hover,
-.topic.contents a:hover,
-.toctree-wrapper a:hover {
-    color: var(--pst-color-primary) !important;
-}
-
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a,
-h6 a,
-a.headerlink {
-    color: inherit !important;
-    text-decoration: none !important;
-    border-bottom: none !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--pst-color-text-base) !important;
-}
-
 p {
     font-size: inherit !important;
     margin-bottom: 0.5rem;
@@ -645,4 +611,45 @@ body.thebe-is-active .cell.cell-has-run .jp-OutputArea {
 body.thebe-is-active .tag_hide-input .jp-OutputArea {
     display: block !important;
     visibility: visible !important;
+}
+
+/* =============================================================
+   BOOK HEADING AND LOCAL OUTLINE LINK COLORS
+   Keep lecture headings book-like, while making local outlines
+   readable without bright web-link styling.
+   ============================================================= */
+
+main.bd-main .bd-content .bd-article-container h1,
+main.bd-main .bd-content .bd-article-container h2,
+main.bd-main .bd-content .bd-article-container h3,
+main.bd-main .bd-content .bd-article-container h4,
+main.bd-main .bd-content .bd-article-container h5,
+main.bd-main .bd-content .bd-article-container h6,
+main.bd-main .bd-content .bd-article-container h1 *,
+main.bd-main .bd-content .bd-article-container h2 *,
+main.bd-main .bd-content .bd-article-container h3 *,
+main.bd-main .bd-content .bd-article-container h4 *,
+main.bd-main .bd-content .bd-article-container h5 *,
+main.bd-main .bd-content .bd-article-container h6 * {
+    color: var(--pst-color-text-base) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+main.bd-main .bd-content .bd-article-container .contents.local a,
+main.bd-main .bd-content .bd-article-container .topic.contents a,
+main.bd-main .bd-content .bd-article-container nav.contents a,
+main.bd-main .bd-content .bd-article-container .toctree-wrapper a {
+    color: #1f3a5f !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+main.bd-main .bd-content .bd-article-container .contents.local a:hover,
+main.bd-main .bd-content .bd-article-container .topic.contents a:hover,
+main.bd-main .bd-content .bd-article-container nav.contents a:hover,
+main.bd-main .bd-content .bd-article-container .toctree-wrapper a:hover {
+    color: var(--pst-color-primary) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
 }
