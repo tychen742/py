@@ -21,11 +21,11 @@
 
   .reveal { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); }
   .reveal h1 { font-size: 1.9em; color: var(--accent); border-bottom: 3px solid var(--gold); padding-bottom: 12px; margin-bottom: 20px; }
-  .reveal h2 { font-size: 1.45em; color: var(--accent); margin-bottom: 16px; }
+  .reveal h2 { font-size: 1.35em; color: var(--accent); margin-bottom: 12px; }
   .reveal h3 { font-size: 1.1em; color: var(--gold); margin-bottom: 10px; }
-  .reveal p, .reveal li { font-size: 0.82em; line-height: 1.6; }
+  .reveal p, .reveal li { font-size: 0.74em; line-height: 1.38; }
   .reveal ul { margin-left: 1.2em; }
-  .reveal ul li { margin-bottom: 6px; }
+  .reveal ul li { margin-bottom: 4px; }
   .reveal section { text-align: left; }
 
   .reveal pre {
@@ -38,10 +38,10 @@
     width: 100%;
   }
   .reveal pre code {
-    font-size: 0.72em;
-    line-height: 1.5;
-    padding: 14px 16px;
-    max-height: 340px;
+    font-size: 0.64em;
+    line-height: 1.34;
+    padding: 12px 14px;
+    max-height: 390px;
     overflow-y: auto;
   }
   .reveal code:not(pre code) {
@@ -78,17 +78,18 @@
     background: var(--accent-light);
     border-left: 4px solid var(--accent);
     border-radius: 4px;
-    padding: 10px 14px;
-    margin: 10px 0;
-    font-size: 0.8em;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 0.68em;
+    line-height: 1.3;
   }
   .callout.warn { background: #fff8e1; border-color: var(--gold); }
   .callout.rule { background: #f0f4ff; border-color: #5577cc; }
 
   /* Table */
-  .reveal table { font-size: 0.75em; border-collapse: collapse; width: 100%; }
-  .reveal table th { background: var(--accent); color: #fff; padding: 7px 10px; text-align: left; }
-  .reveal table td { padding: 6px 10px; border-bottom: 1px solid #dde; }
+  .reveal table { font-size: 0.62em; border-collapse: collapse; width: 100%; }
+  .reveal table th { background: var(--accent); color: #fff; padding: 5px 8px; text-align: left; }
+  .reveal table td { padding: 5px 8px; border-bottom: 1px solid #dde; }
   .reveal table tr:nth-child(even) td { background: #f7faf7; }
 
   /* Title slide */
@@ -132,7 +133,7 @@
 
   .reveal .slides section {
     box-sizing: border-box;
-    padding: 34px 76px 76px 48px;
+    padding: 22px 52px 58px 48px;
   }
   .reveal .progress { color: var(--accent); }
   .reveal .controls { color: var(--accent); }
@@ -785,8 +786,8 @@ Reveal.initialize({
   transition: 'slide',
   transitionSpeed: 'fast',
   width: 1100,
-  height: 700,
-  margin: 0.07,
+  height: 820,
+  margin: 0.05,
   minScale: 0.4,
   maxScale: 2.0,
   controls: true,
