@@ -653,3 +653,15 @@ main.bd-main .bd-content .bd-article-container .toctree-wrapper a:hover {
     text-decoration: none !important;
     border-bottom: none !important;
 }
+
+main.bd-main .bd-content .bd-article-container p a,
+main.bd-main .bd-content .bd-article-container li a {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+main.bd-main .bd-content .bd-article-container p a:hover,
+main.bd-main .bd-content .bd-article-container li a:hover {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
