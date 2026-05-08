@@ -107,7 +107,10 @@
   .dunder-item { background: var(--code-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 10px; font-size: 0.72em; }
   .dunder-item strong { color: var(--accent); display: block; font-size: 0.95em; }
 
-  .reveal .slides section { padding: 30px 40px; }
+  .reveal .slides section {
+    box-sizing: border-box;
+    padding: 34px 76px 76px 48px;
+  }
   .reveal .progress { color: var(--accent); }
   .reveal .controls { color: var(--accent); }
 </style>
@@ -760,7 +763,7 @@ Reveal.initialize({
   transitionSpeed: 'fast',
   width: 1100,
   height: 700,
-  margin: 0.04,
+  margin: 0.07,
   minScale: 0.4,
   maxScale: 2.0,
   controls: true,
