@@ -35,6 +35,8 @@ parts:
   - caption: "Part III: Advanced Topics"
     numbered: true
     chapters:
+      - file: chapters/10-abstract-data-structures/1000-abstract-data-structures
+        title: Abstract Data Structures
       - file: chapters/10-algorithms/1000-intro-algorithms
         sections:
           - file: chapters/10-algorithms/1001-algorithms
