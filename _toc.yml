@@ -18,12 +18,6 @@ parts:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
       - file: chapters/04-functions/0401-functions
-      - file: chapters/05-modules/0500-intro-modules
-        sections:
-          - file: chapters/05-modules/0501-files
-          - file: chapters/05-modules/0502-modules
-          - file: chapters/05-modules/0503-packaging
-          - file: chapters/05-modules/0504-coding-tooling
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
@@ -89,6 +83,13 @@ parts:
     numbered: false
     chapters:
       - file: chapters/appendices/0101-tooling
+      - file: chapters/appendices/05-tooling/0500-intro-modules
+        title: Modules, Files, and Packaging
+        sections:
+          - file: chapters/appendices/05-tooling/0501-files
+          - file: chapters/appendices/05-tooling/0502-modules
+          - file: chapters/appendices/05-tooling/0503-packaging
+          - file: chapters/appendices/05-tooling/0504-coding-tooling
       - file: chapters/appendices/0200-intro-jupyter
         sections:
           - file: chapters/appendices/0201-python-installation

@@ -1,4 +1,4 @@
-# Chapter 05 Materials (Modules and Files)
+# Appendix Materials (Modules, Files, and Tooling)
 
 This checklist is for building and delivering:
 
@@ -60,12 +60,12 @@ This checklist is for building and delivering:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
-## Chapter 05 Delivery Order (Recommended)
+## Appendix Delivery Order (Recommended)
 
 1. `0500-intro-modules.ipynb` — What modules are; import syntax; standard library overview\n2. `0501-files.ipynb` — Reading and writing text files; context managers (with statement)\n3. `0502-modules.ipynb` — Creating and importing custom modules; __main__ guard\n4. `0503-packaging.ipynb` — Package structure; __init__.py; pip install basics\n5. `0504-coding-tooling.ipynb` — Comprehensions with lambdas; coding tooling patterns\n
 ## Coordination Note
 
-Chapter 05 planning and delivery are scoped to `chapters/05-modules/` only.
+Appendix tooling planning and delivery are scoped to `chapters/appendices/05-tooling/` only.
 
 type hint:
 class Solution:
