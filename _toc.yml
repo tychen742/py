@@ -32,20 +32,9 @@ parts:
           - file: chapters/09-strings/0901-strings
           - file: chapters/09-strings/0902-regex
           - file: chapters/09-strings/0903-text-analysis
-  - caption: "Part III: Advanced Topics"
+  - caption: "Part III: Program Design"
     numbered: true
     chapters:
-      - file: chapters/10-abstract-data-structures/1000-abstract-data-structures
-        title: Abstract Data Structures
-      - file: chapters/10-algorithms/1000-intro-algorithms
-        sections:
-          - file: chapters/10-algorithms/1001-algorithms
-          - file: chapters/10-algorithms/1002-searching
-          - file: chapters/10-algorithms/1003-sorting
-      - file: chapters/11-testing/1100-exception-testing
-        sections:
-          - file: chapters/11-testing/1101-exceptions
-          - file: chapters/11-testing/1102-unit-testing
       - file: chapters/12-oop/1200-intro-oop
         title: OOP
         sections:
@@ -55,6 +44,10 @@ parts:
             title: The Four Pillars
           - file: chapters/12-oop/1203-oop-advanced
             title: Advanced OOP
+      - file: chapters/11-testing/1100-exception-testing
+        sections:
+          - file: chapters/11-testing/1101-exceptions
+          - file: chapters/11-testing/1102-unit-testing
       - file: chapters/13-functional/1300-intro-func-prog
         title: FP in Python
         sections:
@@ -76,6 +69,16 @@ parts:
       
     
       # - file: chapters/11-libs/1101-3party-libs
+  - caption: "Part IV: Computer Science Foundations"
+    numbered: true
+    chapters:
+      - file: chapters/10-abstract-data-structures/1000-abstract-data-structures
+        title: Abstract Data Structures
+      - file: chapters/10-algorithms/1000-intro-algorithms
+        sections:
+          - file: chapters/10-algorithms/1001-algorithms
+          - file: chapters/10-algorithms/1002-searching
+          - file: chapters/10-algorithms/1003-sorting
   # - caption: "Select Topics"
   #   numbered: true
   #   chapters:
