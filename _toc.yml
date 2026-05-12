@@ -18,7 +18,7 @@ parts:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
       - file: chapters/04-functions/0401-functions
-  - caption: "Part II: Data Collections"
+  - caption: "Part II: Built-in Types"
     numbered: true
     chapters:
       - file: chapters/06-lists/0601-lists
