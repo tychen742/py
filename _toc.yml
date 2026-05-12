@@ -18,7 +18,7 @@ parts:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
       - file: chapters/04-functions/0401-functions
-  - caption: "Part II: Built-in Data Structures"
+  - caption: "Part II: Data Collections"
     numbered: true
     chapters:
       - file: chapters/06-lists/0601-lists
@@ -69,7 +69,7 @@ parts:
       
     
       # - file: chapters/11-libs/1101-3party-libs
-  - caption: "Part IV: Computer Science Foundations"
+  - caption: "Part IV: DSA"
     numbered: true
     chapters:
       - file: chapters/10-abstract-data-structures/1000-abstract-data-structures
