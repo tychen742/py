@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 13 - Functional Programming Overview</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/simple.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" />
+<style>
+  :root {
+    --accent: #2a6b37;
+    --accent-light: #e8f5eb;
+    --gold: #b8860b;
+    --text: #1a1a1a;
+    --muted: #555;
+    --code-bg: #f6f8fa;
+    --border: #d0e8d4;
+  }
+
+  .reveal { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); }
+  .reveal h1 { font-size: 1.9em; color: var(--accent); border-bottom: 3px solid var(--gold); padding-bottom: 12px; margin-bottom: 20px; }
+  .reveal h2 { font-size: 1.35em; color: var(--accent); margin-bottom: 12px; }
+  .reveal h3 { font-size: 1.1em; color: var(--gold); margin-bottom: 10px; }
+  .reveal p, .reveal li { font-size: 0.74em; line-height: 1.38; }
+  .reveal ul { margin-left: 1.2em; }
+  .reveal ul li { margin-bottom: 4px; }
+  .reveal section { text-align: left; }
+
+  .reveal pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0;
+    margin: 10px 0;
+    box-shadow: none;
+    width: 100%;
+  }
+  .reveal pre code {
+    font-size: 0.64em;
+    line-height: 1.34;
+    padding: 12px 14px;
+    max-height: 390px;
+    overflow-y: auto;
+  }
+  .reveal code:not(pre code) {
+    background: var(--code-bg);
+    border: 1px solid #dde;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.88em;
+    color: #c7254e;
+  }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .cols.ratio-4-6 { grid-template-columns: 4fr 6fr; }
+  .cols.ratio-6-4 { grid-template-columns: 6fr 4fr; }
+
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 0.72em;
+    margin: 2px 3px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .pill.gold { background: var(--gold); }
+  .pill.gray { background: #777; }
+
+  .callout {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 0.68em;
+    line-height: 1.3;
+  }
+  .callout.warn { background: #fff8e1; border-color: var(--gold); }
+  .callout.rule { background: #f0f4ff; border-color: #5577cc; }
+
+  .reveal table { font-size: 0.62em; border-collapse: collapse; width: 100%; }
+  .reveal table th { background: var(--accent); color: #fff; padding: 5px 8px; text-align: left; }
+  .reveal table td { padding: 5px 8px; border-bottom: 1px solid #dde; }
+  .reveal table tr:nth-child(even) td { background: #f7faf7; }
+
+  .title-slide { text-align: center !important; }
+  .title-slide h1 { font-size: 2.4em; border-bottom: none; margin-bottom: 8px; }
+  .title-slide .subtitle { font-size: 1em; color: var(--muted); margin-bottom: 30px; }
+  .title-slide .chapters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+  .section-slide { text-align: center !important; background: var(--accent) !important; }
+  .section-slide h1, .section-slide h2 { color: #fff !important; border: none !important; font-size: 1.8em; }
+  .section-slide p { color: #c8e6c9; font-size: 0.9em; }
+
+  .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+  .tool-item { background: var(--code-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 10px; font-size: 0.72em; }
+  .tool-item strong { color: var(--accent); display: block; font-size: 0.95em; }
+
+  .reveal .slides section.tight pre code {
+    font-size: 0.56em !important;
+    line-height: 1.26 !important;
+    max-height: none;
+  }
+  .reveal .slides section.tight li {
+    font-size: 0.66em !important;
+    line-height: 1.25 !important;
+  }
+
+  .reveal .slides section {
+    box-sizing: border-box;
+    padding: 18px 44px 72px 44px;
+  }
+  .reveal .progress { color: var(--accent); }
+  .reveal .controls { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section class="title-slide">
+  <h1>Chapter 13</h1>
+  <p class="subtitle">Functional Programming in Python</p>
+  <div class="chapters">
+    <span class="pill">13.0 Intro</span>
+    <span class="pill">13.1 Functional Concepts</span>
+    <span class="pill">13.2 Functional Practice</span>
+  </div>
+  <br/>
+  <p style="font-size:0.75em; color:var(--muted);">Use ← → arrow keys or Space to navigate &nbsp;|&nbsp; Press <strong>F</strong> for fullscreen</p>
+</section>
+
+<section class="section-slide" data-background-color="#2a6b37">
+  <h2>What is Functional Programming?</h2>
+  <p>Writing programs as transformations from inputs to outputs</p>
+</section>
+
+<section>
+  <h2>Why Functional Programming?</h2>
+  <div class="cols">
+    <div>
+      <h3>Imperative approach</h3>
+      <p>Describe each step and update state along the way.</p>
+      <pre><code class="language-python">prices = [10, 20, 30]
+discounted = []
+
+for price in prices:
+    new_price = price * 0.9
+    discounted.append(new_price)</code></pre>
+    </div>
+    <div>
+      <h3>Functional approach</h3>
+      <p>Describe the transformation and produce a new value.</p>
+      <pre><code class="language-python">prices = [10, 20, 30]
+
+discounted = [
+    price * 0.9
+    for price in prices
+]</code></pre>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px;">
+    FP benefits: smaller functions, fewer side effects, easier testing, and clearer data pipelines.
+  </div>
+</section>
+
+<section>
+  <h2>Functional Vocabulary</h2>
+  <div class="tool-grid">
+    <div class="tool-item"><strong>Pure function</strong>Same input gives same output; no external changes.</div>
+    <div class="tool-item"><strong>Immutability</strong>Return new values instead of changing old ones.</div>
+    <div class="tool-item"><strong>First-class function</strong>Pass functions around like any other value.</div>
+    <div class="tool-item"><strong>Higher-order function</strong>Takes a function or returns a function.</div>
+    <div class="tool-item"><strong>Lambda</strong>Small anonymous function written inline.</div>
+    <div class="tool-item"><strong>Decorator</strong>Wraps a function with reusable behavior.</div>
+  </div>
+</section>
+
+<section class="section-slide" data-background-color="#2a6b37">
+  <h2>13.1 Functional Concepts</h2>
+  <p>Purity, immutability, functions as values, lambdas, decorators, comprehensions</p>
+</section>
+
+<section>
+  <h2>Pure Functions</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Depend only on their arguments.</li>
+        <li>Return a value instead of modifying external state.</li>
+        <li>Are easier to test because they are predictable.</li>
+      </ul>
+      <div class="callout rule">
+        Same input → same output. No hidden reads or writes.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python"># Pure
+def add_tax(price, rate):
+    return price * (1 + rate)
+
+# Not pure: depends on global state
+tax_rate = 0.07
+
+def add_tax_global(price):
+    return price * (1 + tax_rate)</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Immutability</h2>
+  <div class="cols">
+    <div>
+      <p>Functional code often returns a new value instead of changing an existing one.</p>
+      <ul>
+        <li>Original data stays available.</li>
+        <li>Unexpected side effects are less likely.</li>
+        <li>Pipelines become easier to reason about.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">def add_item(items, new_item):
+    return items + [new_item]
+
+cart = ["book", "pen"]
+new_cart = add_item(cart, "notebook")
+
+print(cart)      # ['book', 'pen']
+print(new_cart)  # ['book', 'pen', 'notebook']</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Functions as Values</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Assign a function to a variable.</li>
+        <li>Pass a function as an argument.</li>
+        <li>Return a function from another function.</li>
+      </ul>
+      <div class="callout">
+        This is the foundation for <code>map</code>, <code>filter</code>, decorators, callbacks, and custom sorting.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">def square(x):
+    return x * x
+
+def apply(func, values):
+    return [func(v) for v in values]
+
+nums = [1, 2, 3, 4]
+print(apply(square, nums))
+# [1, 4, 9, 16]</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Lambda Functions</h2>
+  <div class="cols">
+    <div>
+      <p>A <code>lambda</code> is a small anonymous function for simple expressions.</p>
+      <table>
+        <tr><th>Use case</th><th>Example</th></tr>
+        <tr><td>Sort key</td><td><code>key=lambda s: len(s)</code></td></tr>
+        <tr><td>Quick transform</td><td><code>lambda x: x * 2</code></td></tr>
+        <tr><td>Pair key</td><td><code>lambda item: item[1]</code></td></tr>
+      </table>
+      <div class="callout warn">
+        If the logic needs multiple steps, use <code>def</code>.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">names = ["Ada", "Grace", "Linus"]
+
+by_length = sorted(
+    names,
+    key=lambda name: len(name)
+)
+
+print(by_length)
+# ['Ada', 'Grace', 'Linus']</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Map, Filter, and Comprehensions</h2>
+  <div class="cols">
+    <div>
+      <h3>Functional tools</h3>
+      <pre><code class="language-python">nums = [1, 2, 3, 4, 5]
+
+squares = list(map(lambda n: n*n, nums))
+evens = list(filter(lambda n: n % 2 == 0, nums))</code></pre>
+    </div>
+    <div>
+      <h3>Pythonic alternative</h3>
+      <pre><code class="language-python">nums = [1, 2, 3, 4, 5]
+
+squares = [n*n for n in nums]
+evens = [n for n in nums if n % 2 == 0]</code></pre>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px;">
+    In Python, comprehensions are often clearer than <code>map</code> and <code>filter</code> with lambdas.
+  </div>
+</section>
+
+<section>
+  <h2>Higher-Order Functions</h2>
+  <div class="cols">
+    <div>
+      <p>A higher-order function works with other functions.</p>
+      <ul>
+        <li>Takes a function as input.</li>
+        <li>Returns a function as output.</li>
+        <li>Builds reusable behavior without duplicating control flow.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">def make_multiplier(factor):
+    def multiply(x):
+        return x * factor
+    return multiply
+
+double = make_multiplier(2)
+triple = make_multiplier(3)
+
+print(double(10))  # 20
+print(triple(10))  # 30</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Decorators</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>A decorator takes a function and returns a wrapped function.</li>
+        <li>Use it for logging, timing, validation, caching, and access checks.</li>
+        <li><code>@decorator</code> syntax replaces manual wrapping.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">def announce(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@announce
+def greet(name):
+    return f"Hello, {name}"
+
+print(greet("Ada"))</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section-slide" data-background-color="#2a6b37">
+  <h2>13.2 Functional Practice</h2>
+  <p>Recursion, context managers, and practical tools from <code style="color:#a5d6a7">functools</code></p>
+</section>
+
+<section>
+  <h2>Recursion</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>A recursive function calls itself.</li>
+        <li>Every recursive function needs a base case.</li>
+        <li>Good fit for problems with repeated self-similar structure.</li>
+      </ul>
+      <div class="callout warn">
+        Recursion is elegant for some problems, but iteration is often simpler in Python.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">def factorial(n):
+    if n == 0:          # base case
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))     # 120</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Context Managers</h2>
+  <div class="cols">
+    <div>
+      <p>A context manager handles setup and cleanup around a block of code.</p>
+      <ul>
+        <li>Open and close files safely.</li>
+        <li>Acquire and release resources.</li>
+        <li>Keep cleanup reliable even when errors happen.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">from contextlib import contextmanager
+
+@contextmanager
+def section(name):
+    print(f"Start {name}")
+    try:
+        yield
+    finally:
+        print(f"End {name}")
+
+with section("demo"):
+    print("working")</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <h2>The <code>functools</code> Module</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <tr><th>Tool</th><th>Use</th></tr>
+        <tr><td><code>reduce</code></td><td>Combine many values into one</td></tr>
+        <tr><td><code>partial</code></td><td>Pre-fill some function arguments</td></tr>
+        <tr><td><code>lru_cache</code></td><td>Memoize expensive function calls</td></tr>
+      </table>
+      <div class="callout rule">
+        Use these when they simplify the code. Do not force them into every problem.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">from functools import reduce, partial, lru_cache
+
+total = reduce(lambda a, b: a + b, [1, 2, 3])
+
+def power(base, exp):
+    return base ** exp
+
+square = partial(power, exp=2)
+
+@lru_cache
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n-1) + fib(n-2)</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Choosing a Style</h2>
+  <div class="cols">
+    <div>
+      <h3>Use functional style when...</h3>
+      <ul>
+        <li>You are transforming collections.</li>
+        <li>A pure helper function makes logic easier to test.</li>
+        <li>A comprehension or small pipeline is clearer than a loop.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Prefer another style when...</h3>
+      <ul>
+        <li>The lambda becomes hard to read.</li>
+        <li>The code needs several statements or error handling.</li>
+        <li>Mutating state is the simplest honest model.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px;">
+    Python supports multiple styles. The goal is readable, testable code, not functional purity.
+  </div>
+</section>
+
+<section>
+  <h2>Chapter 13 - Quick Reference</h2>
+  <table>
+    <tr><th>Concept</th><th>Key syntax / notes</th></tr>
+    <tr><td>Pure function</td><td>No side effects; depends only on arguments</td></tr>
+    <tr><td>Immutable update</td><td>Return a new value instead of mutating the original</td></tr>
+    <tr><td>Lambda</td><td><code>lambda args: expression</code></td></tr>
+    <tr><td>Map/filter</td><td><code>map(func, xs)</code>, <code>filter(pred, xs)</code></td></tr>
+    <tr><td>Comprehension</td><td><code>[expr for item in xs if condition]</code></td></tr>
+    <tr><td>Decorator</td><td><code>@decorator</code> wraps a function</td></tr>
+    <tr><td>Recursion</td><td>Base case plus recursive case</td></tr>
+    <tr><td>Context manager</td><td><code>with manager:</code> handles setup and cleanup</td></tr>
+    <tr><td>functools</td><td><code>reduce</code>, <code>partial</code>, <code>lru_cache</code></td></tr>
+  </table>
+</section>
+
+<section class="title-slide" style="text-align:center !important;">
+  <h1 style="color:var(--accent);">End of Chapter 13</h1>
+  <p style="color:var(--muted); font-size:0.9em;">Next up: DSA and algorithms</p>
+  <p style="font-size:0.75em; color:#aaa; margin-top:30px;">
+    pure functions · lambdas · decorators · recursion · functools
+  </p>
+</section>
+
+</div><!-- .slides -->
+</div><!-- .reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  transition: 'slide',
+  transitionSpeed: 'fast',
+  width: 1100,
+  height: 820,
+  margin: 0.05,
+  minScale: 0.4,
+  maxScale: 2.0,
+  controls: true,
+  progress: true,
+  center: false,
+  plugins: [ RevealHighlight, RevealNotes ]
+});
+</script>
+</body>
+</html>
