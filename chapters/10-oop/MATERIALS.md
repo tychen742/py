@@ -1,13 +1,11 @@
-# Chapter 12 Materials (Object-Oriented Programming)
+# Chapter 10 Materials (Object-Oriented Programming)
 
 This checklist is for building and delivering:
 
-- `1200-intro-oop.ipynb`
-- `1201-oop-design.ipynb` *(merged from former `1202-oop-methods`)*
-- `1201b-oop-objects.ipynb`
-- `1202-oop-practice.ipynb`
-- `1203-oop-pillars.ipynb`
-- `1204-oop-advanced.ipynb`
+- `1000-intro-oop.ipynb`
+- `1001-oop-design.ipynb` *(merged from former `1202-oop-methods`)*
+- `1002-oop-pillars.ipynb`
+- `1003-oop-advanced.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -28,14 +26,14 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1200-intro-oop.ipynb`
+### `1000-intro-oop.ipynb`
 
 - Required core:
   - What OOP is; classes vs instances; motivation; first class (`Point`); `isinstance()`, `type()`
 - Enrichment/project track:
   - Additional analogy-driven examples as time permits
 
-### `1201-oop-design.ipynb`
+### `1001-oop-design.ipynb`
 
 - Required core:
   - Programmer-defined types; `__init__`, `__str__`, `__repr__`; object mutation and copying
@@ -44,16 +42,15 @@ Use a two-tier model for one chapter per week:
 - Enrichment/project track:
   - Additional operator-overloading variants and extended design drills
 
-### `1201b-oop-objects.ipynb`
+### `1002-oop-pillars.ipynb`
 
 - Required core:
-  - Point and Line construction
-  - Equivalence vs identity (`==` vs `is`)
+  - The Four Pillars: encapsulation, inheritance, polymorphism, abstraction
+  - One focused code example per pillar
 - Enrichment/project track:
-  - Rectangle mutation walkthroughs
-  - Deep-copy edge cases and extra geometry exercises
+  - Extended examples comparing pillar trade-offs across different class designs
 
-### `1202-oop-practice.ipynb`
+### `1003-oop-advanced.ipynb`
 
 - Required core:
   - Inheritance; method overriding; polymorphism
@@ -62,19 +59,6 @@ Use a two-tier model for one chapter per week:
 - Enrichment/project track:
   - Full applied card game (Deck, Card, Hand as Deck subclass)
   - Extended ABC/Protocol implementations for interchangeable designs
-
-### `1203-oop-pillars.ipynb`
-
-- Required core:
-  - The Four Pillars: encapsulation, inheritance, polymorphism, abstraction
-  - One focused code example per pillar
-- Enrichment/project track:
-  - Extended examples comparing pillar trade-offs across different class designs
-
-### `1204-oop-advanced.ipynb`
-
-- Required core: none (enrichment-only)
-- Enrichment/project track:
   - Shallow copy vs. deep copy; `copy.copy` vs. `copy.deepcopy`
   - Object identity vs. equality (`is` vs. `==`) extended examples
 
@@ -98,13 +82,13 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
-## Chapter 12 Delivery Order (Recommended)
+## Chapter 10 Delivery Order (Recommended)
 
-1. `1200-intro-oop.ipynb` — What OOP is; classes vs instances; motivation
-2. `1201-oop-design.ipynb` — `__init__`, attributes, methods, self; encapsulation principles
-3. `1201b-oop-objects.ipynb` — Point/Line object modeling and identity/equivalence checks
-4. `1202-oop-practice.ipynb` — Inheritance/polymorphism core first; card-game extension as enrichment
+1. `1000-intro-oop.ipynb` — What OOP is; classes vs instances; motivation
+2. `1001-oop-design.ipynb` — `__init__`, attributes, methods, self; encapsulation principles
+3. `1002-oop-pillars.ipynb` — Encapsulation, inheritance, polymorphism, and abstraction
+4. `1003-oop-advanced.ipynb` — Inheritance/polymorphism practice; advanced object-state topics
 
 ## Coordination Note
 
-Chapter 12 planning and delivery are scoped to `chapters/12-oop/` only.
+Chapter 10 planning and delivery are scoped to `chapters/10-oop/` only.

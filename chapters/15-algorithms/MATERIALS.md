@@ -1,11 +1,11 @@
-# Chapter 10 Materials (Algorithms)
+# Chapter 15 Materials (Algorithms)
 
 This checklist is for building and delivering:
 
-- `1000-intro-algorithms.ipynb`
-- `1001-algorithms.ipynb`
-- `1002-searching.ipynb`
-- `1003-sorting.ipynb`
+- `1500-intro-algorithms.ipynb`
+- `1501-algorithms.ipynb`
+- `1502-searching.ipynb`
+- `1503-sorting.ipynb`
 
 > Note: `1000` is the chapter intro stub; `1001` is the concept framing notebook (no exercises). Exercises live in `1002` and `1003`.
 
@@ -32,12 +32,12 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1000-intro-algorithms.ipynb`
+### `1500-intro-algorithms.ipynb`
 
 - Required core:
   - Chapter intro stub only: title and chapter flow map
 
-### `1001-algorithms.ipynb`
+### `1501-algorithms.ipynb`
 
 - Required core:
   - Algorithm input-process-output model (max_value example)
@@ -47,7 +47,7 @@ Use a two-tier model for one chapter per week:
 - Enrichment/project track:
   - Extended design checklist drills and additional Think Ahead prompts
 
-### `1002-searching.ipynb`
+### `1502-searching.ipynb`
 
 - Required core:
   - Implement linear search and binary search (manual)
@@ -58,7 +58,7 @@ Use a two-tier model for one chapter per week:
   - Full `bisect_left/right` + `insort_left/right` comparison lab
   - Expanded edge-case and benchmarking matrix
 
-### `1003-sorting.ipynb`
+### `1503-sorting.ipynb`
 
 - Required core:
   - Demonstrate Python `sorted()` and `.sort()` with stability demo
@@ -92,7 +92,7 @@ Use a two-tier model for one chapter per week:
 - Common test pattern: `data[:]` copies for in-place sorts (insertion, bubble); merge and quick are non-mutating
 - Optional plotting helper for timing vs input size
 
-## Chapter 10 Delivery Order (Recommended)
+## Chapter 15 Delivery Order (Recommended)
 
 1. Chapter intro stub (`1000`)
 2. Algorithm concepts + Big O + benchmarking (`1001`)
@@ -102,4 +102,4 @@ Use a two-tier model for one chapter per week:
 
 ## Coordination Note
 
-Chapter 10 planning and delivery are algorithms-only for this course.
+Chapter 15 planning and delivery are algorithms-only for this course.

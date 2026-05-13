@@ -1,10 +1,10 @@
-# Chapter 11 Materials (Exceptions and Testing)
+# Chapter 05 Materials (Exceptions and Testing)
 
 This checklist is for building and delivering:
 
-- `1100-exception-testing.ipynb`
-- `1101-exceptions.ipynb`
-- `1102-unit-testing.ipynb`
+- `0500-exception-testing.ipynb`
+- `0501-exceptions.ipynb`
+- `0502-unit-testing.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -25,12 +25,12 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1100-exception-testing.ipynb`
+### `0500-exception-testing.ipynb`
 
 - Required core:
   - Chapter intro: learning goals, error-type motivation, chapter flow map (no exercises)
 
-### `1101-exceptions.ipynb`
+### `0501-exceptions.ipynb`
 
 - Required core:
   - Error types; `try/except/else/finally`; multiple exception handling
@@ -42,7 +42,7 @@ Use a two-tier model for one chapter per week:
   - Additional debugging-technique demonstrations
   - Extended logging exercise and instrumentation patterns
 
-### `1102-unit-testing.ipynb`
+### `0502-unit-testing.ipynb`
 
 - Required core:
   - `unittest.TestCase`: writing/running tests, `setUp`/`tearDown`
@@ -74,12 +74,12 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
-## Chapter 11 Delivery Order (Recommended)
+## Chapter 05 Delivery Order (Recommended)
 
-1. `1100-exception-testing.ipynb` — Chapter intro: learning goals and chapter map
-2. `1101-exceptions.ipynb` — Exception handling, raising, custom exceptions, debugging
-3. `1102-unit-testing.ipynb` — unittest and doctests
+1. `0500-exception-testing.ipynb` — Chapter intro: learning goals and chapter map
+2. `0501-exceptions.ipynb` — Exception handling, raising, custom exceptions, debugging
+3. `0502-unit-testing.ipynb` — unittest and doctests
 
 ## Coordination Note
 
-Chapter 11 planning and delivery are scoped to `chapters/11-testing/` only.
+Chapter 05 planning and delivery are scoped to `chapters/05-testing/` only.

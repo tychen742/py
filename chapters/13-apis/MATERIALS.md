@@ -1,10 +1,10 @@
-# Chapter 15 Materials (APIs)
+# Chapter 13 Materials (APIs)
 
 This checklist is for building and delivering:
 
-- `1500-intro-apis.ipynb`
-- `1501-apis.ipynb`
-- `1502-api-reliability.ipynb`
+- `1300-intro-apis.ipynb`
+- `1301-apis.ipynb`
+- `1302-api-reliability.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -27,7 +27,7 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1501-apis.ipynb`
+### `1301-apis.ipynb`
 
 - Required core:
   - What APIs are; REST concept; HTTP methods table; status codes table
@@ -35,7 +35,7 @@ Use a two-tier model for one chapter per week:
   - Error handling (`raise_for_status`, timeout, `RequestException`)
   - Exercise: Weather API (open-meteo.com)
 
-### `1502-api-reliability.ipynb`
+### `1302-api-reliability.ipynb`
 
 - Required core:
   - `requests.post()` with JSON body (`json={}`)
@@ -68,12 +68,12 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
-## Chapter 15 Delivery Order (Recommended)
+## Chapter 13 Delivery Order (Recommended)
 
-1. `1500-intro-apis.ipynb` — Chapter intro; learning goals; chapter flow
-2. `1501-apis.ipynb` — REST concepts; `requests.get()`; query parameters; error handling; Weather API exercise
-3. `1502-api-reliability.ipynb` — POST requests; auth headers; nested JSON; pagination; retry/backoff; response validation
+1. `1300-intro-apis.ipynb` — Chapter intro; learning goals; chapter flow
+2. `1301-apis.ipynb` — REST concepts; `requests.get()`; query parameters; error handling; Weather API exercise
+3. `1302-api-reliability.ipynb` — POST requests; auth headers; nested JSON; pagination; retry/backoff; response validation
 
 ## Coordination Note
 
-Chapter 15 planning and delivery are scoped to `chapters/15-apis/` only.
+Chapter 13 planning and delivery are scoped to `chapters/13-apis/` only.

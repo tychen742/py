@@ -1,10 +1,10 @@
-# Chapter 13 Materials (Functional Programming)
+# Chapter 11 Materials (Functional Programming)
 
 This checklist is for building and delivering:
 
-- `1300-intro-func-prog.ipynb`
-- `1301-func-prog.ipynb`
-- `1302-func-practice.ipynb`
+- `1100-intro-func-prog.ipynb`
+- `1101-func-prog.ipynb`
+- `1102-func-practice.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -27,7 +27,7 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1300-intro-func-prog.ipynb`
+### `1100-intro-func-prog.ipynb`
 
 - Required core:
   - Chapter intro: learning goals, motivation, chapter flow map (no exercises)
@@ -35,7 +35,7 @@ Use a two-tier model for one chapter per week:
 - Enrichment/project track:
   - Additional conceptual discussion prompts or short reflection tasks
 
-### `1301-func-prog.ipynb`
+### `1101-func-prog.ipynb`
 
 - Required core:
   - Decorators (`@wraps`, timer baseline)
@@ -46,7 +46,7 @@ Use a two-tier model for one chapter per week:
   - Class-based decorators and advanced decorator composition
   - Functional pipeline readability refactor challenge
 
-### `1302-func-practice.ipynb`
+### `1102-func-practice.ipynb`
 
 - Required core:
   - Recursion fundamentals (factorial/Fibonacci) and recursion-vs-iteration table
@@ -77,12 +77,12 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
-## Chapter 13 Delivery Order (Recommended)
+## Chapter 11 Delivery Order (Recommended)
 
-1. `1300-intro-func-prog.ipynb` — Chapter intro: learning goals and chapter flow map
-2. `1301-func-prog.ipynb` — Functional concepts: decorators; comprehensions; lambda/map/filter; decision criteria
-3. `1302-func-practice.ipynb` — Functional practice: recursion; context managers; `functools`
+1. `1100-intro-func-prog.ipynb` — Chapter intro: learning goals and chapter flow map
+2. `1101-func-prog.ipynb` — Functional concepts: decorators; comprehensions; lambda/map/filter; decision criteria
+3. `1102-func-practice.ipynb` — Functional practice: recursion; context managers; `functools`
 
 ## Coordination Note
 
-Chapter 13 planning and delivery are scoped to `chapters/13-functional/` only.
+Chapter 11 planning and delivery are scoped to `chapters/11-functional/` only.

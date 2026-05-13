@@ -1,10 +1,10 @@
-# Chapter 14 Materials (Iterators and Generators)
+# Chapter 12 Materials (Iterators and Generators)
 
 This checklist is for building and delivering:
 
-- `1400-intro-iter-gen.ipynb`
-- `1401-iterators.ipynb`
-- `1402-generators.ipynb`
+- `1200-intro-iter-gen.ipynb`
+- `1201-iterators.ipynb`
+- `1202-generators.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -25,12 +25,12 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1400-intro-iter-gen.ipynb`
+### `1200-intro-iter-gen.ipynb`
 
 - Required core:
   - Chapter intro: learning goals, motivation, chapter flow map (no exercises)
 
-### `1401-iterators.ipynb`
+### `1201-iterators.ipynb`
 
 - Required core:
   - Iterator protocol; `iter()`/`next()` manually; `StopIteration`
@@ -40,7 +40,7 @@ Use a two-tier model for one chapter per week:
 - Enrichment/project track:
   - Additional custom iterator classes with edge-case handling
 
-### `1402-generators.ipynb`
+### `1202-generators.ipynb`
 
 - Required core:
   - Generator functions (`yield`), generator expressions, memory efficiency framing
@@ -71,12 +71,12 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
-## Chapter 14 Delivery Order (Recommended)
+## Chapter 12 Delivery Order (Recommended)
 
-1. `1400-intro-iter-gen.ipynb` — Chapter intro: learning goals and chapter flow map
-2. `1401-iterators.ipynb` — Iterator protocol; built-in iterators; custom iterator classes
-3. `1402-generators.ipynb` — Generator functions; generator expressions; infinite sequences
+1. `1200-intro-iter-gen.ipynb` — Chapter intro: learning goals and chapter flow map
+2. `1201-iterators.ipynb` — Iterator protocol; built-in iterators; custom iterator classes
+3. `1202-generators.ipynb` — Generator functions; generator expressions; infinite sequences
 
 ## Coordination Note
 
-Chapter 14 planning and delivery are scoped to `chapters/14-iter-gen/` only.
+Chapter 12 planning and delivery are scoped to `chapters/12-iter-gen/` only.

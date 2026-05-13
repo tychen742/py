@@ -18,6 +18,11 @@ parts:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
       - file: chapters/04-functions/0401-functions
+      - file: chapters/05-testing/0500-exception-testing
+        title: Exceptions & Testing
+        sections:
+          - file: chapters/05-testing/0501-exceptions
+          - file: chapters/05-testing/0502-unit-testing
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
@@ -35,47 +40,53 @@ parts:
   - caption: "Part III: Program Design"
     numbered: true
     chapters:
-      - file: chapters/12-oop/1200-intro-oop
+      - file: chapters/10-oop/1000-intro-oop
         title: OOP
         sections:
-          - file: chapters/12-oop/1201-oop-design
+          - file: chapters/10-oop/1001-oop-design
             title: OOP Basics
-          - file: chapters/12-oop/1202-oop-pillars
+          - file: chapters/10-oop/1002-oop-pillars
             title: The Four Pillars
-          - file: chapters/12-oop/1203-oop-advanced
+          - file: chapters/10-oop/1003-oop-advanced
             title: Advanced OOP
-      - file: chapters/11-testing/1100-exception-testing
+      - file: chapters/11-functional/1100-intro-func-prog
+        title: FP
         sections:
-          - file: chapters/11-testing/1101-exceptions
-          - file: chapters/11-testing/1102-unit-testing
-      - file: chapters/13-functional/1300-intro-func-prog
-        title: FP in Python
-        sections:
-          - file: chapters/13-functional/1301-func-prog
+          - file: chapters/11-functional/1101-func-prog
             title: Functional Concepts
-          - file: chapters/13-functional/1302-func-practice
+          - file: chapters/11-functional/1102-func-practice
             title: Functional Practice
-      - file: chapters/14-iter-gen/1400-intro-iter-gen
+      - file: chapters/12-iter-gen/1200-intro-iter-gen
+        title: Iterators & Generators
         sections:
-          - file: chapters/14-iter-gen/1401-iterators
-          - file: chapters/14-iter-gen/1402-generators
-      - file: chapters/15-apis/1500-intro-apis
+          - file: chapters/12-iter-gen/1201-iterators
+          - file: chapters/12-iter-gen/1202-generators
+      - file: chapters/13-apis/1300-intro-apis
         title: APIs
         sections:
-          - file: chapters/15-apis/1501-apis
+          - file: chapters/13-apis/1301-apis
             title: API Basics
-          - file: chapters/15-apis/1502-api-reliability
+          - file: chapters/13-apis/1302-api-reliability
             title: API Reliability
   - caption: "Part IV: DSA"
     numbered: true
     chapters:
-      - file: chapters/10-abstract-data-structures/1000-abstract-data-structures
+      - file: chapters/14-abstract-data-structures/1400-abstract-data-structures
         title: Abstract Data Structures
-      - file: chapters/10-algorithms/1000-intro-algorithms
         sections:
-          - file: chapters/10-algorithms/1001-algorithms
-          - file: chapters/10-algorithms/1002-searching
-          - file: chapters/10-algorithms/1003-sorting
+          - file: chapters/14-abstract-data-structures/1401-adt-basics
+            title: ADT Basics
+          - file: chapters/14-abstract-data-structures/1402-stacks-queues
+            title: Stacks & Queues
+          - file: chapters/14-abstract-data-structures/1403-trees-graphs
+            title: Trees & Graphs
+          - file: chapters/14-abstract-data-structures/1404-assignments
+            title: Assignments
+      - file: chapters/15-algorithms/1500-intro-algorithms
+        sections:
+          - file: chapters/15-algorithms/1501-algorithms
+          - file: chapters/15-algorithms/1502-searching
+          - file: chapters/15-algorithms/1503-sorting
   # - caption: "Select Topics"
   #   numbered: true
   #   chapters:
