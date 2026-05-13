@@ -17,7 +17,10 @@ parts:
         sections:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
-      - file: chapters/04-functions/0401-functions
+      - file: chapters/04-functions/0400-functions
+        sections:
+          - file: chapters/04-functions/0401-functions
+          - file: chapters/04-functions/0402-recursion
       - file: chapters/05-testing/0500-exception-testing
         title: Exceptions & Testing
         sections:

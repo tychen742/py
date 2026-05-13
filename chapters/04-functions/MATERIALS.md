@@ -2,6 +2,7 @@
 
 This checklist is for building and delivering:
 
+- `0400-functions.ipynb`
 - `0401-functions.ipynb`
 - `0402-recursion.ipynb`
 
@@ -16,6 +17,10 @@ This checklist is for building and delivering:
 - Practice dataset or starter code where applicable
 
 ## Notebook Content Targets
+
+### `0400-functions.ipynb`
+
+- Chapter intro; learning goals; chapter flow; glossary
 
 ### `0401-functions.ipynb`
 
@@ -47,7 +52,9 @@ This checklist is for building and delivering:
 
 ## Chapter 04 Delivery Order (Recommended)
 
-1. `0401-functions.ipynb` — Defining and calling functions; parameters, return values, scope, docstrings\n2. `0402-recursion.ipynb` — Recursive functions; base cases; tracing recursive calls\n
+1. `0400-functions.ipynb` — Chapter intro; learning goals; chapter flow; glossary
+2. `0401-functions.ipynb` — Defining and calling functions; parameters, return values, scope, docstrings
+3. `0402-recursion.ipynb` — Recursive functions; base cases; tracing recursive calls
 ## Coordination Note
 
 Chapter 04 planning and delivery are scoped to `chapters/04-functions/` only.

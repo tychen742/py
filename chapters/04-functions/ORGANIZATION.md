@@ -2,6 +2,7 @@
 
 This chapter is currently split into:
 
+- `0400-functions.ipynb`
 - `0401-functions.ipynb`
 - `0402-recursion.ipynb`
 
@@ -9,13 +10,16 @@ This chapter is currently split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0401-functions.ipynb`
+1. `0400-functions.ipynb`
+   - Chapter intro; learning goals; chapter flow; glossary
+2. `0401-functions.ipynb`
    - Defining and calling functions; parameters, return values, scope, docstrings
-2. `0402-recursion.ipynb`
+3. `0402-recursion.ipynb`
    - Recursive functions; base cases; tracing recursive calls
 
 ## File Roles
 
+- `0400-functions.ipynb`: Chapter landing page; intro, learning goals, chapter flow, glossary.
 - `0401-functions.ipynb`: Defining and calling functions; parameters, return values, scope, docstrings.
 - `0402-recursion.ipynb`: Recursive functions; base cases; tracing recursive calls.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
