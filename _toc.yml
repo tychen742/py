@@ -28,11 +28,9 @@ parts:
         sections:
           - file: chapters/04-functions/0401-functions
             title: Defining Functions
-          - file: chapters/04-functions/0402-parameters-return
-            title: Parameters & Return
-          - file: chapters/04-functions/0403-function-design
+          - file: chapters/04-functions/0402-function-design
             title: Function Design
-          - file: chapters/04-functions/0404-recursion
+          - file: chapters/04-functions/0403-recursion
       - file: chapters/05-testing/0500-exception-testing
         title: Exceptions & Testing
         sections:

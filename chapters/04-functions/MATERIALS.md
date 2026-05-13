@@ -4,9 +4,8 @@ This checklist is for building and delivering:
 
 - `0400-functions.ipynb`
 - `0401-functions.ipynb`
-- `0402-parameters-return.ipynb`
-- `0403-function-design.ipynb`
-- `0404-recursion.ipynb`
+- `0402-function-design.ipynb`
+- `0403-recursion.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -28,17 +27,13 @@ This checklist is for building and delivering:
 
 ### `0401-functions.ipynb`
 
-- Function motivation; turtle examples; defining and calling functions; encapsulation
+- Function motivation; turtle examples; defining and calling functions; parameters, arguments, defaults, `*args`, `**kwargs`, return values, and basic type annotations
 
-### `0402-parameters-return.ipynb`
-
-- Parameters, arguments, defaults, `*args`, `**kwargs`, return values, basic type annotations
-
-### `0403-function-design.ipynb`
+### `0402-function-design.ipynb`
 
 - Scope, composition, docstrings, and basic lambda functions
 
-### `0404-recursion.ipynb`
+### `0403-recursion.ipynb`
 
 - Recursive functions; base cases; tracing recursive calls
 
@@ -65,10 +60,9 @@ This checklist is for building and delivering:
 ## Chapter 04 Delivery Order (Recommended)
 
 1. `0400-functions.ipynb` — Chapter intro; learning goals; chapter flow; glossary
-2. `0401-functions.ipynb` — Function motivation; turtle examples; defining and calling functions; encapsulation
-3. `0402-parameters-return.ipynb` — Parameters, defaults, `*args`, `**kwargs`, return values, basic type annotations
-4. `0403-function-design.ipynb` — Scope, composition, docstrings, and basic lambda functions
-5. `0404-recursion.ipynb` — Recursive functions; base cases; tracing recursive calls
+2. `0401-functions.ipynb` — Function motivation; turtle examples; defining and calling functions; parameters, arguments, return values, and basic type annotations
+3. `0402-function-design.ipynb` — Scope, composition, docstrings, and basic lambda functions
+4. `0403-recursion.ipynb` — Recursive functions; base cases; tracing recursive calls
 ## Coordination Note
 
 Chapter 04 planning and delivery are scoped to `chapters/04-functions/` only.
