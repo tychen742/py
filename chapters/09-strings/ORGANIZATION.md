@@ -3,30 +3,31 @@
 This chapter is currently split into:
 
 - `0900-intro-strings.ipynb`
-- `0901-strings.ipynb`
-- `0902-regex.ipynb`
-- `0903-text-analysis.ipynb`
+- `0901-strings.ipynb` with string subsections
+- `0902-regex.ipynb` with regex subsections
+- `0903-text-analysis.ipynb` with text-analysis subsections
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0900-intro-strings.ipynb`
-   - String overview; immutability; escape sequences
-2. `0901-strings.ipynb`
-   - Indexing, slicing, methods (case, search, split, join, strip), formatting
-3. `0902-regex.ipynb`
-   - Regex syntax, match objects, flags, quantifiers, capture groups, compiled patterns
-4. `0903-text-analysis.ipynb`
-   - Word frequency, cleaning, bigrams, successor maps, Markov text generation
-
-## File Roles
-
-- `0900-intro-strings.ipynb`: String overview; immutability; escape sequences.
-- `0901-strings.ipynb`: Indexing, slicing, methods (case, search, split, join, strip), formatting.
-- `0902-regex.ipynb`: Regex syntax, match objects, flags, quantifiers, capture groups, compiled patterns.
-- `0903-text-analysis.ipynb`: Word frequency, cleaning, bigrams, successor maps, Markov text generation.
-- `MATERIALS.md`: teaching/assessment assets and prep checklist.
+1. `0900-intro-strings.ipynb` — string overview
+2. `0901-strings.ipynb` — string landing page
+   - `0901-string-basics.ipynb`
+   - `0901-string-methods.ipynb`
+   - `0901-string-comparison.ipynb`
+   - `0901-looping-sorting.ipynb`
+   - `0901-word-list.ipynb`
+3. `0902-regex.ipynb` — regex landing page
+   - `0902-re-module.ipynb`
+   - `0902-regex-syntax.ipynb`
+   - `0902-regex-advanced.ipynb`
+   - `0902-regex-applications.ipynb`
+4. `0903-text-analysis.ipynb` — text-analysis landing page
+   - `0903-cleaning-normalizing.ipynb`
+   - `0903-word-frequencies.ipynb`
+   - `0903-random-text.ipynb`
+   - `0903-markov-generation.ipynb`
 
 ## Source of Truth
 

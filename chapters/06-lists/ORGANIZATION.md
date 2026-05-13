@@ -2,19 +2,23 @@
 
 This chapter is currently split into:
 
-- `0601-lists.ipynb`
+- `0600-intro-lists.ipynb`
+- `0601-creating-lists.ipynb`
+- `0602-accessing-lists.ipynb`
+- `0603-list-operations.ipynb`
+- `0604-aliasing-copying.ipynb`
+- `0605-advanced-lists.ipynb`
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0601-lists.ipynb`
-   - List creation, indexing, slicing, methods, comprehensions, aliasing, nested lists
-
-## File Roles
-
-- `0601-lists.ipynb`: List creation, indexing, slicing, methods, comprehensions, aliasing, nested lists.
-- `MATERIALS.md`: teaching/assessment assets and prep checklist.
+1. `0600-intro-lists.ipynb` — chapter overview and learning objectives
+2. `0601-creating-lists.ipynb` — list creation, constructors, comprehensions, lists and strings
+3. `0602-accessing-lists.ipynb` — indexing, slicing, and element access
+4. `0603-list-operations.ipynb` — list operators, methods, iteration, and common operations
+5. `0604-aliasing-copying.ipynb` — aliasing, shallow copies, and mutation behavior
+6. `0605-advanced-lists.ipynb` — nested lists and advanced list concepts
 
 ## Source of Truth
 

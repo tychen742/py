@@ -6,27 +6,21 @@ This chapter is currently split into:
 - `0201-variables.ipynb`
 - `0202-operators.ipynb`
 - `0203-builtin-types.ipynb`
+- `0204-builtins.ipynb`
+- `0205-basic-types.ipynb`
+- `0206-collection-types.ipynb`
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0200-py-basics.ipynb`
-   - Chapter overview and Python REPL basics
-2. `0201-variables.ipynb`
-   - Variables, assignment, naming conventions, f-strings
-3. `0202-operators.ipynb`
-   - Arithmetic, comparison, logical, and assignment operators
-4. `0203-builtin-types.ipynb`
-   - int, float, str, bool; type conversion; type() and isinstance()
-
-## File Roles
-
-- `0200-py-basics.ipynb`: Chapter overview and Python REPL basics.
-- `0201-variables.ipynb`: Variables, assignment, naming conventions, f-strings.
-- `0202-operators.ipynb`: Arithmetic, comparison, logical, and assignment operators.
-- `0203-builtin-types.ipynb`: int, float, str, bool; type conversion; type() and isinstance().
-- `MATERIALS.md`: teaching/assessment assets and prep checklist.
+1. `0200-py-basics.ipynb` — chapter overview and Python REPL basics
+2. `0201-variables.ipynb` — variables, assignment, naming conventions, f-strings
+3. `0202-operators.ipynb` — arithmetic, comparison, logical, and assignment operators
+4. `0203-builtin-types.ipynb` — type concepts, hierarchy, checking, and conversion
+5. `0204-builtins.ipynb` — common Python built-in functions
+6. `0205-basic-types.ipynb` — numbers, strings, booleans, and related examples
+7. `0206-collection-types.ipynb` — collection type overview
 
 ## Source of Truth
 

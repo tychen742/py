@@ -13,6 +13,13 @@ parts:
           - file: chapters/02-basics/0201-variables
           - file: chapters/02-basics/0202-operators
           - file: chapters/02-basics/0203-builtin-types
+            sections:
+              - file: chapters/02-basics/0204-builtins
+                title: Built-in Functions
+              - file: chapters/02-basics/0205-basic-types
+                title: Basic Types
+              - file: chapters/02-basics/0206-collection-types
+                title: Collection Types
       - file: chapters/03-control-flow/0300-intro-control
         sections:
           - file: chapters/03-control-flow/0301-conditionals
@@ -20,7 +27,12 @@ parts:
       - file: chapters/04-functions/0400-functions
         sections:
           - file: chapters/04-functions/0401-functions
-          - file: chapters/04-functions/0402-recursion
+            title: Defining Functions
+          - file: chapters/04-functions/0402-parameters-return
+            title: Parameters & Return
+          - file: chapters/04-functions/0403-function-design
+            title: Function Design
+          - file: chapters/04-functions/0404-recursion
       - file: chapters/05-testing/0500-exception-testing
         title: Exceptions & Testing
         sections:
@@ -29,17 +41,82 @@ parts:
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/06-lists/0601-lists
-      - file: chapters/07-tuples/0701-tuple
+      - file: chapters/06-lists/0600-intro-lists
+        title: Lists
+        sections:
+          - file: chapters/06-lists/0601-creating-lists
+            title: Creating Lists
+          - file: chapters/06-lists/0602-accessing-lists
+            title: Accessing Lists
+          - file: chapters/06-lists/0603-list-operations
+            title: List Operations
+          - file: chapters/06-lists/0604-aliasing-copying
+            title: Aliasing & Copying
+          - file: chapters/06-lists/0605-advanced-lists
+            title: Advanced Lists
+      - file: chapters/07-tuples/0700-intro-tuples
+        title: Tuples
+        sections:
+          - file: chapters/07-tuples/0701-creating-accessing-tuples
+            title: Creating & Accessing
+          - file: chapters/07-tuples/0702-tuple-unpacking
+            title: Tuple Unpacking
+          - file: chapters/07-tuples/0703-tuple-operations
+            title: Tuple Operations
+          - file: chapters/07-tuples/0704-tuples-functions
+            title: Tuples & Functions
       - file: chapters/08-dict-set/0800-intro-dict-set
         sections:
           - file: chapters/08-dict-set/0801-dict 
+            sections:
+              - file: chapters/08-dict-set/0801-dict-core-operations
+                title: Core Operations
+              - file: chapters/08-dict-set/0801-dict-select-topics
+                title: Select Topics
           - file: chapters/08-dict-set/0802-set
+            sections:
+              - file: chapters/08-dict-set/0802-creating-sets
+                title: Creating Sets
+              - file: chapters/08-dict-set/0802-set-operations
+                title: Set Operations
+              - file: chapters/08-dict-set/0802-set-methods
+                title: Set Methods
+              - file: chapters/08-dict-set/0802-set-advanced
+                title: Advanced Sets
       - file: chapters/09-strings/0900-intro-strings
         sections:
           - file: chapters/09-strings/0901-strings
+            sections:
+              - file: chapters/09-strings/0901-string-basics
+                title: String Basics
+              - file: chapters/09-strings/0901-string-methods
+                title: String Methods
+              - file: chapters/09-strings/0901-string-comparison
+                title: String Comparison
+              - file: chapters/09-strings/0901-looping-sorting
+                title: Looping & Sorting
+              - file: chapters/09-strings/0901-word-list
+                title: Word List
           - file: chapters/09-strings/0902-regex
+            sections:
+              - file: chapters/09-strings/0902-re-module
+                title: The re Module
+              - file: chapters/09-strings/0902-regex-syntax
+                title: Regex Syntax
+              - file: chapters/09-strings/0902-regex-advanced
+                title: Advanced Regex
+              - file: chapters/09-strings/0902-regex-applications
+                title: Applications
           - file: chapters/09-strings/0903-text-analysis
+            sections:
+              - file: chapters/09-strings/0903-cleaning-normalizing
+                title: Cleaning Text
+              - file: chapters/09-strings/0903-word-frequencies
+                title: Word Frequencies
+              - file: chapters/09-strings/0903-random-text
+                title: Random Text
+              - file: chapters/09-strings/0903-markov-generation
+                title: Markov Generation
   - caption: "Part III: Program Design"
     numbered: true
     chapters:
