@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chapter 11 - Exceptions and Testing Overview</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/simple.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" />
+<style>
+  :root {
+    --accent: #2a6b37;
+    --accent-light: #e8f5eb;
+    --gold: #b8860b;
+    --text: #1a1a1a;
+    --muted: #555;
+    --code-bg: #f6f8fa;
+    --border: #d0e8d4;
+  }
+
+  .reveal { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); }
+  .reveal h1 { font-size: 1.9em; color: var(--accent); border-bottom: 3px solid var(--gold); padding-bottom: 12px; margin-bottom: 20px; }
+  .reveal h2 { font-size: 1.35em; color: var(--accent); margin-bottom: 12px; }
+  .reveal h3 { font-size: 1.1em; color: var(--gold); margin-bottom: 10px; }
+  .reveal p, .reveal li { font-size: 0.74em; line-height: 1.38; }
+  .reveal ul { margin-left: 1.2em; }
+  .reveal ul li { margin-bottom: 4px; }
+  .reveal section { text-align: left; }
+
+  .reveal pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0;
+    margin: 10px 0;
+    box-shadow: none;
+    width: 100%;
+  }
+  .reveal pre code {
+    font-size: 0.64em;
+    line-height: 1.34;
+    padding: 12px 14px;
+    max-height: 390px;
+    overflow-y: auto;
+  }
+  .reveal code:not(pre code) {
+    background: var(--code-bg);
+    border: 1px solid #dde;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.88em;
+    color: #c7254e;
+  }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .cols.ratio-4-6 { grid-template-columns: 4fr 6fr; }
+  .cols.ratio-6-4 { grid-template-columns: 6fr 4fr; }
+
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 0.72em;
+    margin: 2px 3px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .pill.gold { background: var(--gold); }
+  .pill.gray { background: #777; }
+
+  .callout {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 0.68em;
+    line-height: 1.3;
+  }
+  .callout.warn { background: #fff8e1; border-color: var(--gold); }
+  .callout.rule { background: #f0f4ff; border-color: #5577cc; }
+
+  .reveal table { font-size: 0.62em; border-collapse: collapse; width: 100%; }
+  .reveal table th { background: var(--accent); color: #fff; padding: 5px 8px; text-align: left; }
+  .reveal table td { padding: 5px 8px; border-bottom: 1px solid #dde; }
+  .reveal table tr:nth-child(even) td { background: #f7faf7; }
+
+  .title-slide { text-align: center !important; }
+  .title-slide h1 { font-size: 2.4em; border-bottom: none; margin-bottom: 8px; }
+  .title-slide .subtitle { font-size: 1em; color: var(--muted); margin-bottom: 30px; }
+  .title-slide .chapters { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+  .section-slide { text-align: center !important; background: var(--accent) !important; }
+  .section-slide h1, .section-slide h2 { color: #fff !important; border: none !important; font-size: 1.8em; }
+  .section-slide p { color: #c8e6c9; font-size: 0.9em; }
+
+  .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+  .tool-item { background: var(--code-bg); border: 1px solid var(--border); border-radius: 5px; padding: 8px 10px; font-size: 0.72em; }
+  .tool-item strong { color: var(--accent); display: block; font-size: 0.95em; }
+
+  .reveal .slides section.tight pre code {
+    font-size: 0.55em !important;
+    line-height: 1.24 !important;
+    max-height: none;
+  }
+  .reveal .slides section.tight li {
+    font-size: 0.66em !important;
+    line-height: 1.25 !important;
+  }
+
+  .reveal .slides section {
+    box-sizing: border-box;
+    padding: 18px 44px 72px 44px;
+  }
+  .reveal .progress { color: var(--accent); }
+  .reveal .controls { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section class="title-slide">
+  <h1>Chapter 11</h1>
+  <p class="subtitle">Exceptions and Testing</p>
+  <div class="chapters">
+    <span class="pill">11.0 Intro</span>
+    <span class="pill">11.1 Exceptions</span>
+    <span class="pill">11.2 Unit Testing</span>
+  </div>
+  <br/>
+  <p style="font-size:0.75em; color:var(--muted);">Use ← → arrow keys or Space to navigate &nbsp;|&nbsp; Press <strong>F</strong> for fullscreen</p>
+</section>
+
+<section class="section-slide" data-background-color="#2a6b37">
+  <h2>Why Exceptions and Testing?</h2>
+  <p>Handle failures gracefully and verify that code does what it claims</p>
+</section>
+
+<section>
+  <h2>Two Kinds of Problems</h2>
+  <div class="cols">
+    <div>
+      <h3>Runtime failures</h3>
+      <p>The program stops because Python raises an exception.</p>
+      <pre><code class="language-python">age = int("twenty")
+# ValueError</code></pre>
+      <p>Exception handling lets the program recover or report a useful message.</p>
+    </div>
+    <div>
+      <h3>Semantic bugs</h3>
+      <p>The program runs, but the answer is wrong.</p>
+      <pre><code class="language-python">def average(nums):
+    return sum(nums) / (len(nums) - 1)
+# wrong formula</code></pre>
+      <p>Tests catch wrong behavior before users do.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Chapter 11 Toolkit</h2>
+  <div class="tool-grid">
+    <div class="tool-item"><strong>Tracebacks</strong>Follow the error path to the failing line.</div>
+    <div class="tool-item"><strong>try / except</strong>Recover from expected runtime failures.</div>
+    <div class="tool-item"><strong>raise</strong>Signal invalid input or state clearly.</div>
+    <div class="tool-item"><strong>logging</strong>Record what happened without cluttering output.</div>
+    <div class="tool-item"><strong>assert</strong>Check assumptions while developing.</div>
+    <div class="tool-item"><strong>tests</strong>Make behavior repeatable and verifiable.</div>
+  </div>
+</section>
+
+<section class="section-slide" data-background-color="#2a6b37">
+  <h2>11.1 Exceptions</h2>
+  <p>Tracebacks, try/except, else/finally, custom exceptions, and logging</p>
+</section>
+
+<section>
+  <h2>Reading Tracebacks</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Start at the bottom for the exception type and message.</li>
+        <li>Look upward to find the line in your code that failed.</li>
+        <li>Tracebacks show the call stack: who called whom.</li>
+      </ul>
+      <div class="callout rule">
+        A traceback is a map, not just an error message.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">def parse_age(text):
+    return int(text)
+
+def register(raw_age):
+    age = parse_age(raw_age)
+    return {"age": age}
+
+register("twenty")
+# ValueError: invalid literal for int()</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><code>try</code> / <code>except</code></h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Put risky code in the <code>try</code> block.</li>
+        <li>Catch specific exception types.</li>
+        <li>Return, retry, or explain the failure.</li>
+      </ul>
+      <div class="callout warn">
+        Avoid bare <code>except:</code>. It can hide real bugs.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">def parse_int(text):
+    try:
+        return int(text)
+    except ValueError:
+        print(f"{text!r} is not an integer")
+        return None
+
+print(parse_int("42"))     # 42
+print(parse_int("hello"))  # None</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Multiple Exceptions</h2>
+  <div class="cols">
+    <div>
+      <p>Different failures deserve different responses.</p>
+      <table>
+        <tr><th>Exception</th><th>Common cause</th></tr>
+        <tr><td><code>ValueError</code></td><td>Invalid value, like <code>int("x")</code></td></tr>
+        <tr><td><code>FileNotFoundError</code></td><td>Missing file path</td></tr>
+        <tr><td><code>KeyError</code></td><td>Missing dictionary key</td></tr>
+        <tr><td><code>ZeroDivisionError</code></td><td>Division by zero</td></tr>
+      </table>
+    </div>
+    <div>
+      <pre><code class="language-python">def get_score(scores, name):
+    try:
+        return scores[name]
+    except KeyError:
+        return "missing student"
+    except TypeError:
+        return "scores must be a dict"</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><code>else</code> and <code>finally</code></h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li><code>else</code> runs only if no exception occurs.</li>
+        <li><code>finally</code> always runs, whether an exception happened or not.</li>
+        <li>Use <code>finally</code> for cleanup.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">try:
+    value = int("42")
+except ValueError:
+    print("bad input")
+else:
+    print("converted:", value)
+finally:
+    print("done")</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Raising Exceptions</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Use <code>raise</code> when a function cannot honor its contract.</li>
+        <li>Choose a specific built-in exception when possible.</li>
+        <li>Create custom exceptions for domain-specific failures.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">class OverdraftError(Exception):
+    pass
+
+def withdraw(balance, amount):
+    if amount < 0:
+        raise ValueError("amount must be positive")
+    if amount > balance:
+        raise OverdraftError("insufficient funds")
+    return balance - amount</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Logging</h2>
+  <div class="cols">
+    <div>
+      <p>Logging records diagnostic information without relying on scattered <code>print()</code> calls.</p>
+      <table>
+        <tr><th>Level</th><th>Use</th></tr>
+        <tr><td><code>DEBUG</code></td><td>Detailed developer info</td></tr>
+        <tr><td><code>INFO</code></td><td>Normal progress</td></tr>
+        <tr><td><code>WARNING</code></td><td>Unexpected but recoverable</td></tr>
+        <tr><td><code>ERROR</code></td><td>Operation failed</td></tr>
+      </table>
+    </div>
+    <div>
+      <pre><code class="language-python">import logging
+
+logging.basicConfig(level=logging.INFO)
+
+def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        logging.error("division by zero")
+        return None</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section-slide" data-background-color="#2a6b37">
+  <h2>11.2 Unit Testing</h2>
+  <p>pytest, unittest, doctest, fixtures, mocking, parametrization, and coverage</p>
+</section>
+
+<section>
+  <h2>What is a Unit Test?</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>A small automated check for one behavior.</li>
+        <li>Usually tests one function, method, or class behavior.</li>
+        <li>Should be repeatable and independent.</li>
+      </ul>
+      <div class="callout">
+        Tests turn examples into executable evidence.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">def add(a, b):
+    return a + b
+
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><code>pytest</code></h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Test files usually start with <code>test_</code>.</li>
+        <li>Test functions usually start with <code>test_</code>.</li>
+        <li>Use plain <code>assert</code> statements.</li>
+      </ul>
+      <div class="callout rule">
+        Run from the terminal with <code>python -m pytest</code>.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python"># test_calc.py
+from calc import add, divide
+
+def test_add():
+    assert add(2, 3) == 5
+
+def test_divide():
+    assert divide(10, 2) == 5</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Testing Exceptions</h2>
+  <div class="cols">
+    <div>
+      <p>Good tests check both normal behavior and expected failure behavior.</p>
+      <ul>
+        <li>Use <code>pytest.raises</code> for expected exceptions.</li>
+        <li>Test the contract, not implementation details.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">import pytest
+
+def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError("b cannot be 0")
+    return a / b
+
+def test_divide_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        divide(10, 0)</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><code>unittest</code></h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Python's built-in testing framework.</li>
+        <li>Organizes tests inside classes.</li>
+        <li>Uses assertion methods like <code>assertEqual</code>.</li>
+      </ul>
+      <div class="callout">
+        You will see <code>unittest</code> in many older or standard-library-oriented projects.
+      </div>
+    </div>
+    <div>
+      <pre><code class="language-python">import unittest
+
+class TestCalc(unittest.TestCase):
+    def test_add(self):
+        self.assertEqual(add(2, 3), 5)
+
+if __name__ == "__main__":
+    unittest.main()</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Doctests</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Examples embedded in docstrings.</li>
+        <li>Useful for simple functions and documentation.</li>
+        <li>Best when outputs are short and stable.</li>
+      </ul>
+    </div>
+    <div>
+      <pre><code class="language-python">def square(x):
+    """Return x squared.
+
+    >>> square(4)
+    16
+    >>> square(-3)
+    9
+    """
+    return x * x</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <h2>Advanced pytest Tools</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <tr><th>Tool</th><th>Use</th></tr>
+        <tr><td>Parametrize</td><td>Run one test with many inputs</td></tr>
+        <tr><td>Fixture</td><td>Reusable setup data or objects</td></tr>
+        <tr><td>Mock</td><td>Replace slow or external dependencies</td></tr>
+        <tr><td>Coverage</td><td>Find code paths tests did not run</td></tr>
+      </table>
+    </div>
+    <div>
+      <pre><code class="language-python">import pytest
+
+@pytest.mark.parametrize(
+    "a,b,expected",
+    [(2, 3, 5), (0, 0, 0), (-1, 1, 0)]
+)
+def test_add_cases(a, b, expected):
+    assert add(a, b) == expected</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Testing Strategy</h2>
+  <div class="cols">
+    <div>
+      <h3>Test these first</h3>
+      <ul>
+        <li>Normal cases</li>
+        <li>Boundary cases</li>
+        <li>Error cases</li>
+        <li>Previously fixed bugs</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Keep tests useful</h3>
+      <ul>
+        <li>Small and focused</li>
+        <li>Readable names</li>
+        <li>Independent of test order</li>
+        <li>Fast enough to run often</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px;">
+    Testing is design feedback: if code is hard to test, it is often doing too much.
+  </div>
+</section>
+
+<section>
+  <h2>Chapter 11 - Quick Reference</h2>
+  <table>
+    <tr><th>Concept</th><th>Key syntax / notes</th></tr>
+    <tr><td>Catch exception</td><td><code>try:</code> / <code>except ValueError:</code></td></tr>
+    <tr><td>Exception object</td><td><code>except Exception as e:</code></td></tr>
+    <tr><td>Cleanup</td><td><code>finally</code> always runs</td></tr>
+    <tr><td>Raise exception</td><td><code>raise ValueError("message")</code></td></tr>
+    <tr><td>Logging</td><td><code>logging.info()</code>, <code>logging.error()</code></td></tr>
+    <tr><td>pytest test</td><td><code>def test_name(): assert result == expected</code></td></tr>
+    <tr><td>Expected exception</td><td><code>with pytest.raises(Error):</code></td></tr>
+    <tr><td>unittest</td><td><code>class TestX(unittest.TestCase):</code></td></tr>
+    <tr><td>doctest</td><td>Examples in docstrings with <code>&gt;&gt;&gt;</code></td></tr>
+  </table>
+</section>
+
+<section class="title-slide" style="text-align:center !important;">
+  <h1 style="color:var(--accent);">End of Chapter 11</h1>
+  <p style="color:var(--muted); font-size:0.9em;">Next up: OOP</p>
+  <p style="font-size:0.75em; color:#aaa; margin-top:30px;">
+    tracebacks · exceptions · logging · pytest · unittest · doctest
+  </p>
+</section>
+
+</div><!-- .slides -->
+</div><!-- .reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  transition: 'slide',
+  transitionSpeed: 'fast',
+  width: 1100,
+  height: 820,
+  margin: 0.05,
+  minScale: 0.4,
+  maxScale: 2.0,
+  controls: true,
+  progress: true,
+  center: false,
+  plugins: [ RevealHighlight, RevealNotes ]
+});
+</script>
+</body>
+</html>
