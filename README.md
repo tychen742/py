@@ -1,13 +1,16 @@
-## the project 
-This project is based on Think Python, 3rd edition, by Allen B. Downey
+# the project
+
+This project is inspired by Think Python, 3rd edition, by Allen B. Downey
 
 ## installations
+
 Install jupyter-notebook and sphinx_new_tab_link and jb will build:
   
 ```python
 pip install "jupyter-book==1.0.4.post1" ### same as pip install "jupyter-book<2"
 pip install sphinx_new_tab_link ### current: 0.8.1
 ```
+
 Additional stuff:
 ```python
 pip install sphinxcontrib.mermaid
