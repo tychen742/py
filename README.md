@@ -12,10 +12,13 @@ pip install sphinx_new_tab_link ### current: 0.8.1
 ```
 
 Additional stuff:
+
 ```python
 pip install sphinxcontrib.mermaid
 ```
+
 jupyter-book1.0.4.post1 will install:
+
 ```python
   - sphinx 7.4.7
   - sphinx_thebe
@@ -25,12 +28,14 @@ jupyter-book1.0.4.post1 will install:
 ```
 
 If you want earlier versions:
+
 ```python
 pip install "jupyter-book<2"
 pip install "sphinx<7.2" "sphinx-new-tab-link<0.5" "docutils<0.21" "sphinx-external-toc~=1.0.1" jupyter-book==1.0.4.post1 sphinx==7.1.2 sphinx-new-tab-link==0.4.0 docutils==0.20.1 sphinx-external-toc==1.0.1
 ```
 
 ## downloads
+
 ```python
 from os.path import basename, exists
 
