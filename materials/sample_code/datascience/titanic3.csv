@@ -1,0 +1,7 @@
+﻿Y = pclass * -1.132 + sex * 2.496 + age * -.34 + 2.088,
+-1.876,
+,
+pclass,2
+sex,0
+age,50
+Constant,2.088
