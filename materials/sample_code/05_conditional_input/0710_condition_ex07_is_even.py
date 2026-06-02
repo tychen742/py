@@ -1,9 +1,0 @@
-
-def isEven (n):
-    if (n % 2) == 0:
-        return True
-    else :
-        return False
-
-
-print("Test is even:", isEven(101))
