@@ -37,8 +37,3 @@ Appendices cover tooling, Jupyter setup, modules/packaging, and bibliography.
 ## Chapter Sequence
 
 See `_toc.yml` for the authoritative notebook order.
-
-## Out of Scope
-
-- Web development, GUI programming, databases
-- Introductory Python (variables, types, basic syntax beyond ch02)
