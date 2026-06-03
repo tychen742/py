@@ -1,2 +1,1 @@
-#!/usr/bin/env bash
-exec ~/ai_shared/scripts/sync.sh py "$@"
+/Users/tychen/ai_shared/scripts/sync.sh
