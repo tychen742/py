@@ -6,4 +6,6 @@
 - data science
 - combine lists chapter and tuples
 - strings chapter to include files?
+- 3.1 should be control flow
+- 2.3 is missing built-in functions?
   
