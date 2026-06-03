@@ -20,7 +20,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 1. `0800-intro-dict-set.ipynb` — overview of mapping and set types
 2. `0801-dict.ipynb` — dictionary overview and creation
 3. `0801-dict-core-operations.ipynb` — access, update, delete, membership, and iteration
-4. `0801-dict-select-topics.ipynb` — comprehensions, counting, and selected dictionary patterns
+4. `0801-dict-select-topics.ipynb` — comprehensions, counting, `Counter`, and `defaultdict` (both from `collections`)
 5. `0802-set.ipynb` — set overview and motivation
 6. `0802-creating-sets.ipynb` — set creation and access patterns
 7. `0802-set-operations.ipynb` — union, intersection, difference, and symmetric difference

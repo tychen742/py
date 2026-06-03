@@ -66,7 +66,7 @@ To keep Chapter 10 realistic for one week, deliver in two tiers.
 - `1000-intro-oop.ipynb`: Chapter intro — OOP motivation, class/instance concepts, first class, exercise.
 - `1001-oop-design.ipynb`: Core OOP mechanics — design-first development, all method types (`__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`, `@property`), operator overloading. *(Merged from former `1202-oop-methods`.)*
 - `1002-oop-pillars.ipynb`: The Four Pillars of OOP — encapsulation, inheritance, polymorphism, abstraction; one example each.
-- `1003-oop-advanced.ipynb`: Inheritance, polymorphism, method overriding; `super()`, `issubclass()`, `@dataclass`; applied OOP via the card game case study; advanced object-state topics.
+- `1003-oop-advanced.ipynb`: Inheritance, polymorphism, method overriding; `super()`, `issubclass()`, `@dataclass`, `namedtuple`; applied OOP via the card game case study; advanced object-state topics.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Known Structural Issues (to address in a future pass)

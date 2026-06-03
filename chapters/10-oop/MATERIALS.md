@@ -54,7 +54,7 @@ Use a two-tier model for one chapter per week:
 
 - Required core:
   - Inheritance; method overriding; polymorphism
-  - `super()`; `issubclass()`; `@dataclass`
+  - `super()`; `issubclass()`; `@dataclass`; `namedtuple`
   - Composition vs inheritance rubric with one short design checkpoint
 - Enrichment/project track:
   - Full applied card game (Deck, Card, Hand as Deck subclass)

@@ -44,9 +44,10 @@ Use a two-tier model for one chapter per week:
 
 - Required core:
   - Generator functions (`yield`), generator expressions, memory efficiency framing
+  - `any()` and `all()` with generator expressions; short-circuit evaluation
   - `itertools.islice`, `itertools.chain`, and one infinite-sequence example
   - `yield from` concept and async iteration bridge (`async for`) at overview level
-  - Exercises: Running Total Generator + one generator-expression task
+  - Exercises: Running Total Generator + one generator-expression task; `any()`/`all()` task
 - Enrichment/project track:
   - Extended `itertools` combinatorics (`count`, `cycle`, `combinations`, `permutations`)
   - Streaming-data mini-project and memory benchmark extension

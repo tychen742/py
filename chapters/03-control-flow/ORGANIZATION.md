@@ -13,14 +13,14 @@ Use this sequence to avoid overlap and keep pacing clear:
 1. `0300-intro-control.ipynb`
    - Motivation and overview of conditional and loop constructs
 2. `0301-conditionals.ipynb`
-   - if / elif / else; nested conditionals; modulus and floor division
+   - if / elif / else; nested conditionals; modulus and floor division; conditional expressions (ternary)
 3. `0302-iteration.ipynb`
    - for and while loops; break, continue; accumulator pattern
 
 ## File Roles
 
 - `0300-intro-control.ipynb`: Motivation and overview of conditional and loop constructs.
-- `0301-conditionals.ipynb`: if / elif / else; nested conditionals; modulus and floor division.
+- `0301-conditionals.ipynb`: if / elif / else; nested conditionals; modulus and floor division; conditional expressions (ternary).
 - `0302-iteration.ipynb`: for and while loops; break, continue; accumulator pattern.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 

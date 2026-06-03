@@ -25,7 +25,7 @@ Use this sequence to avoid overlap and keep pacing clear:
    - `0902-regex-applications.ipynb`
 4. `0903-text-analysis.ipynb` — text-analysis landing page
    - `0903-cleaning-normalizing.ipynb`
-   - `0903-word-frequencies.ipynb`
+   - `0903-word-frequencies.ipynb` — manual dict approach, optional parameters, dictionary subtraction; `Counter` applied to word frequencies
    - `0903-random-text.ipynb`
    - `0903-markov-generation.ipynb`
 

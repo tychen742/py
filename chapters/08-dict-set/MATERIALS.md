@@ -18,7 +18,7 @@ This checklist is for building and delivering:
 1. `0800-intro-dict-set.ipynb` — Overview of mapping and set types
 2. `0801-dict.ipynb` — Dictionary overview and creation
 3. `0801-dict-core-operations.ipynb` — Access, update, delete, membership, and iteration
-4. `0801-dict-select-topics.ipynb` — Comprehensions, counting, and selected dictionary patterns
+4. `0801-dict-select-topics.ipynb` — Comprehensions, counting, `Counter`, and `defaultdict`
 5. `0802-set.ipynb` — set overview and motivation
 6. `0802-creating-sets.ipynb` — set creation and access patterns
 7. `0802-set-operations.ipynb` — union, intersection, difference, and symmetric difference

@@ -18,11 +18,12 @@ Use this sequence to avoid overlap and keep pacing clear:
      (`__iter__`/`__next__`/`StopIteration`); 1 exercise
 3. `1202-generators.ipynb`
    - Generator functions (`yield`); generator expressions; memory efficiency (`sys.getsizeof`);
+     `any()`/`all()` with generator expressions (short-circuit evaluation);
      infinite sequences; `itertools.islice`, `itertools.chain`;
      `yield from` (generator delegation); `itertools.count`, `itertools.cycle`,
-      `itertools.combinations`, `itertools.permutations`;
-      conceptual bridge to asynchronous iteration (`async for`, async generators);
-      2 exercises
+     `itertools.combinations`, `itertools.permutations`;
+     conceptual bridge to asynchronous iteration (`async for`, async generators);
+     3 exercises
 
 ## One-Week Delivery Scope (Required vs Enrichment)
 
@@ -51,9 +52,10 @@ Use this sequence to avoid overlap and keep pacing clear:
 - `1200-intro-iter-gen.ipynb`: Chapter intro — learning goals and chapter map. No exercises.
 - `1201-iterators.ipynb`: Iterator protocol; built-in iterators; custom iterator classes.
   Exercise: Cycling Iterator.
-- `1202-generators.ipynb`: Generator functions; generator expressions; infinite sequences;
-  `itertools.islice`, `itertools.chain`; `yield from`; `itertools.count/cycle/combinations/permutations`.
-  Exercises: Running Total Generator; itertools.
+- `1202-generators.ipynb`: Generator functions; generator expressions; `any()`/`all()` with generator
+  expressions (short-circuit evaluation); infinite sequences; `itertools.islice`, `itertools.chain`;
+  `yield from`; `itertools.count/cycle/combinations/permutations`.
+  Exercises: Running Total Generator; `any()`/`all()`; itertools.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth
