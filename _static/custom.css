@@ -667,7 +667,6 @@ main.bd-main .bd-content .bd-article-container li a:hover {
 }
 
 /* Hide external-link icons from sidebar navigation links */
-.bd-sidebar-primary a::after {
+.bd-sidebar-primary a svg {
     display: none !important;
-    content: none !important;
 }
