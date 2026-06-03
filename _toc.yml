@@ -189,6 +189,6 @@ parts:
           - file: chapters/appendices/0204-jupyter-bonus
       - file: chapters/bibliography
         title: Bibliography
-      - file: chapters/genindex
+      - url: https://thinkpy.org/genindex.html
         title: Index
 #   title: Jupyter intro
