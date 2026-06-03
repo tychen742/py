@@ -11,7 +11,7 @@ This checklist is for building and delivering:
 ## Chapter 07 Delivery Order (Recommended)
 
 1. `0700-intro-tuples.ipynb` — Chapter overview and tuple motivation
-2. `0701-creating-accessing-tuples.ipynb` — Tuple creation, literals, constructors, indexing, and slicing
+2. `0701-creating-accessing-tuples.ipynb` — Tuple definition, immutability, creation, literals, constructors, indexing, and slicing
 3. `0702-tuple-unpacking.ipynb` — Basic and starred unpacking
 4. `0703-tuple-operations.ipynb` — Tuple operators, methods, functions, zip, enumerate, sorting
 5. `0704-tuples-functions.ipynb` — Tuples as return values and argument packing/unpacking
