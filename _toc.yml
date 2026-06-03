@@ -156,7 +156,7 @@ parts:
     numbered: true
     chapters:
       - file: chapters/14-abstract-data-structures/1400-abstract-data-structures
-        title: Abstract Data Structures
+        title: ADT
         sections:
           - file: chapters/14-abstract-data-structures/1401-adt-basics
             title: ADT Basics
