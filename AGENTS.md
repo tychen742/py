@@ -3,7 +3,7 @@
 ## Base
 
 Skill: `book-authoring` (from ai_shared)
-Style: `guidelines/STYLE_GUIDE.md` in ai_shared
+Style: `guidelines/STYLE_GUIDE.md` in ~/ai_shared
 
 ## Project Context
 

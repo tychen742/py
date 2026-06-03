@@ -189,7 +189,9 @@ parts:
           - file: chapters/appendices/0204-jupyter-bonus
       - file: chapters/bibliography
         title: Bibliography
-      # - file: chapters/appendices/genindex
-    # - file: chapters/chap19
-# - file: chapters/jupyter_intro
+  - caption: "Index"
+    numbered: false
+    chapters:
+      - file: chapters/genindex
+        title: Index
 #   title: Jupyter intro

@@ -1,5 +1,6 @@
 # the project
 
+This book is for intermediate Python programming. 
 This project is inspired by Think Python, 3rd edition, by Allen B. Downey
 
 ## installations
