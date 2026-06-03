@@ -12,7 +12,7 @@ This chapter is currently split into:
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0900-intro-strings.ipynb` — string overview
-2. `0901-strings.ipynb` — string landing page
+2. `0901-strings.ipynb` — string section landing page, including the chapter's orientation to strings, pattern matching, and text analysis
    - `0901-string-basics.ipynb`
    - `0901-string-methods.ipynb`
    - `0901-string-comparison.ipynb`

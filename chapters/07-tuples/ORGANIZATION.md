@@ -13,7 +13,7 @@ This chapter is currently split into:
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0700-intro-tuples.ipynb` — chapter overview and tuple motivation
-2. `0701-creating-accessing-tuples.ipynb` — tuple definition, immutability, creation, literals, constructors, indexing, and slicing
+2. `0701-creating-accessing-tuples.ipynb` — tuple terminology, pronunciation note, definition, immutability, creation, literals, constructors, indexing, and slicing
 3. `0702-tuple-unpacking.ipynb` — basic and starred unpacking
 4. `0703-tuple-operations.ipynb` — tuple operators, methods, functions, zip, enumerate, sorting
 5. `0704-tuples-functions.ipynb` — tuples as return values and argument packing/unpacking
