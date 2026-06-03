@@ -81,6 +81,12 @@ parts:
                 title: Set Methods
               - file: chapters/08-dict-set/0802-set-advanced
                 title: Advanced Sets
+          - file: chapters/08-dict-set/assignments/preview
+            title: Preview Questions
+          - file: chapters/08-dict-set/assignments/homework
+            title: Homework
+          - file: chapters/08-dict-set/assignments/lab
+            title: Lab
       - file: chapters/09-strings/0900-intro-strings
         sections:
           - file: chapters/09-strings/0901-strings

@@ -1,6 +1,12 @@
 # Chapter Quality Checklist
 
-Use before finalizing any chapter. Adapted from `rubrics/chapter-quality.md` in ai_shared.
+**Rule source:** `~/ai_shared/skills/book-authoring/SKILL.md`
+**Automated audit prompt:** `~/ai_shared/prompts/quality-check.md`
+
+> To run a full audit: paste the contents of `quality-check.md` into your AI assistant,
+> or tell Claude: "Read ~/ai_shared/prompts/quality-check.md and run it on ch08."
+
+Use this checklist manually before finalizing any chapter.
 
 ## Structure
 

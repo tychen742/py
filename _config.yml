@@ -95,7 +95,7 @@ parse:
 
 exclude_patterns:
   - ".venv"
-  - "assignments"
+  # - "assignments"   # removed: assignments are now in _toc.yml
   - "materials"
   - "otter_files"
   - "temps"

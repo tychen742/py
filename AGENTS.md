@@ -57,6 +57,10 @@ Three assignment types per chapter, appearing in the Jupyter Book left menu unde
 
 - Chapter intro notebooks (`CH00-*-intro.ipynb`) do not get exercises
 
+## Quality Audits
+
+When asked to **audit**, **check**, or **review** a chapter (e.g. "audit ch08"), read `~/ai_shared/prompts/quality-check.md` first and follow its instructions exactly.
+
 ## Semester Constraints
 
 Update before each semester. No major changes during the semester.
