@@ -14,7 +14,7 @@ This chapter is currently split into:
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0600-intro-lists.ipynb` — chapter overview and learning objectives
-2. `0601-creating-lists.ipynb` — list creation, constructors, comprehensions, lists and strings
+2. `0601-creating-lists.ipynb` — list definition, memory diagram, creation, constructors, comprehensions, lists and strings
 3. `0602-accessing-lists.ipynb` — indexing, slicing, and element access
 4. `0603-list-operations.ipynb` — list operators, methods, iteration, and common operations
 5. `0604-aliasing-copying.ipynb` — aliasing, shallow copies, and mutation behavior

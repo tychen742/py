@@ -43,7 +43,7 @@ parts:
         title: Lists
         sections:
           - file: chapters/06-lists/0601-creating-lists
-            title: Creating Lists
+            title: Understanding & Creating
           - file: chapters/06-lists/0602-accessing-lists
             title: Accessing Lists
           - file: chapters/06-lists/0603-list-operations

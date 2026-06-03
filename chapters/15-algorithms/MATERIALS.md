@@ -94,10 +94,10 @@ Use a two-tier model for one chapter per week:
 
 ## Chapter 15 Delivery Order (Recommended)
 
-1. Chapter intro stub (`1000`)
-2. Algorithm concepts + Big O + benchmarking (`1001`)
-3. Search implementation and reasoning (`1002`)
-4. Sorting implementation and benchmarking (`1003`)
+1. Chapter intro stub (`1500`)
+2. Algorithm concepts + Big O + benchmarking (`1501`)
+3. Search implementation and reasoning (`1502`)
+4. Sorting implementation and benchmarking (`1503`)
 5. Combined wrap-up: choose the right algorithm under constraints
 
 ## Coordination Note

@@ -23,7 +23,7 @@ This checklist is for building and delivering:
 
 ### `0101-programming.ipynb`
 
-- What programs and algorithms are; binary/hex/ASCII basics
+- Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics
 
 ### `0102-basic-syntax.ipynb`
 
@@ -51,7 +51,7 @@ This checklist is for building and delivering:
 
 ## Chapter 01 Delivery Order (Recommended)
 
-1. `0100-py-intro.ipynb` — What Python is, where it runs, how to use Jupyter\n2. `0101-programming.ipynb` — What programs and algorithms are; binary/hex/ASCII basics\n3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, first programs\n
+1. `0100-py-intro.ipynb` — What Python is, where it runs, how to use Jupyter\n2. `0101-programming.ipynb` — Programming learning habits, what programs and algorithms are, and binary/hex/ASCII basics\n3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, first programs\n
 ## Coordination Note
 
 Chapter 01 planning and delivery are scoped to `chapters/01-intro/` only.

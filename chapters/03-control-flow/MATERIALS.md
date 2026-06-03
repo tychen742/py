@@ -23,7 +23,7 @@ This checklist is for building and delivering:
 
 ### `0301-conditionals.ipynb`
 
-- if / elif / else; nested conditionals; modulus and floor division; conditional expressions (ternary)
+- control-structure overview; if / elif / else; nested conditionals; modulus and floor division; conditional expressions (ternary)
 
 ### `0302-iteration.ipynb`
 
@@ -52,7 +52,7 @@ This checklist is for building and delivering:
 ## Chapter 03 Delivery Order (Recommended)
 
 1. `0300-intro-control.ipynb` — Motivation and overview of conditional and loop constructs
-2. `0301-conditionals.ipynb` — if / elif / else; nested conditionals; modulus and floor division; conditional expressions
+2. `0301-conditionals.ipynb` — control-structure overview; if / elif / else; nested conditionals; modulus and floor division; conditional expressions
 3. `0302-iteration.ipynb` — for and while loops; break, continue; accumulator pattern
 
 ## Coordination Note
