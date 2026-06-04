@@ -1,1 +1,1 @@
-/Users/tychen/ai_shared/scripts/sync.sh
+../../ai_shared/scripts/sync.sh
