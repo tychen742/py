@@ -28,9 +28,9 @@ Four parts:
 | Part | Topic           | Chapters                                                                    |
 |------|-----------------|-----------------------------------------------------------------------------|
 | I    | Fundamentals    | 01 Intro, 02 Basics, 03 Control Flow, 04 Functions, 05 Exceptions & Testing |
-| II   | Data Structures | 06 Lists, 07 Tuples, 08 Dicts & Sets, 09 Strings                            |
-| III  | Program Design  | 10 OOP, 11 Functional Programming, 12 Iterators & Generators, 13 APIs       |
-| IV   | DSA             | 14 Abstract Data Structures, 15 Algorithms                                  |
+| II   | Data Structures | 06 Collections, 07 Dictionaries, 08 Strings and Text                        |
+| III  | Program Design  | 09 OOP, 10 Functional Programming, 11 Iterators & Generators, 12 APIs       |
+| IV   | DSA             | 13 Abstract Data Structures, 14 Algorithms                                  |
 
 Appendices cover tooling, Jupyter setup, modules/packaging, and bibliography.
 

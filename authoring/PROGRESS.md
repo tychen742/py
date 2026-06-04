@@ -16,26 +16,25 @@ Status values: `Draft` · `In Progress` · `Needs Review` · `Complete`
 
 | Chapter | Title | Sections | Assignments | Status | Notes |
 |---------|-------|----------|-------------|--------|-------|
-| 06 | Lists | 0601–0605 | No | In Progress | Needs subsections and landing page review |
-| 07 | Tuples | 0701–0704 | No | In Progress | Needs subsections and landing page review |
-| 08 | Dicts & Sets | 0801, 0802 | No | In Progress | |
-| 09 | Strings | 0901–0903 | No | In Progress | Large chapter; consider scope review |
+| 06 | Collections | 0601–0603 | No | In Progress | Lists, tuples, and sets consolidated |
+| 07 | Dictionaries | 0701–0703 | Yes | In Progress | Mapping chapter split from sets |
+| 08 | Strings and Text | 0801–0803 | No | In Progress | Folded split subsection pages into three section notebooks |
 
 ## Part III — Program Design
 
 | Chapter | Title | Sections | Assignments | Status | Notes |
 |---------|-------|----------|-------------|--------|-------|
-| 10 | OOP | 1001–1003 | No | In Progress | |
-| 11 | Functional Programming | 1101, 1102 | No | In Progress | |
-| 12 | Iterators & Generators | 1201, 1202 | No | In Progress | |
-| 13 | APIs | 1301, 1302 | No | In Progress | |
+| 09 | OOP | 0901–0903 | No | In Progress | |
+| 10 | Functional Programming | 1001, 1002 | No | In Progress | |
+| 11 | Iterators & Generators | 1101, 1102 | No | In Progress | |
+| 12 | APIs | 1201, 1202 | No | In Progress | |
 
 ## Part IV — DSA
 
 | Chapter | Title | Sections | Assignments | Status | Notes |
 |---------|-------|----------|-------------|--------|-------|
-| 14 | Abstract Data Structures | 1401–1403 | No | In Progress | |
-| 15 | Algorithms | 1501–1503 | No | In Progress | |
+| 13 | Abstract Data Structures | 1301–1303 | No | In Progress | |
+| 14 | Algorithms | 1401–1403 | No | In Progress | |
 
 ## Appendices
 

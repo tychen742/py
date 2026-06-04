@@ -39,138 +39,82 @@ parts:
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/06-lists/0600-intro-lists
-        title: Lists
+      - file: chapters/06-collections/0600-intro-collections
+        title: Collections
         sections:
-          - file: chapters/06-lists/0601-creating-lists
-            title: Understanding & Creating
-          - file: chapters/06-lists/0602-accessing-lists
-            title: Accessing Lists
-          - file: chapters/06-lists/0603-list-operations
-            title: List Operations
-          - file: chapters/06-lists/0604-aliasing-copying
-            title: Aliasing & Copying
-          - file: chapters/06-lists/0605-advanced-lists
-            title: Advanced Lists
-      - file: chapters/07-tuples/0700-intro-tuples
-        title: Tuples
+          - file: chapters/06-collections/0601-lists
+          - file: chapters/06-collections/0602-tuples
+          - file: chapters/06-collections/0603-sets
+      - file: chapters/07-dictionaries/0700-intro-dictionaries
+        title: Dictionaries
         sections:
-          - file: chapters/07-tuples/0701-creating-accessing-tuples
-            title: Creating & Accessing
-          - file: chapters/07-tuples/0702-tuple-unpacking
-            title: Tuple Unpacking
-          - file: chapters/07-tuples/0703-tuple-operations
-            title: Tuple Operations
-          - file: chapters/07-tuples/0704-tuples-functions
-            title: Tuples & Functions
-      - file: chapters/08-dict-set/0800-intro-dict-set
-        sections:
-          - file: chapters/08-dict-set/0801-dict 
-            sections:
-              - file: chapters/08-dict-set/0801-dict-core-operations
-                title: Core Operations
-              - file: chapters/08-dict-set/0801-dict-select-topics
-                title: Select Topics
-          - file: chapters/08-dict-set/0802-set
-            sections:
-              - file: chapters/08-dict-set/0802-creating-sets
-                title: Creating Sets
-              - file: chapters/08-dict-set/0802-set-operations
-                title: Set Operations
-              - file: chapters/08-dict-set/0802-set-methods
-                title: Set Methods
-              - file: chapters/08-dict-set/0802-set-advanced
-                title: Advanced Sets
-          - file: chapters/08-dict-set/assignments/preview
+          - file: chapters/07-dictionaries/0701-dictionaries
+          - file: chapters/07-dictionaries/0702-dict-core-operations
+            title: Core Operations
+          - file: chapters/07-dictionaries/0703-dict-patterns
+            title: Dictionary Patterns
+          - file: chapters/07-dictionaries/assignments/preview
             title: Preview Questions
-          - file: chapters/08-dict-set/assignments/homework
+          - file: chapters/07-dictionaries/assignments/homework
             title: Homework
-          - file: chapters/08-dict-set/assignments/lab
+          - file: chapters/07-dictionaries/assignments/lab
             title: Lab
-      - file: chapters/09-strings/0900-intro-strings
+      - file: chapters/08-strings/0800-intro-strings
+        title: Strings and Text
         sections:
-          - file: chapters/09-strings/0901-strings
-            sections:
-              - file: chapters/09-strings/0901-string-basics
-                title: String Basics
-              - file: chapters/09-strings/0901-string-methods
-                title: String Methods
-              - file: chapters/09-strings/0901-string-comparison
-                title: String Comparison
-              - file: chapters/09-strings/0901-looping-sorting
-                title: Looping & Sorting
-              - file: chapters/09-strings/0901-word-list
-                title: Word List
-          - file: chapters/09-strings/0902-regex
-            sections:
-              - file: chapters/09-strings/0902-re-module
-                title: The re Module
-              - file: chapters/09-strings/0902-regex-syntax
-                title: Regex Syntax
-              - file: chapters/09-strings/0902-regex-advanced
-                title: Advanced Regex
-              - file: chapters/09-strings/0902-regex-applications
-                title: Applications
-          - file: chapters/09-strings/0903-text-analysis
-            sections:
-              - file: chapters/09-strings/0903-cleaning-normalizing
-                title: Cleaning Text
-              - file: chapters/09-strings/0903-word-frequencies
-                title: Word Frequencies
-              - file: chapters/09-strings/0903-random-text
-                title: Random Text
-              - file: chapters/09-strings/0903-markov-generation
-                title: Markov Generation
+          - file: chapters/08-strings/0801-strings
+          - file: chapters/08-strings/0802-regex
+          - file: chapters/08-strings/0803-text-analysis
   - caption: "Part III: Program Design"
     numbered: true
     chapters:
-      - file: chapters/10-oop/1000-intro-oop
+      - file: chapters/09-oop/0900-intro-oop
         title: OOP
         sections:
-          - file: chapters/10-oop/1001-oop-design
+          - file: chapters/09-oop/0901-oop-design
             title: OOP Basics
-          - file: chapters/10-oop/1002-oop-pillars
+          - file: chapters/09-oop/0902-oop-pillars
             title: The Four Pillars
-          - file: chapters/10-oop/1003-oop-advanced
+          - file: chapters/09-oop/0903-oop-advanced
             title: Advanced OOP
-      - file: chapters/11-functional/1100-intro-func-prog
+      - file: chapters/10-functional/1000-intro-func-prog
         title: FP
         sections:
-          - file: chapters/11-functional/1101-func-prog
+          - file: chapters/10-functional/1001-func-prog
             title: Functional Concepts
-          - file: chapters/11-functional/1102-func-practice
+          - file: chapters/10-functional/1002-func-practice
             title: Functional Practice
-      - file: chapters/12-iter-gen/1200-intro-iter-gen
+      - file: chapters/11-iter-gen/1100-intro-iter-gen
         title: Iterators & Generators
         sections:
-          - file: chapters/12-iter-gen/1201-iterators
-          - file: chapters/12-iter-gen/1202-generators
-      - file: chapters/13-apis/1300-intro-apis
+          - file: chapters/11-iter-gen/1101-iterators
+          - file: chapters/11-iter-gen/1102-generators
+      - file: chapters/12-apis/1200-intro-apis
         title: APIs
         sections:
-          - file: chapters/13-apis/1301-apis
+          - file: chapters/12-apis/1201-apis
             title: API Basics
-          - file: chapters/13-apis/1302-api-reliability
+          - file: chapters/12-apis/1202-api-reliability
             title: API Reliability
   - caption: "Part IV: DSA"
     numbered: true
     chapters:
-      - file: chapters/14-abstract-data-structures/1400-abstract-data-structures
+      - file: chapters/13-abstract-data-structures/1300-abstract-data-structures
         title: ADT
         sections:
-          - file: chapters/14-abstract-data-structures/1401-adt-basics
+          - file: chapters/13-abstract-data-structures/1301-adt-basics
             title: ADT Basics
-          - file: chapters/14-abstract-data-structures/1402-stacks-queues
+          - file: chapters/13-abstract-data-structures/1302-stacks-queues
             title: Stacks & Queues
-          - file: chapters/14-abstract-data-structures/1403-trees-graphs
+          - file: chapters/13-abstract-data-structures/1303-trees-graphs
             title: Trees & Graphs
-          - file: chapters/14-abstract-data-structures/1404-assignments
+          - file: chapters/13-abstract-data-structures/1304-assignments
             title: Assignments
-      - file: chapters/15-algorithms/1500-intro-algorithms
+      - file: chapters/14-algorithms/1400-intro-algorithms
         sections:
-          - file: chapters/15-algorithms/1501-algorithms
-          - file: chapters/15-algorithms/1502-searching
-          - file: chapters/15-algorithms/1503-sorting
+          - file: chapters/14-algorithms/1401-algorithms
+          - file: chapters/14-algorithms/1402-searching
+          - file: chapters/14-algorithms/1403-sorting
   # - caption: "Select Topics"
   #   numbered: true
   #   chapters:

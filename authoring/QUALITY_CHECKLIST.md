@@ -25,7 +25,6 @@ Use this checklist manually before finalizing any chapter.
 
 ## Content Notebooks
 
-- [ ] Opens with a box-drawing section outline
 - [ ] Each section has at least one worked example
 - [ ] Each `##`/`###` section with essential content has one exercise
 - [ ] Exercises use two cells: `thebe-interactive` (question) and `hide-input` (solution)
