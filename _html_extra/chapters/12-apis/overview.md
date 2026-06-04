@@ -30,7 +30,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 13
+# Chapter 12
 
 APIs
 
@@ -235,7 +235,7 @@ def get_with_retry(url, retries=3):
 
 ---
 
-## Chapter 13 — Quick Reference
+## Chapter 12 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -253,8 +253,8 @@ def get_with_retry(url, retries=3):
 
 <!-- _class: title -->
 
-# End of Chapter 13
+# End of Chapter 12
 
-*Next: Chapter 14 — Abstract Data Structures*
+*Next: Chapter 13 — Abstract Data Structures*
 
 *stacks · queues · trees · graphs · ADT interface vs implementation*

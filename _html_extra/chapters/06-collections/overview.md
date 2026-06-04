@@ -223,7 +223,7 @@ print(any([s < 0   for s in scores]))   # False
 
 <div class="callout rule">
 
-Pass a **list comprehension** here. In Chapter 12 you will see that dropping the brackets `[...]` makes these even more efficient.
+Pass a **list comprehension** here. In Chapter 11 you will see that dropping the brackets `[...]` makes these even more efficient.
 
 </div>
 

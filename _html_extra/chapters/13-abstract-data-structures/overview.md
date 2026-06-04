@@ -30,7 +30,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 14
+# Chapter 13
 
 Abstract Data Structures
 
@@ -294,7 +294,7 @@ bfs(graph, "A")   # A B C D
 
 ---
 
-## Chapter 14 — Quick Reference
+## Chapter 13 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -311,8 +311,8 @@ bfs(graph, "A")   # A B C D
 
 <!-- _class: title -->
 
-# End of Chapter 14
+# End of Chapter 13
 
-*Next: Chapter 15 — Algorithms*
+*Next: Chapter 14 — Algorithms*
 
 *Big O · searching · sorting · benchmarking*

@@ -30,7 +30,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 12
+# Chapter 11
 
 Iterators & Generators
 
@@ -227,7 +227,7 @@ pairs = list(itertools.combinations("ABCD", 2))
 
 ---
 
-## Chapter 12 — Quick Reference
+## Chapter 11 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -244,8 +244,8 @@ pairs = list(itertools.combinations("ABCD", 2))
 
 <!-- _class: title -->
 
-# End of Chapter 12
+# End of Chapter 11
 
-*Next: Chapter 13 — APIs*
+*Next: Chapter 12 — APIs*
 
 *HTTP · requests · JSON · authentication · pagination*

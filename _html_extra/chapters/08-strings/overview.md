@@ -30,7 +30,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 9
+# Chapter 8
 
 Strings
 
@@ -235,7 +235,7 @@ for word, freq in counts.most_common(5):
 
 ---
 
-## Chapter 9 — Quick Reference
+## Chapter 8 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -253,8 +253,8 @@ for word, freq in counts.most_common(5):
 
 <!-- _class: title -->
 
-# End of Chapter 9
+# End of Chapter 8
 
-*Next: Chapter 10 — Object-Oriented Programming*
+*Next: Chapter 9 — Object-Oriented Programming*
 
 *classes · instances · inheritance · polymorphism*

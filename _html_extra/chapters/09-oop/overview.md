@@ -34,7 +34,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 10
+# Chapter 9
 
 Object-Oriented Programming
 
@@ -729,7 +729,7 @@ print(Temperature.is_valid(-300))  # False
 
 ---
 
-## Chapter 10 — Quick Reference
+## Chapter 9 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -747,8 +747,8 @@ print(Temperature.is_valid(-300))  # False
 
 <!-- _class: title -->
 
-# End of Chapter 10
+# End of Chapter 9
 
-*Next: Chapter 11 — Functional Programming*
+*Next: Chapter 10 — Functional Programming*
 
 *map · filter · lambda · decorators · recursion · functools*

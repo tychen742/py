@@ -30,7 +30,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 8
+# Chapter 7
 
 Dictionaries & Sets
 
@@ -231,7 +231,7 @@ graph = {frozenset({1,2}): "edge"}
 
 ---
 
-## Chapter 8 — Quick Reference
+## Chapter 7 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -249,8 +249,8 @@ graph = {frozenset({1,2}): "edge"}
 
 <!-- _class: title -->
 
-# End of Chapter 8
+# End of Chapter 7
 
-*Next: Chapter 9 — Strings*
+*Next: Chapter 8 — Strings*
 
 *string methods · regex · text analysis · word frequencies*

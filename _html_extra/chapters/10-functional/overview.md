@@ -33,7 +33,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 11
+# Chapter 10
 
 Functional Programming in Python
 
@@ -503,7 +503,7 @@ Python supports multiple styles. The goal is readable, testable code — not fun
 
 ---
 
-## Chapter 11 — Quick Reference
+## Chapter 10 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -521,8 +521,8 @@ Python supports multiple styles. The goal is readable, testable code — not fun
 
 <!-- _class: title -->
 
-# End of Chapter 11
+# End of Chapter 10
 
-*Next: Chapter 12 — Iterators & Generators*
+*Next: Chapter 11 — Iterators & Generators*
 
 *iterators · generators · yield · itertools*

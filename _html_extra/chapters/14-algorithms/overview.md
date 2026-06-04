@@ -30,7 +30,7 @@ style: |
 
 <!-- _class: title -->
 
-# Chapter 15
+# Chapter 14
 
 Algorithms
 
@@ -305,7 +305,7 @@ Use Python's built-in `sorted()` / `.sort()` in practice — Timsort is exceptio
 
 ---
 
-## Chapter 15 — Quick Reference
+## Chapter 14 — Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -322,7 +322,7 @@ Use Python's built-in `sorted()` / `.sort()` in practice — Timsort is exceptio
 
 <!-- _class: title -->
 
-# End of Chapter 15
+# End of Chapter 14
 
 *Congratulations — you've reached the end of ThinkPy!*
 
