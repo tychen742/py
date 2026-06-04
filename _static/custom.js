@@ -79,6 +79,34 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM ready!");
 
     // -----------------------------------------------------------
+    // Aftermatter: promote Bibliography and Index sidebar entries
+    // from toctree-l1 links to caption-level links (no nesting).
+    // Replaces p.caption + ul pair with a single <a> element.
+    // -----------------------------------------------------------
+    ['Bibliography', 'Index'].forEach(function (name) {
+        document.querySelectorAll('nav.bd-links .caption-text').forEach(function (span) {
+            if (span.textContent.trim() !== name) return;
+            var caption = span.closest('p.caption');
+            if (!caption) return;
+            var ul = caption.nextElementSibling;
+            if (!ul) return;
+            var link = ul.querySelector('li > a');
+            if (!link) return;
+
+            var a = document.createElement('a');
+            a.href = link.href;
+            a.textContent = name;
+            a.className = 'bd-aftermatter-link';
+            if (link.target) a.target = link.target;
+            if (link.rel) a.rel = link.rel;
+
+            caption.parentNode.insertBefore(a, caption);
+            caption.remove();
+            ul.remove();
+        });
+    });
+
+    // -----------------------------------------------------------
     // FIX A: tag_hide-input (exercise answer) cells
     //
     // Thebe wraps the entire .thebelab-cell inside <details>, hiding

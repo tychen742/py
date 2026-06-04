@@ -682,31 +682,21 @@ main.bd-main .bd-content .bd-article-container h2 a[href="overview.html"] * {
     color: var(--pst-color-primary) !important;
 }
 
-/* Bibliography and Index: hide the caption label, elevate link to caption level */
-nav.bd-links p.caption:has(+ ul a[href*="bibliography"]),
-nav.bd-links p.caption:has(+ ul a[href*="genindex"]) {
-    display: none !important;
+/* Bibliography and Index aftermatter links (injected by custom.js) */
+nav.bd-links a.bd-aftermatter-link {
+    display: block;
+    font-size: var(--pst-sidebar-font-size, 0.85rem);
+    font-weight: 400;
+    color: var(--pst-color-text-muted) !important;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    text-decoration: none;
+    box-shadow: none !important;
 }
 
-nav.bd-links ul:has(> li > a[href*="bibliography"]),
-nav.bd-links ul:has(> li > a[href*="genindex"]) {
-    margin-top: 1.25rem !important;  /* match p.caption margin-top */
-    margin-bottom: 0.5rem !important;
-    padding-left: 0 !important;
-    list-style: none !important;
-}
-
-nav.bd-links ul:has(> li > a[href*="bibliography"]) > li,
-nav.bd-links ul:has(> li > a[href*="genindex"]) > li {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-nav.bd-links ul:has(> li > a[href*="bibliography"]) > li > a,
-nav.bd-links ul:has(> li > a[href*="genindex"]) > li > a {
-    font-size: var(--pst-sidebar-font-size, 0.85rem) !important;
-    font-weight: 400 !important;         /* non-bold, unlike other captions */
-    color: var(--pst-color-text-base) !important;  /* match caption color */
-    padding: 0 !important;               /* flush left, matching p.caption */
-    display: block !important;
+nav.bd-links a.bd-aftermatter-link:hover {
+    color: var(--pst-color-link-hover) !important;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
 }
