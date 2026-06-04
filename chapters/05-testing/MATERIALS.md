@@ -86,6 +86,7 @@ Chapter 05 planning and delivery are scoped to `chapters/05-testing/` only.
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

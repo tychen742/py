@@ -88,6 +88,7 @@ Use `chapters/09-oop/*` as the only Chapter 09 track for planning, delivery, and
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

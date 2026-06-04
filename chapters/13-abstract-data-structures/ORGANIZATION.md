@@ -48,6 +48,7 @@ Use `chapters/13-abstract-data-structures/*` as the only Chapter 13 track for pl
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

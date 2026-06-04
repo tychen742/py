@@ -42,6 +42,7 @@ Use `chapters/04-functions/*` as the only Chapter 04 track for planning, deliver
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

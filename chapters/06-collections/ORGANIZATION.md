@@ -30,6 +30,7 @@ Use `chapters/06-collections/*` as the only active Chapter 06 track for planning
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

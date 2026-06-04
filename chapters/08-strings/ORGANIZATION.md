@@ -30,6 +30,7 @@ Use `chapters/08-strings/*` as the only active Chapter 08 track for planning, de
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

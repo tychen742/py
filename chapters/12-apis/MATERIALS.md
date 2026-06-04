@@ -80,6 +80,7 @@ Chapter 12 planning and delivery are scoped to `chapters/12-apis/` only.
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

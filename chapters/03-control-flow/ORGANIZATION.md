@@ -38,6 +38,7 @@ Use `chapters/03-control-flow/*` as the only Chapter 03 track for planning, deli
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment

@@ -81,6 +81,7 @@ Use `chapters/14-algorithms/*` as the only Chapter 14 track for planning, delive
 
 ## Assignments
 
+- `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview questions
 - `assignments/homework.ipynb` — Homework questions
 - `assignments/lab.ipynb` — Lab assignment
