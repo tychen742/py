@@ -86,3 +86,9 @@ Use a two-tier model for one chapter per week:
 ## Coordination Note
 
 Chapter 10 planning and delivery are scoped to `chapters/10-functional/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

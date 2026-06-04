@@ -81,3 +81,9 @@ Use a two-tier model for one chapter per week:
 ## Coordination Note
 
 Chapter 11 planning and delivery are scoped to `chapters/11-iter-gen/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

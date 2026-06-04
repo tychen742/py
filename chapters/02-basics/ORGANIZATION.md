@@ -33,3 +33,9 @@ Use `chapters/02-basics/*` as the only Chapter 02 track for planning, delivery, 
 - Add at least one checkpoint exercise per major section.
 - Ensure chapter outcomes align with any Chapter 02 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

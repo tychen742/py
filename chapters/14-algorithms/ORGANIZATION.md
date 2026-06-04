@@ -78,3 +78,9 @@ Use `chapters/14-algorithms/*` as the only Chapter 14 track for planning, delive
 - `1002` and `1003` each have exercises per section.
 - Pass fresh copies to in-place sorts (insertion, bubble) in tests and benchmarks.
 - Ensure chapter outcomes align with any Chapter 14 assignment/quiz prompt.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

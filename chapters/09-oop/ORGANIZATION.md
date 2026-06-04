@@ -85,3 +85,9 @@ Use `chapters/09-oop/*` as the only Chapter 09 track for planning, delivery, and
 - Add at least one checkpoint exercise per major section.
 - Ensure chapter outcomes align with any Chapter 09 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

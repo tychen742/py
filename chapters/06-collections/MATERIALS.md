@@ -14,3 +14,9 @@ The previous standalone tuple chapter is preserved in `materials/_archived/ch07-
 Previous split set notebooks are preserved in `materials/_archived/ch08-set-split/`.
 
 Chapter 06 planning and delivery are scoped to `chapters/06-collections/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

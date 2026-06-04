@@ -12,3 +12,9 @@ This checklist is for building and delivering the string, regex, and text-analys
 Previous split subsection notebooks are preserved in `materials/_archived/ch09-strings-split/`.
 
 Chapter 08 planning and delivery are scoped to `chapters/08-strings/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

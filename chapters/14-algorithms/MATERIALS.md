@@ -103,3 +103,9 @@ Use a two-tier model for one chapter per week:
 ## Coordination Note
 
 Chapter 14 planning and delivery are algorithms-only for this course.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

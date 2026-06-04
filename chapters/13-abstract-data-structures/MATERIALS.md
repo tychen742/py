@@ -72,3 +72,9 @@ This checklist is for building and delivering:
 ## Coordination Note
 
 Chapter 13 planning and delivery are scoped to `chapters/13-abstract-data-structures/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

@@ -83,3 +83,9 @@ Use a two-tier model for one chapter per week:
 ## Coordination Note
 
 Chapter 05 planning and delivery are scoped to `chapters/05-testing/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

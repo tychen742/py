@@ -8,6 +8,12 @@ parts:
         sections:
           - file: chapters/01-intro/0101-programming
           - file: chapters/01-intro/0102-basic-syntax
+          - file: chapters/01-intro/assignments/preview
+            title: Preview Questions
+          - file: chapters/01-intro/assignments/homework
+            title: Homework
+          - file: chapters/01-intro/assignments/lab
+            title: Lab
       - file: chapters/02-basics/0200-py-basics
         sections:
           - file: chapters/02-basics/0201-variables
@@ -20,10 +26,22 @@ parts:
                 title: Basic Types
               - file: chapters/02-basics/0206-collection-types
                 title: Collection Types
+          - file: chapters/02-basics/assignments/preview
+            title: Preview Questions
+          - file: chapters/02-basics/assignments/homework
+            title: Homework
+          - file: chapters/02-basics/assignments/lab
+            title: Lab
       - file: chapters/03-control-flow/0300-intro-control
         sections:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
+          - file: chapters/03-control-flow/assignments/preview
+            title: Preview Questions
+          - file: chapters/03-control-flow/assignments/homework
+            title: Homework
+          - file: chapters/03-control-flow/assignments/lab
+            title: Lab
       - file: chapters/04-functions/0400-functions
         sections:
           - file: chapters/04-functions/0401-functions
@@ -31,11 +49,23 @@ parts:
           - file: chapters/04-functions/0402-function-design
             title: Function Design
           - file: chapters/04-functions/0403-recursion
+          - file: chapters/04-functions/assignments/preview
+            title: Preview Questions
+          - file: chapters/04-functions/assignments/homework
+            title: Homework
+          - file: chapters/04-functions/assignments/lab
+            title: Lab
       - file: chapters/05-testing/0500-exception-testing
         title: Exceptions & Testing
         sections:
           - file: chapters/05-testing/0501-exceptions
           - file: chapters/05-testing/0502-unit-testing
+          - file: chapters/05-testing/assignments/preview
+            title: Preview Questions
+          - file: chapters/05-testing/assignments/homework
+            title: Homework
+          - file: chapters/05-testing/assignments/lab
+            title: Lab
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
@@ -45,6 +75,12 @@ parts:
           - file: chapters/06-collections/0601-lists
           - file: chapters/06-collections/0602-tuples
           - file: chapters/06-collections/0603-sets
+          - file: chapters/06-collections/assignments/preview
+            title: Preview Questions
+          - file: chapters/06-collections/assignments/homework
+            title: Homework
+          - file: chapters/06-collections/assignments/lab
+            title: Lab
       - file: chapters/07-dictionaries/0700-intro-dictionaries
         title: Dictionaries
         sections:
@@ -65,6 +101,12 @@ parts:
           - file: chapters/08-strings/0801-strings
           - file: chapters/08-strings/0802-regex
           - file: chapters/08-strings/0803-text-analysis
+          - file: chapters/08-strings/assignments/preview
+            title: Preview Questions
+          - file: chapters/08-strings/assignments/homework
+            title: Homework
+          - file: chapters/08-strings/assignments/lab
+            title: Lab
   - caption: "Part III: Program Design"
     numbered: true
     chapters:
@@ -77,6 +119,12 @@ parts:
             title: The Four Pillars
           - file: chapters/09-oop/0903-oop-advanced
             title: Advanced OOP
+          - file: chapters/09-oop/assignments/preview
+            title: Preview Questions
+          - file: chapters/09-oop/assignments/homework
+            title: Homework
+          - file: chapters/09-oop/assignments/lab
+            title: Lab
       - file: chapters/10-functional/1000-intro-func-prog
         title: FP
         sections:
@@ -84,11 +132,23 @@ parts:
             title: Functional Concepts
           - file: chapters/10-functional/1002-func-practice
             title: Functional Practice
+          - file: chapters/10-functional/assignments/preview
+            title: Preview Questions
+          - file: chapters/10-functional/assignments/homework
+            title: Homework
+          - file: chapters/10-functional/assignments/lab
+            title: Lab
       - file: chapters/11-iter-gen/1100-intro-iter-gen
         title: Iterators & Generators
         sections:
           - file: chapters/11-iter-gen/1101-iterators
           - file: chapters/11-iter-gen/1102-generators
+          - file: chapters/11-iter-gen/assignments/preview
+            title: Preview Questions
+          - file: chapters/11-iter-gen/assignments/homework
+            title: Homework
+          - file: chapters/11-iter-gen/assignments/lab
+            title: Lab
       - file: chapters/12-apis/1200-intro-apis
         title: APIs
         sections:
@@ -96,6 +156,12 @@ parts:
             title: API Basics
           - file: chapters/12-apis/1202-api-reliability
             title: API Reliability
+          - file: chapters/12-apis/assignments/preview
+            title: Preview Questions
+          - file: chapters/12-apis/assignments/homework
+            title: Homework
+          - file: chapters/12-apis/assignments/lab
+            title: Lab
   - caption: "Part IV: DSA"
     numbered: true
     chapters:
@@ -108,13 +174,23 @@ parts:
             title: Stacks & Queues
           - file: chapters/13-abstract-data-structures/1303-trees-graphs
             title: Trees & Graphs
-          - file: chapters/13-abstract-data-structures/1304-assignments
-            title: Assignments
+          - file: chapters/13-abstract-data-structures/assignments/preview
+            title: Preview Questions
+          - file: chapters/13-abstract-data-structures/assignments/homework
+            title: Homework
+          - file: chapters/13-abstract-data-structures/assignments/lab
+            title: Lab
       - file: chapters/14-algorithms/1400-intro-algorithms
         sections:
           - file: chapters/14-algorithms/1401-algorithms
           - file: chapters/14-algorithms/1402-searching
           - file: chapters/14-algorithms/1403-sorting
+          - file: chapters/14-algorithms/assignments/preview
+            title: Preview Questions
+          - file: chapters/14-algorithms/assignments/homework
+            title: Homework
+          - file: chapters/14-algorithms/assignments/lab
+            title: Lab
   # - caption: "Select Topics"
   #   numbered: true
   #   chapters:

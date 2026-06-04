@@ -58,3 +58,9 @@ This checklist is for building and delivering:
 ## Coordination Note
 
 Chapter 03 planning and delivery are scoped to `chapters/03-control-flow/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

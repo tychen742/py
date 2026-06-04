@@ -76,3 +76,9 @@ The following files in `chapters/10-functional/` are not part of the Chapter 10 
 - Add at least one checkpoint exercise per major section.
 - Ensure chapter outcomes align with any Chapter 10 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

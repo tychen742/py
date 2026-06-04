@@ -21,3 +21,9 @@ This checklist is for building and delivering:
 7. `0206-collection-types.ipynb` — Collection type overview
 
 Chapter 02 planning and delivery are scoped to `chapters/02-basics/` only.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

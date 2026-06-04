@@ -69,3 +69,9 @@ Use `chapters/12-apis/*` as the only Chapter 12 track for planning, delivery, an
 - Add at least one checkpoint exercise per major section.
 - Ensure chapter outcomes align with any Chapter 12 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment

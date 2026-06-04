@@ -27,3 +27,9 @@ Use `chapters/08-strings/*` as the only active Chapter 08 track for planning, de
 - Add at least one checkpoint exercise per major section.
 - Ensure chapter outcomes align with any Chapter 08 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
+
+## Assignments
+
+- `assignments/preview.ipynb` — Preview questions
+- `assignments/homework.ipynb` — Homework questions
+- `assignments/lab.ipynb` — Lab assignment
