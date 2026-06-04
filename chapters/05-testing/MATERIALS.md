@@ -74,6 +74,11 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
+## Material Files
+
+- `materials/05-testing/calc.py` — calculator module used in testing examples
+- `materials/05-testing/app.log` — sample log output from logging examples
+
 ## Chapter 05 Delivery Order (Recommended)
 
 1. `0500-exception-testing.ipynb` — Chapter intro: learning goals and chapter map

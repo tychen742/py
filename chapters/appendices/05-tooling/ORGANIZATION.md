@@ -40,6 +40,10 @@ This appendix is a **tooling reference for the whole book**. Students read it on
 - `0504-coding-tooling.ipynb`: Everyday Python idioms — comprehensions, lambda, docstrings, type hints, `enumerate`/`zip`, `try/except`, f-string formatting.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
+## Material Files
+
+Runnable examples, text files, package examples, and configuration demos for this appendix live in `materials/appendices/05-tooling/`.
+
 ## Source of Truth
 
 Use `chapters/appendices/05-tooling/*` as the only appendix tooling track for planning, delivery, and assessment.

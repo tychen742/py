@@ -66,6 +66,12 @@ Use `chapters/11-iter-gen/*` as the only Chapter 11 track for planning, delivery
 
 `0701-databases.ipynb` was archived in `materials/_archived/ch11-iter-gen-stray/` because it is not part of the active Chapter 11 sequence.
 
+## Material Files
+
+- `materials/11-iter-gen/example.db`: archived SQLite example database.
+- `materials/11-iter-gen/school.db`: archived SQLite example database.
+- `materials/11-iter-gen/users_demo.db`: archived SQLite example database.
+
 ## Build/Quality Checklist
 
 - Keep each notebook executable top-to-bottom.

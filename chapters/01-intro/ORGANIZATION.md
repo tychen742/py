@@ -24,6 +24,10 @@ Use this sequence to avoid overlap and keep pacing clear:
 - `0102-basic-syntax.ipynb`: Syntax rules, comments, print statements, first programs.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
+## Material Files
+
+- `materials/01-intro-text_file.txt`: text file used by introductory examples.
+
 ## Source of Truth
 
 Use `chapters/01-intro/*` as the only Chapter 01 track for planning, delivery, and assessment.

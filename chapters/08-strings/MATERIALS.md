@@ -13,6 +13,11 @@ Previous split subsection notebooks are preserved in `materials/_archived/ch09-s
 
 Chapter 08 planning and delivery are scoped to `chapters/08-strings/` only.
 
+## Material Files
+
+- `materials/08-strings/datasss/pg345.txt` — raw Project Gutenberg text used in regex/text examples
+- `materials/08-strings/datasss/pg345_cleaned.txt` — cleaned text example
+
 ## Assignments
 
 - `assignments/index.ipynb` — Assignment section landing page

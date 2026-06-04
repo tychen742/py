@@ -49,9 +49,16 @@ This checklist is for building and delivering:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
+## Material Files
+
+- `materials/01-intro-text_file.txt` — text file used by introductory examples
+
 ## Chapter 01 Delivery Order (Recommended)
 
-1. `0100-py-intro.ipynb` — What Python is, where it runs, how to use Jupyter\n2. `0101-programming.ipynb` — Programming learning habits, what programs and algorithms are, and binary/hex/ASCII basics\n3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, first programs\n
+1. `0100-py-intro.ipynb` — What Python is, where it runs, how to use Jupyter
+2. `0101-programming.ipynb` — Programming learning habits, what programs and algorithms are, and binary/hex/ASCII basics
+3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, first programs
+
 ## Coordination Note
 
 Chapter 01 planning and delivery are scoped to `chapters/01-intro/` only.

@@ -20,6 +20,13 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 Use `chapters/08-strings/*` as the only active Chapter 08 track for planning, delivery, and assessment.
 
+Previous split subsection notebooks are preserved in `materials/_archived/ch09-strings-split/`.
+
+## Material Files
+
+- `materials/08-strings/datasss/pg345.txt`: raw Project Gutenberg text used in regex and text-analysis examples.
+- `materials/08-strings/datasss/pg345_cleaned.txt`: cleaned text example.
+
 ## Build/Quality Checklist
 
 - Keep each notebook executable top-to-bottom.

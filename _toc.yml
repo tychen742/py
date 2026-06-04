@@ -239,7 +239,7 @@ parts:
   #     - file: chapters/12-select-topics/1201-recursion
   #     - file: chapters/12-select-topics/1202-idioms
   - caption: "Appendices"
-    numbered: false
+    numbered: true
     chapters:
       - file: chapters/appendices/0101-tooling
       - file: chapters/appendices/05-tooling/0500-intro-modules

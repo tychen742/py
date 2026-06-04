@@ -72,6 +72,12 @@ Use a two-tier model for one chapter per week:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
+## Material Files
+
+- `materials/11-iter-gen/example.db` — archived SQLite example database
+- `materials/11-iter-gen/school.db` — archived SQLite example database
+- `materials/11-iter-gen/users_demo.db` — archived SQLite example database
+
 ## Chapter 11 Delivery Order (Recommended)
 
 1. `1100-intro-iter-gen.ipynb` — Chapter intro: learning goals and chapter flow map

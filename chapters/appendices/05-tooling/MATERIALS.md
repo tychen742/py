@@ -60,13 +60,18 @@ This checklist is for building and delivering:
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
 
+## Material Files
+
+Runnable examples, text files, package examples, and configuration demos for this appendix live in `materials/appendices/05-tooling/`.
+
 ## Appendix Delivery Order (Recommended)
 
-1. `0500-intro-modules.ipynb` — What modules are; import syntax; standard library overview\n2. `0501-files.ipynb` — Reading and writing text files; context managers (with statement)\n3. `0502-modules.ipynb` — Creating and importing custom modules; __main__ guard\n4. `0503-packaging.ipynb` — Package structure; __init__.py; pip install basics\n5. `0504-coding-tooling.ipynb` — Comprehensions with lambdas; coding tooling patterns\n
+1. `0500-intro-modules.ipynb` — What modules are; import syntax; standard library overview
+2. `0501-files.ipynb` — Reading and writing text files; context managers (with statement)
+3. `0502-modules.ipynb` — Creating and importing custom modules; __main__ guard
+4. `0503-packaging.ipynb` — Package structure; __init__.py; pip install basics
+5. `0504-coding-tooling.ipynb` — Comprehensions with lambdas; coding tooling patterns
+
 ## Coordination Note
 
 Appendix tooling planning and delivery are scoped to `chapters/appendices/05-tooling/` only.
-
-type hint:
-class Solution:
-    def romanToInt(self, s: str) -> int:

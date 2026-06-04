@@ -53,6 +53,11 @@ Use this sequence to avoid overlap and keep pacing clear:
 - `0502-unit-testing.ipynb`: Unit testing with `unittest`; doctest introduction; `pytest` (test functions, discovery, assert style); mocking external calls; parametrized tests; coverage basics. Exercises: Fix the Failing Doctest; Write pytest-style tests.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
+## Material Files
+
+- `materials/05-testing/calc.py`: calculator module used in testing examples.
+- `materials/05-testing/app.log`: sample log output from logging examples.
+
 ## Source of Truth
 
 Use `chapters/05-testing/*` as the only Chapter 05 track for planning, delivery, and assessment.
