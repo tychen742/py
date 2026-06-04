@@ -1,5 +1,49 @@
 console.log("Custom JS loaded!");
 
+// Convert appendix chapter numbers to letters (1→A, 2→B, …)
+(function () {
+    function toAlpha(n) { return String.fromCharCode(64 + parseInt(n, 10)); }
+    function convertNum(text) {
+        return text.replace(/^(\d+)(\.)/, (_, n, dot) => toAlpha(n) + dot);
+    }
+
+    // 1. Sidebar links under the "Appendices" caption — text is plain "1. Title"
+    document.querySelectorAll('.caption-text').forEach(caption => {
+        if (caption.textContent.trim() !== 'Appendices') return;
+        const ul = caption.closest('p').nextElementSibling;
+        if (!ul) return;
+        ul.querySelectorAll('a.reference').forEach(a => {
+            a.childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE)
+                    node.textContent = convertNum(node.textContent);
+            });
+        });
+    });
+
+    // Detect appendix page: the active sidebar list is under "Appendices"
+    let onAppendixPage = false;
+    document.querySelectorAll('.caption-text').forEach(caption => {
+        if (caption.textContent.trim() === 'Appendices') {
+            const ul = caption.closest('p').nextElementSibling;
+            if (ul?.classList.contains('current')) onAppendixPage = true;
+        }
+    });
+    if (!onAppendixPage) return;
+
+    // 2. Page headings: <span class="section-number">1. </span>
+    document.querySelectorAll('.section-number').forEach(span => {
+        span.textContent = convertNum(span.textContent);
+    });
+
+    // 3. Prev/next footer: only convert links that point into /appendices/
+    document.querySelectorAll('.left-prev[href], .right-next[href]').forEach(a => {
+        if (a.href.includes('/appendices/'))
+            a.querySelectorAll('.section-number').forEach(span => {
+                span.textContent = convertNum(span.textContent);
+            });
+    });
+})();
+
 /*
 // Handle sidebar toggle using event delegation (more reliable)
 document.addEventListener('click', function (e) {
