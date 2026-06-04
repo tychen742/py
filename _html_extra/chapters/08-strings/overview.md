@@ -42,7 +42,7 @@ Strings
 
 <!-- _class: section -->
 
-## 9.1 Strings
+## 8.1 Strings
 
 Methods, comparison, looping, sorting
 
@@ -126,7 +126,7 @@ print(sorted(words, key=len))
 
 <!-- _class: section -->
 
-## 9.2 Regular Expressions
+## 8.2 Regular Expressions
 
 Pattern matching with the `re` module
 
@@ -183,7 +183,7 @@ clean = re.sub(r"\d{3}-\d{4}", "XXX-XXXX", text)
 
 <!-- _class: section -->
 
-## 9.3 Text Analysis
+## 8.3 Text Analysis
 
 Cleaning, word frequencies, Counter, Markov generation
 

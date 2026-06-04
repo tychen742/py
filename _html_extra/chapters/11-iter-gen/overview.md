@@ -42,7 +42,7 @@ Iterators & Generators
 
 <!-- _class: section -->
 
-## 12.1 Iterators
+## 11.1 Iterators
 
 The iteration protocol · iter() / next() · built-in lazy iterators · custom classes
 
@@ -111,7 +111,7 @@ for n in Countdown(5):
 
 <!-- _class: section -->
 
-## 12.2 Generators
+## 11.2 Generators
 
 `yield` · generator expressions · any/all · itertools
 

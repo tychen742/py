@@ -42,7 +42,7 @@ Algorithms
 
 <!-- _class: section -->
 
-## 15.1 Algorithm Concepts
+## 14.1 Algorithm Concepts
 
 Big O · time & space complexity · benchmarking
 
@@ -120,7 +120,7 @@ Benchmark with realistic data sizes — microbenchmarks on tiny inputs often mis
 
 <!-- _class: section -->
 
-## 15.2 Searching
+## 14.2 Searching
 
 Linear · binary · `bisect` · hash-based
 
@@ -223,7 +223,7 @@ print(6 in lookup)     # True
 
 <!-- _class: section -->
 
-## 15.3 Sorting
+## 14.3 Sorting
 
 Built-in · insertion · bubble · merge · quicksort
 

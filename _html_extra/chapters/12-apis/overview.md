@@ -42,7 +42,7 @@ APIs
 
 <!-- _class: section -->
 
-## 13.1 API Basics
+## 12.1 API Basics
 
 HTTP · requests.get() · JSON · query parameters · error handling
 
@@ -135,7 +135,7 @@ for user in data.get("users", []):
 
 <!-- _class: section -->
 
-## 13.2 API Reliability
+## 12.2 API Reliability
 
 Authentication · pagination · retry · defensive parsing
 

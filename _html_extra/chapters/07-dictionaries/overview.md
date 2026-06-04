@@ -32,9 +32,9 @@ style: |
 
 # Chapter 7
 
-Dictionaries & Sets
+Dictionaries
 
-*8.0 Intro · 8.1 Dictionaries · 8.2 Sets · 8.3 Advanced*
+*7.1 Dictionaries · 7.2 Core Operations · 7.3 Dictionary Patterns*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -42,54 +42,100 @@ Dictionaries & Sets
 
 <!-- _class: section -->
 
-## 8.1 Dictionaries
+## 7.1 Dictionaries
 
-Key-value mappings with O(1) average lookup
+Key-value mappings — the workhorse of Python data
 
 ---
 
-## Creating & Accessing Dicts
+## What Is a Dictionary?
 
 <div class="cols">
 <div>
+
+A **dictionary** stores data as **key–value pairs**.
+
+- Look up a *key* → get its *value*
+- Keys must be **unique** and **hashable**
+- Values can be any type
 
 ```python
 person = {"name": "Alice", "age": 28}
-
-# Access
-print(person["name"])           # Alice
-print(person.get("email", "N/A"))  # N/A
-
-# Add / update
-person["email"] = "alice@example.com"
-person.update({"age": 29, "city": "Rolla"})
-
-# Delete
-del person["city"]
-popped = person.pop("email")
+config = {"debug": True, "timeout": 30}
+word_count = {}          # empty dict
 ```
 
 </div>
 <div>
 
-### Iterating
+### When to use a dict
 
+- You need **labeled** data (vs positional)
+- You want **fast lookups by name**
+- You need a **mapping** relationship
+
+| Use case | Example |
+|---|---|
+| Student records | `{"id": 42, "gpa": 3.8}` |
+| Config settings | `{"theme": "dark"}` |
+| Word counts | `{"the": 12, "cat": 3}` |
+| JSON data | any API response |
+
+</div>
+</div>
+
+---
+
+## Creating Dictionaries
+
+<div class="cols">
+<div>
+
+### Dict literal
 ```python
-for key in person:
-    print(key)
-
-for val in person.values():
-    print(val)
-
-for key, val in person.items():
-    print(key, val)
+scores = {"alice": 92, "bob": 85}
 ```
 
-### Dict comprehension
-
+### `dict()` constructor
 ```python
-squares = {x: x**2 for x in range(5)}
-filtered = {k: v for k, v in d.items() if v > 0}
+# from keyword arguments
+d = dict(name="Alice", age=28)
+
+# from list of (key, value) pairs
+pairs = [("a", 1), ("b", 2)]
+d = dict(pairs)
+```
+
+### `dict.fromkeys()`
+```python
+# all keys share the same default value
+keys = ["x", "y", "z"]
+d = dict.fromkeys(keys, 0)
+# {"x": 0, "y": 0, "z": 0}
+```
+
+</div>
+<div>
+
+### Dict comprehension
+```python
+squares = {x: x**2 for x in range(6)}
+# {0:0, 1:1, 2:4, 3:9, 4:16, 5:25}
+```
+
+<div class="callout">
+
+**Keys must be hashable** — `str`, `int`, `float`, and `tuple` work; `list` and `dict` do not.
+
+</div>
+
+### Nesting
+```python
+students = {
+    "alice": {"gpa": 3.9, "year": 2},
+    "bob":   {"gpa": 3.4, "year": 3},
+}
+print(students["alice"]["gpa"])   # 3.9
 ```
 
 </div>
@@ -97,46 +143,257 @@ filtered = {k: v for k, v in d.items() if v > 0}
 
 ---
 
-## Counter & defaultdict
+<!-- _class: section -->
+
+## 7.2 Core Operations
+
+Accessing, modifying, and querying dictionaries
+
+---
+
+## Accessing Items
 
 <div class="cols">
 <div>
 
-### `Counter`
-
+### Square-bracket access
 ```python
-from collections import Counter
+person = {"name": "Alice", "age": 28}
 
-words = "the cat sat on the mat".split()
-c = Counter(words)
-print(c.most_common(3))
-# [('the', 2), ('cat', 1), ('sat', 1)]
+print(person["name"])      # Alice
+# person["email"]          # KeyError!
+```
 
-# Combine counters
-c2 = Counter(["the", "dog"])
-print(c + c2)
+### Safe access with `.get()`
+```python
+# returns None if key missing
+print(person.get("email"))        # None
+
+# returns default if key missing
+print(person.get("email", "N/A")) # N/A
 ```
 
 </div>
 <div>
 
-### `defaultdict`
-
+### Membership testing
 ```python
-from collections import defaultdict
+"name" in person      # True
+"email" in person     # False
+"email" not in person # True
+```
 
-# int factory — missing keys default to 0
-word_count = defaultdict(int)
-for word in words:
-    word_count[word] += 1
+<div class="callout rule">
 
-# list factory — group by key
-courses = defaultdict(list)
-for name, course in records:
-    courses[name].append(course)
+Prefer `.get(key, default)` over `dict[key]` when the key might be absent — it avoids a `KeyError` without needing a try/except.
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Adding, Updating, and Deleting
+
+<div class="cols">
+<div>
+
+### Add / update
+```python
+person["email"] = "alice@example.com"  # add
+person["age"] = 29                     # update
+
+# update multiple keys at once
+person.update({"age": 30, "city": "Rolla"})
+```
+
+### Delete
+```python
+del person["city"]           # remove, no return
+email = person.pop("email")  # remove, return value
+last = person.popitem()      # remove last inserted pair
 ```
 
 </div>
+<div>
+
+### Useful inspection methods
+```python
+person.keys()    # dict_keys([...])
+person.values()  # dict_values([...])
+person.items()   # dict_items([(k,v), ...])
+len(person)      # number of key-value pairs
+```
+
+<div class="callout warn">
+
+`dict.keys()`, `.values()`, and `.items()` return **view objects** — they reflect changes to the dict in real time.
+
+</div>
+
+</div>
+</div>
+
+---
+
+<!-- _class: section -->
+
+## 7.3 Dictionary Patterns
+
+Comprehensions, counting, defaults, and iteration
+
+---
+
+## Dictionary Comprehension
+
+Same idea as list comprehension — builds a dict in one expression.
+
+<div class="cols">
+<div>
+
+```python
+# basic: square each number
+squares = {x: x**2 for x in range(6)}
+# {0:0, 1:1, 2:4, 3:9, 4:16, 5:25}
+
+# with filter: only even squares
+even_sq = {x: x**2 for x in range(6)
+           if x % 2 == 0}
+# {0:0, 2:4, 4:16}
+
+# transform an existing dict
+prices = {"apple": 1.2, "banana": 0.5}
+discounted = {k: v * 0.9
+              for k, v in prices.items()}
+```
+
+</div>
+<div>
+
+### Invert a dictionary
+```python
+original = {"a": 1, "b": 2, "c": 3}
+inverted = {v: k for k, v in original.items()}
+# {1:"a", 2:"b", 3:"c"}
+```
+
+<div class="callout">
+
+Inversion only works cleanly when values are unique. Duplicate values will overwrite each other.
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Counting Patterns
+
+<div class="cols">
+<div>
+
+### Manual counter
+```python
+words = "the cat sat on the mat".split()
+
+counts = {}
+for word in words:
+    counts[word] = counts.get(word, 0) + 1
+# {"the":2, "cat":1, "sat":1, ...}
+```
+
+### `Counter` — one line
+```python
+from collections import Counter
+
+counts = Counter(words)
+counts.most_common(3)
+# [("the", 2), ("cat", 1), ("sat", 1)]
+
+# combine two counters
+c2 = Counter(["the", "dog"])
+print(counts + c2)
+```
+
+</div>
+<div>
+
+### `defaultdict` — skip the guard
+```python
+from collections import defaultdict
+
+# int factory: missing keys default to 0
+word_count = defaultdict(int)
+for word in words:
+    word_count[word] += 1   # no KeyError
+
+# list factory: group values by key
+groups = defaultdict(list)
+for name, score in records:
+    groups[name].append(score)
+```
+
+<div class="callout">
+
+`Counter` is best for tallying. `defaultdict` is best for grouping or accumulating into containers.
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Iterating Through Dictionaries
+
+```python
+d = {"name": "Alice", "age": 28, "city": "Rolla"}
+```
+
+<div class="cols">
+<div>
+
+### Keys (default)
+```python
+for key in d:
+    print(key)
+# name  age  city
+```
+
+### Values
+```python
+for val in d.values():
+    print(val)
+# Alice  28  Rolla
+```
+
+</div>
+<div>
+
+### Key-value pairs
+```python
+for key, val in d.items():
+    print(f"{key}: {val}")
+# name: Alice
+# age: 28
+# city: Rolla
+```
+
+### Sorted iteration
+```python
+for key in sorted(d):
+    print(key, d[key])
+```
+
+</div>
+</div>
+
+<div class="callout warn">
+
+Do not add or remove keys while iterating — it raises `RuntimeError`. Iterate over `list(d.items())` if you need to modify during the loop.
+
 </div>
 
 ---
@@ -147,12 +404,9 @@ for name, course in records:
 <div>
 
 - Dicts and sets use **hash tables**.
-- Python computes `hash(key)` → jumps directly to the slot.
-- Lookup time is **O(1) average** regardless of size.
-- List `in` operator is **O(n)** — scans every element.
-
-</div>
-<div>
+- Python computes `hash(key)` → jumps directly to the bucket.
+- Lookup is **O(1) average** regardless of dict size.
+- List `in` operator scans every element — **O(n)**.
 
 ```python
 import time, random
@@ -160,71 +414,32 @@ import time, random
 n = 1_000_000
 big_list = list(range(n))
 big_dict = {i: True for i in range(n)}
-target = n - 1   # worst case
+target = n - 1   # worst case for list
 
-# O(n) list scan
 t = time.perf_counter()
-target in big_list
+_ = target in big_list
 print(f"list: {time.perf_counter()-t:.5f}s")
 
-# O(1) dict lookup
 t = time.perf_counter()
-target in big_dict
+_ = target in big_dict
 print(f"dict: {time.perf_counter()-t:.5f}s")
 ```
 
 </div>
-</div>
-
----
-
-<!-- _class: section -->
-
-## 8.2 Sets
-
-Unordered collections of unique, hashable elements
-
----
-
-## Sets — Creation & Operations
-
-<div class="cols">
 <div>
 
-```python
-a = {1, 2, 3}
-b = {3, 4, 5}
-
-print(a | b)   # {1,2,3,4,5}  union
-print(a & b)   # {3}           intersection
-print(a - b)   # {1,2}         difference
-print(a ^ b)   # {1,2,4,5}    symmetric difference
-
-# Membership (O(1))
-print(3 in a)   # True
-
-# Deduplicate a list
-unique = list(set([1, 2, 2, 3, 3, 3]))
-```
-
-</div>
-<div>
-
-### frozenset — immutable set
-
-```python
-fs = frozenset({1, 2, 3})
-# fs.add(4)   ← AttributeError
-
-# Can be used as dict key or set element
-graph = {frozenset({1,2}): "edge"}
-```
-
-| Feature | `set` | `frozenset` |
+| Operation | `list` | `dict` / `set` |
 |---|---|---|
-| Mutable | ✓ | ✗ |
-| Hashable | ✗ | ✓ |
-| Dict key | ✗ | ✓ |
+| `x in c` | O(n) | O(1) avg |
+| `c[key]` | O(1) by index | O(1) by key |
+| Insert | O(1) append | O(1) avg |
+| Delete | O(n) | O(1) avg |
+
+<div class="callout rule">
+
+**Hashable keys**: `int`, `str`, `float`, `tuple` (of hashables) are hashable. `list` and `dict` are not — they cannot be dict keys.
+
+</div>
 
 </div>
 </div>
@@ -235,15 +450,16 @@ graph = {frozenset({1,2}): "edge"}
 
 | Concept | Key syntax / notes |
 |---|---|
-| Create dict | `{"key": value}` or `dict(key=value)` |
-| Safe get | `.get(key, default)` |
-| Iterate | `.keys()`, `.values()`, `.items()` |
-| Dict comprehension | `{k: v for k, v in ...}` |
-| Counter | `Counter(seq)` → `.most_common(n)` |
-| defaultdict | `defaultdict(int)` or `defaultdict(list)` |
-| Set ops | `\|` `&` `-` `^` — union/intersection/diff/sym-diff |
-| Membership | `x in s` — O(1) for dict/set, O(n) for list |
-| Hashable keys | `int`, `str`, `tuple` (immutable types) |
+| Create | `{"k": v}` · `dict(k=v)` · `dict.fromkeys(keys, 0)` |
+| Access | `d[key]` (KeyError if missing) · `d.get(key, default)` (safe) |
+| Add / update | `d[key] = val` · `d.update({...})` |
+| Delete | `del d[key]` · `d.pop(key)` · `d.popitem()` |
+| Membership | `key in d` — O(1) |
+| Iterate | `d.keys()` · `d.values()` · `d.items()` |
+| Comprehension | `{k: v for k, v in iterable}` |
+| Count | `Counter(seq)` → `.most_common(n)` |
+| Group | `defaultdict(list)` — no KeyError on first access |
+| Invert | `{v: k for k, v in d.items()}` |
 
 ---
 

@@ -104,7 +104,7 @@ OOP benefits: **encapsulation** (data is protected), **reuse** (inherit & extend
 
 <!-- _class: section -->
 
-## 10.1 Design & Methods
+## 9.1 Design & Methods
 
 Classes, instances, `__init__`, methods, properties
 
@@ -249,7 +249,7 @@ acc.balance = -5     # raises ValueError
 
 <!-- _class: section -->
 
-## 10.2 The Four Pillars of OOP
+## 9.2 The Four Pillars of OOP
 
 Encapsulation · Polymorphism · Inheritance · Abstraction
 
@@ -471,7 +471,7 @@ class SavingsAccount(BankAccount):
 
 <!-- _class: section -->
 
-## 10.3 Advanced OOP Topics
+## 9.3 Advanced OOP Topics
 
 Comparison dunders · Operator overloading · `@dataclass` · Static & class methods
 

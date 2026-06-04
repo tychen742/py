@@ -111,7 +111,7 @@ FP benefits: smaller functions, fewer side effects, easier testing, and clearer 
 
 <!-- _class: section -->
 
-## 11.1 Functional Concepts
+## 10.1 Functional Concepts
 
 Purity, immutability, functions as values, lambdas, decorators, comprehensions
 
@@ -358,7 +358,7 @@ print(greet("Ada"))
 
 <!-- _class: section -->
 
-## 11.2 Functional Practice
+## 10.2 Functional Practice
 
 Recursion, context managers, and practical tools from `functools`
 

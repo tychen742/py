@@ -42,7 +42,7 @@ Abstract Data Structures
 
 <!-- _class: section -->
 
-## 14.1 ADT Basics
+## 13.1 ADT Basics
 
 Interface vs. implementation · the ADT contract
 
@@ -97,7 +97,7 @@ class Stack:
 
 <!-- _class: section -->
 
-## 14.2 Stacks & Queues
+## 13.2 Stacks & Queues
 
 LIFO · FIFO · `collections.deque`
 
@@ -190,7 +190,7 @@ print(queue.popleft())    # task2
 
 <!-- _class: section -->
 
-## 14.3 Trees & Graphs
+## 13.3 Trees & Graphs
 
 Terminology · traversals · DFS & BFS
 

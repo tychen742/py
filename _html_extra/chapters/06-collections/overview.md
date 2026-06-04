@@ -32,9 +32,9 @@ style: |
 
 # Chapter 6
 
-Lists
+Collections
 
-*6.0 Intro · 6.1 Creating · 6.2 Accessing · 6.3 Operations · 6.4 Aliasing · 6.5 Advanced*
+*6.1 Lists · 6.2 Tuples · 6.3 Sets*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -42,9 +42,9 @@ Lists
 
 <!-- _class: section -->
 
-## 6.1 Creating Lists
+## 6.1 Lists
 
-Literals, constructors, comprehensions
+Ordered, mutable sequences — Python's most versatile collection
 
 ---
 
@@ -53,96 +53,146 @@ Literals, constructors, comprehensions
 <div class="cols">
 <div>
 
+### Literal
 ```python
-# Literal
 fruits = ["apple", "banana", "cherry"]
+mixed  = [1, "hello", 3.14, True]
+empty  = []
+```
 
-# Constructor
-nums = list(range(5))       # [0, 1, 2, 3, 4]
-chars = list("hello")       # ['h','e','l','l','o']
+### `list()` constructor
+```python
+list("abc")        # ['a', 'b', 'c']
+list(range(5))     # [0, 1, 2, 3, 4]
+list((1, 2, 3))    # from tuple
+```
 
-# List comprehension
+### List comprehension
+```python
 squares = [x**2 for x in range(6)]
 # [0, 1, 4, 9, 16, 25]
 
-# With filter
 evens = [x for x in range(10) if x % 2 == 0]
-# [0, 2, 4, 6, 8]
 ```
 
 </div>
 <div>
 
 ### Nested lists
-
 ```python
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-]
-print(matrix[1][2])   # 6
-
-# Flatten with comprehension
-flat = [x for row in matrix for x in row]
-# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+matrix = [[1, 2], [3, 4], [5, 6]]
+matrix[1][0]   # 3
 ```
 
+### Strings ↔ Lists
+```python
+words = "hello world".split()
+# ['hello', 'world']
+
+" ".join(words)   # 'hello world'
+```
+
+<div class="callout">
+
+Lists are **mutable** — elements can be added, removed, or changed after creation. Order is preserved and duplicates are allowed.
+
+</div>
+
 </div>
 </div>
 
 ---
 
-<!-- _class: section -->
-
-## 6.2–6.3 Accessing & Operating on Lists
-
-Indexing, slicing, methods, iteration
-
----
-
-## Indexing & Slicing
+## Accessing & Slicing
 
 <div class="cols">
 <div>
 
+### Indexing (zero-based)
 ```python
-fruits = ["apple", "banana", "cherry", "date"]
+fruits = ["apple", "banana", "cherry"]
 
-print(fruits[0])     # apple   (first)
-print(fruits[-1])    # date    (last)
-print(fruits[1:3])   # ['banana', 'cherry']
-print(fruits[:2])    # ['apple', 'banana']
-print(fruits[::2])   # ['apple', 'cherry'] (step 2)
-print(fruits[::-1])  # reversed
+fruits[0]    # 'apple'
+fruits[-1]   # 'cherry'   (last element)
+fruits[10]   # IndexError
+```
+
+### Slicing `[start:stop:step]`
+```python
+fruits[1:]    # ['banana', 'cherry']
+fruits[:2]    # ['apple', 'banana']
+fruits[::2]   # every other element
+fruits[::-1]  # reversed
 ```
 
 </div>
 <div>
 
-### Common list methods
+### Query methods
+```python
+nums = [3, 1, 4, 1, 5, 9, 2, 6]
 
-| Method | Effect |
-|---|---|
-| `.append(x)` | Add to end |
-| `.insert(i, x)` | Insert at index |
-| `.extend(seq)` | Add all from seq |
-| `.remove(x)` | Remove first match |
-| `.pop(i)` | Remove & return |
-| `.sort()` | Sort in place |
-| `.reverse()` | Reverse in place |
-| `sorted(lst)` | Return new sorted list |
+len(nums)         # 8
+nums.count(1)     # 2
+nums.index(5)     # 4  (first occurrence)
+5 in nums         # True
+```
+
+### Unpacking
+```python
+a, b, c = [10, 20, 30]
+first, *rest = [1, 2, 3, 4]
+# first=1, rest=[2, 3, 4]
+```
 
 </div>
 </div>
 
 ---
 
-<!-- _class: section -->
+## Modifying Lists
 
-## 6.4 Aliasing & Copying
+<div class="cols">
+<div>
 
-Identity vs. value · shallow copies
+### Add elements
+```python
+fruits.append("date")          # end
+fruits.insert(1, "avocado")    # at index
+fruits.extend(["elderberry"])  # merge list
+```
+
+### Remove elements
+```python
+fruits.remove("banana")   # by value
+fruits.pop()              # last (returns it)
+fruits.pop(0)             # by index
+del fruits[1]             # by index, no return
+fruits.clear()            # empty the list
+```
+
+</div>
+<div>
+
+### Sort & reverse
+```python
+nums = [3, 1, 4, 1, 5]
+nums.sort()              # in-place
+nums.sort(reverse=True)
+nums.reverse()           # in-place
+
+sorted(nums)             # returns new list
+```
+
+### Useful helpers
+```python
+min(nums), max(nums), sum(nums)
+enumerate(nums)   # (index, value) pairs
+zip(a, b)         # pair two lists
+```
+
+</div>
+</div>
 
 ---
 
@@ -151,47 +201,162 @@ Identity vs. value · shallow copies
 <div class="cols">
 <div>
 
-**Aliasing** — two names for the same object.
-
+### Aliasing — shared reference
 ```python
 a = [1, 2, 3]
-b = a           # alias — same object
-b[0] = 99
-print(a)        # [99, 2, 3] — a changed!
-print(a is b)   # True
+b = a          # b points to same list
+b.append(4)
+print(a)       # [1, 2, 3, 4]  ← changed!
 ```
 
-**Copying** — a separate object with same values.
-
+### Shallow copy — independent top level
 ```python
-c = a[:]        # slice copy
-c = a.copy()    # explicit copy
-c = list(a)     # constructor copy
-c[0] = 0
-print(a)        # [99, 2, 3] — a unchanged
+b = a[:]       # slice copy
+b = a.copy()   # .copy() method
+b = list(a)    # list() constructor
+
+b.append(4)
+print(a)       # [1, 2, 3]  ← safe
 ```
 
 </div>
 <div>
 
+### Deep copy — independent at every level
+```python
+import copy
+
+nested = [[1, 2], [3, 4]]
+deep = copy.deepcopy(nested)
+
+deep[0].append(99)
+print(nested)  # [[1, 2], [3, 4]]  ← safe
+```
+
 <div class="callout warn">
 
-When you pass a list to a function, the function gets a **reference**. Mutations inside the function affect the original.
+Shallow copy is safe for flat lists. Use `deepcopy` when the list contains other mutable objects (nested lists, dicts).
 
 </div>
 
-```python
-def clear_first(lst):
-    lst[0] = None   # mutates the original!
+</div>
+</div>
 
-data = [1, 2, 3]
-clear_first(data)
-print(data)   # [None, 2, 3]
+---
+
+<!-- _class: section -->
+
+## 6.2 Tuples
+
+Ordered, **immutable** sequences — safe, hashable, fast
+
+---
+
+## Creating & Using Tuples
+
+<div class="cols">
+<div>
+
+### Literal (comma makes the tuple)
+```python
+point   = (3, 4)
+single  = (42,)     # trailing comma required
+empty   = ()
+no_paren = 1, 2, 3  # parens optional
 ```
 
-Pass a copy if you don't want the original changed:
+### `tuple()` constructor
 ```python
-clear_first(data[:])
+tuple([1, 2, 3])    # from list
+tuple("abc")        # ('a', 'b', 'c')
+tuple(range(4))     # (0, 1, 2, 3)
+```
+
+### Accessing (same as lists)
+```python
+point[0]     # 3
+point[-1]    # 4
+point[0:1]   # (3,)
+```
+
+</div>
+<div>
+
+### Immutability
+```python
+point[0] = 99   # TypeError — can't modify
+```
+
+<div class="callout rule">
+
+**Use a tuple when data should not change** — coordinates, RGB colors, database rows, function return values. Tuples are hashable (can be dict keys or set elements); lists are not.
+
+</div>
+
+### Choosing list vs. tuple
+
+| | `list` | `tuple` |
+|---|---|---|
+| Mutable | ✓ | ✗ |
+| Hashable | ✗ | ✓ |
+| Performance | good | slightly faster |
+
+</div>
+</div>
+
+---
+
+## Tuple Unpacking & Functions
+
+<div class="cols">
+<div>
+
+### Basic unpacking
+```python
+x, y = (3, 4)
+a, b, c = "abc"       # works on any iterable
+
+# starred unpacking
+first, *rest = (1, 2, 3, 4)
+# first=1, rest=[2, 3, 4]
+```
+
+### `zip()` and `enumerate()`
+```python
+names  = ["alice", "bob"]
+scores = [92, 85]
+
+for name, score in zip(names, scores):
+    print(name, score)
+
+for i, name in enumerate(names):
+    print(i, name)
+```
+
+</div>
+<div>
+
+### Multiple return values
+```python
+def min_max(nums):
+    return min(nums), max(nums)  # returns tuple
+
+lo, hi = min_max([3, 1, 4, 1, 5])
+```
+
+### Argument packing with `*args`
+```python
+def total(*args):    # args is a tuple
+    return sum(args)
+
+total(1, 2, 3, 4)   # 10
+```
+
+### Sorting by tuple key
+```python
+pairs = [("bob", 85), ("alice", 92)]
+pairs.sort(key=lambda p: p[1])
+# sort by score (second element)
 ```
 
 </div>
@@ -201,47 +366,170 @@ clear_first(data[:])
 
 <!-- _class: section -->
 
-## 6.5 Advanced Lists
+## 6.3 Sets
 
-`any()`, `all()`, and list patterns
+Unordered collections of **unique, hashable** elements
 
 ---
 
-## `any()` and `all()`
+## Creating & Accessing Sets
 
+<div class="cols">
+<div>
+
+### Create
 ```python
-scores = [72, 88, 95, 61, 79]
+a = {1, 2, 3}
+b = set([3, 4, 5])    # from list
+empty = set()          # NOT {} (that's a dict)
 
-# all() — True only if every element satisfies the condition
-print(all([s >= 60 for s in scores]))   # True  — everyone passed
-print(all([s >= 90 for s in scores]))   # False
-
-# any() — True if at least one element satisfies the condition
-print(any([s >= 90 for s in scores]))   # True  — at least one A
-print(any([s < 0   for s in scores]))   # False
+# duplicates removed automatically
+s = {1, 2, 2, 3, 3}   # {1, 2, 3}
 ```
 
-<div class="callout rule">
+### No indexing — iterate or test membership
+```python
+3 in a      # True   O(1)
+6 not in a  # True
 
-Pass a **list comprehension** here. In Chapter 11 you will see that dropping the brackets `[...]` makes these even more efficient.
+for item in a:
+    print(item)    # order not guaranteed
+```
 
+</div>
+<div>
+
+### When to use a set
+
+| Need | Use |
+|---|---|
+| Ordered, duplicates OK | `list` |
+| Fixed structure, hashable | `tuple` |
+| Unique elements, fast lookup | `set` |
+| Key-value mapping | `dict` |
+
+<div class="callout">
+
+Sets are great for **deduplication** and **membership testing**. `x in set` is O(1); `x in list` is O(n).
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Set Operations
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+```
+
+<div class="cols">
+<div>
+
+| Operation | Operator | Method |
+|---|---|---|
+| Union | `a \| b` | `a.union(b)` |
+| Intersection | `a & b` | `a.intersection(b)` |
+| Difference | `a - b` | `a.difference(b)` |
+| Sym. difference | `a ^ b` | `a.symmetric_difference(b)` |
+
+```python
+a | b   # {1, 2, 3, 4, 5, 6}
+a & b   # {3, 4}
+a - b   # {1, 2}
+a ^ b   # {1, 2, 5, 6}
+```
+
+</div>
+<div>
+
+### Modify in place
+```python
+a.add(5)          # add one element
+a.update({6, 7})  # add multiple
+
+a.remove(1)       # KeyError if missing
+a.discard(99)     # safe — no error
+a.pop()           # remove arbitrary element
+```
+
+### Subset / superset
+```python
+{1, 2} <= {1, 2, 3}   # True  (subset)
+{1, 2, 3} >= {1, 2}   # True  (superset)
+```
+
+</div>
+</div>
+
+---
+
+## Frozensets & Set Comprehensions
+
+<div class="cols">
+<div>
+
+### `frozenset` — immutable set
+```python
+fs = frozenset({1, 2, 3})
+# fs.add(4)   ← AttributeError
+
+# Can be a dict key or set element
+graph = {frozenset({1, 2}): "edge A"}
+```
+
+| | `set` | `frozenset` |
+|---|---|---|
+| Mutable | ✓ | ✗ |
+| Hashable | ✗ | ✓ |
+| Dict key | ✗ | ✓ |
+
+</div>
+<div>
+
+### Set comprehension
+```python
+# unique squares of even numbers
+s = {x**2 for x in range(10) if x % 2 == 0}
+# {0, 4, 16, 36, 64}
+
+# deduplicate a list
+words = ["the", "cat", "the", "mat"]
+unique = {w.lower() for w in words}
+```
+
+### O(1) membership — why it matters
+```python
+# set membership is O(1) vs O(n) for list
+big = set(range(1_000_000))
+999_999 in big   # instant
+```
+
+</div>
 </div>
 
 ---
 
 ## Chapter 6 — Quick Reference
 
-| Concept | Key syntax / notes |
+| Type | Ordered | Mutable | Duplicates | Hashable | Literal |
+|---|---|---|---|---|---|
+| `list` | ✓ | ✓ | ✓ | ✗ | `[1, 2]` |
+| `tuple` | ✓ | ✗ | ✓ | ✓ | `(1, 2)` |
+| `set` | ✗ | ✓ | ✗ | ✗ | `{1, 2}` |
+| `frozenset` | ✗ | ✗ | ✗ | ✓ | `frozenset({1,2})` |
+
+| Task | Idiom |
 |---|---|
-| List literal | `[1, 2, 3]` |
-| Comprehension | `[expr for x in seq if cond]` |
-| Index | `lst[0]`, `lst[-1]` |
-| Slice | `lst[start:stop:step]` |
-| Append / extend | `.append(x)`, `.extend(seq)` |
-| Sort | `.sort()` in-place; `sorted(lst)` new list |
-| Copy | `lst[:]`, `lst.copy()`, `list(lst)` |
-| Alias check | `a is b` |
-| any / all | `any([...])`, `all([...])` |
+| Deduplicate | `list(set(lst))` |
+| Unpack | `a, b, *rest = lst` |
+| Copy flat list | `lst[:]` or `lst.copy()` |
+| Multiple return | `return a, b` → unpack with `x, y = f()` |
+| Set ops | `\|` `&` `-` `^` |
+| Membership | `x in s` — O(1) for set/dict, O(n) for list |
 
 ---
 
@@ -249,6 +537,6 @@ Pass a **list comprehension** here. In Chapter 11 you will see that dropping the
 
 # End of Chapter 6
 
-*Next: Chapter 7 — Tuples*
+*Next: Chapter 7 — Dictionaries*
 
-*immutable sequences · unpacking · zip · enumerate*
+*key-value mappings · core operations · dictionary patterns*

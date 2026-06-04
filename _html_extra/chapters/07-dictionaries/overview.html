@@ -54,10 +54,10 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
+;" data-marpit-pagination-total="14">
 <h1 id="chapter-7">Chapter 7</h1>
-<p>Dictionaries &amp; Sets</p>
-<p><em>8.0 Intro · 8.1 Dictionaries · 8.2 Sets · 8.3 Advanced</em></p>
+<p>Dictionaries</p>
+<p><em>7.1 Dictionaries · 7.2 Core Operations · 7.3 Dictionary Patterns</em></p>
 <p><em>← → or Space to navigate · F for fullscreen</em></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
@@ -106,9 +106,9 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
-<h2 id="81-dictionaries">8.1 Dictionaries</h2>
-<p>Key-value mappings with O(1) average lookup</p>
+;" data-marpit-pagination-total="14">
+<h2 id="71-dictionaries">7.1 Dictionaries</h2>
+<p>Key-value mappings — the workhorse of Python data</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
@@ -156,40 +156,54 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
-<h2 id="creating--accessing-dicts">Creating &amp; Accessing Dicts</h2>
+;" data-marpit-pagination-total="14">
+<h2 id="what-is-a-dictionary">What Is a Dictionary?</h2>
 <div class="cols">
 <div>
+<p>A <strong>dictionary</strong> stores data as <strong>key–value pairs</strong>.</p>
+<ul>
+<li>Look up a <em>key</em> → get its <em>value</em></li>
+<li>Keys must be <strong>unique</strong> and <strong>hashable</strong></li>
+<li>Values can be any type</li>
+</ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">person = {<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">28</span>}
-
-<span class="hljs-comment"># Access</span>
-<span class="hljs-built_in">print</span>(person[<span class="hljs-string">&quot;name&quot;</span>])           <span class="hljs-comment"># Alice</span>
-<span class="hljs-built_in">print</span>(person.get(<span class="hljs-string">&quot;email&quot;</span>, <span class="hljs-string">&quot;N/A&quot;</span>))  <span class="hljs-comment"># N/A</span>
-
-<span class="hljs-comment"># Add / update</span>
-person[<span class="hljs-string">&quot;email&quot;</span>] = <span class="hljs-string">&quot;alice@example.com&quot;</span>
-person.update({<span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">29</span>, <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;Rolla&quot;</span>})
-
-<span class="hljs-comment"># Delete</span>
-<span class="hljs-keyword">del</span> person[<span class="hljs-string">&quot;city&quot;</span>]
-popped = person.pop(<span class="hljs-string">&quot;email&quot;</span>)
+config = {<span class="hljs-string">&quot;debug&quot;</span>: <span class="hljs-literal">True</span>, <span class="hljs-string">&quot;timeout&quot;</span>: <span class="hljs-number">30</span>}
+word_count = {}          <span class="hljs-comment"># empty dict</span>
 </code></pre>
 </div>
 <div>
-<h3 id="iterating">Iterating</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> person:
-    <span class="hljs-built_in">print</span>(key)
-
-<span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> person.values():
-    <span class="hljs-built_in">print</span>(val)
-
-<span class="hljs-keyword">for</span> key, val <span class="hljs-keyword">in</span> person.items():
-    <span class="hljs-built_in">print</span>(key, val)
-</code></pre>
-<h3 id="dict-comprehension">Dict comprehension</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">squares = {x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>)}
-filtered = {k: v <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> d.items() <span class="hljs-keyword">if</span> v &gt; <span class="hljs-number">0</span>}
-</code></pre>
+<h3 id="when-to-use-a-dict">When to use a dict</h3>
+<ul>
+<li>You need <strong>labeled</strong> data (vs positional)</li>
+<li>You want <strong>fast lookups by name</strong></li>
+<li>You need a <strong>mapping</strong> relationship</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Student records</td>
+<td><code>{&quot;id&quot;: 42, &quot;gpa&quot;: 3.8}</code></td>
+</tr>
+<tr>
+<td>Config settings</td>
+<td><code>{&quot;theme&quot;: &quot;dark&quot;}</code></td>
+</tr>
+<tr>
+<td>Word counts</td>
+<td><code>{&quot;the&quot;: 12, &quot;cat&quot;: 3}</code></td>
+</tr>
+<tr>
+<td>JSON data</td>
+<td>any API response</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
@@ -239,41 +253,47 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
-<h2 id="counter--defaultdict">Counter &amp; defaultdict</h2>
+;" data-marpit-pagination-total="14">
+<h2 id="creating-dictionaries">Creating Dictionaries</h2>
 <div class="cols">
 <div>
-<h3 id="counter"><code>Counter</code></h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter
+<h3 id="dict-literal">Dict literal</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">scores = {<span class="hljs-string">&quot;alice&quot;</span>: <span class="hljs-number">92</span>, <span class="hljs-string">&quot;bob&quot;</span>: <span class="hljs-number">85</span>}
+</code></pre>
+<h3 id="dict-constructor"><code>dict()</code> constructor</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># from keyword arguments</span>
+d = <span class="hljs-built_in">dict</span>(name=<span class="hljs-string">&quot;Alice&quot;</span>, age=<span class="hljs-number">28</span>)
 
-words = <span class="hljs-string">&quot;the cat sat on the mat&quot;</span>.split()
-c = Counter(words)
-<span class="hljs-built_in">print</span>(c.most_common(<span class="hljs-number">3</span>))
-<span class="hljs-comment"># [(&#x27;the&#x27;, 2), (&#x27;cat&#x27;, 1), (&#x27;sat&#x27;, 1)]</span>
-
-<span class="hljs-comment"># Combine counters</span>
-c2 = Counter([<span class="hljs-string">&quot;the&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span>])
-<span class="hljs-built_in">print</span>(c + c2)
+<span class="hljs-comment"># from list of (key, value) pairs</span>
+pairs = [(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">1</span>), (<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-number">2</span>)]
+d = <span class="hljs-built_in">dict</span>(pairs)
+</code></pre>
+<h3 id="dictfromkeys"><code>dict.fromkeys()</code></h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># all keys share the same default value</span>
+keys = [<span class="hljs-string">&quot;x&quot;</span>, <span class="hljs-string">&quot;y&quot;</span>, <span class="hljs-string">&quot;z&quot;</span>]
+d = <span class="hljs-built_in">dict</span>.fromkeys(keys, <span class="hljs-number">0</span>)
+<span class="hljs-comment"># {&quot;x&quot;: 0, &quot;y&quot;: 0, &quot;z&quot;: 0}</span>
 </code></pre>
 </div>
 <div>
-<h3 id="defaultdict"><code>defaultdict</code></h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict
-
-<span class="hljs-comment"># int factory — missing keys default to 0</span>
-word_count = defaultdict(<span class="hljs-built_in">int</span>)
-<span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> words:
-    word_count[word] += <span class="hljs-number">1</span>
-
-<span class="hljs-comment"># list factory — group by key</span>
-courses = defaultdict(<span class="hljs-built_in">list</span>)
-<span class="hljs-keyword">for</span> name, course <span class="hljs-keyword">in</span> records:
-    courses[name].append(course)
+<h3 id="dict-comprehension">Dict comprehension</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">squares = {x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>)}
+<span class="hljs-comment"># {0:0, 1:1, 2:4, 3:9, 4:16, 5:25}</span>
+</code></pre>
+<div class="callout">
+<p><strong>Keys must be hashable</strong> — <code>str</code>, <code>int</code>, <code>float</code>, and <code>tuple</code> work; <code>list</code> and <code>dict</code> do not.</p>
+</div>
+<h3 id="nesting">Nesting</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">students = {
+    <span class="hljs-string">&quot;alice&quot;</span>: {<span class="hljs-string">&quot;gpa&quot;</span>: <span class="hljs-number">3.9</span>, <span class="hljs-string">&quot;year&quot;</span>: <span class="hljs-number">2</span>},
+    <span class="hljs-string">&quot;bob&quot;</span>:   {<span class="hljs-string">&quot;gpa&quot;</span>: <span class="hljs-number">3.4</span>, <span class="hljs-string">&quot;year&quot;</span>: <span class="hljs-number">3</span>},
+}
+<span class="hljs-built_in">print</span>(students[<span class="hljs-string">&quot;alice&quot;</span>][<span class="hljs-string">&quot;gpa&quot;</span>])   <span class="hljs-comment"># 3.9</span>
 </code></pre>
 </div>
 </div>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -296,7 +316,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" data-marpit-pagination="5" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+" lang="en-US" class="section" data-marpit-pagination="5" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -319,87 +339,85 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
-<h2 id="why-dict-lookup-is-fast--o1">Why Dict Lookup Is Fast — O(1)</h2>
+;" data-marpit-pagination-total="14">
+<h2 id="72-core-operations">7.2 Core Operations</h2>
+<p>Accessing, modifying, and querying dictionaries</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="14">
+<h2 id="accessing-items">Accessing Items</h2>
 <div class="cols">
 <div>
-<ul>
-<li>Dicts and sets use <strong>hash tables</strong>.</li>
-<li>Python computes <code>hash(key)</code> → jumps directly to the slot.</li>
-<li>Lookup time is <strong>O(1) average</strong> regardless of size.</li>
-<li>List <code>in</code> operator is <strong>O(n)</strong> — scans every element.</li>
-</ul>
-</div>
-<div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> time, random
+<h3 id="square-bracket-access">Square-bracket access</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">person = {<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">28</span>}
 
-n = <span class="hljs-number">1_000_000</span>
-big_list = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(n))
-big_dict = {i: <span class="hljs-literal">True</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)}
-target = n - <span class="hljs-number">1</span>   <span class="hljs-comment"># worst case</span>
+<span class="hljs-built_in">print</span>(person[<span class="hljs-string">&quot;name&quot;</span>])      <span class="hljs-comment"># Alice</span>
+<span class="hljs-comment"># person[&quot;email&quot;]          # KeyError!</span>
+</code></pre>
+<h3 id="safe-access-with-get">Safe access with <code>.get()</code></h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># returns None if key missing</span>
+<span class="hljs-built_in">print</span>(person.get(<span class="hljs-string">&quot;email&quot;</span>))        <span class="hljs-comment"># None</span>
 
-<span class="hljs-comment"># O(n) list scan</span>
-t = time.perf_counter()
-target <span class="hljs-keyword">in</span> big_list
-<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;list: <span class="hljs-subst">{time.perf_counter()-t:<span class="hljs-number">.5</span>f}</span>s&quot;</span>)
-
-<span class="hljs-comment"># O(1) dict lookup</span>
-t = time.perf_counter()
-target <span class="hljs-keyword">in</span> big_dict
-<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;dict: <span class="hljs-subst">{time.perf_counter()-t:<span class="hljs-number">.5</span>f}</span>s&quot;</span>)
+<span class="hljs-comment"># returns default if key missing</span>
+<span class="hljs-built_in">print</span>(person.get(<span class="hljs-string">&quot;email&quot;</span>, <span class="hljs-string">&quot;N/A&quot;</span>)) <span class="hljs-comment"># N/A</span>
 </code></pre>
 </div>
+<div>
+<h3 id="membership-testing">Membership testing</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-string">&quot;name&quot;</span> <span class="hljs-keyword">in</span> person      <span class="hljs-comment"># True</span>
+<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-keyword">in</span> person     <span class="hljs-comment"># False</span>
+<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> person <span class="hljs-comment"># True</span>
+</code></pre>
+<div class="callout rule">
+<p>Prefer <code>.get(key, default)</code> over <code>dict[key]</code> when the key might be absent — it avoids a <code>KeyError</code> without needing a try/except.</p>
 </div>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" class="section" data-marpit-pagination="6" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
-<h2 id="82-sets">8.2 Sets</h2>
-<p>Unordered collections of unique, hashable elements</p>
+</div>
+</div>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
@@ -447,63 +465,446 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
-<h2 id="sets--creation--operations">Sets — Creation &amp; Operations</h2>
+;" data-marpit-pagination-total="14">
+<h2 id="adding-updating-and-deleting">Adding, Updating, and Deleting</h2>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">a = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>}
-b = {<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>}
+<h3 id="add--update">Add / update</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">person[<span class="hljs-string">&quot;email&quot;</span>] = <span class="hljs-string">&quot;alice@example.com&quot;</span>  <span class="hljs-comment"># add</span>
+person[<span class="hljs-string">&quot;age&quot;</span>] = <span class="hljs-number">29</span>                     <span class="hljs-comment"># update</span>
 
-<span class="hljs-built_in">print</span>(a | b)   <span class="hljs-comment"># {1,2,3,4,5}  union</span>
-<span class="hljs-built_in">print</span>(a &amp; b)   <span class="hljs-comment"># {3}           intersection</span>
-<span class="hljs-built_in">print</span>(a - b)   <span class="hljs-comment"># {1,2}         difference</span>
-<span class="hljs-built_in">print</span>(a ^ b)   <span class="hljs-comment"># {1,2,4,5}    symmetric difference</span>
-
-<span class="hljs-comment"># Membership (O(1))</span>
-<span class="hljs-built_in">print</span>(<span class="hljs-number">3</span> <span class="hljs-keyword">in</span> a)   <span class="hljs-comment"># True</span>
-
-<span class="hljs-comment"># Deduplicate a list</span>
-unique = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>]))
+<span class="hljs-comment"># update multiple keys at once</span>
+person.update({<span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">30</span>, <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;Rolla&quot;</span>})
+</code></pre>
+<h3 id="delete">Delete</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">del</span> person[<span class="hljs-string">&quot;city&quot;</span>]           <span class="hljs-comment"># remove, no return</span>
+email = person.pop(<span class="hljs-string">&quot;email&quot;</span>)  <span class="hljs-comment"># remove, return value</span>
+last = person.popitem()      <span class="hljs-comment"># remove last inserted pair</span>
 </code></pre>
 </div>
 <div>
-<h3 id="frozenset--immutable-set">frozenset — immutable set</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">fs = <span class="hljs-built_in">frozenset</span>({<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>})
-<span class="hljs-comment"># fs.add(4)   ← AttributeError</span>
-
-<span class="hljs-comment"># Can be used as dict key or set element</span>
-graph = {<span class="hljs-built_in">frozenset</span>({<span class="hljs-number">1</span>,<span class="hljs-number">2</span>}): <span class="hljs-string">&quot;edge&quot;</span>}
+<h3 id="useful-inspection-methods">Useful inspection methods</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">person.keys()    <span class="hljs-comment"># dict_keys([...])</span>
+person.values()  <span class="hljs-comment"># dict_values([...])</span>
+person.items()   <span class="hljs-comment"># dict_items([(k,v), ...])</span>
+<span class="hljs-built_in">len</span>(person)      <span class="hljs-comment"># number of key-value pairs</span>
 </code></pre>
+<div class="callout warn">
+<p><code>dict.keys()</code>, <code>.values()</code>, and <code>.items()</code> return <strong>view objects</strong> — they reflect changes to the dict in real time.</p>
+</div>
+</div>
+</div>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" class="section" data-marpit-pagination="8" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="14">
+<h2 id="73-dictionary-patterns">7.3 Dictionary Patterns</h2>
+<p>Comprehensions, counting, defaults, and iteration</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="14">
+<h2 id="dictionary-comprehension">Dictionary Comprehension</h2>
+<p>Same idea as list comprehension — builds a dict in one expression.</p>
+<div class="cols">
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-comment"># basic: square each number</span>
+squares = {x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>)}
+<span class="hljs-comment"># {0:0, 1:1, 2:4, 3:9, 4:16, 5:25}</span>
+
+<span class="hljs-comment"># with filter: only even squares</span>
+even_sq = {x: x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>)
+           <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>}
+<span class="hljs-comment"># {0:0, 2:4, 4:16}</span>
+
+<span class="hljs-comment"># transform an existing dict</span>
+prices = {<span class="hljs-string">&quot;apple&quot;</span>: <span class="hljs-number">1.2</span>, <span class="hljs-string">&quot;banana&quot;</span>: <span class="hljs-number">0.5</span>}
+discounted = {k: v * <span class="hljs-number">0.9</span>
+              <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> prices.items()}
+</code></pre>
+</div>
+<div>
+<h3 id="invert-a-dictionary">Invert a dictionary</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">original = {<span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">2</span>, <span class="hljs-string">&quot;c&quot;</span>: <span class="hljs-number">3</span>}
+inverted = {v: k <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> original.items()}
+<span class="hljs-comment"># {1:&quot;a&quot;, 2:&quot;b&quot;, 3:&quot;c&quot;}</span>
+</code></pre>
+<div class="callout">
+<p>Inversion only works cleanly when values are unique. Duplicate values will overwrite each other.</p>
+</div>
+</div>
+</div>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="14">
+<h2 id="counting-patterns">Counting Patterns</h2>
+<div class="cols">
+<div>
+<h3 id="manual-counter">Manual counter</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">words = <span class="hljs-string">&quot;the cat sat on the mat&quot;</span>.split()
+
+counts = {}
+<span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> words:
+    counts[word] = counts.get(word, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>
+<span class="hljs-comment"># {&quot;the&quot;:2, &quot;cat&quot;:1, &quot;sat&quot;:1, ...}</span>
+</code></pre>
+<h3 id="counter--one-line"><code>Counter</code> — one line</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter
+
+counts = Counter(words)
+counts.most_common(<span class="hljs-number">3</span>)
+<span class="hljs-comment"># [(&quot;the&quot;, 2), (&quot;cat&quot;, 1), (&quot;sat&quot;, 1)]</span>
+
+<span class="hljs-comment"># combine two counters</span>
+c2 = Counter([<span class="hljs-string">&quot;the&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span>])
+<span class="hljs-built_in">print</span>(counts + c2)
+</code></pre>
+</div>
+<div>
+<h3 id="defaultdict--skip-the-guard"><code>defaultdict</code> — skip the guard</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict
+
+<span class="hljs-comment"># int factory: missing keys default to 0</span>
+word_count = defaultdict(<span class="hljs-built_in">int</span>)
+<span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> words:
+    word_count[word] += <span class="hljs-number">1</span>   <span class="hljs-comment"># no KeyError</span>
+
+<span class="hljs-comment"># list factory: group values by key</span>
+groups = defaultdict(<span class="hljs-built_in">list</span>)
+<span class="hljs-keyword">for</span> name, score <span class="hljs-keyword">in</span> records:
+    groups[name].append(score)
+</code></pre>
+<div class="callout">
+<p><code>Counter</code> is best for tallying. <code>defaultdict</code> is best for grouping or accumulating into containers.</p>
+</div>
+</div>
+</div>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" data-marpit-pagination="11" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="14">
+<h2 id="iterating-through-dictionaries">Iterating Through Dictionaries</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">d = {<span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;age&quot;</span>: <span class="hljs-number">28</span>, <span class="hljs-string">&quot;city&quot;</span>: <span class="hljs-string">&quot;Rolla&quot;</span>}
+</code></pre>
+<div class="cols">
+<div>
+<h3 id="keys-default">Keys (default)</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> d:
+    <span class="hljs-built_in">print</span>(key)
+<span class="hljs-comment"># name  age  city</span>
+</code></pre>
+<h3 id="values">Values</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> d.values():
+    <span class="hljs-built_in">print</span>(val)
+<span class="hljs-comment"># Alice  28  Rolla</span>
+</code></pre>
+</div>
+<div>
+<h3 id="key-value-pairs">Key-value pairs</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> key, val <span class="hljs-keyword">in</span> d.items():
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">{key}</span>: <span class="hljs-subst">{val}</span>&quot;</span>)
+<span class="hljs-comment"># name: Alice</span>
+<span class="hljs-comment"># age: 28</span>
+<span class="hljs-comment"># city: Rolla</span>
+</code></pre>
+<h3 id="sorted-iteration">Sorted iteration</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(d):
+    <span class="hljs-built_in">print</span>(key, d[key])
+</code></pre>
+</div>
+</div>
+<div class="callout warn">
+<p>Do not add or remove keys while iterating — it raises <code>RuntimeError</code>. Iterate over <code>list(d.items())</code> if you need to modify during the loop.</p>
+</div>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" data-marpit-pagination="12" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="14">
+<h2 id="why-dict-lookup-is-fast--o1">Why Dict Lookup Is Fast — O(1)</h2>
+<div class="cols">
+<div>
+<ul>
+<li>Dicts and sets use <strong>hash tables</strong>.</li>
+<li>Python computes <code>hash(key)</code> → jumps directly to the bucket.</li>
+<li>Lookup is <strong>O(1) average</strong> regardless of dict size.</li>
+<li>List <code>in</code> operator scans every element — <strong>O(n)</strong>.</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> time, random
+
+n = <span class="hljs-number">1_000_000</span>
+big_list = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(n))
+big_dict = {i: <span class="hljs-literal">True</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n)}
+target = n - <span class="hljs-number">1</span>   <span class="hljs-comment"># worst case for list</span>
+
+t = time.perf_counter()
+_ = target <span class="hljs-keyword">in</span> big_list
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;list: <span class="hljs-subst">{time.perf_counter()-t:<span class="hljs-number">.5</span>f}</span>s&quot;</span>)
+
+t = time.perf_counter()
+_ = target <span class="hljs-keyword">in</span> big_dict
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;dict: <span class="hljs-subst">{time.perf_counter()-t:<span class="hljs-number">.5</span>f}</span>s&quot;</span>)
+</code></pre>
+</div>
+<div>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
-<th><code>set</code></th>
-<th><code>frozenset</code></th>
+<th>Operation</th>
+<th><code>list</code></th>
+<th><code>dict</code> / <code>set</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Mutable</td>
-<td>✓</td>
-<td>✗</td>
+<td><code>x in c</code></td>
+<td>O(n)</td>
+<td>O(1) avg</td>
 </tr>
 <tr>
-<td>Hashable</td>
-<td>✗</td>
-<td>✓</td>
+<td><code>c[key]</code></td>
+<td>O(1) by index</td>
+<td>O(1) by key</td>
 </tr>
 <tr>
-<td>Dict key</td>
-<td>✗</td>
-<td>✓</td>
+<td>Insert</td>
+<td>O(1) append</td>
+<td>O(1) avg</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>O(n)</td>
+<td>O(1) avg</td>
 </tr>
 </tbody>
 </table>
+<div class="callout rule">
+<p><strong>Hashable keys</strong>: <code>int</code>, <code>str</code>, <code>float</code>, <code>tuple</code> (of hashables) are hashable. <code>list</code> and <code>dict</code> are not — they cannot be dict keys.</p>
+</div>
 </div>
 </div>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -526,7 +927,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+" lang="en-US" data-marpit-pagination="13" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -549,7 +950,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
+;" data-marpit-pagination-total="14">
 <h2 id="chapter-7--quick-reference">Chapter 7 — Quick Reference</h2>
 <table>
 <thead>
@@ -560,45 +961,49 @@ section::after { color: #aaa; font-size: 0.7em; }
 </thead>
 <tbody>
 <tr>
-<td>Create dict</td>
-<td><code>{&quot;key&quot;: value}</code> or <code>dict(key=value)</code></td>
+<td>Create</td>
+<td><code>{&quot;k&quot;: v}</code> · <code>dict(k=v)</code> · <code>dict.fromkeys(keys, 0)</code></td>
 </tr>
 <tr>
-<td>Safe get</td>
-<td><code>.get(key, default)</code></td>
+<td>Access</td>
+<td><code>d[key]</code> (KeyError if missing) · <code>d.get(key, default)</code> (safe)</td>
 </tr>
 <tr>
-<td>Iterate</td>
-<td><code>.keys()</code>, <code>.values()</code>, <code>.items()</code></td>
+<td>Add / update</td>
+<td><code>d[key] = val</code> · <code>d.update({...})</code></td>
 </tr>
 <tr>
-<td>Dict comprehension</td>
-<td><code>{k: v for k, v in ...}</code></td>
-</tr>
-<tr>
-<td>Counter</td>
-<td><code>Counter(seq)</code> → <code>.most_common(n)</code></td>
-</tr>
-<tr>
-<td>defaultdict</td>
-<td><code>defaultdict(int)</code> or <code>defaultdict(list)</code></td>
-</tr>
-<tr>
-<td>Set ops</td>
-<td><code>|</code> <code>&amp;</code> <code>-</code> <code>^</code> — union/intersection/diff/sym-diff</td>
+<td>Delete</td>
+<td><code>del d[key]</code> · <code>d.pop(key)</code> · <code>d.popitem()</code></td>
 </tr>
 <tr>
 <td>Membership</td>
-<td><code>x in s</code> — O(1) for dict/set, O(n) for list</td>
+<td><code>key in d</code> — O(1)</td>
 </tr>
 <tr>
-<td>Hashable keys</td>
-<td><code>int</code>, <code>str</code>, <code>tuple</code> (immutable types)</td>
+<td>Iterate</td>
+<td><code>d.keys()</code> · <code>d.values()</code> · <code>d.items()</code></td>
+</tr>
+<tr>
+<td>Comprehension</td>
+<td><code>{k: v for k, v in iterable}</code></td>
+</tr>
+<tr>
+<td>Count</td>
+<td><code>Counter(seq)</code> → <code>.most_common(n)</code></td>
+</tr>
+<tr>
+<td>Group</td>
+<td><code>defaultdict(list)</code> — no KeyError on first access</td>
+</tr>
+<tr>
+<td>Invert</td>
+<td><code>{v: k for k, v in d.items()}</code></td>
 </tr>
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-class="title" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-class="title" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -621,7 +1026,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" class="title" data-marpit-pagination="9" style="--paginate:true;--class:title;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+" lang="en-US" class="title" data-marpit-pagination="14" style="--paginate:true;--class:title;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -644,7 +1049,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="9">
+;" data-marpit-pagination-total="14">
 <h1 id="end-of-chapter-7">End of Chapter 7</h1>
 <p><em>Next: Chapter 8 — Strings</em></p>
 <p><em>string methods · regex · text analysis · word frequencies</em></p>
