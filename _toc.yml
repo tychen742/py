@@ -256,14 +256,10 @@ parts:
           - file: chapters/appendices/0202-virtual-environment
           - file: chapters/appendices/0203-the-notebook
           - file: chapters/appendices/0204-jupyter-bonus
-  - caption: "Bibliography"
-    numbered: false
+  - numbered: false
     chapters:
       - file: chapters/bibliography
         title: Bibliography
-  - caption: "Index"
-    numbered: false
-    chapters:
       - url: https://thinkpy.org/genindex.html
         title: Index
 #   title: Jupyter intro
