@@ -689,10 +689,14 @@ nav.bd-links a.bd-aftermatter-link {
     font-weight: 400;
     color: var(--pst-color-text-muted) !important;
     margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
-    padding: 0;
+    margin-bottom: 0;
+    padding: 0.075rem 0.25rem;
     text-decoration: none;
     box-shadow: none !important;
+}
+
+nav.bd-links a.bd-aftermatter-link + a.bd-aftermatter-link {
+    margin-top: 0.15rem;
 }
 
 nav.bd-links a.bd-aftermatter-link:hover {
