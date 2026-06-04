@@ -20,7 +20,7 @@ else
 fi
 
 # Expand ~ to actual home directory
-WORKSPACE_DIR=$(eval echo "$WORKSPACE_DIR")
+WORKSPACE_DIR="${WORKSPACE_DIR/#\~/$HOME}"
 
 SOURCE_CSS="$WORKSPACE_DIR/_static/custom.css"
 BUILD_CSS="$WORKSPACE_DIR/_build/html/_static/custom.css"
