@@ -675,3 +675,26 @@ main.bd-main .bd-content .bd-article-container li a:hover {
 .bd-sidebar-primary a svg {
     display: none !important;
 }
+
+/* Chapter Overview Slides: restore blue link color inside h2 */
+main.bd-main .bd-content .bd-article-container h2 a[href="overview.html"],
+main.bd-main .bd-content .bd-article-container h2 a[href="overview.html"] * {
+    color: var(--pst-color-primary) !important;
+}
+
+/* Bibliography and Index: hide redundant caption header, flatten link */
+nav.bd-links p.caption:has(+ ul a[href*="bibliography"]),
+nav.bd-links p.caption:has(+ ul a[href*="genindex"]) {
+    display: none !important;
+}
+
+nav.bd-links ul:has(> li > a[href*="bibliography"]),
+nav.bd-links ul:has(> li > a[href*="genindex"]) {
+    margin-top: 0.15rem !important;
+    padding-left: 0 !important;
+}
+
+nav.bd-links ul:has(> li > a[href*="bibliography"]) > li > a,
+nav.bd-links ul:has(> li > a[href*="genindex"]) > li > a {
+    font-weight: 400 !important;
+}
