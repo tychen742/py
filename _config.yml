@@ -26,6 +26,8 @@ sphinx:
     - sphinx_thebe
     - sphinxcontrib.mermaid
     - sphinxcontrib.bibtex
+  local_extensions:
+    appendix_numbering: .
   config:
     bibtex_bibfiles:
       - references.bib
