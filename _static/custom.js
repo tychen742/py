@@ -1,48 +1,48 @@
 console.log("Custom JS loaded!");
 
-// Convert appendix chapter numbers to letters (1→A, 2→B, …)
-(function () {
+// Convert appendix chapter numbers to letters (A, B, C ...)
+document.addEventListener('DOMContentLoaded', function () {
     function toAlpha(n) { return String.fromCharCode(64 + parseInt(n, 10)); }
     function convertNum(text) {
-        return text.replace(/^(\d+)(\.)/, (_, n, dot) => toAlpha(n) + dot);
+        return text.replace(/^(\d+)(\.)/, function(_, n, dot) { return toAlpha(n) + dot; });
     }
 
     // 1. Sidebar links under the "Appendices" caption — text is plain "1. Title"
-    document.querySelectorAll('.caption-text').forEach(caption => {
+    document.querySelectorAll('.caption-text').forEach(function(caption) {
         if (caption.textContent.trim() !== 'Appendices') return;
-        const ul = caption.closest('p').nextElementSibling;
+        var ul = caption.closest('p').nextElementSibling;
         if (!ul) return;
-        ul.querySelectorAll('a.reference').forEach(a => {
-            a.childNodes.forEach(node => {
+        ul.querySelectorAll('a.reference').forEach(function(a) {
+            a.childNodes.forEach(function(node) {
                 if (node.nodeType === Node.TEXT_NODE)
                     node.textContent = convertNum(node.textContent);
             });
         });
     });
 
-    // Detect appendix page: the active sidebar list is under "Appendices"
-    let onAppendixPage = false;
-    document.querySelectorAll('.caption-text').forEach(caption => {
+    // Detect appendix page: active sidebar list is under "Appendices"
+    var onAppendixPage = false;
+    document.querySelectorAll('.caption-text').forEach(function(caption) {
         if (caption.textContent.trim() === 'Appendices') {
-            const ul = caption.closest('p').nextElementSibling;
-            if (ul?.classList.contains('current')) onAppendixPage = true;
+            var ul = caption.closest('p').nextElementSibling;
+            if (ul && ul.classList.contains('current')) onAppendixPage = true;
         }
     });
     if (!onAppendixPage) return;
 
-    // 2. Page headings: <span class="section-number">1. </span>
-    document.querySelectorAll('.section-number').forEach(span => {
+    // 2. Page headings: <span class="section-number">
+    document.querySelectorAll('.section-number').forEach(function(span) {
         span.textContent = convertNum(span.textContent);
     });
 
-    // 3. Prev/next footer: only convert links that point into /appendices/
-    document.querySelectorAll('.left-prev[href], .right-next[href]').forEach(a => {
+    // 3. Prev/next footer: only convert links pointing into /appendices/
+    document.querySelectorAll('.left-prev[href], .right-next[href]').forEach(function(a) {
         if (a.href.includes('/appendices/'))
-            a.querySelectorAll('.section-number').forEach(span => {
+            a.querySelectorAll('.section-number').forEach(function(span) {
                 span.textContent = convertNum(span.textContent);
             });
     });
-})();
+});
 
 /*
 // Handle sidebar toggle using event delegation (more reliable)
