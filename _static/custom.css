@@ -688,11 +688,15 @@ nav.bd-links a.bd-aftermatter-link {
     font-size: var(--pst-sidebar-font-size, 0.85rem);
     font-weight: 400;
     color: var(--pst-color-text-muted) !important;
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     margin-bottom: 0;
     padding: 0.075rem 0.25rem;
     text-decoration: none;
     box-shadow: none !important;
+}
+
+nav.bd-links a.bd-aftermatter-link + a.bd-aftermatter-link {
+    margin-top: 0.1rem !important;
 }
 
 
