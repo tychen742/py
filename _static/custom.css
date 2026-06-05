@@ -688,9 +688,9 @@ nav.bd-links a.bd-aftermatter-link {
     font-size: var(--pst-sidebar-font-size, 0.85rem);
     font-weight: 400;
     color: var(--pst-color-text-muted) !important;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 0;
-    padding: 0.075rem 0.25rem;
+    padding: 0.075rem 0;
     text-decoration: none;
     box-shadow: none !important;
 }

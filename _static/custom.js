@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fix spacing: first aftermatter link gets separation; subsequent ones sit tight
     document.querySelectorAll('a.bd-aftermatter-link').forEach(function (link, i) {
-        link.style.marginTop = i === 0 ? '1rem' : '0.1rem';
+        link.style.marginTop = i === 0 ? '0.5rem' : '0.1rem';
     });
 
     // -----------------------------------------------------------
