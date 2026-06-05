@@ -695,9 +695,6 @@ nav.bd-links a.bd-aftermatter-link {
     box-shadow: none !important;
 }
 
-nav.bd-links a.bd-aftermatter-link + a.bd-aftermatter-link {
-    margin-top: 0.15rem;
-}
 
 nav.bd-links a.bd-aftermatter-link:hover {
     color: var(--pst-color-link-hover) !important;
