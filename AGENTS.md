@@ -24,17 +24,14 @@ Style: `guidelines/STYLE_GUIDE.md` in ~/ai_shared
 
 ### Content notebooks
 
-- Open with a section outline using the box-drawing style:
+- Open with a local table of contents generated from `##` headings:
 
-  ```text
-  ┌──────────────────────────────────────┐
-  │ Outline                              │
-  │                                      │
-  │ Section One                          │
-  │ Section Two                          │
-  │   o Subsection A                     │
-  └──────────────────────────────────────┘
+  ````markdown
+  ```{contents}
+  :local:
+  :depth: 2
   ```
+  ````
 
 ### Assignment section (per chapter)
 
