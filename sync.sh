@@ -1,1 +1,2 @@
-../../ai_shared/scripts/sync.sh
+#!/usr/bin/env bash
+exec "$HOME/.ty/scripts/sync.sh" book py "$@"
