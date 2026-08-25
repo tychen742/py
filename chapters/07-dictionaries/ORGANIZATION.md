@@ -18,7 +18,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 2. `0701-dictionaries.ipynb` — dictionary creation and mapping concepts
 3. `0702-dict-core-operations.ipynb` — lookup, mutation, deletion, membership, and iteration
 4. `0703-dict-patterns.ipynb` — dictionary comprehensions, counting, grouping, inversion, sorting, and tuple keys
-5. `assignments/preview.ipynb`, `assignments/homework.ipynb`, `assignments/lab.ipynb` — chapter assignments
+5. `assignments/preview.ipynb`, `assignments/lab.ipynb`, `assignments/homework.ipynb` — chapter assignments
 
 ## Source of Truth
 

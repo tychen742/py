@@ -12,11 +12,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/01-intro/assignments/preview
-                title: Preview Questions
-              - file: chapters/01-intro/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/01-intro/assignments/lab
                 title: Lab
+              - file: chapters/01-intro/assignments/homework
+                title: Homework
       - file: chapters/02-basics/0200-py-basics
         sections:
           - file: chapters/02-basics/0201-variables
@@ -33,11 +33,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/02-basics/assignments/preview
-                title: Preview Questions
-              - file: chapters/02-basics/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/02-basics/assignments/lab
                 title: Lab
+              - file: chapters/02-basics/assignments/homework
+                title: Homework
       - file: chapters/03-control-flow/0300-intro-control
         sections:
           - file: chapters/03-control-flow/0301-conditionals
@@ -46,11 +46,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/03-control-flow/assignments/preview
-                title: Preview Questions
-              - file: chapters/03-control-flow/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/03-control-flow/assignments/lab
                 title: Lab
+              - file: chapters/03-control-flow/assignments/homework
+                title: Homework
       - file: chapters/04-functions/0400-functions
         sections:
           - file: chapters/04-functions/0401-functions
@@ -62,11 +62,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/04-functions/assignments/preview
-                title: Preview Questions
-              - file: chapters/04-functions/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/04-functions/assignments/lab
                 title: Lab
+              - file: chapters/04-functions/assignments/homework
+                title: Homework
       - file: chapters/05-testing/0500-exception-testing
         title: Exceptions & Testing
         sections:
@@ -76,11 +76,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/05-testing/assignments/preview
-                title: Preview Questions
-              - file: chapters/05-testing/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/05-testing/assignments/lab
                 title: Lab
+              - file: chapters/05-testing/assignments/homework
+                title: Homework
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
@@ -94,11 +94,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/06-collections/assignments/preview
-                title: Preview Questions
-              - file: chapters/06-collections/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/06-collections/assignments/lab
                 title: Lab
+              - file: chapters/06-collections/assignments/homework
+                title: Homework
       - file: chapters/07-dictionaries/0700-intro-dictionaries
         title: Dictionaries
         sections:
@@ -111,11 +111,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/07-dictionaries/assignments/preview
-                title: Preview Questions
-              - file: chapters/07-dictionaries/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/07-dictionaries/assignments/lab
                 title: Lab
+              - file: chapters/07-dictionaries/assignments/homework
+                title: Homework
       - file: chapters/08-strings/0800-intro-strings
         title: Strings and Text
         sections:
@@ -126,11 +126,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/08-strings/assignments/preview
-                title: Preview Questions
-              - file: chapters/08-strings/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/08-strings/assignments/lab
                 title: Lab
+              - file: chapters/08-strings/assignments/homework
+                title: Homework
   - caption: "Part III: Program Design"
     numbered: true
     chapters:
@@ -147,11 +147,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/09-oop/assignments/preview
-                title: Preview Questions
-              - file: chapters/09-oop/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/09-oop/assignments/lab
                 title: Lab
+              - file: chapters/09-oop/assignments/homework
+                title: Homework
       - file: chapters/10-functional/1000-intro-func-prog
         title: FP
         sections:
@@ -163,11 +163,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/10-functional/assignments/preview
-                title: Preview Questions
-              - file: chapters/10-functional/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/10-functional/assignments/lab
                 title: Lab
+              - file: chapters/10-functional/assignments/homework
+                title: Homework
       - file: chapters/11-iter-gen/1100-intro-iter-gen
         title: Iterators & Generators
         sections:
@@ -177,11 +177,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/11-iter-gen/assignments/preview
-                title: Preview Questions
-              - file: chapters/11-iter-gen/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/11-iter-gen/assignments/lab
                 title: Lab
+              - file: chapters/11-iter-gen/assignments/homework
+                title: Homework
       - file: chapters/12-apis/1200-intro-apis
         title: APIs
         sections:
@@ -193,11 +193,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/12-apis/assignments/preview
-                title: Preview Questions
-              - file: chapters/12-apis/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/12-apis/assignments/lab
                 title: Lab
+              - file: chapters/12-apis/assignments/homework
+                title: Homework
   - caption: "Part IV: DSA"
     numbered: true
     chapters:
@@ -214,11 +214,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/13-abstract-data-structures/assignments/preview
-                title: Preview Questions
-              - file: chapters/13-abstract-data-structures/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/13-abstract-data-structures/assignments/lab
                 title: Lab
+              - file: chapters/13-abstract-data-structures/assignments/homework
+                title: Homework
       - file: chapters/14-algorithms/1400-intro-algorithms
         sections:
           - file: chapters/14-algorithms/1401-algorithms
@@ -228,11 +228,11 @@ parts:
             title: Assignments
             sections:
               - file: chapters/14-algorithms/assignments/preview
-                title: Preview Questions
-              - file: chapters/14-algorithms/assignments/homework
-                title: Homework
+                title: Preview
               - file: chapters/14-algorithms/assignments/lab
                 title: Lab
+              - file: chapters/14-algorithms/assignments/homework
+                title: Homework
   # - caption: "Select Topics"
   #   numbered: true
   #   chapters:

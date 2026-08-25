@@ -11,7 +11,7 @@ This chapter is currently split into:
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0100-py-intro.ipynb`
-   - What Python is, where it runs, how to use Jupyter
+   - What Python is, where it runs, how to use Jupyter, chapter flow, glossary
 2. `0101-programming.ipynb`
    - Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics
 3. `0102-basic-syntax.ipynb`
@@ -19,7 +19,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `0100-py-intro.ipynb`: What Python is, where it runs, how to use Jupyter.
+- `0100-py-intro.ipynb`: What Python is, where it runs, how to use Jupyter, chapter flow, glossary.
 - `0101-programming.ipynb`: Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics.
 - `0102-basic-syntax.ipynb`: Syntax rules, comments, print statements, first programs.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
@@ -43,6 +43,6 @@ Use `chapters/01-intro/*` as the only Chapter 01 track for planning, delivery, a
 ## Assignments
 
 - `assignments/index.ipynb` — Assignment section landing page
-- `assignments/preview.ipynb` — Preview questions
-- `assignments/homework.ipynb` — Homework questions
+- `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
+- `assignments/homework.ipynb` — Homework questions

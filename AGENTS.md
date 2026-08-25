@@ -37,9 +37,28 @@ Style: `guidelines/STYLE_GUIDE.md` in ~/ai_shared
 
 Three assignment types per chapter, appearing in the Jupyter Book left menu under Assignments:
 
-- Preview questions
-- Homework questions
-- Lab assignment
+- Preview
+- Lab
+- Homework
+
+In `_toc.yml`, assignment child pages appear in this exact order: `Preview`, `Lab`, then `Homework`. Use those exact titles. Do not use `Preview Questions` for the preview assignment label.
+
+Preview assignments should follow the DSM Chapter 01 preview model. They are short scored pre-class quizzes, not open-ended reflection prompts. Each `preview.ipynb` should:
+
+- Start with `# Preview`.
+- State the due date, point value, and that multiple submissions are allowed with the highest score kept.
+- Focus on checking familiarity with the chapter glossary and core terms before class.
+- Use multiple-choice questions with one correct answer per question.
+- Include SIS Login ID or Canvas identity handling when the book is connected to the quiz API.
+- Provide Submit and Reset controls, save attempts through the quiz API where available, and show immediate per-question feedback after submission.
+
+### Chapter Overview Slides
+
+Overview slide decks must be substantive enough for lecture use. When creating or revising `_html_extra/chapters/XX-name/overview.md`, expand thin decks rather than leaving a short outline: include the chapter setup, the main ideas from each section, at least one worked code example or discussion prompt per major section, and a closing recap or checkpoint.
+
+Slides should reuse the book's visual assets. Copy relevant figures, photos, diagrams, and table images from `figures/`, `_static/figures/`, chapter notebooks, or chapter material folders into a local slide asset folder such as `_html_extra/chapters/XX-name/assets/`, then reference the copied files from `overview.md`. Do not leave useful chapter figures or tables out of the deck when they clarify the concept.
+
+After editing `overview.md`, regenerate and commit the matching `overview.html`.
 
 ## Working Rules
 

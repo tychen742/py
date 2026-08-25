@@ -70,6 +70,6 @@ Chapter 04 planning and delivery are scoped to `chapters/04-functions/` only.
 ## Assignments
 
 - `assignments/index.ipynb` — Assignment section landing page
-- `assignments/preview.ipynb` — Preview questions
-- `assignments/homework.ipynb` — Homework questions
+- `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
+- `assignments/homework.ipynb` — Homework questions

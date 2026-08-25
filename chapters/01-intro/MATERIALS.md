@@ -19,7 +19,7 @@ This checklist is for building and delivering:
 
 ### `0100-py-intro.ipynb`
 
-- What Python is, where it runs, how to use Jupyter
+- What Python is, where it runs, how to use Jupyter, chapter flow, glossary
 
 ### `0101-programming.ipynb`
 
@@ -55,7 +55,7 @@ This checklist is for building and delivering:
 
 ## Chapter 01 Delivery Order (Recommended)
 
-1. `0100-py-intro.ipynb` — What Python is, where it runs, how to use Jupyter
+1. `0100-py-intro.ipynb` — What Python is, where it runs, how to use Jupyter, chapter flow, glossary
 2. `0101-programming.ipynb` — Programming learning habits, what programs and algorithms are, and binary/hex/ASCII basics
 3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, first programs
 
@@ -66,6 +66,6 @@ Chapter 01 planning and delivery are scoped to `chapters/01-intro/` only.
 ## Assignments
 
 - `assignments/index.ipynb` — Assignment section landing page
-- `assignments/preview.ipynb` — Preview questions
-- `assignments/homework.ipynb` — Homework questions
+- `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
+- `assignments/homework.ipynb` — Homework questions

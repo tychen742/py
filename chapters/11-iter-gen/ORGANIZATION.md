@@ -83,6 +83,6 @@ Use `chapters/11-iter-gen/*` as the only Chapter 11 track for planning, delivery
 ## Assignments
 
 - `assignments/index.ipynb` — Assignment section landing page
-- `assignments/preview.ipynb` — Preview questions
-- `assignments/homework.ipynb` — Homework questions
+- `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
+- `assignments/homework.ipynb` — Homework questions

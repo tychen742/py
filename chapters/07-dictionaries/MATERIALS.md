@@ -16,7 +16,7 @@ This checklist is for building and delivering:
 2. `0701-dictionaries.ipynb` — Dictionary overview, creation, keys, values, and mapping motivation
 3. `0702-dict-core-operations.ipynb` — Access, update, delete, membership, and iteration
 4. `0703-dict-patterns.ipynb` — Comprehensions, counting, `Counter`, `defaultdict`, inverting dictionaries, sorting by value, and hashable tuple keys
-5. `assignments/preview.ipynb`, `assignments/homework.ipynb`, `assignments/lab.ipynb` — Chapter assignments
+5. `assignments/preview.ipynb`, `assignments/lab.ipynb`, `assignments/homework.ipynb` — Chapter assignments
 
 Previous split dictionary pages are preserved in `materials/_archived/ch07-dict-split/`.
 
