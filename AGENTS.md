@@ -52,6 +52,8 @@ Preview assignments should follow the DSM Chapter 01 preview model. They are sho
 - Include SIS Login ID or Canvas identity handling when the book is connected to the quiz API.
 - Provide Submit and Reset controls, save attempts through the quiz API where available, and show immediate per-question feedback after submission.
 
+Lab assignments are extensions of the chapter's section exercises. Each `lab.ipynb` should contain exactly five lab questions that combine, extend, or apply the skills introduced in the chapter exercises. Do not introduce unrelated skills in the lab.
+
 ### Chapter Overview Slides
 
 Overview slide decks must be substantive enough for lecture use. When creating or revising `_html_extra/chapters/XX-name/overview.md`, expand thin decks rather than leaving a short outline: include the chapter setup, the main ideas from each section, at least one worked code example or discussion prompt per major section, and a closing recap or checkpoint.
