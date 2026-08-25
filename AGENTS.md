@@ -47,6 +47,7 @@ Preview assignments should follow the DSM Chapter 01 preview model. They are sho
 
 - Start with `# Preview`.
 - State the due date, point value, and that multiple submissions are allowed with the highest score kept.
+- Include about 10 multiple-choice questions and be scored out of 10 total points.
 - Focus on checking familiarity with the chapter glossary and core terms before class.
 - Use glossary terms in multiple-choice form, with one correct answer per question.
 - Do not include code-reading, output-prediction, full-code-writing, or other technical exercise questions in `preview.ipynb`; those belong in labs or homework.
