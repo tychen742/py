@@ -44,5 +44,5 @@ Use `chapters/01-intro/*` as the only Chapter 01 track for planning, delivery, a
 
 - `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview
-- `assignments/lab.ipynb` — Lab assignment
+- `assignments/lab.ipynb` — Lab assignment with about five technical runnable coding questions extending the section exercises
 - `assignments/homework.ipynb` — Homework questions

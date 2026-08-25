@@ -35,7 +35,7 @@ This checklist is for building and delivering:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
 - Lab tasks:
-  - Write and run a first Python program; experiment with print and comments
+  - Complete about five technical coding questions on first programs, expressions, formatted output, string-to-number conversion, and number-system/encoding helpers
 - Homework:
   - Short reflection: what is a program and why does syntax matter?
 - Grading anchors:
@@ -67,5 +67,5 @@ Chapter 01 planning and delivery are scoped to `chapters/01-intro/` only.
 
 - `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview
-- `assignments/lab.ipynb` — Lab assignment
+- `assignments/lab.ipynb` — Lab assignment with technical runnable coding questions
 - `assignments/homework.ipynb` — Homework questions
