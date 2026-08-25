@@ -15,13 +15,13 @@ Use this sequence to avoid overlap and keep pacing clear:
 2. `0101-programming.ipynb`
    - Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics
 3. `0102-basic-syntax.ipynb`
-   - Syntax rules, comments, print statements, first programs
+   - Syntax rules, comments, print statements, first programs, and runnable exercises that feed into Lab 01
 
 ## File Roles
 
 - `0100-py-intro.ipynb`: What Python is, where it runs, how to use Jupyter, chapter flow, glossary.
 - `0101-programming.ipynb`: Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics.
-- `0102-basic-syntax.ipynb`: Syntax rules, comments, print statements, first programs.
+- `0102-basic-syntax.ipynb`: Syntax rules, comments, print statements, first programs, and technical section exercises aligned with the Lab 01 coding questions.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Material Files

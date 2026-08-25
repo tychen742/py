@@ -28,13 +28,15 @@ This checklist is for building and delivering:
 
 ### `0102-basic-syntax.ipynb`
 
-- Syntax rules, comments, print statements, first programs
+- Syntax rules, comments, print statements, first programs, and technical exercises that prepare students for Lab 01
 
 ## Practice and Assessment Pack
 
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
+- Section exercises:
+  - `0102-basic-syntax.ipynb` includes runnable exercises for indentation, statement formatting, print/f-string output, input conversion, docstrings, object inspection, keywords, and module imports
 - Lab tasks:
   - Complete about five technical coding questions on first programs, expressions, formatted output, string-to-number conversion, and number-system/encoding helpers
 - Homework:
