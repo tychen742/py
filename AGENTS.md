@@ -49,6 +49,7 @@ Preview assignments should follow the DSM Chapter 01 preview model. They are sho
 - State the due date, point value, and that multiple submissions are allowed with the highest score kept.
 - Focus on checking familiarity with the chapter glossary and core terms before class.
 - Use multiple-choice questions with one correct answer per question.
+- Include lightweight technical questions when the chapter section supports them, especially code-reading or output-prediction questions adapted from the chapter exercises or lab pattern. Keep these questions multiple choice; do not require students to write full code in the preview.
 - Include SIS Login ID or Canvas identity handling when the book is connected to the quiz API.
 - Provide Submit and Reset controls, save attempts through the quiz API where available, and show immediate per-question feedback after submission.
 
