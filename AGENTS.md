@@ -54,7 +54,7 @@ Preview assignments should follow the DSM Chapter 01 preview model. They are sho
 - Include SIS Login ID or Canvas identity handling when the book is connected to the quiz API.
 - Provide Submit and Reset controls, save attempts through the quiz API where available, and show immediate per-question feedback after submission.
 
-Lab assignments are extensions of the chapter's section exercises. Each `lab.ipynb` should contain about five lab questions. Lab questions are technical: they should be runnable coding questions that combine, extend, or apply the skills introduced in the chapter exercises. Do not introduce unrelated skills or purely conceptual prompts in the lab.
+Lab assignments are extensions of the chapter's section exercises. Each `lab.ipynb` should contain about five lab questions. Format lab questions the same way section exercise questions are formatted in the chapter notebooks. Lab questions are technical: they should be runnable coding questions that combine, extend, or apply the skills introduced in the chapter exercises. Do not introduce unrelated skills or purely conceptual prompts in the lab.
 
 ### Chapter Overview Slides
 
