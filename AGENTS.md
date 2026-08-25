@@ -58,6 +58,8 @@ Lab assignments are extensions of the chapter's section exercises. Each `lab.ipy
 
 Overview slide decks must be substantive enough for lecture use. When creating or revising `_html_extra/chapters/XX-name/overview.md`, expand thin decks rather than leaving a short outline: include the chapter setup, the main ideas from each section, at least one worked code example or discussion prompt per major section, and a closing recap or checkpoint.
 
+Each chapter overview deck should contain around 30 slides. Use fewer only for a genuinely short chapter, and add more when the chapter has enough examples, figures, tables, or activities to support them.
+
 Slides should reuse the book's visual assets. Copy relevant figures, photos, diagrams, and table images from `figures/`, `_static/figures/`, chapter notebooks, or chapter material folders into a local slide asset folder such as `_html_extra/chapters/XX-name/assets/`, then reference the copied files from `overview.md`. Do not leave useful chapter figures or tables out of the deck when they clarify the concept.
 
 After editing `overview.md`, regenerate and commit the matching `overview.html`.
