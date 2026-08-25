@@ -12,6 +12,7 @@ This checklist is for building and delivering:
   - Python overview and ecosystem
   - Algorithms and programs
   - Basic syntax and print
+  - Expanded 30-slide chapter overview deck with local copies of relevant figures
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
 
@@ -48,6 +49,7 @@ This checklist is for building and delivering:
 - Shared starter code snippets
 - Any datasets or input files needed by exercises
 - Solution cells (tagged `hide-input`) for all exercises
+- Overview slide assets copied into `_html_extra/chapters/01-intro/assets/`
 
 ## Material Files
 

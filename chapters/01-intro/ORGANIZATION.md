@@ -39,6 +39,7 @@ Use `chapters/01-intro/*` as the only Chapter 01 track for planning, delivery, a
 - Add at least one checkpoint exercise per major section.
 - Ensure chapter outcomes align with any Chapter 01 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
+- Keep `_html_extra/chapters/01-intro/overview.md` at about 30 slides with section checkpoints, worked code examples, and local slide assets.
 
 ## Assignments
 
