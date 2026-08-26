@@ -1,0 +1,141 @@
+<?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/../lib/quiz-app.php';
+
+header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
+
+set_exception_handler(static function (Throwable $exception): void {
+    error_log('Python quiz API error: ' . $exception->getMessage());
+    http_response_code(500);
+    echo json_encode([
+        'ok' => false,
+        'error' => 'server_error',
+        'message' => $exception->getMessage(),
+    ], JSON_UNESCAPED_SLASHES);
+    exit;
+});
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    respond(405, ['ok' => false, 'error' => 'method_not_allowed']);
+}
+
+$input = json_decode((string) file_get_contents('php://input'), true);
+if (!is_array($input)) {
+    respond(400, ['ok' => false, 'error' => 'invalid_json']);
+}
+
+$quizId = sanitize_key((string) ($input['quiz_id'] ?? ''));
+$quiz = py_quiz_definition($quizId);
+if ($quiz === null) {
+    respond(404, ['ok' => false, 'error' => 'unknown_quiz']);
+}
+
+$answers = $input['answers'] ?? null;
+if (!is_array($answers)) {
+    respond(400, ['ok' => false, 'error' => 'answers_required']);
+}
+
+$graded = py_grade_attempt($quiz, $answers);
+$config = py_load_config();
+$ltiUser = py_current_lti_user($config);
+
+$identity = [
+    'student_user_id' => is_array($ltiUser) ? ($ltiUser['student_user_id'] ?? null) : null,
+    'canvas_course_id' => nullable_string($input['canvas_course_id'] ?? null, 64),
+    'canvas_assignment_id' => nullable_string($input['canvas_assignment_id'] ?? null, 64),
+    'canvas_user_id' => nullable_string($ltiUser['canvas_user_id'] ?? $input['canvas_user_id'] ?? null, 64),
+    'student_identifier' => nullable_string($ltiUser['student_identifier'] ?? $input['student_identifier'] ?? null, 255),
+    'lti_deployment_id' => nullable_string($ltiUser['lti_deployment_id'] ?? null, 255),
+    'lti_context_id' => nullable_string($ltiUser['lti_context_id'] ?? null, 255),
+    'lti_resource_link_id' => nullable_string($ltiUser['lti_resource_link_id'] ?? null, 255),
+    'lti_lineitem_url' => nullable_string($ltiUser['lti_lineitem_url'] ?? null, 2048),
+];
+
+$sync = [
+    'status' => 'pending',
+    'error' => null,
+    'synced_at' => null,
+];
+
+if (py_canvas_ready($config, $identity)) {
+    try {
+        $pdo = py_database_ready($config);
+        if (py_is_score_at_least_best($pdo, $quizId, $identity, (float) $graded['score'])) {
+            $sync = py_sync_canvas_grade($config['canvas'], $identity, (string) $graded['score']);
+        } else {
+            $sync = [
+                'status' => 'skipped',
+                'error' => 'Lower than the student\'s highest attempt for this assignment.',
+                'synced_at' => null,
+            ];
+        }
+    } catch (Throwable $exception) {
+        error_log('Python quiz best-score check failed before Canvas sync: ' . $exception->getMessage());
+        $sync = py_sync_canvas_grade($config['canvas'], $identity, (string) $graded['score']);
+    }
+}
+
+$attemptId = py_save_attempt_record($config, [
+    'quiz_id' => $quizId,
+    'chapter' => $quiz['chapter'],
+    'assignment_slug' => $quiz['assignment_slug'],
+    'student_user_id' => $identity['student_user_id'],
+    'score' => $graded['score'],
+    'max_score' => $graded['max_score'],
+    'answers_json' => json_encode($graded['answers'], JSON_UNESCAPED_SLASHES),
+    'feedback_json' => json_encode($graded['feedback'], JSON_UNESCAPED_SLASHES),
+    'canvas_course_id' => $identity['canvas_course_id'],
+    'canvas_assignment_id' => $identity['canvas_assignment_id'],
+    'canvas_user_id' => $identity['canvas_user_id'],
+    'lti_deployment_id' => $identity['lti_deployment_id'],
+    'lti_context_id' => $identity['lti_context_id'],
+    'lti_resource_link_id' => $identity['lti_resource_link_id'],
+    'lti_lineitem_url' => $identity['lti_lineitem_url'],
+    'student_identifier' => $identity['student_identifier'],
+    'canvas_sync_status' => $sync['status'],
+    'canvas_sync_error' => $sync['error'],
+    'synced_to_canvas_at' => $sync['synced_at'],
+    'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+    'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+]);
+
+respond(200, [
+    'ok' => true,
+    'attempt_id' => $attemptId,
+    'quiz_id' => $quizId,
+    'score' => $graded['score'],
+    'max_score' => $graded['max_score'],
+    'feedback' => $graded['feedback'],
+    'canvas_sync_status' => $sync['status'],
+]);
+
+function respond(int $status, array $payload): never
+{
+    http_response_code($status);
+    echo json_encode($payload, JSON_UNESCAPED_SLASHES);
+    exit;
+}
+
+function sanitize_key(string $value): string
+{
+    return preg_replace('/[^a-zA-Z0-9_.-]/', '', $value) ?? '';
+}
+
+function nullable_string(mixed $value, int $maxLength): ?string
+{
+    if ($value === null) {
+        return null;
+    }
+    $value = trim((string) $value);
+    if ($value === '') {
+        return null;
+    }
+    return substr($value, 0, $maxLength);
+}
