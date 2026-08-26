@@ -42,7 +42,11 @@ function py_load_config(): array
     }
     $paths[] = '/var/www/py_private/quiz_config.php';
     $paths[] = '/home/tychen/py_private/quiz_config.php';
-    $paths[] = '/var/www/dsm_private/quiz_config.php';
+
+    $allowDsmFallback = strtolower((string) getenv('PY_ALLOW_DSM_CONFIG_FALLBACK'));
+    if (in_array($allowDsmFallback, ['1', 'true', 'yes'], true)) {
+        $paths[] = '/var/www/dsm_private/quiz_config.php';
+    }
 
     foreach ($paths as $path) {
         if (is_readable($path)) {
@@ -213,16 +217,14 @@ function py_quiz_definition(string $quizId): ?array
             'questions' => [
                 'q1' => 'A',
                 'q2' => 'B',
-                'q3' => 'A',
+                'q3' => 'C',
                 'q4' => 'B',
-                'q5' => 'C',
-                'q6' => 'A',
-                'q7' => 'B',
-                'q8' => 'A',
-                'q9' => 'A',
+                'q5' => 'D',
+                'q6' => 'B',
+                'q7' => 'C',
+                'q8' => 'B',
+                'q9' => 'B',
                 'q10' => 'C',
-                'q11' => 'A',
-                'q12' => 'B',
             ],
         ],
     ];
@@ -287,13 +289,15 @@ function py_grade_attempt(array $quiz, array $answers): array
 function py_grade_lab_attempt(array $lab, array $answers): array
 {
     $normalizedAnswers = [
-        'phase_1' => py_normalize_lab_string($answers['phase_1'] ?? ''),
-        'phase_6' => py_normalize_lab_string($answers['phase_6'] ?? ''),
-        'data_visualization_tool' => py_normalize_lab_string($answers['data_visualization_tool'] ?? ''),
-        'manual_binary' => py_normalize_lab_binary($answers['manual_binary'] ?? ''),
-        'subtotal' => py_normalize_lab_string($answers['subtotal'] ?? ''),
-        'tax' => py_normalize_lab_string($answers['tax'] ?? ''),
-        'total' => py_normalize_lab_string($answers['total'] ?? ''),
+        'first_line' => py_normalize_lab_string($answers['first_line'] ?? ''),
+        'second_line' => py_normalize_lab_string($answers['second_line'] ?? ''),
+        'total_pages' => py_normalize_lab_string($answers['total_pages'] ?? ''),
+        'average_pages_per_day' => py_normalize_lab_string($answers['average_pages_per_day'] ?? ''),
+        'summary_line' => py_normalize_lab_string($answers['summary_line'] ?? ''),
+        'sep_line' => py_normalize_lab_string($answers['sep_line'] ?? ''),
+        'total_minutes' => py_normalize_lab_string($answers['total_minutes'] ?? ''),
+        'hours_part' => py_normalize_lab_string($answers['hours_part'] ?? ''),
+        'minutes_part' => py_normalize_lab_string($answers['minutes_part'] ?? ''),
         'c_decimal' => py_normalize_lab_string($answers['c_decimal'] ?? ''),
         'c_binary' => py_normalize_lab_binary($answers['c_binary'] ?? ''),
         'item_hex' => py_normalize_lab_hex($answers['item_hex'] ?? ''),
@@ -303,24 +307,27 @@ function py_grade_lab_attempt(array $lab, array $answers): array
     $score = 0.0;
 
     $q1Score = 0.0;
-    $q1Score += py_normalize_lab_phrase($normalizedAnswers['phase_1']) === 'business understanding' ? 1.0 : 0.0;
-    $q1Score += py_normalize_lab_phrase($normalizedAnswers['phase_6']) === 'deployment' ? 1.0 : 0.0;
+    $q1Score += $normalizedAnswers['first_line'] === 'ThinkPy Chapter 1' ? 1.0 : 0.0;
+    $q1Score += $normalizedAnswers['second_line'] === 'Python is running.' ? 1.0 : 0.0;
     $score += $q1Score;
     $feedback['q1'] = py_lab_feedback($q1Score, 2.0);
 
-    $visualizationTools = ['matplotlib', 'seaborn', 'plotly'];
-    $q2Score = in_array(py_normalize_lab_phrase($normalizedAnswers['data_visualization_tool']), $visualizationTools, true) ? 2.0 : 0.0;
+    $q2Score = 0.0;
+    $q2Score += py_lab_number_equals($normalizedAnswers['total_pages'], 93.0) ? 1.0 : 0.0;
+    $q2Score += py_lab_number_equals($normalizedAnswers['average_pages_per_day'], 18.6) ? 1.0 : 0.0;
     $score += $q2Score;
     $feedback['q2'] = py_lab_feedback($q2Score, 2.0);
 
-    $q3Score = in_array($normalizedAnswers['manual_binary'], ['0b1101', '1101'], true) ? 2.0 : 0.0;
+    $q3Score = 0.0;
+    $q3Score += $normalizedAnswers['summary_line'] === 'sales: 128 rows x 5 columns' ? 1.0 : 0.0;
+    $q3Score += $normalizedAnswers['sep_line'] === 'sales|128|5' ? 1.0 : 0.0;
     $score += $q3Score;
     $feedback['q3'] = py_lab_feedback($q3Score, 2.0);
 
     $q4Score = 0.0;
-    $q4Score += py_lab_number_equals($normalizedAnswers['subtotal'], 75.0) ? (2.0 / 3.0) : 0.0;
-    $q4Score += py_lab_number_equals($normalizedAnswers['tax'], 6.19) ? (2.0 / 3.0) : 0.0;
-    $q4Score += py_lab_number_equals($normalizedAnswers['total'], 81.19) ? (2.0 / 3.0) : 0.0;
+    $q4Score += py_lab_number_equals($normalizedAnswers['total_minutes'], 135.0) ? (2.0 / 3.0) : 0.0;
+    $q4Score += py_lab_number_equals($normalizedAnswers['hours_part'], 2.0) ? (2.0 / 3.0) : 0.0;
+    $q4Score += py_lab_number_equals($normalizedAnswers['minutes_part'], 15.0) ? (2.0 / 3.0) : 0.0;
     $score += $q4Score;
     $feedback['q4'] = py_lab_feedback($q4Score, 2.0);
 

@@ -30,7 +30,7 @@ Do not commit production secrets. Put configuration outside the repository, then
 
 On the current production server, `/home/tychen/py_private/quiz_config.php` is also supported. Keep that directory outside the public web root and grant Apache read access with a narrow ACL.
 
-If no Python-specific private config exists, the production code can reuse `/var/www/dsm_private/quiz_config.php` for database credentials. Python data still stays separate because this API uses `py_quiz_users` and `py_quiz_attempts` tables.
+Do not point the Python API at DSM's private config in production. The code only considers `/var/www/dsm_private/quiz_config.php` when `PY_ALLOW_DSM_CONFIG_FALLBACK` is explicitly set to `1`, `true`, or `yes`; that fallback is for emergency local migration only. Use a Python-specific config so admin sessions, database credentials, Canvas settings, and LTI settings stay isolated from DSM.
 
 Example:
 
