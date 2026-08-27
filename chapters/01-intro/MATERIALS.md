@@ -40,7 +40,9 @@ This checklist is for building and delivering:
 - Lab tasks:
   - Complete about five technical coding questions on first programs, expressions, formatted output, string-to-number conversion, and number-system/encoding helpers
 - Homework:
-  - Short reflection: what is a program and why does syntax matter?
+  - Five management/case-framed true/false concept checks and five technical coding questions that extend the lab or cover essential gaps, including syntax debugging, running-count updates, type inspection after conversion, stakeholder messages, and combined audit tags
+  - True/false homework questions use the DSM two-cell pattern: a visible markdown question/radio-button cell followed by a hidden solution cell; question labels use compact bold text rather than markdown headings
+  - Technical homework questions use the same two-cell pattern as lab questions: an interactive code prompt cell followed by a hidden solution cell
 - Grading anchors:
   - Correctness
   - Code clarity and style

@@ -46,4 +46,4 @@ Use `chapters/01-intro/*` as the only Chapter 01 track for planning, delivery, a
 - `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment with about five technical runnable coding questions extending the section exercises
-- `assignments/homework.ipynb` — Homework questions
+- `assignments/homework.ipynb`: post-class homework with five management/case-framed true/false concept checks and five technical coding questions that extend the lab or cover essential gaps, including syntax debugging, running-count updates, type inspection after conversion, stakeholder messages, and combined audit tags. True/false homework questions use the DSM two-cell format: one visible markdown question/radio-button cell followed by one hidden solution cell, with compact bold question labels instead of markdown headings. Technical homework questions use the lab-style two-cell format: one interactive code prompt cell followed by one hidden solution cell.

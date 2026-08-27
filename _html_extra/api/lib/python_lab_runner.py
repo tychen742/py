@@ -14,6 +14,7 @@ ALLOWED_CALLS = {
     "hex": hex,
     "str": str,
     "float": float,
+    "type": type,
 }
 
 ALLOWED_NODES = (

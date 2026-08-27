@@ -399,14 +399,42 @@ function py_lab_definition(string $labId): ?array
     return $labs[$labId] ?? null;
 }
 
+function py_homework_definition(string $homeworkId): ?array
+{
+    $homework = [
+        'ch01-homework' => [
+            'chapter' => '01-intro',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch01',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "ThinkPy homework\nChapter 1 is about first programs",
+                'q7' => "Open tickets: 9",
+                'q8' => "Before: <class 'str'>\nAfter: <class 'int'>",
+                'q9' => "North region needs 6 follow-up calls.",
+                'q10' => "Audit tag: A-65-0xff",
+            ],
+        ],
+    ];
+
+    return $homework[$homeworkId] ?? null;
+}
+
 function py_assignment_definition(string $assignmentId): ?array
 {
-    return py_quiz_definition($assignmentId) ?? py_lab_definition($assignmentId);
+    return py_quiz_definition($assignmentId) ?? py_lab_definition($assignmentId) ?? py_homework_definition($assignmentId);
 }
 
 function py_all_assignment_definitions(): array
 {
-    $assignmentIds = ['ch01-preview', 'ch01-lab'];
+    $assignmentIds = ['ch01-preview', 'ch01-lab', 'ch01-homework'];
     $assignments = [];
     foreach ($assignmentIds as $assignmentId) {
         $definition = py_assignment_definition($assignmentId);
@@ -652,6 +680,71 @@ function py_grade_lab_code_attempt(array $lab, array $codeByQuestion, array $gra
         'score' => round($score, 2),
         'max_score' => (float) ($lab['max_score'] ?? 10),
         'answers' => ['code' => $normalizedCode],
+        'feedback' => $feedback,
+    ];
+}
+
+function py_grade_homework_attempt(array $homework, array $answers, array $codeByQuestion, array $graderConfig = []): array
+{
+    $feedback = [];
+    $normalizedAnswers = [];
+    $score = 0.0;
+
+    foreach (($homework['tf_answers'] ?? []) as $question => $correctAnswer) {
+        $submitted = strtoupper(trim((string) ($answers[$question] ?? '')));
+        if ($submitted === 'T') {
+            $submitted = 'TRUE';
+        } elseif ($submitted === 'F') {
+            $submitted = 'FALSE';
+        }
+
+        $accepted = $submitted === $correctAnswer;
+        $itemScore = $accepted ? 1.0 : 0.0;
+        $score += $itemScore;
+        $normalizedAnswers[$question] = $submitted !== '' ? $submitted : null;
+        $feedback[$question] = [
+            'correct' => $accepted,
+            'score' => $itemScore,
+            'max_score' => 1.0,
+            'message' => $submitted === ''
+                ? 'No answer submitted.'
+                : ($accepted ? 'Accepted.' : 'Try again.'),
+        ];
+    }
+
+    $normalizedCode = [];
+    foreach (($homework['code_outputs'] ?? []) as $question => $expectedOutput) {
+        $code = (string) ($codeByQuestion[$question] ?? '');
+        $normalizedCode[$question] = py_limit_lab_code($code, (int) ($graderConfig['max_code_bytes'] ?? 12000));
+        $run = py_run_lab_code_cell($normalizedCode[$question], $graderConfig);
+        $actualOutput = py_normalize_lab_output((string) ($run['stdout'] ?? ''));
+        $expectedNormalized = py_normalize_lab_output((string) $expectedOutput);
+        $accepted = !empty($run['ok']) && $actualOutput === $expectedNormalized;
+        $itemScore = $accepted ? 1.0 : 0.0;
+        $score += $itemScore;
+
+        $message = $accepted ? 'Accepted.' : 'Output did not match.';
+        if (empty($run['ok']) && !empty($run['error'])) {
+            $message = (string) $run['error'];
+        }
+
+        $feedback[$question] = [
+            'correct' => $accepted,
+            'score' => $itemScore,
+            'max_score' => 1.0,
+            'message' => $message,
+            'stdout' => $actualOutput,
+            'stderr' => py_limit_lab_code((string) ($run['stderr'] ?? ''), 2000),
+        ];
+    }
+
+    return [
+        'score' => round($score, 2),
+        'max_score' => (float) ($homework['max_score'] ?? 10),
+        'answers' => [
+            'tf' => $normalizedAnswers,
+            'code' => $normalizedCode,
+        ],
         'feedback' => $feedback,
     ];
 }
