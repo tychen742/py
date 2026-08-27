@@ -7,7 +7,8 @@ header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
 $config = py_load_config();
-$user = py_current_lti_user($config);
+$pdo = py_database_ready($config);
+$user = py_current_student_user($pdo, $config);
 
 if ($user === null) {
     echo json_encode([

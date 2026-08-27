@@ -234,4 +234,84 @@ const thebeObserver = new MutationObserver(function () {
         msg.textContent = 'live code: ';
     }
 });
-thebeObserver.observe(document.body, { childList: true, subtree: true });
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.body) {
+        thebeObserver.observe(document.body, { childList: true, subtree: true });
+    }
+});
+
+// Add student account panel at the bottom of the left sidebar.
+function addStudentAccountPanel() {
+    var nav = document.querySelector('nav.bd-links');
+    if (!nav) return;
+
+    // Find the sidebar container - either sidebar-primary-items__start or the sidebar itself
+    var sidebarSection = nav.closest('.sidebar-primary-items__start')
+        || nav.closest('.bd-sidebar-primary')
+        || nav.parentElement;
+    if (!sidebarSection || sidebarSection.querySelector('.bd-student-links')) return;
+
+    var navItem = nav.closest('.sidebar-primary-item');
+    if (navItem) navItem.classList.add('bd-nav-scroll');
+
+    var currentPath = window.location.pathname + window.location.search + window.location.hash;
+    var wrapper = document.createElement('div');
+    wrapper.className = 'bd-student-links';
+
+    var header = document.createElement('button');
+    header.type = 'button';
+    header.className = 'bd-student-header';
+    header.setAttribute('aria-expanded', 'false');
+    header.setAttribute('aria-label', 'Student account menu');
+
+    var avatar = document.createElement('div');
+    avatar.className = 'bd-student-avatar';
+
+    header.appendChild(avatar);
+    wrapper.appendChild(header);
+
+    var actions = document.createElement('div');
+    actions.className = 'bd-student-actions';
+
+    var login = document.createElement('a');
+    login.className = 'bd-student-button';
+    login.href = '/api/student/login.php?next=' + encodeURIComponent(currentPath);
+    login.textContent = 'Login';
+
+    actions.appendChild(login);
+    wrapper.appendChild(actions);
+
+    header.addEventListener('click', function () {
+        var isOpen = wrapper.classList.toggle('is-open');
+        header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    sidebarSection.appendChild(wrapper);
+
+    fetch('/api/v1/session.php', { credentials: 'same-origin' })
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (payload) {
+            if (!payload || !payload.authenticated || !payload.identity) return;
+
+            var scores = document.createElement('a');
+            scores.className = 'bd-student-button';
+            scores.href = '/api/student/scores.php';
+            scores.textContent = 'My Scores';
+            actions.replaceChildren(scores);
+        })
+        .catch(function () {});
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    addStudentAccountPanel();
+
+    var sidebar = document.querySelector('.bd-sidebar-primary');
+    if (!sidebar || sidebar.querySelector('.bd-student-links')) return;
+
+    var accountObserver = new MutationObserver(function () {
+        addStudentAccountPanel();
+        if (sidebar.querySelector('.bd-student-links')) {
+            accountObserver.disconnect();
+        }
+    });
+    accountObserver.observe(sidebar, { childList: true, subtree: true });
+});

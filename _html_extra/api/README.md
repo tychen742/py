@@ -24,13 +24,13 @@ Saved fields include:
 
 ## Production Configuration
 
-Do not commit production secrets. Put configuration outside the repository, then point `PY_QUIZ_CONFIG` to it or use the default path:
+Do not commit production secrets. Put configuration outside the repository, then point `PY_QUIZ_CONFIG` to it or use the production default path:
 
-`/var/www/py_private/quiz_config.php`
+`/home/tychen/py_private/quiz_config.php`
 
-On the current production server, `/home/tychen/py_private/quiz_config.php` is also supported. Keep that directory outside the public web root and grant Apache read access with a narrow ACL.
+The legacy `/var/www/py_private/quiz_config.php` path is supported only as a fallback. Keep real credentials outside the public web root.
 
-Do not point the Python API at DSM's private config in production. The code only considers `/var/www/dsm_private/quiz_config.php` when `PY_ALLOW_DSM_CONFIG_FALLBACK` is explicitly set to `1`, `true`, or `yes`; that fallback is for emergency local migration only. Use a Python-specific config so admin sessions, database credentials, Canvas settings, and LTI settings stay isolated from DSM.
+Do not reuse `/var/www/dsm_private/quiz_config.php` for production Python grading. The Python API stores data in `py_quiz_users` and `py_quiz_attempts`; DSM uses its own `quiz_users` and `quiz_attempts` tables.
 
 Example:
 
@@ -47,6 +47,28 @@ return [
         'base_url' => 'https://YOUR_CANVAS_DOMAIN',
         'access_token' => 'CHANGE_ME',
         'enabled' => true,
+    ],
+    'course' => [
+        'allowed_student_identifiers' => [
+            'esbkfx',
+            'ajc95b',
+            'ndj5zb',
+            'cspf8h',
+            'jatykb',
+            'cmzfn5',
+            'tcn85',
+        ],
+        'students' => [
+            [
+                'student_identifier' => 'ajc95b',
+                'display_name' => 'Student Name',
+                'email' => 'student@example.edu',
+                'password_hash' => 'PASTE_PASSWORD_HASH_HERE',
+            ],
+        ],
+    ],
+    'student_auth' => [
+        'require_authenticated_submissions' => true,
     ],
     'lti' => [
         'enabled' => true,
@@ -76,9 +98,15 @@ Create the password hash on the server:
 php -r 'echo password_hash("CHANGE_ME", PASSWORD_DEFAULT), PHP_EOL;'
 ```
 
-For local development, if no config is found, the API tries SQLite at `/tmp/py_quiz_attempts.sqlite`. If the server does not have the needed PDO driver, the endpoint falls back to a newline-delimited JSON file at `/var/www/py_private/py_quiz_attempts.jsonl` so student submissions are still captured.
+For local development, if no config is found, the API tries SQLite at `/tmp/py_quiz_attempts.sqlite`. If the primary database save fails, the endpoint falls back to a newline-delimited JSON file at `/var/www/py_private/py_quiz_attempts.jsonl` so student submissions are still captured.
 
 The JSONL fallback is a safety net, not the preferred production store. Configure MySQL/MariaDB before using the Canvas sync job for a class.
+
+In production, each successful MySQL submission is also copied to an SQLite backup file. The default backup path is:
+
+`/home/tychen/py_private/backups/py_quiz_attempts_backup.sqlite`
+
+The backup directory must be writable by the web server group. The admin module reads from MySQL, not from this backup file; use the backup only for recovery.
 
 ## Admin Gradebook
 
@@ -95,6 +123,18 @@ The admin module supports:
 - manual sync of pending or failed attempts to Canvas
 
 The admin module requires a working PDO database connection. It does not read from the JSONL fallback store directly.
+
+## Student Authentication
+
+Student rows are stored in `py_quiz_users` with `role = 'student'`. The API creates or updates these rows from `course.allowed_student_identifiers`, `course.students`, or Canvas LTI launches.
+
+Use `course.students` when you want direct student password login. Store only password hashes created with `password_hash`, not plaintext passwords. Students can sign in at:
+
+`/api/student/login.php`
+
+When `student_auth.require_authenticated_submissions` is `true`, preview and lab endpoints reject submissions without a Canvas LTI session or student password session. In that mode the submitted SIS Login ID is not trusted; the API uses the authenticated database user instead.
+
+When `student_auth.require_university_email_verification` is `true`, a student must complete the first-login code flow before password login is accepted. The code is sent to a university email whose local part matches the student identifier, such as `ajc95b@umsystem.edu`.
 
 ## Canvas LTI 1.3 Login
 
@@ -121,7 +161,9 @@ Use this workflow until the Canvas LTI tool is installed by an admin:
 5. Review submissions in `https://thinkpy.org/api/admin/`.
 6. Export Canvas CSV from the admin page and upload it in Canvas Gradebook.
 
-Manual submissions save in MySQL, but they do not automatically verify Canvas identity. LTI launch remains the preferred production identity path.
+Manual submissions save in MySQL, but they do not automatically verify Canvas identity unless `student_auth.require_authenticated_submissions` is enabled and students sign in first. LTI launch remains the preferred production identity path.
+
+If `course.allowed_student_identifiers` is configured, the API normalizes each submitted identifier by lowercasing it and removing any email domain, then rejects attempts from IDs outside that list.
 
 ## Later Canvas Sync
 

@@ -17,10 +17,30 @@ function py_load_config(): array
         ],
         'file_store' => [
             'path' => '/var/www/py_private/py_quiz_attempts.jsonl',
+            'sqlite_backup_path' => '/home/tychen/py_private/backups/py_quiz_attempts_backup.sqlite',
+            'sqlite_backup_enabled' => true,
+        ],
+        'course' => [
+            'allowed_student_identifiers' => [],
         ],
         'auth' => [
             'session_name' => 'py_quiz_admin',
             'bootstrap_admins' => [],
+        ],
+        'student_auth' => [
+            'session_name' => 'py_student',
+            'require_authenticated_submissions' => false,
+            'require_university_email_verification' => false,
+            'allowed_email_domains' => ['umsystem.edu', 'mst.edu'],
+            'verification_code_minutes' => 20,
+            'email_from' => 'no-reply@thinkpy.org',
+            'smtp' => [
+                'host' => null,
+                'port' => 587,
+                'username' => null,
+                'password' => null,
+                'secure' => 'tls',
+            ],
         ],
         'lti' => [
             'enabled' => false,
@@ -40,8 +60,8 @@ function py_load_config(): array
     if (is_string($envPath) && $envPath !== '') {
         $paths[] = $envPath;
     }
-    $paths[] = '/var/www/py_private/quiz_config.php';
     $paths[] = '/home/tychen/py_private/quiz_config.php';
+    $paths[] = '/var/www/py_private/quiz_config.php';
 
     $allowDsmFallback = strtolower((string) getenv('PY_ALLOW_DSM_CONFIG_FALLBACK'));
     if (in_array($allowDsmFallback, ['1', 'true', 'yes'], true)) {
@@ -73,6 +93,32 @@ function py_connect_database(array $database): PDO
     );
 }
 
+function py_normalize_student_identifier(?string $identifier): string
+{
+    $identifier = strtolower(trim((string) $identifier));
+    return preg_replace('/@.*$/', '', $identifier) ?? $identifier;
+}
+
+function py_student_identifier_allowed(array $config, ?string $identifier): bool
+{
+    $allowed = $config['course']['allowed_student_identifiers'] ?? [];
+    if (!is_array($allowed) || count($allowed) === 0) {
+        return true;
+    }
+
+    $normalizedIdentifier = py_normalize_student_identifier($identifier);
+    if ($normalizedIdentifier === '') {
+        return false;
+    }
+
+    $normalizedAllowed = array_map(
+        static fn (mixed $value): string => py_normalize_student_identifier((string) $value),
+        $allowed
+    );
+
+    return in_array($normalizedIdentifier, $normalizedAllowed, true);
+}
+
 function py_initialize_schema(PDO $pdo): void
 {
     $driver = (string) $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
@@ -89,9 +135,19 @@ function py_initialize_schema(PDO $pdo): void
             password_hash VARCHAR(255) NULL,
             status VARCHAR(32) NOT NULL DEFAULT \'active\',
             canvas_user_id VARCHAR(64) NULL,
+            student_identifier VARCHAR(255) NULL,
+            email_verified_at DATETIME NULL,
+            verification_code_hash VARCHAR(255) NULL,
+            verification_code_expires_at DATETIME NULL,
+            last_login_at DATETIME NULL,
             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
         )'
     );
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'student_identifier', 'VARCHAR(255) NULL');
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'email_verified_at', 'DATETIME NULL');
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'verification_code_hash', 'VARCHAR(255) NULL');
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'verification_code_expires_at', 'DATETIME NULL');
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'last_login_at', 'DATETIME NULL');
 
     $pdo->exec(
         'CREATE TABLE IF NOT EXISTS py_quiz_attempts (
@@ -198,11 +254,84 @@ function py_seed_admins(PDO $pdo, array $config): void
     }
 }
 
+function py_seed_course_students(PDO $pdo, array $config): void
+{
+    $students = [];
+    foreach (($config['course']['students'] ?? []) as $student) {
+        if (is_array($student)) {
+            $students[] = $student;
+        }
+    }
+
+    foreach (($config['course']['allowed_student_identifiers'] ?? []) as $identifier) {
+        $students[] = ['student_identifier' => (string) $identifier];
+    }
+
+    foreach ($students as $student) {
+        $identifier = py_normalize_student_identifier((string) ($student['student_identifier'] ?? $student['sis_login_id'] ?? ''));
+        if ($identifier === '') {
+            continue;
+        }
+
+        $email = trim((string) ($student['email'] ?? ''));
+        $displayName = trim((string) ($student['display_name'] ?? $student['name'] ?? $identifier));
+        $passwordHash = (string) ($student['password_hash'] ?? '');
+
+        $stmt = $pdo->prepare(
+            'SELECT id FROM py_quiz_users
+             WHERE LOWER(student_identifier) = LOWER(:student_identifier)
+                OR LOWER(email) = LOWER(:email)
+             LIMIT 1'
+        );
+        $stmt->execute([
+            'student_identifier' => $identifier,
+            'email' => $email !== '' ? $email : $identifier . '@student.local',
+        ]);
+        $existing = $stmt->fetch();
+
+        if (is_array($existing)) {
+            $sql = 'UPDATE py_quiz_users
+                    SET student_identifier = :student_identifier,
+                        display_name = :display_name,
+                        role = \'student\',
+                        status = \'active\'';
+            $params = [
+                'student_identifier' => $identifier,
+                'display_name' => $displayName,
+                'id' => (int) $existing['id'],
+            ];
+            if ($email !== '') {
+                $sql .= ', email = :email';
+                $params['email'] = $email;
+            }
+            if ($passwordHash !== '') {
+                $sql .= ', password_hash = :password_hash';
+                $params['password_hash'] = $passwordHash;
+            }
+            $sql .= ' WHERE id = :id';
+            $pdo->prepare($sql)->execute($params);
+            continue;
+        }
+
+        $insert = $pdo->prepare(
+            'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, student_identifier)
+             VALUES (:email, :display_name, \'student\', :password_hash, \'active\', NULL, :student_identifier)'
+        );
+        $insert->execute([
+            'email' => $email !== '' ? $email : $identifier . '@student.local',
+            'display_name' => $displayName,
+            'password_hash' => $passwordHash !== '' ? $passwordHash : null,
+            'student_identifier' => $identifier,
+        ]);
+    }
+}
+
 function py_database_ready(array $config): PDO
 {
     $pdo = py_connect_database($config['database']);
     py_initialize_schema($pdo);
     py_seed_admins($pdo, $config);
+    py_seed_course_students($pdo, $config);
     return $pdo;
 }
 
@@ -217,14 +346,16 @@ function py_quiz_definition(string $quizId): ?array
             'questions' => [
                 'q1' => 'A',
                 'q2' => 'B',
-                'q3' => 'C',
+                'q3' => 'A',
                 'q4' => 'B',
-                'q5' => 'D',
-                'q6' => 'B',
-                'q7' => 'C',
-                'q8' => 'B',
-                'q9' => 'B',
+                'q5' => 'C',
+                'q6' => 'A',
+                'q7' => 'B',
+                'q8' => 'A',
+                'q9' => 'A',
                 'q10' => 'C',
+                'q11' => 'A',
+                'q12' => 'B',
             ],
         ],
     ];
@@ -289,15 +420,13 @@ function py_grade_attempt(array $quiz, array $answers): array
 function py_grade_lab_attempt(array $lab, array $answers): array
 {
     $normalizedAnswers = [
-        'first_line' => py_normalize_lab_string($answers['first_line'] ?? ''),
-        'second_line' => py_normalize_lab_string($answers['second_line'] ?? ''),
-        'total_pages' => py_normalize_lab_string($answers['total_pages'] ?? ''),
-        'average_pages_per_day' => py_normalize_lab_string($answers['average_pages_per_day'] ?? ''),
-        'summary_line' => py_normalize_lab_string($answers['summary_line'] ?? ''),
-        'sep_line' => py_normalize_lab_string($answers['sep_line'] ?? ''),
-        'total_minutes' => py_normalize_lab_string($answers['total_minutes'] ?? ''),
-        'hours_part' => py_normalize_lab_string($answers['hours_part'] ?? ''),
-        'minutes_part' => py_normalize_lab_string($answers['minutes_part'] ?? ''),
+        'phase_1' => py_normalize_lab_string($answers['phase_1'] ?? ''),
+        'phase_6' => py_normalize_lab_string($answers['phase_6'] ?? ''),
+        'data_visualization_tool' => py_normalize_lab_string($answers['data_visualization_tool'] ?? ''),
+        'manual_binary' => py_normalize_lab_binary($answers['manual_binary'] ?? ''),
+        'subtotal' => py_normalize_lab_string($answers['subtotal'] ?? ''),
+        'tax' => py_normalize_lab_string($answers['tax'] ?? ''),
+        'total' => py_normalize_lab_string($answers['total'] ?? ''),
         'c_decimal' => py_normalize_lab_string($answers['c_decimal'] ?? ''),
         'c_binary' => py_normalize_lab_binary($answers['c_binary'] ?? ''),
         'item_hex' => py_normalize_lab_hex($answers['item_hex'] ?? ''),
@@ -307,27 +436,24 @@ function py_grade_lab_attempt(array $lab, array $answers): array
     $score = 0.0;
 
     $q1Score = 0.0;
-    $q1Score += $normalizedAnswers['first_line'] === 'ThinkPy Chapter 1' ? 1.0 : 0.0;
-    $q1Score += $normalizedAnswers['second_line'] === 'Python is running.' ? 1.0 : 0.0;
+    $q1Score += py_normalize_lab_phrase($normalizedAnswers['phase_1']) === 'business understanding' ? 1.0 : 0.0;
+    $q1Score += py_normalize_lab_phrase($normalizedAnswers['phase_6']) === 'deployment' ? 1.0 : 0.0;
     $score += $q1Score;
     $feedback['q1'] = py_lab_feedback($q1Score, 2.0);
 
-    $q2Score = 0.0;
-    $q2Score += py_lab_number_equals($normalizedAnswers['total_pages'], 93.0) ? 1.0 : 0.0;
-    $q2Score += py_lab_number_equals($normalizedAnswers['average_pages_per_day'], 18.6) ? 1.0 : 0.0;
+    $visualizationTools = ['matplotlib', 'seaborn', 'plotly'];
+    $q2Score = in_array(py_normalize_lab_phrase($normalizedAnswers['data_visualization_tool']), $visualizationTools, true) ? 2.0 : 0.0;
     $score += $q2Score;
     $feedback['q2'] = py_lab_feedback($q2Score, 2.0);
 
-    $q3Score = 0.0;
-    $q3Score += $normalizedAnswers['summary_line'] === 'sales: 128 rows x 5 columns' ? 1.0 : 0.0;
-    $q3Score += $normalizedAnswers['sep_line'] === 'sales|128|5' ? 1.0 : 0.0;
+    $q3Score = in_array($normalizedAnswers['manual_binary'], ['0b1101', '1101'], true) ? 2.0 : 0.0;
     $score += $q3Score;
     $feedback['q3'] = py_lab_feedback($q3Score, 2.0);
 
     $q4Score = 0.0;
-    $q4Score += py_lab_number_equals($normalizedAnswers['total_minutes'], 135.0) ? (2.0 / 3.0) : 0.0;
-    $q4Score += py_lab_number_equals($normalizedAnswers['hours_part'], 2.0) ? (2.0 / 3.0) : 0.0;
-    $q4Score += py_lab_number_equals($normalizedAnswers['minutes_part'], 15.0) ? (2.0 / 3.0) : 0.0;
+    $q4Score += py_lab_number_equals($normalizedAnswers['subtotal'], 75.0) ? (2.0 / 3.0) : 0.0;
+    $q4Score += py_lab_number_equals($normalizedAnswers['tax'], 6.19) ? (2.0 / 3.0) : 0.0;
+    $q4Score += py_lab_number_equals($normalizedAnswers['total'], 81.19) ? (2.0 / 3.0) : 0.0;
     $score += $q4Score;
     $feedback['q4'] = py_lab_feedback($q4Score, 2.0);
 
@@ -399,10 +525,14 @@ function py_save_attempt_record(array $config, array $attempt): int|string
 {
     try {
         $pdo = py_database_ready($config);
-        return py_save_attempt($pdo, $attempt);
+        $attemptId = py_save_attempt($pdo, $attempt);
+        py_save_attempt_sqlite_backup($config['file_store'], $attempt);
+        return $attemptId;
     } catch (Throwable $exception) {
         error_log('Python quiz database save failed, using file fallback: ' . $exception->getMessage());
-        return py_save_attempt_file($config['file_store'], $attempt, $exception->getMessage());
+        $attemptId = py_save_attempt_file($config['file_store'], $attempt, $exception->getMessage());
+        py_save_attempt_sqlite_backup($config['file_store'], $attempt);
+        return $attemptId;
     }
 }
 
@@ -446,6 +576,31 @@ function py_save_attempt_file(array $fileStore, array $attempt, string $storageW
     }
 
     return $attemptId;
+}
+
+function py_save_attempt_sqlite_backup(array $fileStore, array $attempt): void
+{
+    if (($fileStore['sqlite_backup_enabled'] ?? true) === false) {
+        return;
+    }
+
+    try {
+        $path = (string) ($fileStore['sqlite_backup_path'] ?? (sys_get_temp_dir() . '/py_quiz_attempts_backup.sqlite'));
+        $directory = dirname($path);
+        if (!is_dir($directory) && !@mkdir($directory, 0770, true) && !is_dir($directory)) {
+            $path = sys_get_temp_dir() . '/py_quiz_attempts_backup.sqlite';
+        }
+
+        $pdo = py_connect_database([
+            'dsn' => 'sqlite:' . $path,
+            'username' => null,
+            'password' => null,
+        ]);
+        py_initialize_schema($pdo);
+        py_save_attempt($pdo, $attempt);
+    } catch (Throwable $exception) {
+        error_log('Python quiz SQLite backup failed: ' . $exception->getMessage());
+    }
 }
 
 function py_canvas_ready(array $config, array $identity): bool
@@ -502,6 +657,49 @@ function py_is_score_at_least_best(PDO $pdo, string $quizId, array $identity, fl
 {
     $bestScore = py_find_existing_best_score($pdo, $quizId, $identity);
     return $bestScore === null || $score >= $bestScore - 0.001;
+}
+
+function py_attempt_summary(PDO $pdo, string $quizId, array $identity): array
+{
+    if (
+        !empty($identity['canvas_course_id'])
+        && !empty($identity['canvas_assignment_id'])
+        && !empty($identity['canvas_user_id'])
+    ) {
+        $stmt = $pdo->prepare(
+            'SELECT COUNT(*) AS attempt_count, MAX(score) AS best_score
+             FROM py_quiz_attempts
+             WHERE quiz_id = :quiz_id
+               AND canvas_course_id = :canvas_course_id
+               AND canvas_assignment_id = :canvas_assignment_id
+               AND canvas_user_id = :canvas_user_id'
+        );
+        $stmt->execute([
+            'quiz_id' => $quizId,
+            'canvas_course_id' => $identity['canvas_course_id'],
+            'canvas_assignment_id' => $identity['canvas_assignment_id'],
+            'canvas_user_id' => $identity['canvas_user_id'],
+        ]);
+    } elseif (!empty($identity['student_identifier'])) {
+        $stmt = $pdo->prepare(
+            'SELECT COUNT(*) AS attempt_count, MAX(score) AS best_score
+             FROM py_quiz_attempts
+             WHERE quiz_id = :quiz_id
+               AND student_identifier = :student_identifier'
+        );
+        $stmt->execute([
+            'quiz_id' => $quizId,
+            'student_identifier' => $identity['student_identifier'],
+        ]);
+    } else {
+        return ['attempt_count' => 0, 'best_score' => null];
+    }
+
+    $row = $stmt->fetch() ?: [];
+    return [
+        'attempt_count' => (int) ($row['attempt_count'] ?? 0),
+        'best_score' => ($row['best_score'] ?? null) === null ? null : (float) $row['best_score'],
+    ];
 }
 
 function py_sync_canvas_grade(array $canvas, array $identity, string $postedGrade): array
@@ -561,6 +759,57 @@ function py_list_attempts(PDO $pdo, int $limit = 200): array
     );
     $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
     $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function py_list_student_attempts(PDO $pdo, int $studentUserId, int $limit = 200): array
+{
+    $stmt = $pdo->prepare(
+        'SELECT id, quiz_id, chapter, assignment_slug, score, max_score,
+                canvas_sync_status, submitted_at
+         FROM py_quiz_attempts
+         WHERE student_user_id = :student_user_id
+         ORDER BY submitted_at DESC, id DESC
+         LIMIT :limit'
+    );
+    $stmt->bindValue(':student_user_id', $studentUserId, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function py_list_student_score_summary(PDO $pdo, int $studentUserId): array
+{
+    $stmt = $pdo->prepare(
+        'SELECT quiz_id, assignment_slug, COUNT(*) AS attempt_count,
+                MAX(score) AS best_score, MAX(max_score) AS max_score,
+                MAX(submitted_at) AS last_submitted_at
+         FROM py_quiz_attempts
+         WHERE student_user_id = :student_user_id
+         GROUP BY quiz_id, assignment_slug
+         ORDER BY quiz_id ASC'
+    );
+    $stmt->execute(['student_user_id' => $studentUserId]);
+    return $stmt->fetchAll();
+}
+
+function py_list_admin_score_report(PDO $pdo): array
+{
+    $stmt = $pdo->query(
+        'SELECT
+             COALESCE(u.student_identifier, qa.student_identifier, qa.canvas_user_id, \'Unknown\') AS student_identifier,
+             COALESCE(u.display_name, \'\') AS display_name,
+             qa.quiz_id,
+             qa.assignment_slug,
+             COUNT(*) AS attempt_count,
+             MAX(qa.score) AS best_score,
+             MAX(qa.max_score) AS max_score,
+             MAX(qa.submitted_at) AS last_submitted_at
+         FROM py_quiz_attempts qa
+         LEFT JOIN py_quiz_users u ON u.id = qa.student_user_id
+         GROUP BY student_identifier, display_name, qa.quiz_id, qa.assignment_slug
+         ORDER BY student_identifier ASC, qa.quiz_id ASC'
+    );
     return $stmt->fetchAll();
 }
 
@@ -658,6 +907,405 @@ function py_start_lti_session(array $config): void
         'samesite' => 'None',
     ]);
     session_start();
+}
+
+function py_start_student_session(array $config): void
+{
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        return;
+    }
+    $sessionName = (string) ($config['student_auth']['session_name'] ?? 'py_student');
+    session_name($sessionName);
+    if (isset($_COOKIE[$sessionName]) && preg_match('/^[a-zA-Z0-9,-]{16,128}$/', (string) $_COOKIE[$sessionName])) {
+        session_id((string) $_COOKIE[$sessionName]);
+    }
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
+    session_start();
+}
+
+function py_start_fresh_student_session(array $config): void
+{
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_write_close();
+        $_SESSION = [];
+    }
+    session_name((string) ($config['student_auth']['session_name'] ?? 'py_student'));
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
+    session_id(py_random_token());
+    session_start();
+}
+
+function py_submission_auth_required(array $config): bool
+{
+    return !empty($config['student_auth']['require_authenticated_submissions']);
+}
+
+function py_student_email_verification_required(array $config): bool
+{
+    return !empty($config['student_auth']['require_university_email_verification']);
+}
+
+function py_find_student_for_login(PDO $pdo, string $identifier): ?array
+{
+    $normalized = py_normalize_student_identifier($identifier);
+    if ($normalized === '') {
+        return null;
+    }
+
+    $stmt = $pdo->prepare(
+        'SELECT id, email, display_name, role, status, password_hash, student_identifier,
+                email_verified_at, verification_code_hash, verification_code_expires_at
+         FROM py_quiz_users
+         WHERE role = \'student\'
+           AND status = \'active\'
+           AND (
+                LOWER(email) = LOWER(:identifier)
+                OR LOWER(student_identifier) = LOWER(:normalized_identifier)
+           )
+         LIMIT 1'
+    );
+    $stmt->execute([
+        'identifier' => trim($identifier),
+        'normalized_identifier' => $normalized,
+    ]);
+    $student = $stmt->fetch();
+    return is_array($student) ? $student : null;
+}
+
+function py_university_email_allowed(array $config, string $studentIdentifier, string $email): bool
+{
+    $email = strtolower(trim($email));
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }
+
+    [$localPart, $domain] = explode('@', $email, 2);
+    $allowedDomains = array_map('strtolower', array_map('strval', $config['student_auth']['allowed_email_domains'] ?? []));
+    if ($allowedDomains !== [] && !in_array($domain, $allowedDomains, true)) {
+        return false;
+    }
+
+    return py_normalize_student_identifier($localPart) === py_normalize_student_identifier($studentIdentifier);
+}
+
+function py_send_student_verification_code(PDO $pdo, array $config, string $identifier, string $email): bool
+{
+    $student = py_find_student_for_login($pdo, $identifier);
+    if (!is_array($student)) {
+        return false;
+    }
+
+    $studentIdentifier = (string) ($student['student_identifier'] ?: py_normalize_student_identifier((string) $student['email']));
+    if (!py_university_email_allowed($config, $studentIdentifier, $email)) {
+        return false;
+    }
+
+    $code = (string) random_int(100000, 999999);
+    $minutes = max(5, (int) ($config['student_auth']['verification_code_minutes'] ?? 20));
+    $expiresAt = gmdate('Y-m-d H:i:s', time() + ($minutes * 60));
+
+    $stmt = $pdo->prepare(
+        'UPDATE py_quiz_users
+         SET email = :email,
+             verification_code_hash = :verification_code_hash,
+             verification_code_expires_at = :verification_code_expires_at
+         WHERE id = :id'
+    );
+    $stmt->execute([
+        'email' => strtolower(trim($email)),
+        'verification_code_hash' => password_hash($code, PASSWORD_DEFAULT),
+        'verification_code_expires_at' => $expiresAt,
+        'id' => (int) $student['id'],
+    ]);
+
+    $subject = 'Your ThinkPy verification code';
+    $body = "Your ThinkPy verification code is {$code}.\n\nThis code expires in {$minutes} minutes.";
+    if (!py_send_email($config, strtolower(trim($email)), $subject, $body)) {
+        error_log('Python student verification email failed for user id ' . (int) $student['id']);
+        return false;
+    }
+
+    return true;
+}
+
+function py_verify_student_email_code(PDO $pdo, string $identifier, string $code, string $newPassword): bool
+{
+    $student = py_find_student_for_login($pdo, $identifier);
+    if (!is_array($student)) {
+        return false;
+    }
+
+    if (strlen($newPassword) < 10) {
+        return false;
+    }
+
+    $hash = (string) ($student['verification_code_hash'] ?? '');
+    $expiresAt = strtotime((string) ($student['verification_code_expires_at'] ?? ''));
+    if ($hash === '' || $expiresAt === false || $expiresAt < time()) {
+        return false;
+    }
+
+    if (!password_verify(trim($code), $hash)) {
+        return false;
+    }
+
+    $stmt = $pdo->prepare(
+        'UPDATE py_quiz_users
+         SET email_verified_at = CURRENT_TIMESTAMP,
+             password_hash = :password_hash,
+             verification_code_hash = NULL,
+             verification_code_expires_at = NULL
+         WHERE id = :id'
+    );
+    $stmt->execute([
+        'password_hash' => password_hash($newPassword, PASSWORD_DEFAULT),
+        'id' => (int) $student['id'],
+    ]);
+    return true;
+}
+
+function py_send_student_verification_link(PDO $pdo, array $config, string $email, string $target = '/'): bool
+{
+    $email = strtolower(trim($email));
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }
+
+    [$localPart] = explode('@', $email, 2);
+    $identifier = py_normalize_student_identifier($localPart);
+    $student = py_find_student_for_login($pdo, $identifier);
+    if (!is_array($student)) {
+        return false;
+    }
+
+    $studentIdentifier = (string) ($student['student_identifier'] ?: py_normalize_student_identifier((string) $student['email']));
+    if (!py_university_email_allowed($config, $studentIdentifier, $email)) {
+        return false;
+    }
+
+    $token = bin2hex(random_bytes(16));
+    $minutes = max(5, (int) ($config['student_auth']['verification_code_minutes'] ?? 20));
+    $expiresAt = gmdate('Y-m-d H:i:s', time() + ($minutes * 60));
+
+    $stmt = $pdo->prepare(
+        'UPDATE py_quiz_users
+         SET email = :email,
+             verification_code_hash = :verification_code_hash,
+             verification_code_expires_at = :verification_code_expires_at
+         WHERE id = :id'
+    );
+    $stmt->execute([
+        'email' => $email,
+        'verification_code_hash' => py_token_fingerprint($token),
+        'verification_code_expires_at' => $expiresAt,
+        'id' => (int) $student['id'],
+    ]);
+
+    $link = 'https://thinkpy.org/api/student/create-password.php?uid=' . rawurlencode((string) $student['id'])
+        . '&token=' . rawurlencode($token)
+        . '&next=' . rawurlencode(py_safe_target($target));
+    $subject = 'Create your ThinkPy password';
+    $body = "Use this link to create or reset your ThinkPy password:\n\n{$link}\n\nThis link expires in {$minutes} minutes.";
+    if (!py_send_email($config, $email, $subject, $body)) {
+        error_log('Python student verification link email failed for user id ' . (int) $student['id']);
+        return false;
+    }
+
+    return true;
+}
+
+function py_verify_student_email_token(PDO $pdo, string $token, string $newPassword, ?int $userId = null): ?string
+{
+    $token = trim($token);
+    if ($token === '' || strlen($newPassword) < 10) {
+        return null;
+    }
+
+    if ($userId !== null && $userId > 0) {
+        $stmt = $pdo->prepare(
+            'SELECT id, student_identifier, email, verification_code_hash, verification_code_expires_at
+             FROM py_quiz_users
+             WHERE id = :id
+               AND role = \'student\'
+               AND status = \'active\'
+               AND verification_code_hash IS NOT NULL
+               AND verification_code_expires_at IS NOT NULL'
+        );
+        $stmt->execute(['id' => $userId]);
+    } else {
+        $stmt = $pdo->query(
+            'SELECT id, student_identifier, email, verification_code_hash, verification_code_expires_at
+             FROM py_quiz_users
+             WHERE role = \'student\'
+               AND status = \'active\'
+               AND verification_code_hash IS NOT NULL
+               AND verification_code_expires_at IS NOT NULL'
+        );
+    }
+
+    foreach ($stmt as $student) {
+        $expiresAt = strtotime((string) ($student['verification_code_expires_at'] ?? ''));
+        if ($expiresAt === false || $expiresAt < time()) {
+            continue;
+        }
+        if (!py_token_matches($token, (string) ($student['verification_code_hash'] ?? ''))) {
+            continue;
+        }
+
+        $update = $pdo->prepare(
+            'UPDATE py_quiz_users
+             SET email_verified_at = CURRENT_TIMESTAMP,
+                 password_hash = :password_hash,
+                 verification_code_hash = NULL,
+                 verification_code_expires_at = NULL
+             WHERE id = :id'
+        );
+        $update->execute([
+            'password_hash' => password_hash($newPassword, PASSWORD_DEFAULT),
+            'id' => (int) $student['id'],
+        ]);
+
+        return (string) ($student['student_identifier'] ?: py_normalize_student_identifier((string) $student['email']));
+    }
+
+    return null;
+}
+
+function py_safe_target(string $target): string
+{
+    if ($target === '' || $target[0] !== '/' || str_starts_with($target, '//')) {
+        return '/';
+    }
+    return $target;
+}
+
+function py_token_fingerprint(string $token): string
+{
+    return 'sha256:' . hash('sha256', $token);
+}
+
+function py_token_matches(string $token, string $storedHash): bool
+{
+    if (str_starts_with($storedHash, 'sha256:')) {
+        return hash_equals($storedHash, py_token_fingerprint($token));
+    }
+    return password_verify($token, $storedHash);
+}
+
+function py_send_email(array $config, string $to, string $subject, string $body): bool
+{
+    $from = (string) ($config['student_auth']['email_from'] ?? 'no-reply@thinkpy.org');
+    $smtp = $config['student_auth']['smtp'] ?? [];
+    if (is_array($smtp) && !empty($smtp['host']) && !empty($smtp['username']) && !empty($smtp['password'])) {
+        return py_send_smtp_email($smtp, $from, $to, $subject, $body);
+    }
+
+    $headers = "From: {$from}\r\nContent-Type: text/plain; charset=UTF-8";
+    return mail($to, $subject, $body, $headers);
+}
+
+function py_send_smtp_email(array $smtp, string $from, string $to, string $subject, string $body): bool
+{
+    if (!filter_var($from, FILTER_VALIDATE_EMAIL) || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }
+
+    $host = (string) $smtp['host'];
+    $port = (int) ($smtp['port'] ?? 587);
+    $secure = strtolower((string) ($smtp['secure'] ?? 'tls'));
+    $username = (string) $smtp['username'];
+    $password = (string) $smtp['password'];
+    $remote = ($secure === 'ssl' ? 'ssl://' : '') . $host . ':' . $port;
+    $errno = 0;
+    $errstr = '';
+    $socket = stream_socket_client($remote, $errno, $errstr, 20, STREAM_CLIENT_CONNECT);
+    if (!is_resource($socket)) {
+        error_log('Python SMTP connect failed: ' . $errstr);
+        return false;
+    }
+    stream_set_timeout($socket, 20);
+
+    try {
+        py_smtp_expect($socket, [220]);
+        py_smtp_command($socket, 'EHLO thinkpy.org', [250]);
+        if ($secure === 'tls') {
+            py_smtp_command($socket, 'STARTTLS', [220]);
+            if (!stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+                throw new RuntimeException('SMTP STARTTLS failed.');
+            }
+            py_smtp_command($socket, 'EHLO thinkpy.org', [250]);
+        }
+        py_smtp_command($socket, 'AUTH LOGIN', [334]);
+        py_smtp_command($socket, base64_encode($username), [334]);
+        py_smtp_command($socket, base64_encode($password), [235]);
+        py_smtp_command($socket, 'MAIL FROM:<' . $from . '>', [250]);
+        py_smtp_command($socket, 'RCPT TO:<' . $to . '>', [250, 251]);
+        py_smtp_command($socket, 'DATA', [354]);
+
+        $message = py_smtp_message($from, $to, $subject, $body);
+        fwrite($socket, $message . "\r\n.\r\n");
+        py_smtp_expect($socket, [250]);
+        py_smtp_command($socket, 'QUIT', [221]);
+        fclose($socket);
+        return true;
+    } catch (Throwable $exception) {
+        error_log('Python SMTP send failed: ' . $exception->getMessage());
+        if (is_resource($socket)) {
+            fclose($socket);
+        }
+        return false;
+    }
+}
+
+function py_smtp_message(string $from, string $to, string $subject, string $body): string
+{
+    $headers = [
+        'Date: ' . date(DATE_RFC2822),
+        'From: ' . $from,
+        'To: ' . $to,
+        'Subject: ' . str_replace(["\r", "\n"], '', $subject),
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+    ];
+    $normalizedBody = preg_replace("/\r\n|\r|\n/", "\r\n", $body) ?? $body;
+    $normalizedBody = preg_replace('/^\./m', '..', $normalizedBody) ?? $normalizedBody;
+    return implode("\r\n", $headers) . "\r\n\r\n" . $normalizedBody;
+}
+
+function py_smtp_command(mixed $socket, string $command, array $expectedCodes): string
+{
+    fwrite($socket, $command . "\r\n");
+    return py_smtp_expect($socket, $expectedCodes);
+}
+
+function py_smtp_expect(mixed $socket, array $expectedCodes): string
+{
+    $response = '';
+    do {
+        $line = fgets($socket, 515);
+        if ($line === false) {
+            throw new RuntimeException('SMTP server closed the connection.');
+        }
+        $response .= $line;
+    } while (isset($line[3]) && $line[3] === '-');
+
+    $code = (int) substr($response, 0, 3);
+    if (!in_array($code, $expectedCodes, true)) {
+        throw new RuntimeException('Unexpected SMTP response: ' . trim($response));
+    }
+    return $response;
 }
 
 function py_lti_claim(array $claims, string $name, mixed $default = null): mixed
@@ -774,10 +1422,78 @@ function py_current_lti_user(array $config): ?array
     return is_array($user) && !empty($user['authenticated']) ? $user : null;
 }
 
+function py_current_student_user(PDO $pdo, array $config): ?array
+{
+    $ltiUser = py_current_lti_user($config);
+    if (is_array($ltiUser)) {
+        return $ltiUser + ['auth_source' => 'lti'];
+    }
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_write_close();
+        $_SESSION = [];
+        session_id('');
+    }
+
+    py_start_student_session($config);
+    $id = $_SESSION['student_user_id'] ?? null;
+    if (!is_int($id) && !ctype_digit((string) $id)) {
+        return null;
+    }
+
+    $stmt = $pdo->prepare(
+        'SELECT id, email, display_name, role, status, canvas_user_id, student_identifier
+         FROM py_quiz_users
+         WHERE id = :id AND role = \'student\' AND status = \'active\'
+         LIMIT 1'
+    );
+    $stmt->execute(['id' => (int) $id]);
+    $student = $stmt->fetch();
+    if (!is_array($student)) {
+        return null;
+    }
+
+    return [
+        'authenticated' => true,
+        'student_user_id' => (int) $student['id'],
+        'canvas_user_id' => (string) ($student['canvas_user_id'] ?? ''),
+        'student_identifier' => (string) ($student['student_identifier'] ?: py_normalize_student_identifier((string) $student['email'])),
+        'display_name' => (string) ($student['display_name'] ?? ''),
+        'email' => (string) ($student['email'] ?? ''),
+        'lti_deployment_id' => '',
+        'lti_context_id' => '',
+        'lti_resource_link_id' => '',
+        'lti_lineitem_url' => '',
+        'auth_source' => 'password',
+    ];
+}
+
+function py_login_student(PDO $pdo, array $config, string $identifier, string $password): bool
+{
+    $identifier = trim($identifier);
+    if ($identifier === '' || $password === '') {
+        return false;
+    }
+
+    $student = py_find_student_for_login($pdo, $identifier);
+    if (!is_array($student) || !password_verify($password, (string) $student['password_hash'])) {
+        return false;
+    }
+    if (py_student_email_verification_required($config) && empty($student['email_verified_at'])) {
+        return false;
+    }
+
+    py_start_fresh_student_session($config);
+    $_SESSION['student_user_id'] = (int) $student['id'];
+    $pdo->prepare('UPDATE py_quiz_users SET last_login_at = CURRENT_TIMESTAMP WHERE id = :id')
+        ->execute(['id' => (int) $student['id']]);
+    return true;
+}
+
 function py_upsert_lti_user(PDO $pdo, array $claims): ?int
 {
     $canvasUserId = (string) ($claims['sub'] ?? '');
     $email = trim((string) ($claims['email'] ?? ''));
+    $studentIdentifier = py_normalize_student_identifier($email !== '' ? $email : $canvasUserId);
     $displayName = trim((string) ($claims['name'] ?? $email ?: $canvasUserId));
 
     if ($email === '' && $canvasUserId === '') {
@@ -785,10 +1501,12 @@ function py_upsert_lti_user(PDO $pdo, array $claims): ?int
     }
 
     $where = $email !== ''
-        ? 'LOWER(email) = LOWER(:email)'
-        : 'canvas_user_id = :canvas_user_id';
+        ? '(LOWER(email) = LOWER(:email) OR LOWER(student_identifier) = LOWER(:student_identifier))'
+        : '(canvas_user_id = :canvas_user_id OR LOWER(student_identifier) = LOWER(:student_identifier))';
     $stmt = $pdo->prepare('SELECT id FROM py_quiz_users WHERE ' . $where . ' LIMIT 1');
-    $stmt->execute($email !== '' ? ['email' => $email] : ['canvas_user_id' => $canvasUserId]);
+    $stmt->execute($email !== ''
+        ? ['email' => $email, 'student_identifier' => $studentIdentifier]
+        : ['canvas_user_id' => $canvasUserId, 'student_identifier' => $studentIdentifier]);
     $existing = $stmt->fetch();
 
     if (is_array($existing)) {
@@ -796,25 +1514,28 @@ function py_upsert_lti_user(PDO $pdo, array $claims): ?int
             'UPDATE py_quiz_users
              SET display_name = :display_name,
                  canvas_user_id = :canvas_user_id,
+                 student_identifier = :student_identifier,
                  status = \'active\'
              WHERE id = :id'
         );
         $update->execute([
             'display_name' => $displayName,
             'canvas_user_id' => $canvasUserId !== '' ? $canvasUserId : null,
+            'student_identifier' => $studentIdentifier !== '' ? $studentIdentifier : null,
             'id' => (int) $existing['id'],
         ]);
         return (int) $existing['id'];
     }
 
     $insert = $pdo->prepare(
-        'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id)
-         VALUES (:email, :display_name, \'student\', NULL, \'active\', :canvas_user_id)'
+        'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, student_identifier)
+         VALUES (:email, :display_name, \'student\', NULL, \'active\', :canvas_user_id, :student_identifier)'
     );
     $insert->execute([
         'email' => $email !== '' ? $email : $canvasUserId . '@lti.local',
         'display_name' => $displayName,
         'canvas_user_id' => $canvasUserId !== '' ? $canvasUserId : null,
+        'student_identifier' => $studentIdentifier !== '' ? $studentIdentifier : null,
     ]);
 
     return (int) $pdo->lastInsertId();
