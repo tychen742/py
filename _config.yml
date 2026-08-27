@@ -69,7 +69,6 @@ sphinx:
       show_toc_level: 2
       launch_buttons:
         thebe: true
-        binderhub_url: "https://mybinder.org"
 
 # citeproc:
 #     style: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl

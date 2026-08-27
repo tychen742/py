@@ -78,6 +78,19 @@ document.addEventListener('click', function (e) {
 document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM ready!");
 
+    function keepOnlyLiveCodeLaunchItem() {
+        document.querySelectorAll('.dropdown-launch-buttons').forEach(function (dropdown) {
+            dropdown.querySelectorAll('.dropdown-item').forEach(function (item) {
+                var label = item.textContent.trim();
+                if (label !== 'Live Code') item.remove();
+            });
+        });
+    }
+
+    keepOnlyLiveCodeLaunchItem();
+    new MutationObserver(keepOnlyLiveCodeLaunchItem)
+        .observe(document.body, { childList: true, subtree: true });
+
     // -----------------------------------------------------------
     // Aftermatter: promote Bibliography and Index sidebar entries
     // from toctree-l1 links to caption-level links (no nesting).
@@ -110,6 +123,92 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a.bd-aftermatter-link').forEach(function (link, i) {
         link.style.marginTop = i === 0 ? '0.5rem' : '0.1rem';
     });
+
+    // -----------------------------------------------------------
+    // Assignment answer locking
+    //
+    // Pages can include:
+    //   <div data-assignment-answers="ch01-lab"></div>
+    // The admin database setting controls whether hide-input answer
+    // cells are visible. The old timestamp marker remains as a fallback.
+    // -----------------------------------------------------------
+    function answerLockMarker() {
+        return document.querySelector('[data-assignment-answers]')
+            || document.querySelector('[data-lab-answers-release-at]');
+    }
+
+    function answerCells() {
+        return document.querySelectorAll('.tag_hide-input');
+    }
+
+    function ensureAnswerLockNotice(marker, message) {
+        var notice = document.querySelector('.lab-answer-lock-notice');
+        if (!notice) {
+            notice = document.createElement('div');
+            notice.className = 'lab-answer-lock-notice';
+            marker.after(notice);
+        }
+        notice.textContent = message;
+    }
+
+    function lockAnswerCells(marker, message) {
+        document.body.classList.add('lab-answers-locked');
+        ensureAnswerLockNotice(marker, message);
+        answerCells().forEach(function (cell) {
+            cell.classList.add('lab-answer-locked');
+            cell.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    function unlockAnswerCells() {
+        document.body.classList.remove('lab-answers-locked');
+        var notice = document.querySelector('.lab-answer-lock-notice');
+        if (notice) notice.remove();
+        answerCells().forEach(function (cell) {
+            cell.classList.remove('lab-answer-locked');
+            cell.removeAttribute('aria-hidden');
+        });
+        answerCells().forEach(watchExerciseCell);
+    }
+
+    function applyAnswerUnlockGate() {
+        var marker = answerLockMarker();
+        if (!marker) return false;
+
+        var assignmentId = marker.getAttribute('data-assignment-answers');
+        if (assignmentId) {
+            lockAnswerCells(marker, 'Checking answer availability.');
+            fetch('/api/v1/assignment-settings.php?assignment_id=' + encodeURIComponent(assignmentId), {
+                credentials: 'same-origin',
+                cache: 'no-store',
+            })
+                .then(function (response) {
+                    if (!response.ok) throw new Error('settings unavailable');
+                    return response.json();
+                })
+                .then(function (payload) {
+                    if (payload && payload.ok && payload.answers_unlocked) {
+                        unlockAnswerCells();
+                    } else {
+                        lockAnswerCells(marker, 'Answers are locked by your instructor.');
+                    }
+                })
+                .catch(function () {
+                    lockAnswerCells(marker, 'Answers are locked until your instructor unlocks them.');
+                });
+            return true;
+        }
+
+        var releaseValue = marker.getAttribute('data-lab-answers-release-at');
+        var releaseTime = Date.parse(releaseValue || '');
+        if (!releaseTime || Number.isNaN(releaseTime)) return false;
+        if (Date.now() >= releaseTime) return false;
+
+        lockAnswerCells(marker, 'Answers unlock after the lab due date.');
+        return true;
+    }
+
+    var labAnswersLocked = applyAnswerUnlockGate();
 
     // -----------------------------------------------------------
     // FIX A: tag_hide-input (exercise answer) cells
@@ -165,7 +264,9 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(details, { childList: true, subtree: true });
     }
 
-    document.querySelectorAll('.tag_hide-input').forEach(watchExerciseCell);
+    if (!labAnswersLocked) {
+        document.querySelectorAll('.tag_hide-input').forEach(watchExerciseCell);
+    }
 
     // -----------------------------------------------------------
     // FIX B: Demo cells — hide jp-OutputArea when Thebe activates.
@@ -241,18 +342,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Add student account panel at the bottom of the left sidebar.
+function getAccountInitials(identity) {
+    var value = '';
+    if (identity) {
+        value = identity.display_name || identity.email || identity.student_identifier || '';
+    }
+    value = String(value).trim();
+    if (!value) return '';
+
+    if (value.indexOf('@') !== -1) {
+        value = value.split('@')[0];
+    }
+
+    var parts = value
+        .replace(/[^a-zA-Z0-9\s._-]/g, ' ')
+        .split(/[\s._-]+/)
+        .filter(Boolean);
+
+    if (parts.length >= 2) {
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return value.slice(0, 2).toUpperCase();
+}
+
 function addStudentAccountPanel() {
     var nav = document.querySelector('nav.bd-links');
     if (!nav) return;
-
-    // Find the sidebar container - either sidebar-primary-items__start or the sidebar itself
-    var sidebarSection = nav.closest('.sidebar-primary-items__start')
-        || nav.closest('.bd-sidebar-primary')
-        || nav.parentElement;
-    if (!sidebarSection || sidebarSection.querySelector('.bd-student-links')) return;
-
-    var navItem = nav.closest('.sidebar-primary-item');
-    if (navItem) navItem.classList.add('bd-nav-scroll');
+    if (nav.querySelector('.bd-student-links')) return;
 
     var currentPath = window.location.pathname + window.location.search + window.location.hash;
     var wrapper = document.createElement('div');
@@ -285,18 +401,57 @@ function addStudentAccountPanel() {
         var isOpen = wrapper.classList.toggle('is-open');
         header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-    sidebarSection.appendChild(wrapper);
+    nav.appendChild(wrapper);
 
     fetch('/api/v1/session.php', { credentials: 'same-origin' })
         .then(function (response) { return response.ok ? response.json() : null; })
         .then(function (payload) {
             if (!payload || !payload.authenticated || !payload.identity) return;
 
+            var initials = getAccountInitials(payload.identity);
+            if (initials) {
+                avatar.textContent = initials;
+                avatar.classList.add('has-initials');
+            }
+
+            if (payload.role === 'admin') {
+                var adminLinks = [
+                    ['Account', '/api/admin/'],
+                    ['Attempts', '/api/admin/'],
+                    ['Score Report', '/api/admin/report.php'],
+                    ['Users', '/api/admin/users.php'],
+                    ['Assignments', '/api/admin/assignments.php'],
+                    ['Export CSV', '/api/admin/export.csv.php'],
+                    ['Preview Canvas CSV', '/api/admin/canvas-export.csv.php?quiz_id=ch01-preview'],
+                    ['Lab Canvas CSV', '/api/admin/canvas-export.csv.php?quiz_id=ch01-lab'],
+                    ['Log Out', '/api/admin/logout.php'],
+                ].map(function (item) {
+                    var link = document.createElement('a');
+                    link.className = 'bd-student-button';
+                    link.href = item[1];
+                    link.textContent = item[0];
+                    return link;
+                });
+                actions.replaceChildren.apply(actions, adminLinks);
+                return;
+            }
+
+            var account = document.createElement('a');
+            account.className = 'bd-student-button';
+            account.href = '/api/student/account.php';
+            account.textContent = 'Account';
+
             var scores = document.createElement('a');
             scores.className = 'bd-student-button';
             scores.href = '/api/student/scores.php';
             scores.textContent = 'My Scores';
-            actions.replaceChildren(scores);
+
+            var logout = document.createElement('a');
+            logout.className = 'bd-student-button';
+            logout.href = '/api/student/logout.php?next=' + encodeURIComponent(currentPath);
+            logout.textContent = 'Log Out';
+
+            actions.replaceChildren(account, scores, logout);
         })
         .catch(function () {});
 }

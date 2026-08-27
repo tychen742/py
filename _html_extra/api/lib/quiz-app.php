@@ -42,6 +42,11 @@ function py_load_config(): array
                 'secure' => 'tls',
             ],
         ],
+        'lab_grader' => [
+            'python_bin' => 'python3',
+            'timeout_seconds' => 3,
+            'max_code_bytes' => 12000,
+        ],
         'lti' => [
             'enabled' => false,
             'session_name' => 'py_lti',
@@ -183,6 +188,22 @@ function py_initialize_schema(PDO $pdo): void
     py_add_column_if_missing($pdo, 'py_quiz_attempts', 'lti_resource_link_id', 'VARCHAR(255) NULL');
     py_add_column_if_missing($pdo, 'py_quiz_attempts', 'lti_lineitem_url', 'TEXT NULL');
     py_ensure_decimal_score_columns($pdo);
+
+    $assignmentIdColumn = $driver === 'sqlite'
+        ? 'assignment_id VARCHAR(100) NOT NULL PRIMARY KEY'
+        : 'assignment_id VARCHAR(100) NOT NULL PRIMARY KEY';
+    $integerDefault = $driver === 'sqlite'
+        ? 'INTEGER NOT NULL DEFAULT 0'
+        : 'TINYINT(1) NOT NULL DEFAULT 0';
+
+    $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS py_assignment_settings (
+            ' . $assignmentIdColumn . ',
+            answers_unlocked ' . $integerDefault . ',
+            updated_by INT NULL,
+            updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )'
+    );
 }
 
 function py_add_column_if_missing(PDO $pdo, string $table, string $column, string $definition): void
@@ -332,6 +353,7 @@ function py_database_ready(array $config): PDO
     py_initialize_schema($pdo);
     py_seed_admins($pdo, $config);
     py_seed_course_students($pdo, $config);
+    py_seed_assignment_settings($pdo);
     return $pdo;
 }
 
@@ -380,6 +402,121 @@ function py_lab_definition(string $labId): ?array
 function py_assignment_definition(string $assignmentId): ?array
 {
     return py_quiz_definition($assignmentId) ?? py_lab_definition($assignmentId);
+}
+
+function py_all_assignment_definitions(): array
+{
+    $assignmentIds = ['ch01-preview', 'ch01-lab'];
+    $assignments = [];
+    foreach ($assignmentIds as $assignmentId) {
+        $definition = py_assignment_definition($assignmentId);
+        if ($definition === null) {
+            continue;
+        }
+        $assignments[$assignmentId] = $definition;
+    }
+    return $assignments;
+}
+
+function py_seed_assignment_settings(PDO $pdo): void
+{
+    foreach (py_all_assignment_definitions() as $assignmentId => $definition) {
+        $defaultUnlocked = ($definition['assignment_slug'] ?? '') === 'lab' && $assignmentId === 'ch01-lab' ? 1 : 0;
+        $stmt = $pdo->prepare('SELECT assignment_id FROM py_assignment_settings WHERE assignment_id = :assignment_id LIMIT 1');
+        $stmt->execute(['assignment_id' => $assignmentId]);
+        if ($stmt->fetch()) {
+            continue;
+        }
+
+        $insert = $pdo->prepare(
+            'INSERT INTO py_assignment_settings (assignment_id, answers_unlocked)
+             VALUES (:assignment_id, :answers_unlocked)'
+        );
+        $insert->execute([
+            'assignment_id' => $assignmentId,
+            'answers_unlocked' => $defaultUnlocked,
+        ]);
+    }
+}
+
+function py_list_assignment_settings(PDO $pdo): array
+{
+    $settings = [];
+    $stmt = $pdo->query(
+        'SELECT assignment_id, answers_unlocked, updated_by, updated_at
+         FROM py_assignment_settings'
+    );
+    foreach ($stmt->fetchAll() as $row) {
+        $settings[(string) $row['assignment_id']] = $row;
+    }
+
+    $rows = [];
+    foreach (py_all_assignment_definitions() as $assignmentId => $definition) {
+        $setting = $settings[$assignmentId] ?? [
+            'assignment_id' => $assignmentId,
+            'answers_unlocked' => 0,
+            'updated_by' => null,
+            'updated_at' => null,
+        ];
+        $rows[] = $setting + [
+            'chapter' => $definition['chapter'] ?? '',
+            'assignment_slug' => $definition['assignment_slug'] ?? '',
+            'max_score' => $definition['max_score'] ?? '',
+            'canvas_assignment_column' => $definition['canvas_assignment_column'] ?? '',
+        ];
+    }
+
+    return $rows;
+}
+
+function py_assignment_answers_unlocked(PDO $pdo, string $assignmentId): bool
+{
+    if (py_assignment_definition($assignmentId) === null) {
+        return false;
+    }
+
+    $stmt = $pdo->prepare(
+        'SELECT answers_unlocked
+         FROM py_assignment_settings
+         WHERE assignment_id = :assignment_id
+         LIMIT 1'
+    );
+    $stmt->execute(['assignment_id' => $assignmentId]);
+    $row = $stmt->fetch();
+    return is_array($row) && (int) ($row['answers_unlocked'] ?? 0) === 1;
+}
+
+function py_update_assignment_answer_lock(PDO $pdo, string $assignmentId, bool $answersUnlocked, int $adminUserId): void
+{
+    if (py_assignment_definition($assignmentId) === null) {
+        throw new RuntimeException('Unknown assignment.');
+    }
+
+    $driver = (string) $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+    if ($driver === 'sqlite') {
+        $stmt = $pdo->prepare(
+            'INSERT INTO py_assignment_settings (assignment_id, answers_unlocked, updated_by, updated_at)
+             VALUES (:assignment_id, :answers_unlocked, :updated_by, CURRENT_TIMESTAMP)
+             ON CONFLICT(assignment_id) DO UPDATE SET
+                answers_unlocked = excluded.answers_unlocked,
+                updated_by = excluded.updated_by,
+                updated_at = CURRENT_TIMESTAMP'
+        );
+    } else {
+        $stmt = $pdo->prepare(
+            'INSERT INTO py_assignment_settings (assignment_id, answers_unlocked, updated_by, updated_at)
+             VALUES (:assignment_id, :answers_unlocked, :updated_by, CURRENT_TIMESTAMP)
+             ON DUPLICATE KEY UPDATE
+                answers_unlocked = VALUES(answers_unlocked),
+                updated_by = VALUES(updated_by),
+                updated_at = CURRENT_TIMESTAMP'
+        );
+    }
+    $stmt->execute([
+        'assignment_id' => $assignmentId,
+        'answers_unlocked' => $answersUnlocked ? 1 : 0,
+        'updated_by' => $adminUserId,
+    ]);
 }
 
 function py_grade_attempt(array $quiz, array $answers): array
@@ -469,6 +606,140 @@ function py_grade_lab_attempt(array $lab, array $answers): array
         'max_score' => (float) ($lab['max_score'] ?? 10),
         'answers' => $normalizedAnswers,
         'feedback' => $feedback,
+    ];
+}
+
+function py_grade_lab_code_attempt(array $lab, array $codeByQuestion, array $graderConfig = []): array
+{
+    $expectedOutputs = [
+        'q1' => "ThinkPy Chapter 1\nPython is running.",
+        'q2' => "Total pages: 93\nAverage per day: 18.6",
+        'q3' => "sales: 128 rows x 5 columns\nsales|128|5",
+        'q4' => "Hours: 2\nMinutes: 15",
+        'q5' => "C decimal: 67\nC binary: 0b1000011\nItem hex: 0x40",
+    ];
+
+    $feedback = [];
+    $normalizedCode = [];
+    $score = 0.0;
+
+    foreach ($expectedOutputs as $question => $expectedOutput) {
+        $code = (string) ($codeByQuestion[$question] ?? '');
+        $normalizedCode[$question] = py_limit_lab_code($code, (int) ($graderConfig['max_code_bytes'] ?? 12000));
+        $run = py_run_lab_code_cell($normalizedCode[$question], $graderConfig);
+        $actualOutput = py_normalize_lab_output((string) ($run['stdout'] ?? ''));
+        $expectedNormalized = py_normalize_lab_output($expectedOutput);
+        $accepted = !empty($run['ok']) && $actualOutput === $expectedNormalized;
+        $itemScore = $accepted ? 2.0 : 0.0;
+        $score += $itemScore;
+
+        $message = $accepted ? 'Accepted.' : 'Output did not match.';
+        if (empty($run['ok']) && !empty($run['error'])) {
+            $message = (string) $run['error'];
+        }
+
+        $feedback[$question] = [
+            'correct' => $accepted,
+            'score' => $itemScore,
+            'max_score' => 2.0,
+            'message' => $message,
+            'stdout' => $actualOutput,
+            'stderr' => py_limit_lab_code((string) ($run['stderr'] ?? ''), 2000),
+        ];
+    }
+
+    return [
+        'score' => round($score, 2),
+        'max_score' => (float) ($lab['max_score'] ?? 10),
+        'answers' => ['code' => $normalizedCode],
+        'feedback' => $feedback,
+    ];
+}
+
+function py_limit_lab_code(string $code, int $maxBytes): string
+{
+    $maxBytes = max(1000, $maxBytes);
+    if (strlen($code) <= $maxBytes) {
+        return $code;
+    }
+    return substr($code, 0, $maxBytes);
+}
+
+function py_normalize_lab_output(string $output): string
+{
+    $output = str_replace(["\r\n", "\r"], "\n", $output);
+    $lines = array_map(static fn (string $line): string => rtrim($line), explode("\n", trim($output)));
+    return implode("\n", $lines);
+}
+
+function py_run_lab_code_cell(string $code, array $graderConfig = []): array
+{
+    $runner = __DIR__ . '/python_lab_runner.py';
+    if (!is_readable($runner)) {
+        return ['ok' => false, 'stdout' => '', 'stderr' => '', 'error' => 'Code runner is not available.'];
+    }
+
+    $pythonBin = (string) ($graderConfig['python_bin'] ?? 'python3');
+    $timeoutSeconds = max(1, min(10, (int) ($graderConfig['timeout_seconds'] ?? 3)));
+    $payload = json_encode(['code' => $code], JSON_UNESCAPED_SLASHES);
+    if (!is_string($payload)) {
+        return ['ok' => false, 'stdout' => '', 'stderr' => '', 'error' => 'Could not prepare code for grading.'];
+    }
+
+    $descriptorSpec = [
+        0 => ['pipe', 'r'],
+        1 => ['pipe', 'w'],
+        2 => ['pipe', 'w'],
+    ];
+    $process = proc_open([$pythonBin, '-I', '-S', $runner], $descriptorSpec, $pipes, sys_get_temp_dir());
+    if (!is_resource($process)) {
+        return ['ok' => false, 'stdout' => '', 'stderr' => '', 'error' => 'Could not start code runner.'];
+    }
+
+    fwrite($pipes[0], $payload);
+    fclose($pipes[0]);
+    stream_set_blocking($pipes[1], false);
+    stream_set_blocking($pipes[2], false);
+
+    $stdout = '';
+    $stderr = '';
+    $deadline = microtime(true) + $timeoutSeconds;
+    $timedOut = false;
+    while (true) {
+        $stdout .= stream_get_contents($pipes[1]);
+        $stderr .= stream_get_contents($pipes[2]);
+        $status = proc_get_status($process);
+        if (!$status['running']) {
+            break;
+        }
+        if (microtime(true) >= $deadline) {
+            $timedOut = true;
+            proc_terminate($process);
+            break;
+        }
+        usleep(20000);
+    }
+
+    $stdout .= stream_get_contents($pipes[1]);
+    $stderr .= stream_get_contents($pipes[2]);
+    fclose($pipes[1]);
+    fclose($pipes[2]);
+    $exitCode = proc_close($process);
+
+    if ($timedOut) {
+        return ['ok' => false, 'stdout' => $stdout, 'stderr' => $stderr, 'error' => 'Code timed out.'];
+    }
+
+    $decoded = json_decode($stdout, true);
+    if (is_array($decoded) && array_key_exists('ok', $decoded)) {
+        return $decoded;
+    }
+
+    return [
+        'ok' => $exitCode === 0,
+        'stdout' => $stdout,
+        'stderr' => $stderr,
+        'error' => $exitCode === 0 ? null : 'Code runner failed.',
     ];
 }
 
@@ -890,6 +1161,13 @@ function py_update_sync_status(PDO $pdo, int $attemptId, array $result): void
 function py_start_admin_session(array $config): void
 {
     session_name((string) $config['auth']['session_name']);
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
     session_start();
 }
 
@@ -1079,6 +1357,9 @@ function py_verify_student_email_code(PDO $pdo, string $identifier, string $code
 function py_send_student_verification_link(PDO $pdo, array $config, string $email, string $target = '/'): bool
 {
     $email = strtolower(trim($email));
+    if ($email !== '' && !str_contains($email, '@')) {
+        $email .= '@umsystem.edu';
+    }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return false;
     }
@@ -1094,6 +1375,14 @@ function py_send_student_verification_link(PDO $pdo, array $config, string $emai
     if (!py_university_email_allowed($config, $studentIdentifier, $email)) {
         return false;
     }
+
+    $previousStmt = $pdo->prepare(
+        'SELECT email, verification_code_hash, verification_code_expires_at
+         FROM py_quiz_users
+         WHERE id = :id'
+    );
+    $previousStmt->execute(['id' => (int) $student['id']]);
+    $previous = $previousStmt->fetch(PDO::FETCH_ASSOC) ?: [];
 
     $token = bin2hex(random_bytes(16));
     $minutes = max(5, (int) ($config['student_auth']['verification_code_minutes'] ?? 20));
@@ -1119,6 +1408,19 @@ function py_send_student_verification_link(PDO $pdo, array $config, string $emai
     $subject = 'Create your ThinkPy password';
     $body = "Use this link to create or reset your ThinkPy password:\n\n{$link}\n\nThis link expires in {$minutes} minutes.";
     if (!py_send_email($config, $email, $subject, $body)) {
+        $restore = $pdo->prepare(
+            'UPDATE py_quiz_users
+             SET email = :email,
+                 verification_code_hash = :verification_code_hash,
+                 verification_code_expires_at = :verification_code_expires_at
+             WHERE id = :id'
+        );
+        $restore->execute([
+            'email' => (string) ($previous['email'] ?? $student['email']),
+            'verification_code_hash' => $previous['verification_code_hash'] ?? null,
+            'verification_code_expires_at' => $previous['verification_code_expires_at'] ?? null,
+            'id' => (int) $student['id'],
+        ]);
         error_log('Python student verification link email failed for user id ' . (int) $student['id']);
         return false;
     }

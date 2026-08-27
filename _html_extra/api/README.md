@@ -10,7 +10,13 @@ This directory is copied into the published Jupyter Book by `./deploy`.
 
 Stores and grades a quiz or lab attempt. If Canvas settings and Canvas IDs are available, the endpoint also attempts grade sync. Otherwise the attempt is saved with `pending` sync status.
 
-The Chapter 01 preview and lab pages post each student attempt to these endpoints. The browser does not contain the answer key; grading happens on the server. The lab grader checks final submitted values rather than executing student code on the server.
+`GET /api/v1/assignment-settings.php?assignment_id=ch01-lab`
+
+Returns the current answer visibility setting for an assignment. Book pages use this endpoint to hide answer cells until an admin unlocks them.
+
+The Chapter 01 preview and lab pages post each student attempt to these endpoints. The browser does not contain the answer key; grading happens on the server.
+
+For code-submission labs, the lab endpoint can receive code from each interactive cell. It runs each cell through a restricted Python runner with AST validation, a limited builtin function set, isolated mode, and a short timeout, then compares normalized stdout with the expected answer-cell output.
 
 Saved fields include:
 
@@ -120,6 +126,7 @@ The admin module supports:
 - score table with student identifier, quiz, score, Canvas status, and submitted answers
 - detailed CSV export
 - Canvas-ready CSV export keyed by `SIS Login ID`
+- admin-controlled assignment answer locking and unlocking
 - manual sync of pending or failed attempts to Canvas
 
 The admin module requires a working PDO database connection. It does not read from the JSONL fallback store directly.

@@ -585,6 +585,20 @@ div.thebelab-output,
     margin-bottom: 0.25rem !important;
 }
 
+.tag_hide-input.lab-answer-locked {
+    display: none !important;
+}
+
+.lab-answer-lock-notice {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    color: #57606a;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+}
+
 /* =============================================================
    DEMO CELL OUTPUT VISIBILITY
    'thebe-is-active' is added to body by our own JS (custom.js)
@@ -707,31 +721,18 @@ nav.bd-links a.bd-aftermatter-link:hover {
 }
 
 /* Student account panel injected at the bottom of the left sidebar */
-.bd-sidebar-primary .sidebar-primary-items__start {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 1rem);
-}
-
-.bd-sidebar-primary .bd-nav-scroll {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: auto;
-}
-
-.bd-sidebar-primary .bd-student-links {
+nav.bd-links .bd-student-links {
     border-top: 1px solid var(--pst-color-border);
-    margin-top: auto;
-    padding-top: 0.5rem;
-    padding-bottom: 0.25rem;
-    display: grid;
-    gap: 0.35rem;
-    flex: 0 0 auto;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
     background: var(--pst-color-background);
     z-index: 2;
 }
 
-.bd-sidebar-primary .bd-student-header {
+nav.bd-links .bd-student-header {
     display: flex;
     align-items: center;
     margin-bottom: 0.1rem;
@@ -745,62 +746,83 @@ nav.bd-links a.bd-aftermatter-link:hover {
     text-align: left;
 }
 
-.bd-sidebar-primary .bd-student-avatar {
-    width: 2rem;
-    height: 2rem;
+nav.bd-links .bd-student-avatar {
+    width: 1.75rem;
+    height: 1.75rem;
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: var(--pst-color-primary);
+    color: white;
     flex: 0 0 auto;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1;
     position: relative;
 }
 
-.bd-sidebar-primary .bd-student-avatar::before {
+nav.bd-links .bd-student-avatar::before {
     content: "";
-    width: 0.55rem;
-    height: 0.55rem;
+    width: 0.48rem;
+    height: 0.48rem;
     border-radius: 999px;
     background: white;
     position: absolute;
-    top: 0.48rem;
+    top: 0.42rem;
 }
 
-.bd-sidebar-primary .bd-student-avatar::after {
+nav.bd-links .bd-student-avatar::after {
     content: "";
-    width: 1.05rem;
-    height: 0.52rem;
+    width: 0.92rem;
+    height: 0.46rem;
     border-radius: 999px 999px 0.45rem 0.45rem;
     background: white;
     position: absolute;
-    bottom: 0.42rem;
+    bottom: 0.36rem;
 }
 
-.bd-sidebar-primary .bd-student-actions {
+nav.bd-links .bd-student-avatar.has-initials::before,
+nav.bd-links .bd-student-avatar.has-initials::after {
     display: none;
-    gap: 0.35rem;
 }
 
-.bd-sidebar-primary .bd-student-links.is-open .bd-student-actions {
-    display: grid;
-}
-
-.bd-sidebar-primary .bd-student-button {
-    display: block;
-    border: 1px solid var(--pst-color-primary);
+nav.bd-links .bd-student-actions {
+    display: none;
+    border: 0.5px solid var(--pst-color-primary);
     border-radius: 6px;
+    overflow: hidden;
+}
+
+nav.bd-links .bd-student-links.is-open .bd-student-actions {
+    display: grid;
+    align-items: start;
+}
+
+nav.bd-links .bd-student-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 1.8rem;
+    border: 0;
+    border-radius: 0;
     color: var(--pst-color-primary) !important;
     font-size: var(--pst-sidebar-font-size, 0.85rem);
     font-weight: 700;
     line-height: 1.25;
-    padding: 0.3rem 0.45rem;
-    text-align: center;
+    padding: 0.25rem 0.45rem;
+    text-align: left;
     text-decoration: none;
     box-shadow: none !important;
+    white-space: nowrap;
 }
 
-.bd-sidebar-primary .bd-student-button:hover {
+nav.bd-links .bd-student-button + .bd-student-button {
+    border-top: 0.5px solid var(--pst-color-primary);
+}
+
+nav.bd-links .bd-student-button:hover {
     background: var(--pst-color-primary);
     color: white !important;
     text-decoration: none;
