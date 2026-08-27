@@ -56,6 +56,14 @@ Preview assignments should follow the DSM Chapter 01 preview model. They are sho
 
 Lab assignments are extensions of the chapter's section exercises. Each `lab.ipynb` should contain about five lab questions. Format lab questions the same way section exercise questions are formatted in the chapter notebooks. Lab questions are technical: they should be runnable coding questions that combine, extend, or apply the skills introduced in the chapter exercises. Do not introduce unrelated skills or purely conceptual prompts in the lab.
 
+Homework assignments should contain about 5 true/false questions covering essential concepts in the chapter and about 5 coding questions providing technical practice for the chapter. Score homework out of 10 total points, with each question worth 1 point unless a chapter-specific reason requires a different split. True/false questions should provide visible radio buttons for `True` and `False` in each question, not just prose prompts.
+
+Auto-graded assignment submission panels should keep instructional headings, explanatory copy, and feedback/result rows hidden before submission. Show only the input fields and controls students need to submit. Reveal per-question feedback/results only after a submission returns, and allow multiple submissions by re-enabling the submit control after each attempt.
+
+Student account menu links for `Account` and `My Scores` should open in new tabs. Keep `Log Out` in the current tab.
+
+Student portal top navigation should sit close to the top of the browser tab. Keep scores pages compact: left-align the shell, avoid excess top padding, use tight section spacing, and keep table rows dense enough for scanning many attempts.
+
 ### Chapter Overview Slides
 
 Overview slide decks must be substantive enough for lecture use. When creating or revising `_html_extra/chapters/XX-name/overview.md`, expand thin decks rather than leaving a short outline: include the chapter setup, the main ideas from each section, at least one worked code example or discussion prompt per major section, and a closing recap or checkpoint.
