@@ -15,6 +15,12 @@ ALLOWED_CALLS = {
     "str": str,
     "float": float,
     "type": type,
+    "bool": bool,
+    "sum": sum,
+    "len": len,
+    "max": max,
+    "set": set,
+    "sorted": sorted,
 }
 
 ALLOWED_NODES = (
@@ -40,6 +46,23 @@ ALLOWED_NODES = (
     ast.keyword,
     ast.JoinedStr,
     ast.FormattedValue,
+    ast.Compare,
+    ast.Eq,
+    ast.NotEq,
+    ast.Lt,
+    ast.LtE,
+    ast.Gt,
+    ast.GtE,
+    ast.BoolOp,
+    ast.And,
+    ast.Or,
+    ast.Not,
+    ast.List,
+    ast.Tuple,
+    ast.Set,
+    ast.Dict,
+    ast.Subscript,
+    ast.Slice,
 )
 
 
@@ -56,7 +79,7 @@ class LabCodeValidator(ast.NodeVisitor):
 
     def visit_Call(self, node):
         if not isinstance(node.func, ast.Name) or node.func.id not in ALLOWED_CALLS:
-            raise ValueError("Only the allowed Chapter 1 functions can be called.")
+            raise ValueError("Only the allowed lab functions can be called.")
         self.generic_visit(node)
 
 

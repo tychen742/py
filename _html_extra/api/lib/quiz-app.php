@@ -369,15 +369,13 @@ function py_quiz_definition(string $quizId): ?array
                 'q1' => 'A',
                 'q2' => 'B',
                 'q3' => 'A',
-                'q4' => 'B',
-                'q5' => 'C',
-                'q6' => 'A',
-                'q7' => 'B',
-                'q8' => 'A',
+                'q4' => 'C',
+                'q5' => 'D',
+                'q6' => 'B',
+                'q7' => 'A',
+                'q8' => 'C',
                 'q9' => 'A',
                 'q10' => 'C',
-                'q11' => 'A',
-                'q12' => 'B',
             ],
         ],
     ];
@@ -393,6 +391,26 @@ function py_lab_definition(string $labId): ?array
             'assignment_slug' => 'lab',
             'max_score' => 10,
             'canvas_assignment_column' => 'lab_ch01',
+            'expected_outputs' => [
+                'q1' => "ThinkPy Chapter 1\nPython is running.",
+                'q2' => "Total pages: 93\nAverage per day: 18.6",
+                'q3' => "sales: 128 rows x 5 columns\nsales|128|5",
+                'q4' => "Hours: 2\nMinutes: 15",
+                'q5' => "C decimal: 67\nC binary: 0b1000011\nItem hex: 0x40",
+            ],
+        ],
+        'ch02-lab' => [
+            'chapter' => '02-basics',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch02',
+            'expected_outputs' => [
+                'q1' => "Team: data services\nRemaining tickets: 13\nResolution rate: 27.8%",
+                'q2' => "Subtotal: 51.0\nTax: 4.21\nTotal: 55.21\nWithin budget: True",
+                'q3' => "Total responses: 46\nAverage responses: 11.5\nLargest batch: 15\nConverted first value type: <class 'int'>",
+                'q4' => "Greeting: Hello, Maya!\nFirst code: A\nCode prefix: A7\nEligible: True",
+                'q5' => "Fruit count: 4\nUnique fruits: ['apple', 'banana', 'cherry']\nBanana price: 0.5\nPrice pair: ('banana', 0.5)",
+            ],
         ],
     ];
 
@@ -422,6 +440,26 @@ function py_homework_definition(string $homeworkId): ?array
                 'q10' => "Audit tag: A-65-0xff",
             ],
         ],
+        'ch02-homework' => [
+            'chapter' => '02-basics',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch02',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'FALSE',
+                'q3' => 'TRUE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Report: sales has 128 rows and 5 columns",
+                'q7' => "Hours: 3\nMinutes: 28\nSeconds: 20",
+                'q8' => "Total: 25.49\nFirst price type: <class 'float'>\nTotal type: <class 'float'>",
+                'q9' => "Prefix: PY\nYear: 2026\nLabel: LAB\nCode length: 11",
+                'q10' => "Submission count: 4\nUnique names: ['Ana', 'Bob', 'Chen']\nBob score: 88\nBob pair: ('Bob', 88)",
+            ],
+        ],
     ];
 
     return $homework[$homeworkId] ?? null;
@@ -434,7 +472,7 @@ function py_assignment_definition(string $assignmentId): ?array
 
 function py_all_assignment_definitions(): array
 {
-    $assignmentIds = ['ch01-preview', 'ch01-lab', 'ch01-homework'];
+    $assignmentIds = ['ch01-preview', 'ch01-lab', 'ch01-homework', 'ch02-lab', 'ch02-homework'];
     $assignments = [];
     foreach ($assignmentIds as $assignmentId) {
         $definition = py_assignment_definition($assignmentId);
@@ -639,13 +677,10 @@ function py_grade_lab_attempt(array $lab, array $answers): array
 
 function py_grade_lab_code_attempt(array $lab, array $codeByQuestion, array $graderConfig = []): array
 {
-    $expectedOutputs = [
-        'q1' => "ThinkPy Chapter 1\nPython is running.",
-        'q2' => "Total pages: 93\nAverage per day: 18.6",
-        'q3' => "sales: 128 rows x 5 columns\nsales|128|5",
-        'q4' => "Hours: 2\nMinutes: 15",
-        'q5' => "C decimal: 67\nC binary: 0b1000011\nItem hex: 0x40",
-    ];
+    $expectedOutputs = $lab['expected_outputs'] ?? [];
+    if (!is_array($expectedOutputs) || $expectedOutputs === []) {
+        throw new RuntimeException('Lab grading definition is missing expected outputs.');
+    }
 
     $feedback = [];
     $normalizedCode = [];
