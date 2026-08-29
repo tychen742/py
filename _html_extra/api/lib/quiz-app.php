@@ -384,6 +384,20 @@ function py_database_ready(array $config): PDO
     return $pdo;
 }
 
+function py_assignment_aliases(): array
+{
+    return [
+        'preview02' => 'ch02-preview',
+        'lab02' => 'ch02-lab',
+        'homework02' => 'ch02-homework',
+    ];
+}
+
+function py_canonical_assignment_id(string $assignmentId): string
+{
+    return py_assignment_aliases()[$assignmentId] ?? $assignmentId;
+}
+
 function py_quiz_definition(string $quizId): ?array
 {
     $quizzes = [
