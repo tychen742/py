@@ -149,6 +149,7 @@ function py_initialize_schema(PDO $pdo): void
         )'
     );
     py_add_column_if_missing($pdo, 'py_quiz_users', 'student_identifier', 'VARCHAR(255) NULL');
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'canvas_user_id', 'VARCHAR(64) NULL');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'email_verified_at', 'DATETIME NULL');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'verification_code_hash', 'VARCHAR(255) NULL');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'verification_code_expires_at', 'DATETIME NULL');
