@@ -47,7 +47,7 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
 
 ### Account Data
 
-- Authentication events are research data. Keep historical login timestamps for each user in a login-event table; do not rely only on an overwritten `last_login_at` field.
+- Authentication events are research data for later research projects. Keep historical login timestamps for each user in a login-event table; do not rely only on an overwritten `last_login_at` field.
 
 ## Quality Audits
 
