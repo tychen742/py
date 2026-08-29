@@ -156,6 +156,17 @@ function py_initialize_schema(PDO $pdo): void
     py_add_column_if_missing($pdo, 'py_quiz_users', 'last_login_at', 'DATETIME NULL');
 
     $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS py_login_events (
+            ' . $idColumn . ',
+            user_id INT NOT NULL,
+            auth_source VARCHAR(32) NOT NULL,
+            ip_address VARCHAR(64) NULL,
+            user_agent TEXT NULL,
+            logged_in_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )'
+    );
+
+    $pdo->exec(
         'CREATE TABLE IF NOT EXISTS py_quiz_attempts (
             ' . $idColumn . ',
             quiz_id VARCHAR(100) NOT NULL,
@@ -246,6 +257,19 @@ function py_ensure_decimal_score_columns(PDO $pdo): void
 
         $pdo->exec('ALTER TABLE py_quiz_attempts MODIFY ' . $column . ' DECIMAL(6,2) NOT NULL');
     }
+}
+
+function py_record_login_event(PDO $pdo, int $userId, string $authSource): void
+{
+    $pdo->prepare(
+        'INSERT INTO py_login_events (user_id, auth_source, ip_address, user_agent)
+         VALUES (:user_id, :auth_source, :ip_address, :user_agent)'
+    )->execute([
+        'user_id' => $userId,
+        'auth_source' => $authSource,
+        'ip_address' => $_SERVER['REMOTE_ADDR'] ?? null,
+        'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
+    ]);
 }
 
 function py_seed_admins(PDO $pdo, array $config): void
@@ -1917,6 +1941,11 @@ function py_lti_handle_launch(PDO $pdo, array $config, array $post): string
 
     $claims = py_verify_lti_id_token((string) ($post['id_token'] ?? ''), $config, (string) $launchState['nonce']);
     $userId = py_upsert_lti_user($pdo, $claims);
+    if ($userId !== null) {
+        $pdo->prepare('UPDATE py_quiz_users SET last_login_at = CURRENT_TIMESTAMP WHERE id = :id')
+            ->execute(['id' => $userId]);
+        py_record_login_event($pdo, $userId, 'lti');
+    }
 
     $contextClaim = 'https://purl.imsglobal.org/spec/lti/claim/context';
     $resourceClaim = 'https://purl.imsglobal.org/spec/lti/claim/resource_link';
@@ -2013,6 +2042,7 @@ function py_login_student(PDO $pdo, array $config, string $identifier, string $p
     $_SESSION['student_user_id'] = (int) $student['id'];
     $pdo->prepare('UPDATE py_quiz_users SET last_login_at = CURRENT_TIMESTAMP WHERE id = :id')
         ->execute(['id' => (int) $student['id']]);
+    py_record_login_event($pdo, (int) $student['id'], 'password');
     return true;
 }
 
@@ -2275,6 +2305,9 @@ function py_login_admin(PDO $pdo, string $email, string $password): bool
     }
 
     $_SESSION['admin_user_id'] = (int) $admin['id'];
+    $pdo->prepare('UPDATE py_quiz_users SET last_login_at = CURRENT_TIMESTAMP WHERE id = :id')
+        ->execute(['id' => (int) $admin['id']]);
+    py_record_login_event($pdo, (int) $admin['id'], 'admin');
     return true;
 }
 

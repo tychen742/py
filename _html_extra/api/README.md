@@ -135,6 +135,8 @@ The admin module requires a working PDO database connection. It does not read fr
 
 Student rows are stored in `py_quiz_users` with `role = 'student'`. The API creates or updates these rows from `course.allowed_student_identifiers`, `course.students`, or Canvas LTI launches.
 
+Successful password, admin, and Canvas LTI logins are recorded in `py_login_events` with a timestamp, user ID, auth source, IP address, and user agent for later analysis and research. The `last_login_at` field remains only as a quick current-state summary.
+
 Use `course.students` when you want direct student password login. Store only password hashes created with `password_hash`, not plaintext passwords. Students can sign in at:
 
 `/api/student/login.php`

@@ -45,6 +45,10 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
 - Landing page notebooks do not get exercises
 - All exercises (preview, lab, homework) go in the `assignments/` folder
 
+### Account Data
+
+- Authentication events are research data. Keep historical login timestamps for each user in a login-event table; do not rely only on an overwritten `last_login_at` field.
+
 ## Quality Audits
 
 When asked to audit, read the corresponding prompt file first and follow its instructions exactly.
