@@ -35,7 +35,7 @@ $rows = py_list_admin_score_report($pdo);
         <a class="button secondary" href="/api/admin/users.php">Users</a>
         <a class="button secondary" href="/api/admin/assignments.php">Assignments</a>
         <a class="button secondary" href="/api/admin/export.csv.php">Export CSV</a>
-        <a class="button secondary" href="/api/admin/logout.php">Sign Out</a>
+        <a class="button secondary" href="/api/admin/logout.php">Log out</a>
       </nav>
     </header>
     <div class="table-wrap">

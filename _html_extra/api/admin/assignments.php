@@ -48,7 +48,7 @@ $rows = py_list_assignment_settings($pdo);
         <a class="button secondary" href="/api/admin/">Attempts</a>
         <a class="button secondary" href="/api/admin/report.php">Score Report</a>
         <a class="button secondary" href="/api/admin/users.php">Users</a>
-        <a class="button secondary" href="/api/admin/logout.php">Sign Out</a>
+        <a class="button secondary" href="/api/admin/logout.php">Log out</a>
       </nav>
     </header>
 
