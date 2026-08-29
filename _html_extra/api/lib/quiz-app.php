@@ -320,7 +320,7 @@ function py_seed_course_students(PDO $pdo, array $config): void
         }
 
         $email = trim((string) ($student['email'] ?? ''));
-        $displayName = trim((string) ($student['display_name'] ?? $student['name'] ?? $identifier));
+        $displayName = trim((string) ($student['display_name'] ?? $student['name'] ?? ''));
         $passwordHash = (string) ($student['password_hash'] ?? '');
 
         $stmt = $pdo->prepare(
@@ -338,14 +338,16 @@ function py_seed_course_students(PDO $pdo, array $config): void
         if (is_array($existing)) {
             $sql = 'UPDATE py_quiz_users
                     SET student_identifier = :student_identifier,
-                        display_name = :display_name,
                         role = \'student\',
                         status = \'active\'';
             $params = [
                 'student_identifier' => $identifier,
-                'display_name' => $displayName,
                 'id' => (int) $existing['id'],
             ];
+            if ($displayName !== '') {
+                $sql .= ', display_name = :display_name';
+                $params['display_name'] = $displayName;
+            }
             if ($email !== '') {
                 $sql .= ', email = :email';
                 $params['email'] = $email;
@@ -365,7 +367,7 @@ function py_seed_course_students(PDO $pdo, array $config): void
         );
         $insert->execute([
             'email' => $email !== '' ? $email : $identifier . '@student.local',
-            'display_name' => $displayName,
+            'display_name' => $displayName !== '' ? $displayName : $identifier,
             'password_hash' => $passwordHash !== '' ? $passwordHash : null,
             'student_identifier' => $identifier,
         ]);
