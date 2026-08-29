@@ -9,3 +9,4 @@ dist/
 build/
 _build/
 .jupyter/
+.claude/settings.json
