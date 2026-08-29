@@ -1194,22 +1194,118 @@ function py_list_student_score_summary(PDO $pdo, int $studentUserId): array
 
 function py_list_admin_score_report(PDO $pdo): array
 {
+    $users = $pdo->query(
+        'SELECT id, email, display_name, student_identifier, canvas_user_id
+         FROM py_quiz_users
+         WHERE role = \'student\''
+    )->fetchAll();
+    $usersById = [];
+    $usersByIdentifier = [];
+    $usersByEmail = [];
+    $usersByCanvasId = [];
+    foreach ($users as $user) {
+        $usersById[(int) $user['id']] = $user;
+
+        $identifier = py_normalize_student_identifier((string) ($user['student_identifier'] ?? ''));
+        if ($identifier !== '' && !isset($usersByIdentifier[$identifier])) {
+            $usersByIdentifier[$identifier] = $user;
+        }
+
+        $email = strtolower(trim((string) ($user['email'] ?? '')));
+        if ($email !== '' && !isset($usersByEmail[$email])) {
+            $usersByEmail[$email] = $user;
+        }
+        $emailLocal = py_normalize_student_identifier($email);
+        if ($emailLocal !== '' && !isset($usersByIdentifier[$emailLocal])) {
+            $usersByIdentifier[$emailLocal] = $user;
+        }
+
+        $canvasUserId = strtolower(trim((string) ($user['canvas_user_id'] ?? '')));
+        if ($canvasUserId !== '' && !isset($usersByCanvasId[$canvasUserId])) {
+            $usersByCanvasId[$canvasUserId] = $user;
+        }
+    }
+
     $stmt = $pdo->query(
-        'SELECT
-             COALESCE(u.student_identifier, qa.student_identifier, qa.canvas_user_id, \'Unknown\') AS student_identifier,
-             COALESCE(u.display_name, \'\') AS display_name,
-             qa.quiz_id,
-             qa.assignment_slug,
-             COUNT(*) AS attempt_count,
-             MAX(qa.score) AS best_score,
-             MAX(qa.max_score) AS max_score,
-             MAX(qa.submitted_at) AS last_submitted_at
-         FROM py_quiz_attempts qa
-         LEFT JOIN py_quiz_users u ON u.id = qa.student_user_id
-         GROUP BY student_identifier, display_name, qa.quiz_id, qa.assignment_slug
-         ORDER BY student_identifier ASC, qa.quiz_id ASC'
+        'SELECT student_user_id, canvas_user_id, student_identifier, quiz_id, assignment_slug,
+                score, max_score, submitted_at
+         FROM py_quiz_attempts'
     );
-    return $stmt->fetchAll();
+    $summary = [];
+
+    foreach ($stmt->fetchAll() as $row) {
+        $rawIdentifier = (string) ($row['student_identifier'] ?? '');
+        $normalizedIdentifier = py_normalize_student_identifier($rawIdentifier);
+        $rawCanvasUserId = strtolower(trim((string) ($row['canvas_user_id'] ?? '')));
+
+        $user = null;
+        $studentUserId = (int) ($row['student_user_id'] ?? 0);
+        if ($studentUserId > 0 && isset($usersById[$studentUserId])) {
+            $user = $usersById[$studentUserId];
+        } elseif ($normalizedIdentifier !== '' && isset($usersByIdentifier[$normalizedIdentifier])) {
+            $user = $usersByIdentifier[$normalizedIdentifier];
+        } elseif (str_contains($rawIdentifier, '@') && isset($usersByEmail[strtolower(trim($rawIdentifier))])) {
+            $user = $usersByEmail[strtolower(trim($rawIdentifier))];
+        } elseif ($rawCanvasUserId !== '' && isset($usersByCanvasId[$rawCanvasUserId])) {
+            $user = $usersByCanvasId[$rawCanvasUserId];
+        }
+
+        $studentIdentifier = $user
+            ? py_normalize_student_identifier((string) ($user['student_identifier'] ?? $rawIdentifier))
+            : $normalizedIdentifier;
+        if ($studentIdentifier === '') {
+            $studentIdentifier = $rawCanvasUserId !== '' ? $rawCanvasUserId : 'Unknown';
+        }
+
+        $displayName = $user ? trim((string) ($user['display_name'] ?? '')) : '';
+        if (py_normalize_student_identifier($displayName) === $studentIdentifier) {
+            $displayName = '';
+        }
+
+        $quizId = py_canonical_assignment_id((string) ($row['quiz_id'] ?? ''));
+        $assignmentSlug = (string) ($row['assignment_slug'] ?? '');
+        $key = $studentIdentifier . "\0" . $quizId . "\0" . $assignmentSlug;
+
+        if (!isset($summary[$key])) {
+            $summary[$key] = [
+                'student_identifier' => $studentIdentifier,
+                'display_name' => $displayName,
+                'quiz_id' => $quizId,
+                'assignment_slug' => $assignmentSlug,
+                'attempt_count' => 0,
+                'best_score' => null,
+                'max_score' => null,
+                'last_submitted_at' => null,
+            ];
+        } elseif ($summary[$key]['display_name'] === '' && $displayName !== '') {
+            $summary[$key]['display_name'] = $displayName;
+        }
+
+        $summary[$key]['attempt_count']++;
+        $score = (float) ($row['score'] ?? 0);
+        $maxScore = (float) ($row['max_score'] ?? 0);
+        $summary[$key]['best_score'] = $summary[$key]['best_score'] === null
+            ? $score
+            : max((float) $summary[$key]['best_score'], $score);
+        $summary[$key]['max_score'] = $summary[$key]['max_score'] === null
+            ? $maxScore
+            : max((float) $summary[$key]['max_score'], $maxScore);
+        if (
+            $summary[$key]['last_submitted_at'] === null
+            || (string) $row['submitted_at'] > (string) $summary[$key]['last_submitted_at']
+        ) {
+            $summary[$key]['last_submitted_at'] = $row['submitted_at'];
+        }
+    }
+
+    $rows = array_values($summary);
+    usort($rows, static function (array $a, array $b): int {
+        return strcmp(
+            (string) $a['student_identifier'] . "\0" . (string) $a['quiz_id'],
+            (string) $b['student_identifier'] . "\0" . (string) $b['quiz_id']
+        );
+    });
+    return $rows;
 }
 
 function py_sync_pending_attempts(PDO $pdo, array $config, int $limit = 100): array
