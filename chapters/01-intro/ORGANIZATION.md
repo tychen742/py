@@ -2,7 +2,7 @@
 
 This chapter is currently split into:
 
-- `0100-py-intro.ipynb`
+- `0100-py.ipynb` (landing page)
 - `0101-programming.ipynb`
 - `0102-basic-syntax.ipynb`
 
@@ -10,7 +10,7 @@ This chapter is currently split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0100-py-intro.ipynb`
+1. `0100-py.ipynb` (landing page)
    - What Python is, where it runs, how to use Jupyter, chapter flow, glossary
 2. `0101-programming.ipynb`
    - Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics
@@ -19,7 +19,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `0100-py-intro.ipynb`: What Python is, where it runs, how to use Jupyter, chapter flow, glossary.
+- `0100-py.ipynb`: Landing page — What Python is, where it runs, how to use Jupyter, chapter flow, glossary.
 - `0101-programming.ipynb`: Programming learning habits, what programs and algorithms are, abstraction, binary/hex/ASCII basics.
 - `0102-basic-syntax.ipynb`: Syntax rules, comments, print statements, first programs, and technical section exercises aligned with the Lab 01 coding questions.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.

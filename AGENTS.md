@@ -33,9 +33,17 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
 - Reuse the same datasets across chapters for consistency
 - Always show diffs when proposing changes to existing content
 
+### Landing Pages
+
+- Landing pages (first notebook in each chapter) are named `NNNN-title.ipynb` without "intro" suffix
+  - Example: `0100-py.ipynb`, `0300-control-flow.ipynb`, `0600-collections.ipynb`
+  - Landing pages introduce chapter scope and learning outcomes only
+  - Landing pages do not contain exercises
+
 ### Exercises
 
-- Chapter intro notebooks (`CH00-*-intro.ipynb`) do not get exercises
+- Landing page notebooks do not get exercises
+- All exercises (preview, lab, homework) go in the `assignments/` folder
 
 ## Quality Audits
 

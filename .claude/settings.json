@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(//Users/tychen/.ty/scripts/**)"
+      "Read(//Users/tychen/.ty/scripts/**)",
+      "Bash(git commit -m 'Establish landing page naming rule: remove '\\\\''intro'\\\\'' from filenames *)"
     ],
     "additionalDirectories": [
       "/Users/tychen/workspace/dsm/.github/workflows"

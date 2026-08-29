@@ -4,7 +4,7 @@ parts:
   - caption: "Part I: Fundamentals"
     numbered: true
     chapters:
-      - file: chapters/01-intro/0100-py-intro
+      - file: chapters/01-intro/0100-py
         sections:
           - file: chapters/01-intro/0101-programming
           - file: chapters/01-intro/0102-basic-syntax
@@ -38,7 +38,7 @@ parts:
                 title: Lab
               - file: chapters/02-basics/assignments/homework
                 title: Homework
-      - file: chapters/03-control-flow/0300-intro-control
+      - file: chapters/03-control-flow/0300-control-flow
         sections:
           - file: chapters/03-control-flow/0301-conditionals
           - file: chapters/03-control-flow/0302-iteration
@@ -84,7 +84,7 @@ parts:
   - caption: "Part II: Data Structures"
     numbered: true
     chapters:
-      - file: chapters/06-collections/0600-intro-collections
+      - file: chapters/06-collections/0600-collections
         title: Collections
         sections:
           - file: chapters/06-collections/0601-lists
@@ -99,7 +99,7 @@ parts:
                 title: Lab
               - file: chapters/06-collections/assignments/homework
                 title: Homework
-      - file: chapters/07-dictionaries/0700-intro-dictionaries
+      - file: chapters/07-dictionaries/0700-dictionaries
         title: Dictionaries
         sections:
           - file: chapters/07-dictionaries/0701-dictionaries
@@ -116,7 +116,7 @@ parts:
                 title: Lab
               - file: chapters/07-dictionaries/assignments/homework
                 title: Homework
-      - file: chapters/08-strings/0800-intro-strings
+      - file: chapters/08-strings/0800-strings
         title: Strings and Text
         sections:
           - file: chapters/08-strings/0801-strings
@@ -134,7 +134,7 @@ parts:
   - caption: "Part III: Program Design"
     numbered: true
     chapters:
-      - file: chapters/09-oop/0900-intro-oop
+      - file: chapters/09-oop/0900-oop
         title: OOP
         sections:
           - file: chapters/09-oop/0901-oop-design
@@ -152,7 +152,7 @@ parts:
                 title: Lab
               - file: chapters/09-oop/assignments/homework
                 title: Homework
-      - file: chapters/10-functional/1000-intro-func-prog
+      - file: chapters/10-functional/1000-func-prog
         title: FP
         sections:
           - file: chapters/10-functional/1001-func-prog
@@ -168,7 +168,7 @@ parts:
                 title: Lab
               - file: chapters/10-functional/assignments/homework
                 title: Homework
-      - file: chapters/11-iter-gen/1100-intro-iter-gen
+      - file: chapters/11-iter-gen/1100-iter-gen
         title: Iterators & Generators
         sections:
           - file: chapters/11-iter-gen/1101-iterators
@@ -182,7 +182,7 @@ parts:
                 title: Lab
               - file: chapters/11-iter-gen/assignments/homework
                 title: Homework
-      - file: chapters/12-apis/1200-intro-apis
+      - file: chapters/12-apis/1200-apis
         title: APIs
         sections:
           - file: chapters/12-apis/1201-apis
@@ -219,7 +219,7 @@ parts:
                 title: Lab
               - file: chapters/13-abstract-data-structures/assignments/homework
                 title: Homework
-      - file: chapters/14-algorithms/1400-intro-algorithms
+      - file: chapters/14-algorithms/1400-algorithms
         sections:
           - file: chapters/14-algorithms/1401-algorithms
           - file: chapters/14-algorithms/1402-searching
