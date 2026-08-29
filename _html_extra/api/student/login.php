@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         py_start_admin_session($config);
         if (py_login_admin($pdo, (string) ($_POST['identifier'] ?? ''), (string) ($_POST['password'] ?? ''))) {
-            header('Location: /api/admin/');
+            header('Location: ' . $target);
             exit;
         }
 
