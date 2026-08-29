@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/tychen/.ty/scripts/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/tychen/workspace/dsm/.github/workflows"
+    ]
+  }
+}
