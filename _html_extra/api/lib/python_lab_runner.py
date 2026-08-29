@@ -19,8 +19,23 @@ ALLOWED_CALLS = {
     "sum": sum,
     "len": len,
     "max": max,
+    "min": min,
     "set": set,
     "sorted": sorted,
+}
+
+ALLOWED_METHODS = {
+    "append",
+    "count",
+    "get",
+    "index",
+    "items",
+    "keys",
+    "lower",
+    "split",
+    "strip",
+    "upper",
+    "values",
 }
 
 ALLOWED_NODES = (
@@ -46,6 +61,7 @@ ALLOWED_NODES = (
     ast.keyword,
     ast.JoinedStr,
     ast.FormattedValue,
+    ast.Attribute,
     ast.Compare,
     ast.Eq,
     ast.NotEq,
@@ -57,12 +73,20 @@ ALLOWED_NODES = (
     ast.And,
     ast.Or,
     ast.Not,
+    ast.If,
+    ast.For,
+    ast.AugAssign,
     ast.List,
     ast.Tuple,
     ast.Set,
     ast.Dict,
     ast.Subscript,
     ast.Slice,
+    ast.FunctionDef,
+    ast.arguments,
+    ast.arg,
+    ast.Return,
+    ast.Pass,
 )
 
 
@@ -77,9 +101,20 @@ class LabCodeValidator(ast.NodeVisitor):
             raise ValueError("Names beginning with __ are not allowed.")
         self.generic_visit(node)
 
+    def visit_Attribute(self, node):
+        if node.attr.startswith("__"):
+            raise ValueError("Attributes beginning with __ are not allowed.")
+        self.generic_visit(node)
+
     def visit_Call(self, node):
-        if not isinstance(node.func, ast.Name) or node.func.id not in ALLOWED_CALLS:
-            raise ValueError("Only the allowed lab functions can be called.")
+        if isinstance(node.func, ast.Name):
+            if node.func.id.startswith("__"):
+                raise ValueError("Names beginning with __ are not allowed.")
+        elif isinstance(node.func, ast.Attribute):
+            if node.func.attr not in ALLOWED_METHODS or node.func.attr.startswith("__"):
+                raise ValueError("Only the allowed lab methods can be called.")
+        else:
+            raise ValueError("Only simple function and method calls are allowed.")
         self.generic_visit(node)
 
 
