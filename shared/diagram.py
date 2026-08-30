@@ -1,7 +1,10 @@
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-
-from matplotlib.transforms import Bbox, TransformedBbox
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as patches
+    from matplotlib.transforms import Bbox, TransformedBbox
+except (ImportError, AttributeError) as e:
+    plt = patches = Bbox = TransformedBbox = None
+    _matplotlib_error = str(e)
 
 # TODO: Study this https://matplotlib.org/stable/tutorials/text/annotations.html#sphx-glr-tutorials-text-annotations-py
 
