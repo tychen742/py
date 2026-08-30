@@ -185,6 +185,10 @@ nav.bd-links li>a {
     margin: 0 !important;
 }
 
+.bd-article-container [class$="-preview-question"] {
+    padding-bottom: 0.45rem !important;
+}
+
 .bd-article-container [class$="-preview-question"] label:last-of-type {
     margin-bottom: 0 !important;
 }
