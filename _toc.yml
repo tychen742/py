@@ -22,6 +22,7 @@ parts:
           - file: chapters/02-basics/0201-variables
           - file: chapters/02-basics/0202-operators
           - file: chapters/02-basics/0203-builtin-types
+            title: Types and Functions
             sections:
               - file: chapters/02-basics/0204-builtins
                 title: Built-in Functions
@@ -244,7 +245,7 @@ parts:
     chapters:
       - file: chapters/appendices/0101-tooling
       - file: chapters/appendices/05-tooling/0500-intro-modules
-        title: Modules, Files, and Packaging
+        title: Modules and Packaging
         sections:
           - file: chapters/appendices/05-tooling/0501-files
           - file: chapters/appendices/05-tooling/0502-modules
