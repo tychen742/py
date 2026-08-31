@@ -248,14 +248,14 @@ body.bd-assignment-card-page .bd-article-container .bd-assignment-question-card 
 
 body.bd-exercise-card-page .bd-article-container .exercise-label,
 body.bd-assignment-card-page .bd-article-container .exercise-label {
-    font-size: 1rem !important;
+    font-size: inherit !important;
     line-height: 1.35 !important;
 }
 
 body.bd-exercise-card-page .bd-article-container .exercise-label .exercise-question-title,
 body.bd-assignment-card-page .bd-article-container .exercise-label .exercise-question-title {
     color: var(--pst-color-text-base) !important;
-    font-size: 1rem !important;
+    font-size: inherit !important;
     font-weight: 700 !important;
     line-height: 1.35 !important;
 }
@@ -263,7 +263,7 @@ body.bd-assignment-card-page .bd-article-container .exercise-label .exercise-que
 body.bd-exercise-card-page .bd-article-container .exercise-label .exercise-count,
 body.bd-assignment-card-page .bd-article-container .exercise-label .exercise-count {
     color: #771212 !important;
-    font-size: 1rem !important;
+    font-size: inherit !important;
     font-weight: 400 !important;
     line-height: 1.35 !important;
 }

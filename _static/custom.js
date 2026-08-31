@@ -359,7 +359,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         label.style.cssText = `
             display: block;
-            font-size: 1rem;
             line-height: 1.35;
             margin-bottom: 8px;
         `;
