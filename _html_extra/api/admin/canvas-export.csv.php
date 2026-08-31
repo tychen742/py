@@ -34,6 +34,9 @@ fputcsv($out, ['Points Possible', '', '', '', '', py_canvas_score_value($quiz['m
 
 foreach (py_best_attempts_by_identifier($pdo, $quizId) as $attempt) {
     $studentIdentifier = (string) ($attempt['student_identifier'] ?? '');
+    if (py_is_report_excluded_student($pdo, $studentIdentifier)) {
+        continue;
+    }
     if (!py_is_canvas_sis_login_id($studentIdentifier)) {
         continue;
     }
