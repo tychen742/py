@@ -687,6 +687,162 @@ function py_lab_definition(string $labId): ?array
                 'q5' => "Fruit count: 4\nUnique fruits: ['apple', 'banana', 'cherry']\nBanana price: 0.5\nPrice pair: ('banana', 0.5)",
             ],
         ],
+        'ch03-lab' => [
+            'chapter' => '03-control-flow',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch03',
+            'expected_outputs' => [
+                'q1' => "Days: 2\nHours: 18\nMinutes: 40",
+                'q2' => "Customer: Jordan Lee\nTier: Gold",
+                'q3' => "Qualifying days: 3\nTotal qualifying sales: 1760",
+                'q4' => "Months needed: 5\nFinal savings: \$2071.21",
+                'q5' => "Order total: \$42.50\nShipping fee: \$5.99",
+            ],
+        ],
+        'ch04-lab' => [
+            'chapter' => '04-functions',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch04',
+            'expected_outputs' => [
+                'q1' => "120.00 USD\n85.50 EUR",
+                'q2' => "{'destination': 'Denver', 'stops': ('Omaha', 'Boulder'), 'details': {'days': 5, 'budget': 900}}",
+                'q3' => "BMI is 22.9 (healthy)\nBMI is 31.1 (above healthy range)",
+                'q4' => "[40.0, 15.0, 60.0]\n[36.0, 13.5, 54.0]",
+                'q5' => "24\n5",
+            ],
+        ],
+        'ch05-lab' => [
+            'chapter' => '05-testing',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch05',
+            'expected_outputs' => [
+                'q1' => "3.14\nCannot convert 'abc' to float\nNone",
+                'q2' => "(10, 20) is a valid rectangle\nAssertionError: Width and height must be positive\nAssertionError: Width and height must be at most 100",
+                'q3' => "75.0\nError: total cannot be zero\nNone\nError: score and total must be numbers\nNone",
+                'q4' => "Field found.\nLookup attempt finished.\nA\nField 'email' not found\nLookup attempt finished.\nNone",
+                'q5' => "True\nValueError: Password must be at least 8 characters\nTypeError: Password must be a string, got <class 'int'>",
+            ],
+        ],
+        'ch06-lab' => [
+            'chapter' => '06-collections',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch06',
+            'expected_outputs' => [
+                'q1' => "Squares: [9, 64, 225, 484, 16, 361, 121]\nEvens: [8, 22, 4]",
+                'q2' => "Top: 100\nMiddle: [95, 88, 76, 65]\nBottom: 50\ngold: Alice\nsilver: Bob\nbronze: Cara",
+                'q3' => "Welcomed: ['ana', 'sam']\nTurned away: ['eli', 'zoe']",
+                'q4' => "Original: [10, 20, 30, 40]\nAlias: [10, 20, 30, 40]\nCopy: [10, 20, 30, 99]",
+                'q5' => "Scoreboard: {'Alice': 92, 'Bob': 68, 'Cara': 88, 'Dee': 55}\nHonor roll: ['Alice', 'Cara']",
+            ],
+        ],
+        'ch07-lab' => [
+            'chapter' => '07-dictionaries',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch07',
+            'expected_outputs' => [
+                'q1' => "APPLE: 1.08\nBANANA: 0.45\nCHERRY: 1.8\nGRAPE: 0.72",
+                'q2' => "State for Topeka: Kansas\nJefferson City -> Missouri\nLittle Rock -> Arkansas\nTopeka -> Kansas",
+                'q3' => "Alice math score: 92\nalice average: 90.0\nbob average: 78.0",
+                'q4' => "Valid orders: ['sku1', 'sku3']\nInvalid orders: ['sku4', 'sku5']\nValid count: 2",
+                'q5' => "Removed clubs: ['chess']\nAdvisor: Dr. Lee\nhistory: 78\nmath: 90\nscience: 85",
+            ],
+        ],
+        'ch08-lab' => [
+            'chapter' => '08-strings',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch08',
+            'expected_outputs' => [
+                'q1' => "Clean title: The Quick Brown Fox\nWord count: 4",
+                'q2' => "Normalized: TS_2024_ALPHA\nValid ticket: True\nUnderscore count: 2",
+                'q3' => "Sorted words: ['Apple', 'apple', 'banana', 'Banana', 'cherry']\nUnique count: 3",
+                'q4' => "Numbers found: ['1', '42', '2', '108']\nTotal: 153",
+                'q5' => "Valid code: True\nLetter: A\nNumber: 1234",
+            ],
+        ],
+        'ch09-lab' => [
+            'chapter' => '09-oop',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch09',
+            'expected_outputs' => [
+                'q1' => "Owner: Priya\nBalance after interest: 5100.00",
+                'q2' => "Alice: \$120.50\nBob: \$75.00\n[BankAccount('Alice', 120.5), BankAccount('Bob', 75.0)]",
+                'q3' => "Balance: 250.0\nBalance after fee: 245.0",
+                'q4' => "Owner: Jordan\nBalance: 482.75",
+                'q5' => "Equal balances: True\nSorted owners: ['Charlie', 'Alice', 'Bob']",
+            ],
+        ],
+        'ch10-lab' => [
+            'chapter' => '10-functional',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch10',
+            'expected_outputs' => [
+                'q1' => "Alice (junior, 85)\nDiana (junior, 65)\nEve (senior, 88)\nBob (senior, 72)\nCharlie (sophomore, 91)",
+                'q2' => "Total grade points: 401\nAverage grade: 80.2",
+                'q3' => "Senior count: 2",
+                'q4' => "Juniors: {'Alice': 85, 'Diana': 65}",
+                'q5' => "Honor roll: ['Charlie']",
+            ],
+        ],
+        'ch11-lab' => [
+            'chapter' => '11-iter-gen',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch11',
+            'expected_outputs' => [
+                'q1' => "Sales above 1000: [1200, 2100, 1600]\nCount above 1000: 3",
+                'q2' => "[1200, 850]\n[2100, 430]\n[975, 1600]",
+                'q3' => "[1200, 1200, 2100, 2100, 2100, 2100]",
+                'q4' => "First three discounted: [1080.0, 765.0, 1890.0]\nAny sale over 1000: True\nAll sales over 400: True",
+                'q5' => "Projected sales: [1000, 1100.0, 1210.0, 1331.0, 1464.1]",
+            ],
+        ],
+        'ch12-lab' => [
+            'chapter' => '12-apis',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch12',
+            'expected_outputs' => [
+                'q1' => "https://api.example.test/search?q=python%20generators&page=3&limit=10",
+                'q2' => "Austin\nunknown",
+                'q3' => "{'order_id': 4821, 'total': 21.25, 'item_count': 2}",
+                'q4' => "['alpha', 'beta', 'gamma', 'delta', 'epsilon']",
+                'q5' => "['Alpha', 'Beta']\n{\"status\": \"ok\", \"count\": 2}",
+            ],
+        ],
+        'ch13-lab' => [
+            'chapter' => '13-abstract-data-structures',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch13',
+            'expected_outputs' => [
+                'q1' => "checkout\nproducts\n1",
+                'q2' => "apple\nbanana\n1",
+                'q3' => "['operations', 'charlie', 'erin', 'dana']",
+                'q4' => "['alice', 'bob', 'charlie', 'dana', 'erin']",
+                'q5' => "{'process refund requests in the order received': 'queue', 'undo the last edit in a text editor': 'stack', 'track unique visitor IDs seen today': 'set', 'look up an account plan by username': 'dict'}",
+            ],
+        ],
+        'ch14-lab' => [
+            'chapter' => '14-algorithms',
+            'assignment_slug' => 'lab',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'lab_ch14',
+            'expected_outputs' => [
+                'q1' => "Minimum: 1\nMaximum: 9",
+                'q2' => "5\n-1",
+                'q3' => "Insert position: 3\nUpdated scores: [55, 62, 74, 79, 81, 88, 95]",
+                'q4' => "Sorted: [1, 3, 6, 8, 9]\nOriginal unchanged: [8, 3, 9, 1, 6]",
+                'q5' => "Target 23: (3, 4)\nTarget 100: (-1, 7)",
+            ],
+        ],
     ];
 
     return $labs[$labId] ?? null;
@@ -747,7 +903,15 @@ function py_assignment_definition(string $assignmentId): ?array
 
 function py_all_assignment_definitions(): array
 {
-    $assignmentIds = ['ch01-preview', 'ch01-lab', 'ch01-homework', 'ch02-lab', 'ch02-homework'];
+    $assignmentIds = [
+        'ch01-preview', 'ch02-preview', 'ch03-preview', 'ch04-preview', 'ch05-preview',
+        'ch06-preview', 'ch07-preview', 'ch08-preview', 'ch09-preview', 'ch10-preview',
+        'ch11-preview', 'ch12-preview', 'ch13-preview', 'ch14-preview',
+        'ch01-lab', 'ch02-lab', 'ch03-lab', 'ch04-lab', 'ch05-lab',
+        'ch06-lab', 'ch07-lab', 'ch08-lab', 'ch09-lab', 'ch10-lab',
+        'ch11-lab', 'ch12-lab', 'ch13-lab', 'ch14-lab',
+        'ch01-homework', 'ch02-homework',
+    ];
     $assignments = [];
     foreach ($assignmentIds as $assignmentId) {
         $definition = py_assignment_definition($assignmentId);
