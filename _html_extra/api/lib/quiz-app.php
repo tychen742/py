@@ -2000,7 +2000,7 @@ function py_list_admin_report_assignment_numbers(PDO $pdo): array
 function py_report_excluded_student_identifiers(PDO $pdo): array
 {
     $adminIdentifiers = [];
-    foreach (['tchen', 'tcn85', 'mysql-smoke', 'lti-live-smoke'] as $identifier) {
+    foreach (['tchen', 'tcn85', 'ms6q3', 'mysql-smoke', 'lti-live-smoke'] as $identifier) {
         $adminIdentifiers[py_normalize_student_identifier($identifier)] = true;
     }
 
