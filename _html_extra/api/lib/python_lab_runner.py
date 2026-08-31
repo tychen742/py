@@ -54,6 +54,7 @@ ALLOWED_CALLS = {
     "NameError": NameError,
     "RuntimeError": RuntimeError,
     "Exception": Exception,
+    "AssertionError": AssertionError,
     # Compiler-synthesized calls: the `class` and `import` statements invoke
     # these internally via dedicated bytecode ops, never through a Name/Call
     # AST node in student source, so the dunder-prefix checks below (which
@@ -83,79 +84,22 @@ SAFE_DUNDER_METHODS = {
     "__next__",
     "__contains__",
     "__hash__",
+    # A str attribute (e.g. `type(x).__name__` -> "int"), not navigable to
+    # any other object — does not reopen the __class__/__subclasses__ chain.
+    "__name__",
 }
 
-# NOTE: deliberately excludes str.format()/str.format_map() — their
+# Method-call names are NOT gated by an allowlist (see visit_Call) — the
+# real security boundary is the import allowlist + restricted builtins +
+# dunder-attribute checks. This is instead a small BLOCKLIST for methods
+# that are individually dangerous regardless of receiver type: their
 # "{0.__class__}" field-access mini-language does attribute traversal at
-# runtime via a string spec, invisible to the AST validator below, and is
-# a known sandbox-escape primitive. Use f-strings instead (already
-# supported via JoinedStr/FormattedValue, which DO compile to real
-# Attribute AST nodes the validator can see).
-ALLOWED_METHODS = {
-    "append",
-    "count",
-    "get",
-    "index",
-    "items",
-    "keys",
-    "lower",
-    "split",
-    "strip",
-    "upper",
-    "values",
-    "sort",
-    "pop",
-    "join",
-    "replace",
-    "extend",
-    "insert",
-    "setdefault",
-    "popitem",
-    "discard",
-    "union",
-    "intersection",
-    "difference",
-    "remove",
-    "add",
-    "update",
-    "copy",
-    "casefold",
-    "startswith",
-    "endswith",
-    "isdigit",
-    "isalpha",
-    "isalnum",
-    "istitle",
-    "isupper",
-    "islower",
-    "isspace",
-    "find",
-    "rfind",
-    "capitalize",
-    "title",
-    "zfill",
-    "ljust",
-    "rjust",
-    "center",
-    "rstrip",
-    "lstrip",
-    "splitlines",
-    "partition",
-    "rpartition",
-    "swapcase",
-    "match",
-    "search",
-    "findall",
-    "finditer",
-    "fullmatch",
-    "sub",
-    "subn",
-    "group",
-    "groups",
-    "groupdict",
-    "span",
-    "start",
-    "end",
+# runtime via a string spec, invisible to the AST validator entirely. Use
+# f-strings instead (already supported via JoinedStr/FormattedValue, which
+# DO compile to real Attribute AST nodes the validator can see).
+BLOCKED_METHODS = {
+    "format",
+    "format_map",
 }
 
 # Root package names allowed in `import`/`from ... import ...` statements.
@@ -197,9 +141,15 @@ ALLOWED_NODES = (
     ast.FloorDiv,
     ast.Mod,
     ast.Pow,
+    ast.BitOr,
+    ast.BitAnd,
+    ast.BitXor,
+    ast.LShift,
+    ast.RShift,
     ast.UnaryOp,
     ast.UAdd,
     ast.USub,
+    ast.Invert,
     ast.Call,
     ast.keyword,
     ast.JoinedStr,
@@ -212,6 +162,10 @@ ALLOWED_NODES = (
     ast.LtE,
     ast.Gt,
     ast.GtE,
+    ast.In,
+    ast.NotIn,
+    ast.Is,
+    ast.IsNot,
     ast.BoolOp,
     ast.And,
     ast.Or,
@@ -220,6 +174,8 @@ ALLOWED_NODES = (
     ast.IfExp,
     ast.For,
     ast.While,
+    ast.Break,
+    ast.Continue,
     ast.AugAssign,
     ast.List,
     ast.Tuple,
@@ -255,14 +211,6 @@ ALLOWED_NODES = (
 
 
 class LabCodeValidator(ast.NodeVisitor):
-    def __init__(self):
-        super().__init__()
-        # Names bound by a vetted `import X [as Y]` statement. Attribute
-        # calls on these (e.g. `math.sqrt(...)`) bypass the object-method
-        # allowlist below, since the module itself was already restricted
-        # to ALLOWED_MODULES at import time.
-        self.imported_modules = set()
-
     def generic_visit(self, node):
         if not isinstance(node, ALLOWED_NODES):
             raise ValueError(f"{type(node).__name__} is not allowed in this lab.")
@@ -283,13 +231,20 @@ class LabCodeValidator(ast.NodeVisitor):
             if node.func.id.startswith("__"):
                 raise ValueError("Names beginning with __ are not allowed.")
         elif isinstance(node.func, ast.Attribute):
+            # Method-call names are not gated by an allowlist: every object
+            # reachable in this sandbox is either a builtin-type instance, a
+            # result from an ALLOWED_MODULES import, or a student-defined
+            # class instance whose method bodies are themselves recursively
+            # AST-validated. None of those expose a non-dunder method with
+            # filesystem/network/process capability, so the real security
+            # boundary is the import allowlist + restricted builtins below,
+            # plus the dunder-attribute check every Attribute node still
+            # goes through (see visit_Attribute) - not a method-name list.
             attr = node.func.attr
-            base = node.func.value
-            is_module_call = isinstance(base, ast.Name) and base.id in self.imported_modules
-            if attr in SAFE_DUNDER_METHODS or is_module_call:
-                pass
-            elif attr not in ALLOWED_METHODS or attr.startswith("__"):
-                raise ValueError("Only the allowed lab methods can be called.")
+            if attr in BLOCKED_METHODS:
+                raise ValueError(f"The '{attr}' method is not allowed in this lab.")
+            if attr.startswith("__") and attr not in SAFE_DUNDER_METHODS:
+                raise ValueError("Attributes beginning with __ are not allowed.")
         else:
             raise ValueError("Only simple function and method calls are allowed.")
         self.generic_visit(node)
@@ -299,7 +254,6 @@ class LabCodeValidator(ast.NodeVisitor):
             root = alias_node.name.split(".")[0]
             if root not in ALLOWED_MODULES:
                 raise ValueError(f"Importing '{alias_node.name}' is not allowed in this lab.")
-            self.imported_modules.add(alias_node.asname or root)
         self.generic_visit(node)
 
     def visit_ImportFrom(self, node):
