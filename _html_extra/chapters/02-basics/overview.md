@@ -34,7 +34,7 @@ style: |
 
 Variables & Types
 
-*2.0 Intro · 2.1 Variables · 2.2 Operators · 2.3 Types · 2.4–2.6 Built-ins & Collections*
+*2.0 Intro · 2.1 Variables & Objects · 2.2 Expressions & Operators · 2.3 Types & Built-ins*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -42,13 +42,13 @@ Variables & Types
 
 <!-- _class: section -->
 
-## 2.1 Variables
+## 2.1 Variables & Objects
 
-Assignment, naming conventions, and dynamic typing
+Assignment, identity, mutability, and formatted output
 
 ---
 
-## Variables & Assignment
+## Names, Objects, and Assignment
 
 <div class="cols">
 <div>
@@ -84,9 +84,9 @@ x += 10   # same as x = x + 10
 
 <!-- _class: section -->
 
-## 2.2 Operators
+## 2.2 Expressions & Operators
 
-Arithmetic, comparison, logical, and assignment operators
+Expressions, arithmetic, comparison, Boolean logic, and precedence
 
 ---
 
@@ -137,9 +137,9 @@ result = data or []   # [] if data is falsy
 
 <!-- _class: section -->
 
-## 2.3–2.5 Built-in Types
+## 2.3 Types & Built-ins
 
-Numbers, strings, booleans, and type conversion
+Scalar types, conversion, common functions, and collection preview
 
 ---
 
@@ -213,7 +213,7 @@ print(len(s))      # 13
 
 ---
 
-## 2.6 Collection Types — Overview
+## Collection Types — Preview
 
 | Type | Ordered | Mutable | Unique | Access |
 |---|---|---|---|---|

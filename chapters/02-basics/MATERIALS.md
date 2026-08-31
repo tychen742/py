@@ -3,24 +3,20 @@
 This checklist is for building and delivering:
 
 - `0200-py-basics.ipynb`
-- `0201-variables.ipynb`
-- `0202-operators.ipynb`
-- `0203-builtin-types.ipynb`
-- `0204-builtins.ipynb`
-- `0205-basic-types.ipynb`
-- `0206-collection-types.ipynb`
+- `0201-variables-and-objects.ipynb`
+- `0202-expressions-and-operators.ipynb`
+- `0203-types-and-builtins.ipynb`
 
 ## Chapter 02 Delivery Order (Recommended)
 
-1. `0200-py-basics.ipynb` — Chapter overview and Python REPL basics
-2. `0201-variables.ipynb` — Variables, assignment, naming conventions, f-strings
-3. `0202-operators.ipynb` — Arithmetic, comparison, logical, and assignment operators
-4. `0203-builtin-types.ipynb` — Type concepts, hierarchy, checking, and conversion
-5. `0204-builtins.ipynb` — Common Python built-in functions
-6. `0205-basic-types.ipynb` — Numbers, strings, booleans, and related examples
-7. `0206-collection-types.ipynb` — Collection type overview
+1. `0200-py-basics.ipynb` — Chapter overview, learning goals, glossary, and chapter flow
+2. `0201-variables-and-objects.ipynb` — Names, assignment, object identity, mutation, aliasing, and f-strings
+3. `0202-expressions-and-operators.ipynb` — Expressions, arithmetic, comparisons, Boolean logic, membership, identity, assignment updates, and precedence
+4. `0203-types-and-builtins.ipynb` — Scalar types, type checking, conversion, common built-ins, collection preview, and type hints
 
 Chapter 02 planning and delivery are scoped to `chapters/02-basics/` only.
+
+The previous over-fragmented six-notebook split is preserved in `materials/_archived/02-overfragmented/`.
 
 ## Assignments
 

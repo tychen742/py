@@ -1,26 +1,26 @@
 # Chapter 02 Organization (Variables and Basics)
 
-This chapter is currently split into:
+This chapter is split into:
 
 - `0200-py-basics.ipynb`
-- `0201-variables.ipynb`
-- `0202-operators.ipynb`
-- `0203-builtin-types.ipynb`
-- `0204-builtins.ipynb`
-- `0205-basic-types.ipynb`
-- `0206-collection-types.ipynb`
+- `0201-variables-and-objects.ipynb`
+- `0202-expressions-and-operators.ipynb`
+- `0203-types-and-builtins.ipynb`
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0200-py-basics.ipynb` — chapter overview and Python REPL basics
-2. `0201-variables.ipynb` — variables, assignment, naming conventions, f-strings
-3. `0202-operators.ipynb` — arithmetic, comparison, logical, and assignment operators
-4. `0203-builtin-types.ipynb` — type concepts, hierarchy, checking, and conversion
-5. `0204-builtins.ipynb` — common Python built-in functions
-6. `0205-basic-types.ipynb` — numbers, strings, booleans, and related examples
-7. `0206-collection-types.ipynb` — collection type overview
+1. `0200-py-basics.ipynb` — chapter overview, learning goals, glossary, and chapter flow. No exercises.
+2. `0201-variables-and-objects.ipynb` — names and assignment; objects, values, types, and identity; mutation vs. reassignment; f-strings.
+3. `0202-expressions-and-operators.ipynb` — expressions and statements; arithmetic; comparison and Boolean logic; membership and identity; assignment updates and precedence.
+4. `0203-types-and-builtins.ipynb` — scalar types; type checking and conversion; common built-in functions; light collection-type preview; type hints.
+
+Detailed collection behavior belongs in Chapter 06 and dictionaries in Chapter 07. Chapter 02 should introduce collection types only far enough for students to recognize them and use small examples.
+
+## Archived Files
+
+The previous six-notebook split was archived in `materials/_archived/02-overfragmented/` because it made the chapter feel like a reference sequence instead of a paced foundation chapter.
 
 ## Source of Truth
 
