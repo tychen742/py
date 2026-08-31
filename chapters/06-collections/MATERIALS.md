@@ -19,5 +19,5 @@ Chapter 06 planning and delivery are scoped to `chapters/06-collections/` only.
 
 - `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview
-- `assignments/lab.ipynb` — Lab assignment
+- `assignments/lab.ipynb` — Lab assignment (built, graded, wired to the lab submission API): list comprehensions; starred/dict-items tuple unpacking; set algebra; aliasing vs. copying; combining lists and dicts
 - `assignments/homework.ipynb` — Homework questions

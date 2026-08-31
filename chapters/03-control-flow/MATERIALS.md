@@ -34,8 +34,8 @@ This checklist is for building and delivering:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Score evaluator script; login system; star pattern loop exercises
+- Lab tasks (built, graded, wired to the lab submission API):
+  - Unit conversion with modulus/floor division; nested-conditional loyalty tier; for-loop accumulator; while-loop savings goal; conditional-expression (ternary) shipping fee
 - Homework:
   - Flow chart for a multi-branch decision; accumulator loop problem
 - Grading anchors:

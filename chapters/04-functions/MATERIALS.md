@@ -42,8 +42,8 @@ This checklist is for building and delivering:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Write functions with/without return values; polygon exercise; recursion trace
+- Lab tasks (built, graded, wired to the lab submission API):
+  - Default parameters; *args/**kwargs; function composition (BMI report); pure-function refactor; recursion over a list
 - Homework:
   - Function composition problem; write a recursive solution with explanation
 - Grading anchors:

@@ -59,8 +59,8 @@ Use a two-tier model for one chapter per week:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Write try/except for user input; write a test class with at least 3 test methods
+- Lab tasks (built, graded, wired to the lab submission API):
+  - Safe conversion (try/except); assert-based validator; multiple exception types; try/except/else/finally; raising exceptions by condition
 - Homework:
   - Add exception handling and tests to a prior chapter function
 - Grading anchors:
