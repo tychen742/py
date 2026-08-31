@@ -6,7 +6,6 @@ This checklist is for building and delivering:
 - `1301-adt-basics.ipynb`
 - `1302-stacks-queues.ipynb`
 - `1303-trees-graphs.ipynb`
-- `1304-assignments.ipynb`
 
 ## Must-Have Teaching Materials
 
@@ -39,10 +38,6 @@ This checklist is for building and delivering:
 - Trees: terminology; binary trees; traversals (pre-order, in-order, post-order); BST basics
 - Graphs: vertices and edges; adjacency list/matrix; DFS and BFS traversal
 
-### `1304-assignments.ipynb`
-
-- Chapter exercises and applied problems covering stacks, queues, trees, and graphs
-
 ## Practice and Assessment Pack
 
 - In-class checks:
@@ -67,7 +62,7 @@ This checklist is for building and delivering:
 2. `1301-adt-basics.ipynb` — ADT concept and interface vs. implementation
 3. `1302-stacks-queues.ipynb` — Stack and Queue
 4. `1303-trees-graphs.ipynb` — Trees and Graphs
-5. `1304-assignments.ipynb` — Exercises and applied problems
+5. `assignments/preview.ipynb`, `assignments/lab.ipynb`, `assignments/homework.ipynb` — Chapter assignments
 
 ## Coordination Note
 

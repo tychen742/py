@@ -2,7 +2,7 @@
 
 This checklist is for building and delivering:
 
-- `0300-intro-control.ipynb`
+- `0300-control-flow.ipynb`
 - `0301-conditionals.ipynb`
 - `0302-iteration.ipynb`
 
@@ -17,7 +17,7 @@ This checklist is for building and delivering:
 
 ## Notebook Content Targets
 
-### `0300-intro-control.ipynb`
+### `0300-control-flow.ipynb`
 
 - Motivation and overview of conditional and loop constructs
 
@@ -51,7 +51,7 @@ This checklist is for building and delivering:
 
 ## Chapter 03 Delivery Order (Recommended)
 
-1. `0300-intro-control.ipynb` — Motivation and overview of conditional and loop constructs
+1. `0300-control-flow.ipynb` — Motivation and overview of conditional and loop constructs
 2. `0301-conditionals.ipynb` — control-structure overview; if / elif / else; nested conditionals; modulus and floor division; conditional expressions
 3. `0302-iteration.ipynb` — for and while loops; break, continue; accumulator pattern
 

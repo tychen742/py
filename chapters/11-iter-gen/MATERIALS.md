@@ -2,7 +2,7 @@
 
 This checklist is for building and delivering:
 
-- `1100-intro-iter-gen.ipynb`
+- `1100-iter-gen.ipynb`
 - `1101-iterators.ipynb`
 - `1102-generators.ipynb`
 
@@ -25,7 +25,7 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1100-intro-iter-gen.ipynb`
+### `1100-iter-gen.ipynb`
 
 - Required core:
   - Chapter intro: learning goals, motivation, chapter flow map (no exercises)
@@ -80,7 +80,7 @@ Use a two-tier model for one chapter per week:
 
 ## Chapter 11 Delivery Order (Recommended)
 
-1. `1100-intro-iter-gen.ipynb` — Chapter intro: learning goals and chapter flow map
+1. `1100-iter-gen.ipynb` — Chapter intro: learning goals and chapter flow map
 2. `1101-iterators.ipynb` — Iterator protocol; built-in iterators; custom iterator classes
 3. `1102-generators.ipynb` — Generator functions; generator expressions; infinite sequences
 

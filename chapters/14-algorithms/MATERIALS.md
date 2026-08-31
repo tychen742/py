@@ -2,12 +2,12 @@
 
 This checklist is for building and delivering:
 
-- `1400-intro-algorithms.ipynb`
+- `1400-algorithms.ipynb`
 - `1401-algorithms.ipynb`
 - `1402-searching.ipynb`
 - `1403-sorting.ipynb`
 
-> Note: `1000` is the chapter intro stub; `1001` is the concept framing notebook (no exercises). Exercises live in `1002` and `1003`.
+> Note: `1400` is the chapter intro stub. Concept-check exercises begin in `1401`; coding-heavy exercises live in `1402` and `1403`.
 
 ## Must-Have Teaching Materials
 
@@ -32,7 +32,7 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1400-intro-algorithms.ipynb`
+### `1400-algorithms.ipynb`
 
 - Required core:
   - Chapter intro stub only: title and chapter flow map
@@ -44,6 +44,7 @@ Use a two-tier model for one chapter per week:
   - Runtime measurement basics (`timeit` module vs `time.perf_counter`)
   - Big O growth table and best/average/worst-case framing
   - Algorithm Selection Guide table
+  - Exercises: classify growth rates, choose algorithms from scenario constraints, and interpret small timing results
 - Enrichment/project track:
   - Extended design checklist drills and additional Think Ahead prompts
 
@@ -88,7 +89,7 @@ Use a two-tier model for one chapter per week:
 
 ## Reusable Assets to Prepare
 
-- `average_runtime` utility: defined in both `1002` (repeats=30) and `1003` (repeats=8); duplication is intentional for standalone notebook execution
+- `average_runtime` utility: defined in both `1402` (repeats=30) and `1403` (repeats=8); duplication is intentional for standalone notebook execution
 - Common test pattern: `data[:]` copies for in-place sorts (insertion, bubble); merge and quick are non-mutating
 - Optional plotting helper for timing vs input size
 

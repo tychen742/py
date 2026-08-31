@@ -37,6 +37,7 @@ Use `chapters/04-functions/*` as the only Chapter 04 track for planning, deliver
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 04 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 

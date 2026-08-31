@@ -2,7 +2,7 @@
 
 This chapter is split into:
 
-- `1400-intro-algorithms.ipynb` (chapter intro stub — title and chapter map only)
+- `1400-algorithms.ipynb` (chapter intro stub — title and chapter map only)
 - `1401-algorithms.ipynb` (algorithm concepts: design, Big O, benchmarking, selection guide)
 - `1402-searching.ipynb` (searching: linear, binary, bisect module, hash-based, benchmarking)
 - `1403-sorting.ipynb` (sorting: built-in, insertion, bubble, merge, quick, benchmarking)
@@ -11,7 +11,7 @@ This chapter is split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `1400-intro-algorithms.ipynb`
+1. `1400-algorithms.ipynb`
    - Chapter intro stub: title and chapter flow map. No exercises.
 2. `1401-algorithms.ipynb`
    - What algorithms are; design process; control patterns (sequence/decision/repetition)
@@ -39,10 +39,11 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ### Required Core (in-class + required homework)
 
-- `1400-intro-algorithms.ipynb`
-   - Full notebook
+- `1400-algorithms.ipynb`
+   - Full landing page
 - `1401-algorithms.ipynb`
    - Big O intuition, best/average/worst-case framing, selection guide
+   - Concept-check exercises for growth rates, algorithm selection, and timing interpretation
 - `1402-searching.ipynb`
    - Linear and binary search, plus one `bisect` and one hash-lookup comparison
 - `1403-sorting.ipynb`
@@ -59,8 +60,8 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `1400-intro-algorithms.ipynb`: Chapter intro stub. No exercises.
-- `1401-algorithms.ipynb`: Algorithm concepts, Big O, benchmarking, selection guide. No exercises (intro-level framing notebook).
+- `1400-algorithms.ipynb`: Chapter intro stub. No exercises.
+- `1401-algorithms.ipynb`: Algorithm concepts, Big O, benchmarking, selection guide, and concept-check exercises.
 - `1402-searching.ipynb`: coding lab + bisect module + hash-based lookup + exercises.
 - `1403-sorting.ipynb`: coding lab + benchmarking + exercises.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
@@ -74,8 +75,9 @@ Use `chapters/14-algorithms/*` as the only Chapter 14 track for planning, delive
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Prefer small benchmark inputs in notebooks to keep runtime fast.
-- `1000` and `1001` have no exercises (`1001` is concept framing).
-- `1002` and `1003` each have exercises per section.
+- `1400` has no exercises because it is the landing page.
+- Add local `{contents}` navigation near the top of each section notebook.
+- `1401`, `1402`, and `1403` each have exercises per section.
 - Pass fresh copies to in-place sorts (insertion, bubble) in tests and benchmarks.
 - Ensure chapter outcomes align with any Chapter 14 assignment/quiz prompt.
 

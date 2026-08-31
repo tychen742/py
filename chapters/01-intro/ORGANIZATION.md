@@ -37,6 +37,7 @@ Use `chapters/01-intro/*` as the only Chapter 01 track for planning, delivery, a
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 01 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 - Keep `_html_extra/chapters/01-intro/overview.md` at about 30 slides with section checkpoints, worked code examples, and local slide assets.

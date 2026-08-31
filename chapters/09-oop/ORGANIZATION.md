@@ -2,7 +2,7 @@
 
 This chapter is split into:
 
-- `0900-intro-oop.ipynb`
+- `0900-oop.ipynb`
 - `0901-oop-design.ipynb` *(merged from former `1202-oop-methods`)*
 - `0902-oop-pillars.ipynb`
 - `0903-oop-advanced.ipynb`
@@ -11,11 +11,11 @@ This chapter is split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0900-intro-oop.ipynb`
+1. `0900-oop.ipynb`
    - What OOP is and why it exists; class vs. instance analogy
-   - `__init__`, `__str__`, `isinstance()`, `type()`
-   - A first class (`Point`); `Temperature` exercise
+   - Chapter landing page with learning goals, glossary, and chapter flow. No exercises.
 2. `0901-oop-design.ipynb`
+   - A first class (`Point`); `isinstance()`, `type()`; `Temperature` checkpoint exercise
    - Programmer-defined types, attributes, object mutation, copying
    - Pure functions vs. modifier methods; design-first development (`Time` as base-60 example)
    - Classes and methods: `__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`
@@ -42,10 +42,10 @@ To keep Chapter 09 realistic for one week, deliver in two tiers.
 
 ### Required Core (in-class + required homework)
 
-- `0900-intro-oop.ipynb`
-   - Full notebook
+- `0900-oop.ipynb`
+   - Full landing page
 - `0901-oop-design.ipynb`
-   - Required sections: classes and methods (`__init__`, `__str__`, `__repr__`), design-first development
+   - Required sections: first class, classes and methods (`__init__`, `__str__`, `__repr__`), design-first development
    - Keep one operator-overloading example only (minimal demonstration)
 - `0902-oop-pillars.ipynb`
    - Full notebook (concise; good conceptual anchoring)
@@ -63,8 +63,8 @@ To keep Chapter 09 realistic for one week, deliver in two tiers.
 
 ## File Roles
 
-- `0900-intro-oop.ipynb`: Chapter intro — OOP motivation, class/instance concepts, first class, exercise.
-- `0901-oop-design.ipynb`: Core OOP mechanics — design-first development, all method types (`__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`, `@property`), operator overloading. *(Merged from former `1202-oop-methods`.)*
+- `0900-oop.ipynb`: Chapter intro — OOP motivation, class/instance concepts, learning goals, glossary, and chapter flow. No exercises.
+- `0901-oop-design.ipynb`: Core OOP mechanics — first class, design-first development, all method types (`__init__`, `__str__`, `__repr__`, `@staticmethod`, `@classmethod`, `@property`), operator overloading. *(Merged from former `1202-oop-methods`.)*
 - `0902-oop-pillars.ipynb`: The Four Pillars of OOP — encapsulation, inheritance, polymorphism, abstraction; one example each.
 - `0903-oop-advanced.ipynb`: Inheritance, polymorphism, method overriding; `super()`, `issubclass()`, `@dataclass`, `namedtuple`; applied OOP via the card game case study; advanced object-state topics.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
@@ -83,6 +83,7 @@ Use `chapters/09-oop/*` as the only Chapter 09 track for planning, delivery, and
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 09 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 

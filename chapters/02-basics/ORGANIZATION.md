@@ -31,6 +31,7 @@ Use `chapters/02-basics/*` as the only Chapter 02 track for planning, delivery, 
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 02 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 

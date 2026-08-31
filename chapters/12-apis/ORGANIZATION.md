@@ -2,7 +2,7 @@
 
 This chapter is split into:
 
-- `1200-intro-apis.ipynb`
+- `1200-apis.ipynb`
 - `1201-apis.ipynb`
 - `1202-api-reliability.ipynb`
 
@@ -10,7 +10,7 @@ This chapter is split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `1200-intro-apis.ipynb`
+1. `1200-apis.ipynb`
    - Chapter title; learning goals; chapter flow (tableofcontents)
 
 2. `1201-apis.ipynb`
@@ -33,7 +33,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ### Required Core (in-class + required homework)
 
-- `1200-intro-apis.ipynb`
+- `1200-apis.ipynb`
    - Full notebook
 - `1201-apis.ipynb`
    - API fundamentals, HTTP methods/status, `requests.get()`, `params={}`
@@ -53,7 +53,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `1200-intro-apis.ipynb`: Chapter title; learning goals; brief motivation; chapter flow (`{tableofcontents}`).
+- `1200-apis.ipynb`: Chapter title; learning goals; brief motivation; chapter flow (`{tableofcontents}`).
 - `1201-apis.ipynb`: REST API concepts and fundamentals; `requests.get()`; query parameters; error handling. Exercise: Weather API.
 - `1202-api-reliability.ipynb`: POST requests; headers and API key patterns; nested JSON navigation; pagination; retries/backoff; response validation. Exercise: Resilient API Client.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
@@ -67,6 +67,7 @@ Use `chapters/12-apis/*` as the only Chapter 12 track for planning, delivery, an
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 12 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 

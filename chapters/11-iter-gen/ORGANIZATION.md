@@ -2,7 +2,7 @@
 
 This chapter is split into:
 
-- `1100-intro-iter-gen.ipynb`
+- `1100-iter-gen.ipynb`
 - `1101-iterators.ipynb`
 - `1102-generators.ipynb`
 
@@ -10,7 +10,7 @@ This chapter is split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `1100-intro-iter-gen.ipynb`
+1. `1100-iter-gen.ipynb`
    - Chapter intro: learning goals, motivation, chapter flow map. No exercises.
 2. `1101-iterators.ipynb`
    - Iterator protocol; `iter()`/`next()` manually; built-in lazy iterators
@@ -29,7 +29,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ### Required Core (in-class + required homework)
 
-- `1100-intro-iter-gen.ipynb`
+- `1100-iter-gen.ipynb`
   - Full notebook
 - `1101-iterators.ipynb`
   - Iterator protocol, `iter()`/`next()`, and one custom iterator class
@@ -49,7 +49,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `1100-intro-iter-gen.ipynb`: Chapter intro — learning goals and chapter map. No exercises.
+- `1100-iter-gen.ipynb`: Chapter intro — learning goals and chapter map. No exercises.
 - `1101-iterators.ipynb`: Iterator protocol; built-in iterators; custom iterator classes.
   Exercise: Cycling Iterator.
 - `1102-generators.ipynb`: Generator functions; generator expressions; `any()`/`all()` with generator
@@ -77,6 +77,7 @@ Use `chapters/11-iter-gen/*` as the only Chapter 11 track for planning, delivery
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 11 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 

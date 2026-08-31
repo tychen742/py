@@ -2,7 +2,7 @@
 
 This checklist is for building and delivering:
 
-- `0900-intro-oop.ipynb`
+- `0900-oop.ipynb`
 - `0901-oop-design.ipynb` *(merged from former `1202-oop-methods`)*
 - `0902-oop-pillars.ipynb`
 - `0903-oop-advanced.ipynb`
@@ -26,17 +26,18 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `0900-intro-oop.ipynb`
+### `0900-oop.ipynb`
 
 - Required core:
-  - What OOP is; classes vs instances; motivation; first class (`Point`); `isinstance()`, `type()`
+  - What OOP is; classes vs instances; motivation; chapter flow map. No exercises.
 - Enrichment/project track:
   - Additional analogy-driven examples as time permits
 
 ### `0901-oop-design.ipynb`
 
 - Required core:
-  - Programmer-defined types; `__init__`, `__str__`, `__repr__`; object mutation and copying
+  - First class (`Point`); `isinstance()`, `type()`; programmer-defined types
+  - `__init__`, `__str__`, `__repr__`; object mutation and copying
   - Pure functions vs. modifier methods; `@staticmethod`; `@classmethod`; `@property`
   - One operator-overloading example (`__add__` or equivalent)
 - Enrichment/project track:
@@ -84,8 +85,8 @@ Use a two-tier model for one chapter per week:
 
 ## Chapter 09 Delivery Order (Recommended)
 
-1. `0900-intro-oop.ipynb` — What OOP is; classes vs instances; motivation
-2. `0901-oop-design.ipynb` — `__init__`, attributes, methods, self; encapsulation principles
+1. `0900-oop.ipynb` — What OOP is; classes vs instances; motivation; chapter flow
+2. `0901-oop-design.ipynb` — First class; `__init__`, attributes, methods, self; encapsulation principles
 3. `0902-oop-pillars.ipynb` — Encapsulation, inheritance, polymorphism, and abstraction
 4. `0903-oop-advanced.ipynb` — Inheritance/polymorphism practice; advanced object-state topics
 

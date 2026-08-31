@@ -2,7 +2,7 @@
 
 This checklist is for building and delivering:
 
-- `1200-intro-apis.ipynb`
+- `1200-apis.ipynb`
 - `1201-apis.ipynb`
 - `1202-api-reliability.ipynb`
 
@@ -70,7 +70,7 @@ Use a two-tier model for one chapter per week:
 
 ## Chapter 12 Delivery Order (Recommended)
 
-1. `1200-intro-apis.ipynb` — Chapter intro; learning goals; chapter flow
+1. `1200-apis.ipynb` — Chapter intro; learning goals; chapter flow
 2. `1201-apis.ipynb` — REST concepts; `requests.get()`; query parameters; error handling; Weather API exercise
 3. `1202-api-reliability.ipynb` — POST requests; auth headers; nested JSON; pagination; retry/backoff; response validation
 

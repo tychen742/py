@@ -2,7 +2,7 @@
 
 This checklist is for building and delivering:
 
-- `1000-intro-func-prog.ipynb`
+- `1000-func-prog.ipynb`
 - `1001-func-prog.ipynb`
 - `1002-func-practice.ipynb`
 
@@ -27,7 +27,7 @@ Use a two-tier model for one chapter per week:
 - **Required core**: must be covered in lecture/lab and assessed
 - **Enrichment/project track**: optional, extra credit, or follow-up content
 
-### `1000-intro-func-prog.ipynb`
+### `1000-func-prog.ipynb`
 
 - Required core:
   - Chapter intro: learning goals, motivation, chapter flow map (no exercises)
@@ -79,7 +79,7 @@ Use a two-tier model for one chapter per week:
 
 ## Chapter 10 Delivery Order (Recommended)
 
-1. `1000-intro-func-prog.ipynb` — Chapter intro: learning goals and chapter flow map
+1. `1000-func-prog.ipynb` — Chapter intro: learning goals and chapter flow map
 2. `1001-func-prog.ipynb` — Functional concepts: decorators; comprehensions; lambda/map/filter; decision criteria
 3. `1002-func-practice.ipynb` — Functional practice: recursion; context managers; `functools`
 

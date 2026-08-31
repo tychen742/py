@@ -2,7 +2,7 @@
 
 This chapter is split into:
 
-- `1000-intro-func-prog.ipynb`
+- `1000-func-prog.ipynb`
 - `1001-func-prog.ipynb`
 - `1002-func-practice.ipynb`
 
@@ -10,7 +10,7 @@ This chapter is split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `1000-intro-func-prog.ipynb`
+1. `1000-func-prog.ipynb`
    - Chapter intro: learning goals, motivation, chapter flow map. No exercises.
    - Conceptual framing: pure functions vs. side effects; immutability; first-class functions
 2. `1001-func-prog.ipynb`
@@ -29,7 +29,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ### Required Core (in-class + required homework)
 
-- `1000-intro-func-prog.ipynb`
+- `1000-func-prog.ipynb`
   - Full notebook
 - `1001-func-prog.ipynb`
   - Decorators (core pattern + one example)
@@ -51,7 +51,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 ## File Roles
 
-- `1000-intro-func-prog.ipynb`: Chapter intro — learning goals and chapter map; pure functions/immutability framing. No exercises.
+- `1000-func-prog.ipynb`: Chapter intro — learning goals and chapter map; pure functions/immutability framing. No exercises.
 - `1001-func-prog.ipynb`: Conceptual foundations — decorators; comprehensions; lambda/map/filter; decision guide for choosing comprehension vs map/filter; functional pipeline readability checks.
 - `1002-func-practice.ipynb`: Practice notebook — recursion; context managers; `functools.reduce`, `functools.partial`, `functools.lru_cache`.
   Exercises: Sorting and Filtering with Lambda; Recursive Functions; functools.
@@ -74,6 +74,7 @@ The following files in `chapters/10-functional/` are not part of the Chapter 10 
 - Keep each notebook executable top-to-bottom.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
+- Add local `{contents}` navigation near the top of each section notebook.
 - Ensure chapter outcomes align with any Chapter 10 assignment/quiz prompt.
 - Tag question cells `thebe-interactive` and solution cells `hide-input`.
 
