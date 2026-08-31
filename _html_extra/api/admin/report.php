@@ -159,8 +159,8 @@ h1 { margin: 0 0 8px; font-size: 28px; }
 .topbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 20px; }
 .topbar p { margin: 0; color: #57606a; }
 .filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin: 0 0 12px; }
-.filters label { display: grid; gap: 6px; min-width: 240px; font-size: 13px; font-weight: 700; color: #57606a; }
-.filters select { min-height: 40px; padding: 8px 34px 8px 10px; border: 1px solid #d0d7de; border-radius: 6px; background: white; color: #24292f; font: inherit; font-weight: 500; }
+.filters label { display: grid; gap: 6px; min-width: 0; width: max-content; font-size: 13px; font-weight: 700; color: #57606a; }
+.filters select { width: max-content; max-width: 28rem; min-height: 40px; padding: 8px 34px 8px 10px; border: 1px solid #d0d7de; border-radius: 6px; background: white; color: #24292f; font: inherit; font-weight: 500; }
 .button { display: inline-block; min-height: 40px; padding: 9px 14px; border: 1px solid #0969da; border-radius: 6px; background: #0969da; color: white; font: inherit; font-weight: 700; line-height: 20px; text-decoration: none; cursor: pointer; }
 .button.secondary { background: white; color: #0969da; }
 .filter-summary { margin: 0 0 12px; color: #57606a; font-size: 14px; }
@@ -168,6 +168,7 @@ h1 { margin: 0 0 8px; font-size: 28px; }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th, td { padding: 10px 12px; border-bottom: 1px solid #d8dee4; text-align: left; }
 th { background: #f6f8fa; font-weight: 700; }
+th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5) { width: 1%; white-space: nowrap; }
 .empty { padding: 18px 12px; color: #57606a; text-align: center; }
 ';
 }
