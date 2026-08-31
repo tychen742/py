@@ -14,18 +14,18 @@ Use this sequence to avoid overlap and keep pacing clear:
 1. `0400-functions.ipynb`
    - Chapter intro; learning goals; chapter flow; glossary
 2. `0401-functions.ipynb`
-   - Function motivation; turtle examples; defining and calling functions; parameters, arguments, return values, and basic type annotations
+   - Function motivation; turtle examples; defining and calling functions; parameters, arguments, default parameters, `*args`, `**kwargs`, return values, and basic type annotations
 3. `0402-function-design.ipynb`
-   - Scope, composition, docstrings, and basic lambda functions
+   - Scope, pure functions vs. side effects, small-function composition, docstrings as contracts, and basic lambda functions
 4. `0403-recursion.ipynb`
-   - Recursive functions; base cases; tracing recursive calls
+   - Recursive functions; base cases; tracing recursive calls; return-value recursion; practical limits; memoization
 
 ## File Roles
 
 - `0400-functions.ipynb`: Chapter landing page; intro, learning goals, chapter flow, glossary.
-- `0401-functions.ipynb`: Function motivation; turtle examples; defining and calling functions; parameters, arguments, return values, and basic type annotations.
-- `0402-function-design.ipynb`: Scope, composition, docstrings, and basic lambda functions.
-- `0403-recursion.ipynb`: Recursive functions; base cases; tracing recursive calls.
+- `0401-functions.ipynb`: Function motivation; turtle examples; defining and calling functions; parameters, arguments, default parameters, `*args`, `**kwargs`, return values, and basic type annotations.
+- `0402-function-design.ipynb`: Scope, pure functions vs. side effects, small-function composition, docstrings as contracts, and basic lambda functions.
+- `0403-recursion.ipynb`: Recursive functions; base cases; tracing recursive calls; return-value recursion; practical limits; memoization.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth

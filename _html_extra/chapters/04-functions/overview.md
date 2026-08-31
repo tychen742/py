@@ -44,7 +44,7 @@ Functions
 
 ## 4.1 Functions
 
-Defining, calling, parameters, return values, type annotations
+Defining, calling, parameters, return values, type annotations, flexible arguments
 
 ---
 
@@ -90,7 +90,7 @@ print(power(exp=3, base=2)) # 8 (keyword)
 
 ---
 
-## `*args` and `**kwargs`
+## Flexible Arguments: `*args` and `**kwargs`
 
 <div class="cols">
 <div>
@@ -137,7 +137,7 @@ def f(pos, /, normal, *, kw_only,
 
 ## 4.2 Function Design
 
-Scope, composition, docstrings, lambda
+Scope, pure functions, composition, docstrings, lambda
 
 ---
 
@@ -182,6 +182,45 @@ def format_temp(c):
 
 print(format_temp(100))   # 100°C = 212.0°F
 ```
+
+</div>
+</div>
+
+---
+
+## Pure Functions & Composition
+
+<div class="cols">
+<div>
+
+```python
+def add_bonus(score, bonus):
+    return score + bonus
+
+def mean(values):
+    return sum(values) / len(values)
+
+def letter_grade(score):
+    if score >= 90:
+        return "A"
+    if score >= 80:
+        return "B"
+    return "Needs review"
+```
+
+</div>
+<div>
+
+- Pure functions depend only on their inputs.
+- Side effects change outside state.
+- Small functions are easier to test.
+- Composition combines small functions into a larger workflow.
+
+<div class="callout rule">
+
+Prefer returning new values over mutating shared state unless mutation is the point of the function.
+
+</div>
 
 </div>
 </div>
@@ -243,7 +282,7 @@ Use `def` when the logic needs a name or more than one expression.
 
 ## 4.3 Recursion
 
-Recursive functions · base cases · tracing calls
+Recursive functions · base cases · tracing calls · memoization
 
 ---
 
@@ -301,7 +340,9 @@ print(fibonacci(10))  # 55
 | Docstring | Triple-quoted string as first statement |
 | Lambda | `lambda args: expression` |
 | Scope | Local vars stay local; use `return` |
+| Pure function | Same inputs produce same output; no outside changes |
 | Recursion | Must have a base case |
+| Memoization | Store repeated recursive results |
 
 ---
 
