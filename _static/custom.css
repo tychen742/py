@@ -1,3 +1,7 @@
+:root {
+    --py-primary-sidebar-width: 14.5rem;
+}
+
 button.thebelab-button.thebelab-run-button {
     padding-left: 0 !important;
 }
@@ -138,6 +142,20 @@ html[data-theme=light] {
 
 .bd-sidebar-primary {
     line-height: 1.25 !important;
+}
+
+@media (min-width: 768px) {
+    .bd-sidebar-primary {
+        flex: 0 0 var(--py-primary-sidebar-width) !important;
+        width: var(--py-primary-sidebar-width) !important;
+        max-width: var(--py-primary-sidebar-width) !important;
+    }
+
+    input#pst-primary-sidebar-checkbox:checked ~ .bd-container .bd-sidebar-primary {
+        margin-left: calc(-1 * var(--py-primary-sidebar-width)) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
 }
 
 /* Fix oversized font when sidebar is toggled open (drawer/navbar mode) */
@@ -1090,61 +1108,11 @@ body.bd-auth-modal-open {
     overflow: hidden;
 }
 
-/* Keep sidebar visible at all viewport widths (for tiled/split-screen viewing) */
 @media (max-width: 768px) {
     .bd-auth-modal-dialog {
         left: 0.75rem;
         right: 0.75rem;
         bottom: 4.5rem;
         width: auto;
-    }
-
-    .bd-sidebar-primary {
-        display: block !important;
-        visibility: visible !important;
-        position: relative !important;
-        width: auto !important;
-        opacity: 1 !important;
-        margin-left: 0 !important;
-        transform: none !important;
-        clip-path: none !important;
-    }
-
-    .bd-header {
-        position: relative !important;
-    }
-
-    .bd-page {
-        display: grid !important;
-        grid-template-columns: auto 1fr !important;
-        gap: 1rem !important;
-    }
-
-    .bd-main {
-        display: flex !important;
-        gap: 1rem !important;
-    }
-
-    .bd-container {
-        display: contents !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .bd-sidebar-primary {
-        display: block !important;
-        visibility: visible !important;
-        position: relative !important;
-        width: auto !important;
-        opacity: 1 !important;
-        margin-left: 0 !important;
-        transform: none !important;
-        clip-path: none !important;
-    }
-
-    .bd-page {
-        display: grid !important;
-        grid-template-columns: auto 1fr !important;
-        gap: 1rem !important;
     }
 }
