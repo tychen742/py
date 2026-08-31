@@ -68,8 +68,8 @@ Use a two-tier model for one chapter per week:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Design and instantiate a class; extend it with a subclass
+- Lab tasks (built, graded, wired to the lab submission API):
+  - BankAccount subclass with `super().__init__()`; `__str__`/`__repr__`; `@property` balance-after-fee; `@classmethod` factory; `__eq__`/`__lt__` with `sorted()`
 - Homework:
   - Model a real-world entity as a class hierarchy with at least two levels
 - Grading anchors:

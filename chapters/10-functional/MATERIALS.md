@@ -62,8 +62,8 @@ Use a two-tier model for one chapter per week:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Write a decorator; rewrite a loop as a comprehension; filter/sort with lambda
+- Lab tasks (built, graded, wired to the lab submission API):
+  - Multi-key lambda sort+map over `students`; `functools.reduce` aggregate; recursive count; dict comprehension; closure returning a lambda
 - Homework:
   - Implement a recursive solution and compare it to an iterative equivalent
 - Grading anchors:

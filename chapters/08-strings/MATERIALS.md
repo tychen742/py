@@ -22,5 +22,5 @@ Chapter 08 planning and delivery are scoped to `chapters/08-strings/` only.
 
 - `assignments/index.ipynb` — Assignment section landing page
 - `assignments/preview.ipynb` — Preview
-- `assignments/lab.ipynb` — Lab assignment
+- `assignments/lab.ipynb` — Lab assignment (built, graded, wired to the lab submission API): clean/normalize a title; normalize a ticket code; sort with `key=str.casefold`; regex digit extraction; regex `fullmatch`/`search` groups
 - `assignments/homework.ipynb` — Homework questions
