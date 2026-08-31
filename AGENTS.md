@@ -48,6 +48,11 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
 
 - Homework question blocks should use the same simple bordered-card treatment as preview questions. Avoid busy, nested, or competing borders around the question content.
 
+### Assignment Naming
+
+- Assignment IDs, API IDs, Canvas gradebook column names, Canvas CSV score headers, and Canvas CSV filenames use the same hyphenated `chNN-type` convention: `ch01-preview`, `ch01-lab`, `ch01-homework`.
+- Do not use assignment-first or underscore forms such as `preview_ch01`, `lab_ch01`, `homework_ch01`, `preview01`, `lab01`, or `homework01` for new assignment records or Canvas exports.
+
 ### Exercises
 
 - Landing page notebooks do not get exercises
