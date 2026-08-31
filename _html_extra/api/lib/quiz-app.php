@@ -2038,10 +2038,10 @@ function py_list_admin_report_students(PDO $pdo): array
     $adminIdentifiers = py_report_excluded_student_identifiers($pdo);
 
     $users = $pdo->query(
-        'SELECT DISTINCT u.display_name, u.role, u.student_identifier, a.student_identifier AS attempt_identifier
-         FROM py_quiz_attempts a
-         LEFT JOIN py_quiz_users u ON u.id = a.student_user_id
-         ORDER BY u.display_name ASC, u.student_identifier ASC, a.student_identifier ASC'
+        'SELECT display_name, role, status, student_identifier, email, canvas_user_id
+         FROM py_quiz_users
+         WHERE role = \'student\' AND status = \'active\'
+         ORDER BY display_name ASC, student_identifier ASC, email ASC'
     )->fetchAll();
 
     $students = [];
@@ -2052,12 +2052,19 @@ function py_list_admin_report_students(PDO $pdo): array
 
         $identifier = py_normalize_student_identifier((string) ($user['student_identifier'] ?? ''));
         if ($identifier === '') {
-            $identifier = py_normalize_student_identifier((string) ($user['attempt_identifier'] ?? ''));
+            $identifier = py_normalize_student_identifier((string) ($user['email'] ?? ''));
+        }
+        if ($identifier === '') {
+            $identifier = py_normalize_student_identifier((string) ($user['canvas_user_id'] ?? ''));
         }
         if ($identifier === '') {
             continue;
         }
-        if (isset($adminIdentifiers[$identifier]) || isset($adminIdentifiers[py_normalize_student_identifier((string) ($user['attempt_identifier'] ?? ''))])) {
+        if (
+            isset($adminIdentifiers[$identifier])
+            || isset($adminIdentifiers[py_normalize_student_identifier((string) ($user['email'] ?? ''))])
+            || isset($adminIdentifiers[py_normalize_student_identifier((string) ($user['canvas_user_id'] ?? ''))])
+        ) {
             continue;
         }
 
@@ -2069,6 +2076,7 @@ function py_list_admin_report_students(PDO $pdo): array
         if (!isset($students[$identifier]) || $students[$identifier]['label'] === $identifier) {
             $students[$identifier] = [
                 'student_identifier' => $identifier,
+                'display_name' => $displayName,
                 'label' => $label,
             ];
         }
@@ -2252,6 +2260,35 @@ function py_list_admin_score_report(
             );
         });
         return $attemptRows;
+    }
+
+    if (
+        $assignmentTypeFilter !== null && $assignmentTypeFilter !== ''
+        && $assignmentNumberFilter !== null && $assignmentNumberFilter !== ''
+    ) {
+        $quizId = py_canonical_assignment_id($assignmentNumberFilter . '-' . $assignmentTypeFilter);
+        $definition = py_assignment_definition($quizId);
+        $maxScore = (float) ($definition['max_score'] ?? 10);
+        foreach (py_list_admin_report_students($pdo) as $student) {
+            $studentIdentifier = (string) ($student['student_identifier'] ?? '');
+            if ($studentFilter !== null && $studentFilter !== '' && $studentIdentifier !== $studentFilter) {
+                continue;
+            }
+            $key = $studentIdentifier . "\0" . $quizId . "\0" . $assignmentTypeFilter;
+            if (isset($summary[$key])) {
+                continue;
+            }
+            $summary[$key] = [
+                'student_identifier' => $studentIdentifier,
+                'display_name' => (string) ($student['display_name'] ?? ''),
+                'quiz_id' => $quizId,
+                'assignment_slug' => $assignmentTypeFilter,
+                'attempt_count' => 0,
+                'best_score' => 0,
+                'max_score' => $maxScore,
+                'last_submitted_at' => '',
+            ];
+        }
     }
 
     $rows = array_values($summary);
