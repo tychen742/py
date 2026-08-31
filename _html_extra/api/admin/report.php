@@ -13,21 +13,37 @@ if ($admin === null) {
     exit;
 }
 
-$selectedAssignment = trim((string) ($_GET['assignment_id'] ?? ''));
-$selectedAssignment = py_canonical_assignment_id($selectedAssignment);
-if ($selectedAssignment !== '' && py_assignment_definition($selectedAssignment) === null) {
-    $selectedAssignment = '';
+$assignmentTypes = ['preview' => 'Preview', 'lab' => 'Lab', 'homework' => 'Homework'];
+$selectedAssignmentType = strtolower(trim((string) ($_GET['assignment_type'] ?? '')));
+if (!isset($assignmentTypes[$selectedAssignmentType])) {
+    $selectedAssignmentType = '';
+}
+
+$assignmentNumbers = py_list_admin_report_assignment_numbers($pdo);
+$selectedAssignmentNumber = strtolower(trim((string) ($_GET['assignment_number'] ?? '')));
+if (!in_array($selectedAssignmentNumber, $assignmentNumbers, true)) {
+    $selectedAssignmentNumber = '';
+}
+
+$scoreModes = ['best' => 'Best', 'all' => 'All'];
+$selectedScoreMode = strtolower(trim((string) ($_GET['score_mode'] ?? 'best')));
+if (!isset($scoreModes[$selectedScoreMode])) {
+    $selectedScoreMode = 'best';
 }
 
 $selectedStudent = py_normalize_student_identifier((string) ($_GET['student_identifier'] ?? ''));
 
-$assignmentOptions = py_list_admin_report_assignments($pdo);
 $studentOptions = py_list_admin_report_students($pdo);
 $rows = py_list_admin_score_report(
     $pdo,
-    $selectedAssignment !== '' ? $selectedAssignment : null,
-    $selectedStudent !== '' ? $selectedStudent : null
+    $selectedAssignmentType !== '' ? $selectedAssignmentType : null,
+    $selectedAssignmentNumber !== '' ? $selectedAssignmentNumber : null,
+    $selectedStudent !== '' ? $selectedStudent : null,
+    $selectedScoreMode
 );
+$scoreHeader = $selectedScoreMode === 'all' ? 'Score' : 'Best Score';
+$attemptHeader = $selectedScoreMode === 'all' ? 'Attempt' : 'Attempts';
+$submittedHeader = $selectedScoreMode === 'all' ? 'Submitted' : 'Last Submitted';
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,19 +59,29 @@ $rows = py_list_admin_score_report(
     <header class="topbar">
       <div>
         <h1>Score Report</h1>
-        <p>Best score and attempt count by student and assignment.</p>
+        <p>Scores and attempt counts by student and assignment.</p>
       </div>
     </header>
 
     <form class="filters" method="get" action="/api/admin/report.php">
       <label>
-        <span>Assignment</span>
-        <select name="assignment_id">
-          <option value="">All assignments</option>
-          <?php foreach ($assignmentOptions as $assignment): ?>
-            <?php $assignmentId = (string) $assignment['assignment_id']; ?>
-            <option value="<?php echo py_h($assignmentId); ?>" <?php echo $selectedAssignment === $assignmentId ? 'selected' : ''; ?>>
-              <?php echo py_h($assignment['label']); ?>
+        <span>Assignment Name</span>
+        <select name="assignment_type">
+          <option value="">All names</option>
+          <?php foreach ($assignmentTypes as $assignmentType => $assignmentTypeLabel): ?>
+            <option value="<?php echo py_h($assignmentType); ?>" <?php echo $selectedAssignmentType === $assignmentType ? 'selected' : ''; ?>>
+              <?php echo py_h($assignmentTypeLabel); ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </label>
+      <label>
+        <span>Assignment Number</span>
+        <select name="assignment_number">
+          <option value="">All numbers</option>
+          <?php foreach ($assignmentNumbers as $assignmentNumber): ?>
+            <option value="<?php echo py_h($assignmentNumber); ?>" <?php echo $selectedAssignmentNumber === $assignmentNumber ? 'selected' : ''; ?>>
+              <?php echo py_h($assignmentNumber); ?>
             </option>
           <?php endforeach; ?>
         </select>
@@ -68,6 +94,16 @@ $rows = py_list_admin_score_report(
             <?php $studentIdentifier = (string) $student['student_identifier']; ?>
             <option value="<?php echo py_h($studentIdentifier); ?>" <?php echo $selectedStudent === $studentIdentifier ? 'selected' : ''; ?>>
               <?php echo py_h($student['label']); ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </label>
+      <label>
+        <span>Score</span>
+        <select name="score_mode">
+          <?php foreach ($scoreModes as $scoreMode => $scoreModeLabel): ?>
+            <option value="<?php echo py_h($scoreMode); ?>" <?php echo $selectedScoreMode === $scoreMode ? 'selected' : ''; ?>>
+              <?php echo py_h($scoreModeLabel); ?>
             </option>
           <?php endforeach; ?>
         </select>
@@ -85,9 +121,9 @@ $rows = py_list_admin_score_report(
             <th>Student ID</th>
             <th>Name</th>
             <th>Assignment</th>
-            <th>Best Score</th>
-            <th>Attempts</th>
-            <th>Last Submitted</th>
+            <th><?php echo py_h($scoreHeader); ?></th>
+            <th><?php echo py_h($attemptHeader); ?></th>
+            <th><?php echo py_h($submittedHeader); ?></th>
           </tr>
         </thead>
         <tbody>
