@@ -12,7 +12,7 @@ if (py_current_admin($pdo) === null) {
     exit('Forbidden');
 }
 
-$quizId = sanitize_canvas_export_key((string) ($_GET['quiz_id'] ?? 'ch01-preview'));
+$quizId = py_canonical_assignment_id(sanitize_canvas_export_key((string) ($_GET['quiz_id'] ?? 'ch01-preview')));
 $quiz = py_assignment_definition($quizId);
 if ($quiz === null) {
     http_response_code(404);
@@ -53,37 +53,27 @@ foreach (py_best_attempts_by_identifier($pdo, $quizId) as $attempt) {
 
 function py_best_attempts_by_identifier(PDO $pdo, string $quizId): array
 {
-    $stmt = $pdo->prepare(
-        'SELECT qa.student_identifier, qa.score, qa.submitted_at, qa.id
-         FROM py_quiz_attempts qa
-         INNER JOIN (
-             SELECT student_identifier, MAX(score) AS best_score
-             FROM py_quiz_attempts
-             WHERE quiz_id = :quiz_id_best
-               AND student_identifier IS NOT NULL
-               AND student_identifier <> \'\'
-             GROUP BY student_identifier
-         ) best ON best.student_identifier = qa.student_identifier
-              AND best.best_score = qa.score
-         INNER JOIN (
-             SELECT student_identifier, score, MAX(id) AS best_id
-             FROM py_quiz_attempts
-             WHERE quiz_id = :quiz_id_tie
-               AND student_identifier IS NOT NULL
-               AND student_identifier <> \'\'
-             GROUP BY student_identifier, score
-         ) tie ON tie.best_id = qa.id
-              AND tie.student_identifier = qa.student_identifier
-              AND tie.score = qa.score
-         WHERE qa.quiz_id = :quiz_id
-         ORDER BY qa.student_identifier ASC'
-    );
-    $stmt->execute([
-        'quiz_id_best' => $quizId,
-        'quiz_id_tie' => $quizId,
-        'quiz_id' => $quizId,
-    ]);
-    return $stmt->fetchAll();
+    $assignmentType = '';
+    $assignmentNumber = '';
+    if (str_contains($quizId, '-')) {
+        $assignmentType = substr($quizId, (int) strrpos($quizId, '-') + 1);
+    }
+    if (preg_match('/^(ch\d{2})-/', $quizId, $matches) === 1) {
+        $assignmentNumber = strtolower($matches[1]);
+    }
+
+    $rows = [];
+    foreach (py_list_admin_score_report($pdo, $assignmentType, $assignmentNumber, null, 'best') as $row) {
+        if (($row['quiz_id'] ?? '') !== $quizId) {
+            continue;
+        }
+        $rows[] = [
+            'student_identifier' => $row['student_identifier'] ?? '',
+            'score' => $row['best_score'] ?? '',
+            'submitted_at' => $row['last_submitted_at'] ?? '',
+        ];
+    }
+    return $rows;
 }
 
 function py_canvas_score_value(mixed $value): string
