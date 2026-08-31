@@ -318,6 +318,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const exercises = document.querySelectorAll('div.cell.tag_thebe-interactive');
     const total = exercises.length;
 
+    function removeRenderedQuestionHeader(exercise) {
+        const pre = exercise.querySelector('.cell_input pre');
+        if (!pre) return;
+
+        const walker = document.createTreeWalker(pre, NodeFilter.SHOW_TEXT);
+        const nodesToClear = [];
+        let node;
+        while ((node = walker.nextNode())) {
+            const text = node.nodeValue || '';
+            const newlineIndex = text.indexOf('\n');
+            if (newlineIndex === -1) {
+                nodesToClear.push(node);
+                continue;
+            }
+            node.nodeValue = text.slice(newlineIndex + 1);
+            break;
+        }
+        nodesToClear.forEach((textNode) => {
+            textNode.nodeValue = '';
+        });
+    }
+
     exercises.forEach((exercise, index) => {
         // Skip if label already exists
         if (exercise.querySelector('.exercise-label')) return;
@@ -331,6 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isAssignmentPage && questionMatch) {
             const questionTitle = questionMatch[2].trim();
             label.innerHTML = `<span class="exercise-question-title">${questionMatch[1]}. ${questionTitle}</span><br><span class="exercise-count">✏️ Interactive Exercise ${counter}/${total}</span>`;
+            removeRenderedQuestionHeader(exercise);
         } else {
             label.innerHTML = `✏️ Interactive Exercise ${counter}/${total}`;
         }
