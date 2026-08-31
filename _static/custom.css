@@ -249,13 +249,17 @@ body.bd-assignment-card-page .bd-article-container .bd-assignment-question-card 
 body.bd-exercise-card-page .bd-article-container .exercise-question-title,
 body.bd-assignment-card-page .bd-article-container .exercise-question-title {
     color: var(--pst-color-text-base) !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
+    line-height: 1.35 !important;
 }
 
 body.bd-exercise-card-page .bd-article-container .exercise-count,
 body.bd-assignment-card-page .bd-article-container .exercise-count {
     color: #771212 !important;
+    font-size: 16px !important;
     font-weight: 400 !important;
+    line-height: 1.35 !important;
 }
 
 .bd-article-container [class$="-actions"] button:disabled:not(.secondary),
