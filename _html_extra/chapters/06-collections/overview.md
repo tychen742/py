@@ -48,7 +48,7 @@ Ordered, mutable sequences — Python's most versatile collection
 
 ---
 
-## Creating Lists
+## Creating and Accessing Lists
 
 <div class="cols">
 <div>
@@ -150,7 +150,7 @@ first, *rest = [1, 2, 3, 4]
 
 ---
 
-## Modifying Lists
+## Updating and Transforming Lists
 
 <div class="cols">
 <div>
@@ -252,7 +252,7 @@ Ordered, **immutable** sequences — safe, hashable, fast
 
 ---
 
-## Creating & Using Tuples
+## Creating and Accessing Tuples
 
 <div class="cols">
 <div>
@@ -306,7 +306,7 @@ point[0] = 99   # TypeError — can't modify
 
 ---
 
-## Tuple Unpacking & Functions
+## Unpacking and Function Design
 
 <div class="cols">
 <div>
@@ -372,7 +372,7 @@ Unordered collections of **unique, hashable** elements
 
 ---
 
-## Creating & Accessing Sets
+## Creating Sets and Membership
 
 <div class="cols">
 <div>
@@ -419,7 +419,7 @@ Sets are great for **deduplication** and **membership testing**. `x in set` is O
 
 ---
 
-## Set Operations
+## Set Algebra and Mutation
 
 ```python
 a = {1, 2, 3, 4}
@@ -467,7 +467,7 @@ a.pop()           # remove arbitrary element
 
 ---
 
-## Frozensets & Set Comprehensions
+## Frozensets, Hashability, and Performance
 
 <div class="cols">
 <div>
