@@ -54,8 +54,8 @@ Use a two-tier model for one chapter per week:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Parse saved API payloads first; optionally fetch data from a public API during class and display results
+- Lab tasks (built, graded, wired to the lab submission API — no live network calls, matches the chapter's offline-fixture convention):
+  - Build a URL-encoded query string; safe nested-JSON traversal; summarize a response payload; simulate pagination; parse and re-serialize a JSON payload
 - Homework:
   - Build request parameters, parse response payloads, and store results in a dict or list for analysis
 - Grading anchors:

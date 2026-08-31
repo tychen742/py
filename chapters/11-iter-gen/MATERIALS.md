@@ -57,8 +57,8 @@ Use a two-tier model for one chapter per week:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
-- Lab tasks:
-  - Build a custom iterator; convert a list-based function to a generator
+- Lab tasks (built, graded, wired to the lab submission API):
+  - Custom iterator (threshold filter); custom iterator (batching); generator function (running maximum); generator expressions with `islice`/`any`/`all`; infinite generator bounded by `itertools.islice`
 - Homework:
   - Implement an infinite sequence generator; benchmark memory use vs list
 - Grading anchors:

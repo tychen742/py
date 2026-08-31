@@ -76,9 +76,8 @@ Use a two-tier model for one chapter per week:
 - In-class checks:
   - 3 conceptual clicker/poll questions
   - 2 "predict output" questions
-- Lab tasks:
-  - search implementation + tests
-  - sort implementation + simple benchmark
+- Lab tasks (built, graded, wired to the lab submission API):
+  - Find min/max in one pass; binary search; `bisect` insert-and-report; insertion sort; count comparisons in linear search
 - Homework:
   - select algorithm for 3 scenarios and justify with Big O + constraints
 - Grading anchors:

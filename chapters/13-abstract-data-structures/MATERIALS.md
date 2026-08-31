@@ -43,8 +43,8 @@ This checklist is for building and delivering:
 - In-class checks:
   - 2–3 conceptual poll/discussion questions (e.g. "is a call stack LIFO or FIFO?")
   - 1–2 trace-the-execution questions
-- Lab tasks:
-  - Implement a stack-based expression evaluator; BFS on a simple graph
+- Lab tasks (built, graded, wired to the lab submission API):
+  - `Stack` class (browsing history); `Queue` class (customer line); add a node to an org-chart tree; breadth-first traversal of a graph; pick-the-right-structure dict matching
 - Homework:
   - Model a real-world process (e.g. browser history, print queue) as an ADT
 - Grading anchors:
