@@ -77,7 +77,7 @@ parts:
                 title: Lab
               - file: chapters/05-testing/assignments/homework
                 title: Homework
-  - caption: "Part II: Collections & Text"
+  - caption: "Part II: Data Structures"
     numbered: true
     chapters:
       - file: chapters/06-collections/0600-collections
