@@ -34,7 +34,7 @@ style: |
 
 APIs
 
-*13.0 Intro · 13.1 API Basics · 13.2 API Reliability*
+*12.0 Intro · 12.1 API Basics · 12.2 API Reliability*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -44,7 +44,7 @@ APIs
 
 ## 12.1 API Basics
 
-HTTP · requests.get() · JSON · query parameters · error handling
+HTTP · requests.get() · JSON · query parameters · offline fixtures
 
 ---
 
@@ -53,7 +53,7 @@ HTTP · requests.get() · JSON · query parameters · error handling
 <div class="cols">
 <div>
 
-An **API** (Application Programming Interface) is a contract that lets programs talk to each other. A **REST API** uses HTTP to exchange data in JSON format.
+An **API** (application programming interface) is a contract that lets programs talk to each other. A REST-style web API uses HTTP endpoints to exchange structured data, often JSON.
 
 | HTTP Method | Action |
 |---|---|
@@ -83,7 +83,7 @@ An **API** (Application Programming Interface) is a contract that lets programs 
 
 ---
 
-## `requests.get()` and JSON
+## `requests.get()` Pattern and JSON
 
 <div class="cols">
 <div>
@@ -91,41 +91,36 @@ An **API** (Application Programming Interface) is a contract that lets programs 
 ```python
 import requests
 
-url = "https://api.open-meteo.com/v1/forecast"
-params = {
-    "latitude": 37.95,
-    "longitude": -91.77,
-    "current": "temperature_2m",
-}
+url = "https://api.example.test/weather"
+params = {"city": "Chicago", "units": "fahrenheit"}
 
 response = requests.get(url, params=params,
                         timeout=10)
 response.raise_for_status()   # raise on 4xx/5xx
 
 data = response.json()
-temp = data["current"]["temperature_2m"]
-print(f"Temperature: {temp}°C")
+print(data["temperature"])
 ```
 
 </div>
 <div>
 
-### Navigating nested JSON
+### Offline-safe fixtures
 
 ```python
-# Given: {"users": [{"name": "Alice", "scores": [92, 88]}]}
+class DemoResponse:
+    def __init__(self, payload, status_code=200):
+        self._payload = payload
+        self.status_code = status_code
 
-data = response.json()
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise requests.HTTPError(self.status_code)
 
-# Chained access
-name = data["users"][0]["name"]
+    def json(self):
+        return self._payload
 
-# Safe access with .get()
-email = data["users"][0].get("email", "N/A")
-
-# Loop over array
-for user in data.get("users", []):
-    print(user["name"])
+response = DemoResponse({"temperature": 72.5})
 ```
 
 </div>
@@ -137,7 +132,7 @@ for user in data.get("users", []):
 
 ## 12.2 API Reliability
 
-Authentication · pagination · retry · defensive parsing
+POST · headers · nested JSON · pagination · retry · validation
 
 ---
 
@@ -169,13 +164,12 @@ response = requests.get(url, headers=headers,
 
 ```python
 payload = {
-    "model": "gpt-4",
-    "messages": [{"role": "user",
-                  "content": "Hello"}]
+    "name": "Alice",
+    "role": "student",
 }
 
 response = requests.post(
-    "https://api.openai.com/v1/chat/completions",
+    "https://api.example.test/users",
     headers={"Authorization": f"Bearer {api_key}"},
     json=payload,   # auto-encodes and sets Content-Type
     timeout=30,
@@ -187,27 +181,26 @@ response = requests.post(
 
 ---
 
-## Pagination & Retry
+## Nested JSON, Pagination, and Retry
 
 <div class="cols">
 <div>
 
-### Page-based pagination
+### Defensive parsing
 
 ```python
-results = []
-page = 1
+payload = {
+    "user": {
+        "profile": {"department": "Analytics"}
+    }
+}
 
-while True:
-    r = requests.get(url, params={"page": page},
-                     timeout=10)
-    r.raise_for_status()
-    data = r.json()
-    items = data.get("results", [])
-    if not items:
-        break
-    results.extend(items)
-    page += 1
+department = (
+    payload
+    .get("user", {})
+    .get("profile", {})
+    .get("department", "unknown")
+)
 ```
 
 </div>
@@ -241,13 +234,14 @@ def get_with_retry(url, retries=3):
 |---|---|
 | GET request | `requests.get(url, params={}, timeout=10)` |
 | POST request | `requests.post(url, json={}, headers={})` |
+| Prepared request | `requests.Request(...).prepare()` |
 | Raise on error | `.raise_for_status()` |
 | Parse JSON | `.json()` → dict/list |
 | Safe access | `data.get("key", default)` |
 | Auth header | `{"Authorization": f"Bearer {token}"}` |
 | API key | Store in `os.environ`, never hard-coded |
-| Pagination | Loop until empty page |
-| Retry | Exponential backoff; max retries |
+| Pagination | Loop until `next_page` or cursor is empty |
+| Retry | Exponential backoff with a max retry count |
 
 ---
 

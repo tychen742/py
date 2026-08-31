@@ -18,7 +18,8 @@ This checklist is for building and delivering:
   - Rate limiting and retry/backoff strategy
   - Secret management basics (`os.environ`, avoid hardcoding tokens)
 - Code examples and demos ready to run in class
-- Public APIs (httpbin.org for POST/header echo; open-meteo.com for weather GET)
+- Offline-safe API fixtures for book execution, plus optional live public API examples for class demonstration
+- Public APIs for live demos: httpbin.org for POST/header echo; open-meteo.com for weather GET
 
 ## Notebook Content Targets
 
@@ -31,14 +32,14 @@ Use a two-tier model for one chapter per week:
 
 - Required core:
   - What APIs are; REST concept; HTTP methods table; status codes table
-  - `requests.get()` and `response.json()`; query parameters (`params={}`)
-  - Error handling (`raise_for_status`, timeout, `RequestException`)
-  - Exercise: Weather API (open-meteo.com)
+  - `requests.get()` pattern and `response.json()` parsing using response-like local fixtures
+  - Query parameters (`params={}`) using prepared requests to avoid brittle live calls
+  - Error handling (`raise_for_status`, timeout, `RequestException`); weather payload parsing checkpoint
 
 ### `1202-api-reliability.ipynb`
 
 - Required core:
-  - `requests.post()` with JSON body (`json={}`)
+  - `requests.post()` pattern with JSON body (`json={}`) using prepared requests
   - Request headers/auth key patterns and secret handling basics
   - Nested JSON parsing; one pagination loop pattern
   - Retry with exponential backoff baseline; response contract validation
@@ -54,9 +55,9 @@ Use a two-tier model for one chapter per week:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
 - Lab tasks:
-  - Fetch data from a public API; parse and display results
+  - Parse saved API payloads first; optionally fetch data from a public API during class and display results
 - Homework:
-  - Query an API endpoint and store results in a dict or list for analysis
+  - Build request parameters, parse response payloads, and store results in a dict or list for analysis
 - Grading anchors:
   - Correctness
   - Code clarity and style

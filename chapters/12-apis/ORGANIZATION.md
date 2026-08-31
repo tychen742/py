@@ -14,13 +14,13 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Chapter title; learning goals; chapter flow (tableofcontents)
 
 2. `1201-apis.ipynb`
-   - What APIs are; HTTP methods and status codes; `requests.get()` and `response.json()`;
-     query parameters (`params={}`);
+   - What APIs are; HTTP methods and status codes; `requests.get()` pattern and `response.json()`;
+     query parameters (`params={}`) using prepared requests;
      error handling (`raise_for_status`, timeout, `RequestException`);
-     Weather API exercise
+     weather payload parsing checkpoint
 
 3. `1202-api-reliability.ipynb`
-   - `requests.post()` with JSON body (`json={}`);
+   - `requests.post()` pattern with JSON body (`json={}`);
      request headers (`headers={}`) and API key patterns (Bearer token, `X-API-Key`);
      navigating nested JSON (chained `[]` subscripts, `.get()` for safe access);
      authentication workflow and secret handling with environment variables;
@@ -36,11 +36,11 @@ Use this sequence to avoid overlap and keep pacing clear:
 - `1200-apis.ipynb`
    - Full notebook
 - `1201-apis.ipynb`
-   - API fundamentals, HTTP methods/status, `requests.get()`, `params={}`
+   - API fundamentals, HTTP methods/status, `requests.get()` pattern, `params={}`
    - Error handling basics (`raise_for_status`, timeout, `RequestException`)
-   - Weather API exercise
+   - Weather payload parsing checkpoint
 - `1202-api-reliability.ipynb`
-   - POST with JSON payloads, headers/auth pattern overview
+   - POST request preparation with JSON payloads, headers/auth pattern overview
    - Nested JSON parsing, one pagination pattern, retry/backoff baseline
    - Response validation basics and resilient-client checkpoint exercise
 
@@ -54,8 +54,8 @@ Use this sequence to avoid overlap and keep pacing clear:
 ## File Roles
 
 - `1200-apis.ipynb`: Chapter title; learning goals; brief motivation; chapter flow (`{tableofcontents}`).
-- `1201-apis.ipynb`: REST API concepts and fundamentals; `requests.get()`; query parameters; error handling. Exercise: Weather API.
-- `1202-api-reliability.ipynb`: POST requests; headers and API key patterns; nested JSON navigation; pagination; retries/backoff; response validation. Exercise: Resilient API Client.
+- `1201-apis.ipynb`: REST API concepts and fundamentals; `requests.get()` pattern; query parameters; error handling; weather payload parsing.
+- `1202-api-reliability.ipynb`: POST request preparation; headers and API key patterns; nested JSON navigation; pagination; retries/backoff; response validation. Exercise: Resilient API Client.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth
@@ -65,6 +65,7 @@ Use `chapters/12-apis/*` as the only Chapter 12 track for planning, delivery, an
 ## Build/Quality Checklist
 
 - Keep each notebook executable top-to-bottom.
+- Keep core examples offline-safe; use live public APIs only as optional class demos.
 - Keep function definitions in chapter notebooks self-contained.
 - Add at least one checkpoint exercise per major section.
 - Add local `{contents}` navigation near the top of each section notebook.
