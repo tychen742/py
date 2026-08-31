@@ -241,7 +241,7 @@ len(person)      # number of key-value pairs
 
 ## 7.3 Dictionary Patterns
 
-Comprehensions, counting, defaults, and iteration
+Comprehensions, counting, defaults, iteration, and memory
 
 ---
 
@@ -460,6 +460,7 @@ print(f"dict: {time.perf_counter()-t:.5f}s")
 | Count | `Counter(seq)` → `.most_common(n)` |
 | Group | `defaultdict(list)` — no KeyError on first access |
 | Invert | `{v: k for k, v in d.items()}` |
+| Memoize | Store previous results in a dict to avoid repeated work |
 
 ---
 
