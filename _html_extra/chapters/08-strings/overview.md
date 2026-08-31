@@ -32,9 +32,9 @@ style: |
 
 # Chapter 8
 
-Strings
+Strings and Text
 
-*9.0 Intro · 9.1 Strings · 9.2 Regex · 9.3 Text Analysis*
+*8.0 Overview · 8.1 Strings · 8.2 Regex · 8.3 Text Analysis*
 
 *← → or Space to navigate · F for fullscreen*
 
