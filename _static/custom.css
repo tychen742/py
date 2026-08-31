@@ -231,6 +231,11 @@ body.bd-assignment-card-page .bd-article-container div.cell.bd-assignment-questi
     margin-bottom: 0 !important;
 }
 
+body.bd-assignment-card-page .bd-article-container .tf-options,
+body.bd-assignment-card-page .bd-article-container .tf-options label {
+    font-size: inherit !important;
+}
+
 body.bd-exercise-card-page .bd-article-container .bd-exercise-question-card > div.cell,
 body.bd-assignment-card-page .bd-article-container .bd-assignment-question-card > div.cell {
     border: 0 !important;
