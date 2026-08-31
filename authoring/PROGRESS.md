@@ -29,7 +29,7 @@ Last build check: `.venv/bin/jupyter-book build .` passed after the assignment n
 | Chapter | Title | Sections | Assignments | Planning | Status | Notes |
 |---------|-------|----------|-------------|----------|--------|-------|
 | 09 | OOP | 0901-0903 | Nested | Yes | In Progress | |
-| 10 | Functional Programming | 1001, 1002 | Nested | Yes | In Progress | Extra notebooks not in TOC: `generics.ipynb`, `module-package.ipynb`, `test-debug.ipynb`; review or archive. |
+| 10 | Functional Programming | 1001, 1002 | Nested | Yes | In Progress | Former stray notebooks archived in `materials/_archived/ch10-functional-stray/`. |
 | 11 | Iterators & Generators | 1101, 1102 | Nested | Yes | In Progress | SQLite examples moved to `materials/11-iter-gen/`; stray database notebook archived in `materials/_archived/ch11-iter-gen-stray/`. |
 | 12 | APIs | 1201, 1202 | Nested | Yes | In Progress | |
 

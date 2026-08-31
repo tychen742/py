@@ -864,9 +864,11 @@ function py_homework_definition(string $homeworkId): ?array
                 'q5' => 'FALSE',
             ],
             'code_outputs' => [
-                'q6' => "ThinkPy homework\nChapter 1 is about first programs",
+                'q6' => "ThinkPy homework
+Chapter 1 is about first programs",
                 'q7' => "Open tickets: 9",
-                'q8' => "Before: <class 'str'>\nAfter: <class 'int'>",
+                'q8' => "Before: <class 'str'>
+After: <class 'int'>",
                 'q9' => "North region needs 6 follow-up calls.",
                 'q10' => "Audit tag: A-65-0xff",
             ],
@@ -885,10 +887,280 @@ function py_homework_definition(string $homeworkId): ?array
             ],
             'code_outputs' => [
                 'q6' => "Report: sales has 128 rows and 5 columns",
-                'q7' => "Hours: 3\nMinutes: 28\nSeconds: 20",
-                'q8' => "Total: 25.49\nFirst price type: <class 'float'>\nTotal type: <class 'float'>",
-                'q9' => "Prefix: PY\nYear: 2026\nLabel: LAB\nCode length: 11",
-                'q10' => "Submission count: 4\nUnique names: ['Ana', 'Bob', 'Chen']\nBob score: 88\nBob pair: ('Bob', 88)",
+                'q7' => "Hours: 3
+Minutes: 28
+Seconds: 20",
+                'q8' => "Total: 25.49
+First price type: <class 'float'>
+Total type: <class 'float'>",
+                'q9' => "Prefix: PY
+Year: 2026
+Label: LAB
+Code length: 11",
+                'q10' => "Submission count: 4
+Unique names: ['Ana', 'Bob', 'Chen']
+Bob score: 88
+Bob pair: ('Bob', 88)",
+            ],
+        ],
+        'ch03-homework' => [
+            'chapter' => '03-control-flow',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch03',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'TRUE',
+                'q4' => 'FALSE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Ticket age: 9
+Priority: urgent",
+                'q7' => "Qualifying sales: 3
+Qualifying total: 2190",
+                'q8' => "Weeks: 6
+Balance: 540",
+                'q9' => "Labels: ['pass', 'review', 'pass', 'review']",
+                'q10' => "Row: [4, 8, 12, 16, 20]",
+            ],
+        ],
+        'ch04-homework' => [
+            'chapter' => '04-functions',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch04',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'FALSE',
+                'q3' => 'TRUE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Total due: 42.75",
+                'q7' => "Average score: 86.0",
+                'q8' => "Standard: 12.5
+Custom: 13.0",
+                'q9' => "Total: 32.4",
+                'q10' => "Sum: 15",
+            ],
+        ],
+        'ch05-homework' => [
+            'chapter' => '05-testing',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch05',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'FALSE',
+                'q3' => 'TRUE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "42
+Invalid number: ten",
+                'q7' => "25.0
+ValueError: whole cannot be zero",
+                'q8' => "even tests passed",
+                'q9' => "Missing user: chen
+Lookup finished",
+                'q10' => "Q1 Revenue
+TypeError: label must be a string",
+            ],
+        ],
+        'ch06-homework' => [
+            'chapter' => '06-collections',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch06',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Tasks: ['collect', 'clean', 'review']",
+                'q7' => "Name: Ana
+Score: 91
+Passed: True",
+                'q8' => "Categories: ['api', 'data', 'web']",
+                'q9' => "Alias: [10, 20, 30]
+Copy: [10, 20]",
+                'q10' => "Active paid users: ['ana', 'chen']",
+            ],
+        ],
+        'ch07-homework' => [
+            'chapter' => '07-dictionaries',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch07',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'FALSE',
+                'q3' => 'TRUE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Plan for chen: trial",
+                'q7' => "Counts: {'sales': 2, 'ops': 3, 'data': 1}",
+                'q8' => "Ana score: 91
+Bob attempts: 3",
+                'q9' => "By state: {'Texas': 'Austin', 'Iowa': 'Des Moines'}",
+                'q10' => "Groups: {'analyst': ['Ana', 'Chen'], 'manager': ['Bob']}",
+            ],
+        ],
+        'ch08-homework' => [
+            'chapter' => '08-strings',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch08',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Label: Quarterly Revenue",
+                'q7' => "Words: ['data', 'science', 'data']",
+                'q8' => "Ticket numbers: ['12', '105']",
+                'q9' => "Counts: {'python': 2, 'data': 1}",
+                'q10' => "Report code: FY-2026-Q1",
+            ],
+        ],
+        'ch09-homework' => [
+            'chapter' => '09-oop',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch09',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'FALSE',
+                'q3' => 'TRUE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Ticket owner: Ana
+Ticket status: open",
+                'q7' => "Ana balance: 125.5",
+                'q8' => "Total: 8",
+                'q9' => "Task: review (done)",
+                'q10' => "Ordered: ['deploy', 'test', 'plan']",
+            ],
+        ],
+        'ch10-homework' => [
+            'chapter' => '10-functional',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch10',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "High scores: [92, 88]",
+                'q7' => "Cents: [1250, 399, 800]",
+                'q8' => "Active users: ['Ana', 'Chen']",
+                'q9' => "Ranked: ['Chen', 'Ana', 'Bob']",
+                'q10' => "Product: 24",
+            ],
+        ],
+        'ch11-homework' => [
+            'chapter' => '11-iter-gen',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch11',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "First: 10
+Second: 20",
+                'q7' => "Countdown: [3, 2, 1]",
+                'q8' => "Positive total: 14",
+                'q9' => "Ana
+Bob
+No more names",
+                'q10' => "Repeated: ['A', 'A', 'B', 'B']",
+            ],
+        ],
+        'ch12-homework' => [
+            'chapter' => '12-apis',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch12',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "/search?q=python&page=2&limit=5",
+                'q7' => "Status: retry",
+                'q8' => "City: Austin
+Temp: 78",
+                'q9' => "Body: {'name': 'Ana', 'role': 'analyst'}",
+                'q10' => "Next page: none",
+            ],
+        ],
+        'ch13-homework' => [
+            'chapter' => '13-abstract-data-structures',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch13',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Back to: checkout
+Remaining stack: ['home', 'products']",
+                'q7' => "Served: Ana
+Waiting: ['Bob', 'Chen']",
+                'q8' => "Direct reports: ['Data', 'Operations']",
+                'q9' => "DS200 neighbors: ['DS300', 'ML310']",
+                'q10' => "Visit order: ['A', 'B', 'C', 'D']",
+            ],
+        ],
+        'ch14-homework' => [
+            'chapter' => '14-algorithms',
+            'assignment_slug' => 'homework',
+            'max_score' => 10,
+            'canvas_assignment_column' => 'homework_ch14',
+            'tf_answers' => [
+                'q1' => 'TRUE',
+                'q2' => 'TRUE',
+                'q3' => 'FALSE',
+                'q4' => 'TRUE',
+                'q5' => 'FALSE',
+            ],
+            'code_outputs' => [
+                'q6' => "Index: 3",
+                'q7' => "Found at: 4",
+                'q8' => "Scores: [61, 68, 74, 80, 92]",
+                'q9' => "Sorted: [1, 3, 5, 9]
+Original: [5, 1, 9, 3]",
+                'q10' => "Comparisons: 5",
             ],
         ],
     ];
@@ -910,7 +1182,7 @@ function py_all_assignment_definitions(): array
         'ch01-lab', 'ch02-lab', 'ch03-lab', 'ch04-lab', 'ch05-lab',
         'ch06-lab', 'ch07-lab', 'ch08-lab', 'ch09-lab', 'ch10-lab',
         'ch11-lab', 'ch12-lab', 'ch13-lab', 'ch14-lab',
-        'ch01-homework', 'ch02-homework',
+        'ch01-homework', 'ch02-homework', 'ch03-homework', 'ch04-homework', 'ch05-homework', 'ch06-homework', 'ch07-homework', 'ch08-homework', 'ch09-homework', 'ch10-homework', 'ch11-homework', 'ch12-homework', 'ch13-homework', 'ch14-homework',
     ];
     $assignments = [];
     foreach ($assignmentIds as $assignmentId) {

@@ -61,13 +61,10 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 Use `chapters/10-functional/*` as the only Chapter 10 track for planning, delivery, and assessment.
 
-## Stray Files
+## Archived Files
 
-The following files in `chapters/10-functional/` are not part of the Chapter 10 content track and should be relocated or removed:
-
-- `generics.ipynb`
-- `module-package.ipynb`
-- `test-debug.ipynb`
+The former stray notebooks `generics.ipynb`, `module-package.ipynb`, and
+`test-debug.ipynb` are archived in `materials/_archived/ch10-functional-stray/`.
 
 ## Build/Quality Checklist
 
