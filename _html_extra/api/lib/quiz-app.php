@@ -21,6 +21,7 @@ function py_load_config(): array
             'sqlite_backup_enabled' => true,
         ],
         'course' => [
+            'current_semester' => 'Fall, 2026',
             'allowed_student_identifiers' => [],
         ],
         'auth' => [
@@ -124,6 +125,20 @@ function py_student_identifier_allowed(array $config, ?string $identifier): bool
     return in_array($normalizedIdentifier, $normalizedAllowed, true);
 }
 
+function py_current_semester(array $config): string
+{
+    return py_normalize_semester((string) ($config['course']['current_semester'] ?? 'Fall, 2026'), 'Fall, 2026');
+}
+
+function py_normalize_semester(?string $semester, string $fallback = 'Fall, 2026'): string
+{
+    $semester = trim((string) $semester);
+    if ($semester === '') {
+        $semester = $fallback;
+    }
+    return substr($semester, 0, 64);
+}
+
 function py_initialize_schema(PDO $pdo): void
 {
     $driver = (string) $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
@@ -141,6 +156,7 @@ function py_initialize_schema(PDO $pdo): void
             status VARCHAR(32) NOT NULL DEFAULT \'active\',
             canvas_user_id VARCHAR(64) NULL,
             student_identifier VARCHAR(255) NULL,
+            semester_enrolled VARCHAR(64) NOT NULL DEFAULT \'Fall, 2026\',
             email_verified_at DATETIME NULL,
             verification_code_hash VARCHAR(255) NULL,
             verification_code_expires_at DATETIME NULL,
@@ -150,6 +166,7 @@ function py_initialize_schema(PDO $pdo): void
     );
     py_add_column_if_missing($pdo, 'py_quiz_users', 'student_identifier', 'VARCHAR(255) NULL');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'canvas_user_id', 'VARCHAR(64) NULL');
+    py_add_column_if_missing($pdo, 'py_quiz_users', 'semester_enrolled', 'VARCHAR(64) NOT NULL DEFAULT \'Fall, 2026\'');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'email_verified_at', 'DATETIME NULL');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'verification_code_hash', 'VARCHAR(255) NULL');
     py_add_column_if_missing($pdo, 'py_quiz_users', 'verification_code_expires_at', 'DATETIME NULL');
@@ -272,6 +289,16 @@ function py_record_login_event(PDO $pdo, int $userId, string $authSource): void
     ]);
 }
 
+function py_backfill_user_semester(PDO $pdo, string $semester): void
+{
+    $stmt = $pdo->prepare(
+        'UPDATE py_quiz_users
+         SET semester_enrolled = :semester
+         WHERE semester_enrolled IS NULL OR TRIM(semester_enrolled) = \'\''
+    );
+    $stmt->execute(['semester' => py_normalize_semester($semester)]);
+}
+
 function py_seed_admins(PDO $pdo, array $config): void
 {
     foreach (($config['auth']['bootstrap_admins'] ?? []) as $admin) {
@@ -288,14 +315,15 @@ function py_seed_admins(PDO $pdo, array $config): void
         }
 
         $insert = $pdo->prepare(
-            'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id)
-             VALUES (:email, :display_name, \'admin\', :password_hash, \'active\', :canvas_user_id)'
+            'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, semester_enrolled)
+             VALUES (:email, :display_name, \'admin\', :password_hash, \'active\', :canvas_user_id, :semester_enrolled)'
         );
         $insert->execute([
             'email' => $email,
             'display_name' => $admin['display_name'] ?? $email,
             'password_hash' => $passwordHash,
             'canvas_user_id' => $admin['canvas_user_id'] ?? null,
+            'semester_enrolled' => py_normalize_semester((string) ($admin['semester_enrolled'] ?? py_current_semester($config))),
         ]);
     }
 }
@@ -322,6 +350,7 @@ function py_seed_course_students(PDO $pdo, array $config): void
         $email = trim((string) ($student['email'] ?? ''));
         $displayName = trim((string) ($student['display_name'] ?? $student['name'] ?? ''));
         $passwordHash = (string) ($student['password_hash'] ?? '');
+        $semester = py_normalize_semester((string) ($student['semester_enrolled'] ?? $student['semester'] ?? py_current_semester($config)));
 
         $stmt = $pdo->prepare(
             'SELECT id FROM py_quiz_users
@@ -339,9 +368,11 @@ function py_seed_course_students(PDO $pdo, array $config): void
             $sql = 'UPDATE py_quiz_users
                     SET student_identifier = :student_identifier,
                         role = \'student\',
-                        status = \'active\'';
+                        status = \'active\',
+                        semester_enrolled = :semester_enrolled';
             $params = [
                 'student_identifier' => $identifier,
+                'semester_enrolled' => $semester,
                 'id' => (int) $existing['id'],
             ];
             if ($displayName !== '') {
@@ -362,14 +393,15 @@ function py_seed_course_students(PDO $pdo, array $config): void
         }
 
         $insert = $pdo->prepare(
-            'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, student_identifier)
-             VALUES (:email, :display_name, \'student\', :password_hash, \'active\', NULL, :student_identifier)'
+            'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, student_identifier, semester_enrolled)
+             VALUES (:email, :display_name, \'student\', :password_hash, \'active\', NULL, :student_identifier, :semester_enrolled)'
         );
         $insert->execute([
             'email' => $email !== '' ? $email : $identifier . '@student.local',
             'display_name' => $displayName !== '' ? $displayName : $identifier,
             'password_hash' => $passwordHash !== '' ? $passwordHash : null,
             'student_identifier' => $identifier,
+            'semester_enrolled' => $semester,
         ]);
     }
 }
@@ -378,6 +410,7 @@ function py_database_ready(array $config): PDO
 {
     $pdo = py_connect_database($config['database']);
     py_initialize_schema($pdo);
+    py_backfill_user_semester($pdo, py_current_semester($config));
     py_seed_admins($pdo, $config);
     py_seed_course_students($pdo, $config);
     py_seed_assignment_settings($pdo);
@@ -2738,6 +2771,8 @@ function py_upsert_lti_user(PDO $pdo, array $claims): ?int
     $email = trim((string) ($claims['email'] ?? ''));
     $studentIdentifier = py_normalize_student_identifier($email !== '' ? $email : $canvasUserId);
     $displayName = trim((string) ($claims['name'] ?? $email ?: $canvasUserId));
+    $config = py_load_config();
+    $semester = py_current_semester($config);
 
     if ($email === '' && $canvasUserId === '') {
         return null;
@@ -2758,6 +2793,7 @@ function py_upsert_lti_user(PDO $pdo, array $claims): ?int
              SET display_name = :display_name,
                  canvas_user_id = :canvas_user_id,
                  student_identifier = :student_identifier,
+                 semester_enrolled = :semester_enrolled,
                  status = \'active\'
              WHERE id = :id'
         );
@@ -2765,20 +2801,22 @@ function py_upsert_lti_user(PDO $pdo, array $claims): ?int
             'display_name' => $displayName,
             'canvas_user_id' => $canvasUserId !== '' ? $canvasUserId : null,
             'student_identifier' => $studentIdentifier !== '' ? $studentIdentifier : null,
+            'semester_enrolled' => $semester,
             'id' => (int) $existing['id'],
         ]);
         return (int) $existing['id'];
     }
 
     $insert = $pdo->prepare(
-        'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, student_identifier)
-         VALUES (:email, :display_name, \'student\', NULL, \'active\', :canvas_user_id, :student_identifier)'
+        'INSERT INTO py_quiz_users (email, display_name, role, password_hash, status, canvas_user_id, student_identifier, semester_enrolled)
+         VALUES (:email, :display_name, \'student\', NULL, \'active\', :canvas_user_id, :student_identifier, :semester_enrolled)'
     );
     $insert->execute([
         'email' => $email !== '' ? $email : $canvasUserId . '@lti.local',
         'display_name' => $displayName,
         'canvas_user_id' => $canvasUserId !== '' ? $canvasUserId : null,
         'student_identifier' => $studentIdentifier !== '' ? $studentIdentifier : null,
+        'semester_enrolled' => $semester,
     ]);
 
     return (int) $pdo->lastInsertId();

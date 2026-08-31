@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             update_user($pdo, $admin);
             $notice = 'User updated.';
         } elseif ($action === 'add_user') {
-            add_user($pdo);
+            add_user($pdo, $config);
             $notice = 'User added.';
         }
     } catch (Throwable $exception) {
@@ -61,6 +61,7 @@ $users = list_users($pdo);
             <th>Email</th>
             <th>Name</th>
             <th>Student ID</th>
+            <th>Semester Enrolled</th>
             <th>Role</th>
             <th>
               <span class="status-help" tabindex="0">
@@ -80,6 +81,7 @@ $users = list_users($pdo);
             <td><?php echo py_h($user['email']); ?></td>
             <td><?php echo py_h($user['display_name']); ?></td>
             <td><?php echo py_h($user['student_identifier']); ?></td>
+            <td><?php echo py_h($user['semester_enrolled']); ?></td>
             <td><span class="badge"><?php echo py_h($user['role']); ?></span></td>
             <td><span class="badge <?php echo $user['status'] === 'active' ? 'ok-badge' : 'muted-badge'; ?>"><?php echo py_h($user['status']); ?></span></td>
             <td><?php echo $user['email_verified_at'] ? py_h($user['email_verified_at']) : 'no'; ?></td>
@@ -102,6 +104,7 @@ $users = list_users($pdo);
           </div>
           <label>Name <input name="display_name" value="<?php echo py_h($user['display_name']); ?>"></label>
           <label>Student ID <input name="student_identifier" value="<?php echo py_h($user['student_identifier']); ?>"></label>
+          <label>Semester Enrolled <input name="semester_enrolled" value="<?php echo py_h($user['semester_enrolled']); ?>" placeholder="Fall, 2026"></label>
           <label>Role
             <select name="role" <?php echo $isSelf ? 'disabled' : ''; ?>>
               <option value="student" <?php echo $user['role'] === 'student' ? 'selected' : ''; ?>>student</option>
@@ -131,9 +134,10 @@ $users = list_users($pdo);
 function list_users(PDO $pdo): array
 {
     $stmt = $pdo->query(
-        'SELECT id, email, display_name, role, status, student_identifier, email_verified_at, last_login_at, created_at
+        'SELECT id, email, display_name, role, status, student_identifier, semester_enrolled,
+                email_verified_at, last_login_at, created_at
          FROM py_quiz_users
-         ORDER BY role ASC, student_identifier ASC, email ASC'
+         ORDER BY semester_enrolled DESC, role ASC, student_identifier ASC, email ASC'
     );
     return $stmt->fetchAll();
 }
@@ -156,6 +160,7 @@ function update_user(PDO $pdo, array $admin): void
         'UPDATE py_quiz_users
          SET display_name = :display_name,
              student_identifier = :student_identifier,
+             semester_enrolled = :semester_enrolled,
              role = :role,
              status = :status
          WHERE id = :id'
@@ -163,13 +168,14 @@ function update_user(PDO $pdo, array $admin): void
     $stmt->execute([
         'display_name' => trim((string) ($_POST['display_name'] ?? '')),
         'student_identifier' => null_if_empty(py_normalize_student_identifier((string) ($_POST['student_identifier'] ?? ''))),
+        'semester_enrolled' => py_normalize_semester((string) ($_POST['semester_enrolled'] ?? ''), 'Fall, 2026'),
         'role' => $role,
         'status' => $status,
         'id' => $id,
     ]);
 }
 
-function add_user(PDO $pdo): void
+function add_user(PDO $pdo, array $config): void
 {
     $email = strtolower(trim((string) ($_POST['email'] ?? '')));
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -179,8 +185,8 @@ function add_user(PDO $pdo): void
     $status = normalize_choice((string) ($_POST['status'] ?? 'active'), ['active', 'inactive']);
 
     $stmt = $pdo->prepare(
-        'INSERT INTO py_quiz_users (email, display_name, role, status, student_identifier, password_hash)
-         VALUES (:email, :display_name, :role, :status, :student_identifier, NULL)'
+        'INSERT INTO py_quiz_users (email, display_name, role, status, student_identifier, semester_enrolled, password_hash)
+         VALUES (:email, :display_name, :role, :status, :student_identifier, :semester_enrolled, NULL)'
     );
     $stmt->execute([
         'email' => $email,
@@ -188,6 +194,7 @@ function add_user(PDO $pdo): void
         'role' => $role,
         'status' => $status,
         'student_identifier' => null_if_empty(py_normalize_student_identifier((string) ($_POST['student_identifier'] ?? ''))),
+        'semester_enrolled' => py_normalize_semester((string) ($_POST['semester_enrolled'] ?? py_current_semester($config)), py_current_semester($config)),
     ]);
 }
 

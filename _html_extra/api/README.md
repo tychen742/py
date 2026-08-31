@@ -55,6 +55,7 @@ return [
         'enabled' => true,
     ],
     'course' => [
+        'current_semester' => 'Fall, 2026',
         'allowed_student_identifiers' => [
             'esbkfx',
             'ajc95b',
@@ -69,6 +70,7 @@ return [
                 'student_identifier' => 'ajc95b',
                 'display_name' => 'Student Name',
                 'email' => 'student@example.edu',
+                'semester_enrolled' => 'Fall, 2026',
                 'password_hash' => 'PASTE_PASSWORD_HASH_HERE',
             ],
         ],
@@ -133,7 +135,7 @@ The admin module requires a working PDO database connection. It does not read fr
 
 ## Student Authentication
 
-Student rows are stored in `py_quiz_users` with `role = 'student'`. The API creates or updates these rows from `course.allowed_student_identifiers`, `course.students`, or Canvas LTI launches.
+Student rows are stored in `py_quiz_users` with `role = 'student'`. The API creates or updates these rows from `course.allowed_student_identifiers`, `course.students`, or Canvas LTI launches. Each user row includes `semester_enrolled`; if a row does not provide its own value, the API uses `course.current_semester`.
 
 Successful password, admin, and Canvas LTI logins are recorded in `py_login_events` with a timestamp, user ID, auth source, IP address, and user agent for later analysis and research. The `last_login_at` field remains only as a quick current-state summary.
 
