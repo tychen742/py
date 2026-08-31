@@ -1936,8 +1936,84 @@ function py_list_student_score_summary(PDO $pdo, int $studentUserId): array
     return $stmt->fetchAll();
 }
 
-function py_list_admin_score_report(PDO $pdo): array
+function py_list_admin_report_assignments(PDO $pdo): array
 {
+    $assignments = [];
+    foreach (py_all_assignment_definitions() as $assignmentId => $definition) {
+        $chapter = trim((string) ($definition['chapter'] ?? ''));
+        $slug = trim((string) ($definition['assignment_slug'] ?? ''));
+        $labelParts = array_filter([$chapter, $slug], static fn(string $part): bool => $part !== '');
+        $assignments[$assignmentId] = [
+            'assignment_id' => $assignmentId,
+            'label' => $assignmentId . (count($labelParts) > 0 ? ' - ' . implode(' ', $labelParts) : ''),
+        ];
+    }
+
+    $stmt = $pdo->query(
+        'SELECT DISTINCT quiz_id
+         FROM py_quiz_attempts
+         WHERE quiz_id IS NOT NULL AND quiz_id <> \'\'
+         ORDER BY quiz_id ASC'
+    );
+    foreach ($stmt->fetchAll() as $row) {
+        $assignmentId = py_canonical_assignment_id((string) ($row['quiz_id'] ?? ''));
+        if ($assignmentId !== '' && !isset($assignments[$assignmentId])) {
+            $assignments[$assignmentId] = [
+                'assignment_id' => $assignmentId,
+                'label' => $assignmentId,
+            ];
+        }
+    }
+
+    uasort($assignments, static function (array $a, array $b): int {
+        return strnatcasecmp((string) $a['assignment_id'], (string) $b['assignment_id']);
+    });
+    return array_values($assignments);
+}
+
+function py_list_admin_report_students(PDO $pdo): array
+{
+    $users = $pdo->query(
+        'SELECT DISTINCT u.display_name, u.student_identifier, a.student_identifier AS attempt_identifier
+         FROM py_quiz_attempts a
+         LEFT JOIN py_quiz_users u ON u.id = a.student_user_id
+         ORDER BY u.display_name ASC, u.student_identifier ASC, a.student_identifier ASC'
+    )->fetchAll();
+
+    $students = [];
+    foreach ($users as $user) {
+        $identifier = py_normalize_student_identifier((string) ($user['student_identifier'] ?? ''));
+        if ($identifier === '') {
+            $identifier = py_normalize_student_identifier((string) ($user['attempt_identifier'] ?? ''));
+        }
+        if ($identifier === '') {
+            continue;
+        }
+
+        $displayName = trim((string) ($user['display_name'] ?? ''));
+        $label = $displayName !== '' && py_normalize_student_identifier($displayName) !== $identifier
+            ? $displayName . ' (' . $identifier . ')'
+            : $identifier;
+
+        if (!isset($students[$identifier]) || $students[$identifier]['label'] === $identifier) {
+            $students[$identifier] = [
+                'student_identifier' => $identifier,
+                'label' => $label,
+            ];
+        }
+    }
+
+    uasort($students, static function (array $a, array $b): int {
+        return strnatcasecmp((string) $a['label'], (string) $b['label']);
+    });
+    return array_values($students);
+}
+
+function py_list_admin_score_report(PDO $pdo, ?string $assignmentFilter = null, ?string $studentFilter = null): array
+{
+    $assignmentFilter = $assignmentFilter !== null ? py_canonical_assignment_id($assignmentFilter) : null;
+    $studentFilter = $studentFilter !== null ? py_normalize_student_identifier($studentFilter) : null;
+
     $users = $pdo->query(
         'SELECT id, email, display_name, student_identifier, canvas_user_id
          FROM py_quiz_users
@@ -2007,6 +2083,13 @@ function py_list_admin_score_report(PDO $pdo): array
         }
 
         $quizId = py_canonical_assignment_id((string) ($row['quiz_id'] ?? ''));
+        if ($assignmentFilter !== null && $assignmentFilter !== '' && $quizId !== $assignmentFilter) {
+            continue;
+        }
+        if ($studentFilter !== null && $studentFilter !== '' && $studentIdentifier !== $studentFilter) {
+            continue;
+        }
+
         $assignmentSlug = (string) ($row['assignment_slug'] ?? '');
         $key = $studentIdentifier . "\0" . $quizId . "\0" . $assignmentSlug;
 
