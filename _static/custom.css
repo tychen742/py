@@ -246,18 +246,24 @@ body.bd-assignment-card-page .bd-article-container .bd-assignment-question-card 
     padding-top: 0.75rem !important;
 }
 
-body.bd-exercise-card-page .bd-article-container .exercise-question-title,
-body.bd-assignment-card-page .bd-article-container .exercise-question-title {
+body.bd-exercise-card-page .bd-article-container .exercise-label,
+body.bd-assignment-card-page .bd-article-container .exercise-label {
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+}
+
+body.bd-exercise-card-page .bd-article-container .exercise-label .exercise-question-title,
+body.bd-assignment-card-page .bd-article-container .exercise-label .exercise-question-title {
     color: var(--pst-color-text-base) !important;
-    font-size: 16px !important;
+    font-size: 1rem !important;
     font-weight: 700 !important;
     line-height: 1.35 !important;
 }
 
-body.bd-exercise-card-page .bd-article-container .exercise-count,
-body.bd-assignment-card-page .bd-article-container .exercise-count {
+body.bd-exercise-card-page .bd-article-container .exercise-label .exercise-count,
+body.bd-assignment-card-page .bd-article-container .exercise-label .exercise-count {
     color: #771212 !important;
-    font-size: 16px !important;
+    font-size: 1rem !important;
     font-weight: 400 !important;
     line-height: 1.35 !important;
 }
