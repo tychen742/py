@@ -1,5 +1,5 @@
 :root {
-    --py-primary-sidebar-width: 14.5rem;
+    --bd-primary-sidebar-width: 14.5rem;
 }
 
 button.thebelab-button.thebelab-run-button {
@@ -146,13 +146,13 @@ html[data-theme=light] {
 
 @media (min-width: 768px) {
     .bd-sidebar-primary {
-        flex: 0 0 var(--py-primary-sidebar-width) !important;
-        width: var(--py-primary-sidebar-width) !important;
-        max-width: var(--py-primary-sidebar-width) !important;
+        flex: 0 0 var(--bd-primary-sidebar-width) !important;
+        width: var(--bd-primary-sidebar-width) !important;
+        max-width: var(--bd-primary-sidebar-width) !important;
     }
 
     input#pst-primary-sidebar-checkbox:checked ~ .bd-container .bd-sidebar-primary {
-        margin-left: calc(-1 * var(--py-primary-sidebar-width)) !important;
+        margin-left: calc(-1 * var(--bd-primary-sidebar-width)) !important;
         opacity: 0 !important;
         visibility: hidden !important;
     }
