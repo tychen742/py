@@ -43,6 +43,7 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
 ### Sidebar Navigation
 
 - Menu expand/collapse arrows must sit on the same visual baseline as the corresponding menu entry text. Do not leave arrows on a separate lower line or vertically offset from the entry they control.
+- In PyData sidebar CSS, keep `li.has-children > details > summary` as a fixed inline-flex control aligned to the top of the corresponding link row, and center `.toctree-toggle` inside it. Do not let the summary inherit default browser marker spacing or vertical offsets.
 
 ### Assignment UI
 
