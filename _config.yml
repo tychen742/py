@@ -36,6 +36,7 @@ sphinx:
     html_static_path: ["_static"]
     html_extra_path: ["_html_extra"]
     html_css_files:
+      - shared.css
       - custom.css
     html_js_files:
       - custom.js
