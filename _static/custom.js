@@ -121,7 +121,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // The admin database setting controls whether hide-input answer
     // cells are visible. The old timestamp marker remains as a fallback.
     // -----------------------------------------------------------
+    function isAssignmentAnswerPage() {
+        return /\/assignments\/(homework|lab)\.html$/.test(window.location.pathname);
+    }
+
     function answerLockMarker() {
+        if (!isAssignmentAnswerPage()) return null;
         return document.querySelector('[data-assignment-answers]')
             || document.querySelector('[data-lab-answers-release-at]');
     }
