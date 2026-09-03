@@ -108,6 +108,7 @@ exclude_patterns:
   # - 'code'        ### no need for trailing slash
   - "README.md"
   - ".ipynb_checkpoints"
+  - "_static/.ipynb_checkpoints"
   - ".pytest_cache"
   - "**/.pytest_cache"
   - ".DS_Store"
