@@ -21,10 +21,12 @@ parts:
         sections:
           - file: chapters/02-basics/0201-variables-and-objects
             title: Variables and Objects
-          - file: chapters/02-basics/0202-expressions-and-operators
-            title: Expressions and Operators
-          - file: chapters/02-basics/0203-types-and-builtins
-            title: Types and Built-ins
+          - file: chapters/02-basics/0202-expressions-and-statements
+            title: Expressions and Statements
+          - file: chapters/02-basics/0203-builtin-types
+            title: Built-in Types
+          - file: chapters/02-basics/0204-builtin-functions
+            title: Python Built-In Functions
           - file: chapters/02-basics/assignments/index
             title: Assignments
             sections:
