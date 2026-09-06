@@ -12,6 +12,7 @@ This checklist is for building and delivering:
   - Python overview and ecosystem
   - Algorithms and programs
   - Basic syntax and print
+  - Built-in functions and module imports
   - Expanded 30-slide chapter overview deck with local copies of relevant figures
 - Code examples and demos ready to run in class
 - Practice dataset or starter code where applicable
@@ -28,7 +29,7 @@ This checklist is for building and delivering:
 
 ### `0102-basic-syntax.ipynb`
 
-- Syntax rules, comments, print statements, first programs, and technical exercises that prepare students for Lab 01
+- Syntax rules, comments, print statements, built-in functions, module imports, first programs, and technical exercises that prepare students for Lab 01
 
 ## Practice and Assessment Pack
 
@@ -36,7 +37,7 @@ This checklist is for building and delivering:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
 - Section exercises:
-  - `0102-basic-syntax.ipynb` includes runnable exercises for indentation, statement formatting, print/f-string output, input conversion, docstrings, object inspection, keywords, and module imports
+  - `0102-basic-syntax.ipynb` includes runnable exercises for indentation, statement formatting, print/f-string output, input conversion, built-in functions, docstrings, object inspection, keywords, and module imports
 - Lab tasks:
   - Complete about five technical coding questions on first programs, expressions, formatted output, string-to-number conversion, and number-system/encoding helpers
 - Homework:
@@ -63,7 +64,7 @@ This checklist is for building and delivering:
 
 1. `0100-py.ipynb` — What Python is, where it runs, how to use Jupyter, chapter flow, glossary
 2. `0101-programming.ipynb` — Programming learning habits, what programs and algorithms are, and binary/hex/ASCII basics
-3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, first programs
+3. `0102-basic-syntax.ipynb` — Syntax rules, comments, print statements, built-in functions, module imports, first programs
 
 ## Coordination Note
 

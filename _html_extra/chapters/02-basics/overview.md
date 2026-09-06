@@ -34,7 +34,7 @@ style: |
 
 Variables & Types
 
-*2.0 Intro · 2.1 Variables & Objects · 2.2 Expressions & Operators · 2.3 Types & Built-ins*
+*2.0 Intro · 2.1 Variables & Objects · 2.2 Python Operators · 2.3 Built-in Types*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -84,7 +84,7 @@ x += 10   # same as x = x + 10
 
 <!-- _class: section -->
 
-## 2.2 Expressions & Operators
+## 2.2 Python Operators
 
 Expressions, arithmetic, comparison, Boolean logic, and precedence
 
@@ -137,9 +137,9 @@ result = data or []   # [] if data is falsy
 
 <!-- _class: section -->
 
-## 2.3 Types & Built-ins
+## 2.3 Built-in Types
 
-Scalar types, conversion, common functions, and collection preview
+Scalar types, conversion, type hints, and collection preview
 
 ---
 

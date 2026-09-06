@@ -49,7 +49,7 @@ Introduction to Python
 2. Read programs as formal instructions
 3. Distinguish expressions, statements, and objects
 4. Run small syntax examples in Jupyter
-5. Prepare for the Chapter 01 technical lab
+5. Use basic built-in functions and imports
 
 <div class="callout rule">
 
@@ -367,7 +367,7 @@ print(ord(product_code))
 
 ## 1.2 Basic Syntax
 
-Indentation, formatting, `print`, f-strings, `input`, comments, objects, keywords, modules
+Indentation, formatting, `print`, f-strings, `input`, built-ins, comments, objects, keywords, modules
 
 ---
 
@@ -492,6 +492,22 @@ print(years_until_30)
 If a value came from `input()`, assume it is text until you convert it.
 
 </div>
+
+---
+
+## Built-In Functions
+
+Built-in functions are available without `import`.
+
+```python
+values = [10, 20, 30]
+
+print(len(values))
+print(sum(values))
+print(round(sum(values) / len(values), 2))
+```
+
+Use them to display output, inspect values, convert types, and do common calculations.
 
 ---
 

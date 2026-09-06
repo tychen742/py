@@ -19,14 +19,12 @@ parts:
                 title: Homework
       - file: chapters/02-basics/0200-py-basics
         sections:
-          - file: chapters/02-basics/0201-variables-and-types
+          - file: chapters/02-basics/0201-variables-and-objects
             title: Variables and Objects
           - file: chapters/02-basics/0202-operators
             title: Python Operators
           - file: chapters/02-basics/0203-builtin-types
             title: Built-in Types
-          - file: chapters/02-basics/0204-builtin-functions
-            title: Python Built-In Functions
           - file: chapters/02-basics/assignments/index
             title: Assignments
             sections:
