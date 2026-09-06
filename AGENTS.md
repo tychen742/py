@@ -40,6 +40,12 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
   - Landing pages introduce chapter scope and learning outcomes only
   - Landing pages do not contain exercises
 
+### Chapter Overview Slides
+
+- Chapter overview slides must stay structurally aligned with the chapter notebooks and planning docs.
+- Preserve important figures and tables from the content notebooks in the slides when they carry conceptual structure, comparisons, workflows, or visual explanations. Do not replace them with prose-only bullets unless the visual is redundant.
+- When slide source changes, regenerate the corresponding rendered slide HTML before considering the chapter ready to deploy.
+
 ### Sidebar Navigation
 
 - Menu expand/collapse arrows must sit on the same visual baseline as the corresponding menu entry text. Do not leave arrows on a separate lower line or vertically offset from the entry they control.
