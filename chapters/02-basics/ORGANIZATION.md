@@ -3,8 +3,8 @@
 This chapter is split into:
 
 - `0200-py-basics.ipynb`
-- `0201-variables-and-objects.ipynb`
-- `0202-expressions-and-statements.ipynb`
+- `0201-variables-and-types.ipynb`
+- `0202-operators.ipynb`
 - `0203-builtin-types.ipynb`
 - `0204-builtin-functions.ipynb`
 
@@ -13,8 +13,8 @@ This chapter is split into:
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0200-py-basics.ipynb` — chapter overview, learning goals, glossary, and chapter flow. No exercises.
-2. `0201-variables-and-objects.ipynb` — names and assignment; objects, values, types, and identity; mutation vs. reassignment; f-strings.
-3. `0202-expressions-and-statements.ipynb` — expressions and statements; arithmetic; comparison and Boolean logic; membership and identity; assignment updates and precedence.
+2. `0201-variables-and-types.ipynb` — names and assignment; objects, values, types, and identity; mutation vs. reassignment; f-strings.
+3. `0202-operators.ipynb` — operators; arithmetic; comparison and Boolean logic; membership and identity; assignment updates and precedence.
 4. `0203-builtin-types.ipynb` — scalar types; type checking and conversion; light collection-type preview; type hints.
 5. `0204-builtin-functions.ipynb` — common built-in functions and patterns for using them in small programs.
 
