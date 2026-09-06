@@ -20,7 +20,7 @@ style: |
   .callout.rule { background: #f0f4ff; border-color: #5577cc; }
   pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
   code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-  pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+  pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
   table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
   th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
   td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
