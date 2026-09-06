@@ -54,7 +54,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h1 id="chapter-3">Chapter 3</h1>
 <p>Control Flow</p>
 <p><em>3.0 Intro · 3.1 Conditionals · 3.2 Iteration</em></p>
@@ -106,7 +106,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h2 id="chapter-route">Chapter Route</h2>
 <table>
 <thead>
@@ -180,9 +180,9 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h2 id="31-conditionals">3.1 Conditionals</h2>
-<p>integer division and modulus · if / elif / else · nested conditionals · conditional expressions</p>
+<p>if / elif / else · nested conditionals · Boolean expressions · conditional expressions</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
@@ -230,35 +230,33 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="integer-division-and-modulus">Integer Division and Modulus</h2>
-<p>Use <code>//</code> for whole-number division and <code>%</code> for the remainder.</p>
+;" data-marpit-pagination-total="20">
+<h2 id="conditional-execution">Conditional Execution</h2>
+<p>An <code>if</code> statement runs a block only when its condition is truthy.</p>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">minutes = <span class="hljs-number">105</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">x = <span class="hljs-number">5</span>
 
-hours = minutes // <span class="hljs-number">60</span>
-remainder = minutes % <span class="hljs-number">60</span>
+<span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">0</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;x is positive&quot;</span>)
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">score = <span class="hljs-number">85</span>
 
-<span class="hljs-built_in">print</span>(hours)      <span class="hljs-comment"># 1</span>
-<span class="hljs-built_in">print</span>(remainder)  <span class="hljs-comment"># 45</span>
+<span class="hljs-keyword">if</span> score &gt;= <span class="hljs-number">60</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;passing&quot;</span>)
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">seconds = <span class="hljs-number">12345</span>
-
-hours = seconds // <span class="hljs-number">3600</span>
-seconds = seconds % <span class="hljs-number">3600</span>
-
-minutes = seconds // <span class="hljs-number">60</span>
-seconds = seconds % <span class="hljs-number">60</span>
-
-<span class="hljs-built_in">print</span>(hours, minutes, seconds)
-</code></pre>
+<ul>
+<li>The condition comes after <code>if</code>.</li>
+<li>The colon starts an indented block.</li>
+<li>Indentation defines which statements belong to the branch.</li>
+<li>If the condition is false, Python skips the block.</li>
+</ul>
+<div class="callout warn">
+<p>Python uses indentation as syntax. Keep each block aligned consistently.</p>
 </div>
 </div>
-<div class="callout">
-<p>This pattern is useful whenever a large unit must be split into smaller units: seconds to minutes, cents to dollars, rows to pages.</p>
 </div>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
@@ -307,31 +305,35 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="conditional-execution">Conditional Execution</h2>
-<p>An <code>if</code> statement runs a block only when its condition is truthy.</p>
+;" data-marpit-pagination-total="20">
+<h2 id="if--elif--else"><code>if</code> / <code>elif</code> / <code>else</code></h2>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">x = <span class="hljs-number">5</span>
-
-<span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">0</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;x is positive&quot;</span>)
-</code></pre>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">score = <span class="hljs-number">85</span>
 
-<span class="hljs-keyword">if</span> score &gt;= <span class="hljs-number">60</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;passing&quot;</span>)
+<span class="hljs-keyword">if</span> score &gt; <span class="hljs-number">100</span> <span class="hljs-keyword">or</span> score &lt; <span class="hljs-number">0</span>:
+    grade = <span class="hljs-string">&quot;invalid score&quot;</span>
+<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">90</span>:
+    grade = <span class="hljs-string">&quot;A&quot;</span>
+<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">80</span>:
+    grade = <span class="hljs-string">&quot;B&quot;</span>
+<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">70</span>:
+    grade = <span class="hljs-string">&quot;C&quot;</span>
+<span class="hljs-keyword">else</span>:
+    grade = <span class="hljs-string">&quot;F&quot;</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Grade: <span class="hljs-subst">{grade}</span>&quot;</span>)  <span class="hljs-comment"># Grade: B</span>
 </code></pre>
 </div>
 <div>
 <ul>
-<li>The condition comes after <code>if</code>.</li>
-<li>The colon starts an indented block.</li>
-<li>Indentation defines which statements belong to the branch.</li>
-<li>If the condition is false, Python skips the block.</li>
+<li>Conditions are evaluated top-to-bottom.</li>
+<li>Only the <strong>first matching</strong> branch runs.</li>
+<li><code>else</code> is optional; catches everything remaining.</li>
+<li>Put special cases before broader cases.</li>
 </ul>
-<div class="callout warn">
-<p>Python uses indentation as syntax. Keep each block aligned consistently.</p>
+<div class="callout">
+<p><code>0</code>, <code>&quot;&quot;</code>, <code>[]</code>, <code>None</code> are <strong>falsy</strong>. Everything else is truthy. Usually you do not need <code>== True</code>.</p>
 </div>
 </div>
 </div>
@@ -382,35 +384,33 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="if--elif--else"><code>if</code> / <code>elif</code> / <code>else</code></h2>
+;" data-marpit-pagination-total="20">
+<h2 id="nested-conditionals">Nested Conditionals</h2>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">score = <span class="hljs-number">85</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">username = <span class="hljs-string">&quot;ada&quot;</span>
+password = <span class="hljs-string">&quot;python&quot;</span>
 
-<span class="hljs-keyword">if</span> score &gt; <span class="hljs-number">100</span> <span class="hljs-keyword">or</span> score &lt; <span class="hljs-number">0</span>:
-    grade = <span class="hljs-string">&quot;invalid score&quot;</span>
-<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">90</span>:
-    grade = <span class="hljs-string">&quot;A&quot;</span>
-<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">80</span>:
-    grade = <span class="hljs-string">&quot;B&quot;</span>
-<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">70</span>:
-    grade = <span class="hljs-string">&quot;C&quot;</span>
+<span class="hljs-keyword">if</span> username == <span class="hljs-string">&quot;ada&quot;</span>:
+    <span class="hljs-keyword">if</span> password == <span class="hljs-string">&quot;python&quot;</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Access granted&quot;</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Wrong password&quot;</span>)
 <span class="hljs-keyword">else</span>:
-    grade = <span class="hljs-string">&quot;F&quot;</span>
-
-<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Grade: <span class="hljs-subst">{grade}</span>&quot;</span>)  <span class="hljs-comment"># Grade: B</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Unknown user&quot;</span>)
 </code></pre>
 </div>
 <div>
-<ul>
-<li>Conditions are evaluated top-to-bottom.</li>
-<li>Only the <strong>first matching</strong> branch runs.</li>
-<li><code>else</code> is optional; catches everything remaining.</li>
-<li>Put special cases before broader cases.</li>
-</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">if</span> username == <span class="hljs-string">&quot;ada&quot;</span> <span class="hljs-keyword">and</span> password == <span class="hljs-string">&quot;python&quot;</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Access granted&quot;</span>)
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">x = <span class="hljs-number">5</span>
+
+<span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt; x &lt; <span class="hljs-number">10</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;single digit&quot;</span>)
+</code></pre>
 <div class="callout">
-<p><code>0</code>, <code>&quot;&quot;</code>, <code>[]</code>, <code>None</code> are <strong>falsy</strong>. Everything else is truthy. Usually you do not need <code>== True</code>.</p>
+<p>Nested conditionals are useful when one decision depends on another. Combined conditions are often clearer for simple tests.</p>
 </div>
 </div>
 </div>
@@ -461,33 +461,29 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="nested-conditionals">Nested Conditionals</h2>
+;" data-marpit-pagination-total="20">
+<h2 id="placeholder-branches-with-pass">Placeholder Branches with <code>pass</code></h2>
+<p>Use <code>pass</code> when Python requires a block but you have not written the logic yet.</p>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">username = <span class="hljs-string">&quot;ada&quot;</span>
-password = <span class="hljs-string">&quot;python&quot;</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">score = <span class="hljs-number">85</span>
 
-<span class="hljs-keyword">if</span> username == <span class="hljs-string">&quot;ada&quot;</span>:
-    <span class="hljs-keyword">if</span> password == <span class="hljs-string">&quot;python&quot;</span>:
-        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Access granted&quot;</span>)
-    <span class="hljs-keyword">else</span>:
-        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Wrong password&quot;</span>)
+<span class="hljs-keyword">if</span> score &gt;= <span class="hljs-number">90</span>:
+    <span class="hljs-keyword">pass</span>
+<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">80</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B&quot;</span>)
 <span class="hljs-keyword">else</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Unknown user&quot;</span>)
+    <span class="hljs-keyword">pass</span>
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">if</span> username == <span class="hljs-string">&quot;ada&quot;</span> <span class="hljs-keyword">and</span> password == <span class="hljs-string">&quot;python&quot;</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Access granted&quot;</span>)
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">x = <span class="hljs-number">5</span>
-
-<span class="hljs-keyword">if</span> <span class="hljs-number">0</span> &lt; x &lt; <span class="hljs-number">10</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;single digit&quot;</span>)
-</code></pre>
-<div class="callout">
-<p>Nested conditionals are useful when one decision depends on another. Combined conditions are often clearer for simple tests.</p>
+<ul>
+<li><code>pass</code> does nothing at runtime.</li>
+<li>It is useful for draft code and intentional empty branches.</li>
+<li>Replace it with real logic before the program is complete.</li>
+</ul>
+<div class="callout warn">
+<p>Do not confuse <code>pass</code> with <code>continue</code>. <code>pass</code> does nothing; <code>continue</code> jumps to the next loop iteration.</p>
 </div>
 </div>
 </div>
@@ -538,80 +534,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="placeholder-branches-with-pass">Placeholder Branches with <code>pass</code></h2>
-<p>Use <code>pass</code> when Python requires a block but you have not written the logic yet.</p>
-<div class="cols">
-<div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">score = <span class="hljs-number">85</span>
-
-<span class="hljs-keyword">if</span> score &gt;= <span class="hljs-number">90</span>:
-    <span class="hljs-keyword">pass</span>
-<span class="hljs-keyword">elif</span> score &gt;= <span class="hljs-number">80</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;B&quot;</span>)
-<span class="hljs-keyword">else</span>:
-    <span class="hljs-keyword">pass</span>
-</code></pre>
-</div>
-<div>
-<ul>
-<li><code>pass</code> does nothing at runtime.</li>
-<li>It is useful for draft code and intentional empty branches.</li>
-<li>Replace it with real logic before the program is complete.</li>
-</ul>
-<div class="callout warn">
-<p>Do not confuse <code>pass</code> with <code>continue</code>. <code>pass</code> does nothing; <code>continue</code> jumps to the next loop iteration.</p>
-</div>
-</div>
-</div>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-" lang="C" data-marpit-pagination="9" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h2 id="conditional-expressions">Conditional Expressions</h2>
 <p>A concise one-liner for choosing between two values.</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">age = <span class="hljs-number">19</span>
@@ -624,7 +547,7 @@ y = math.log(x) <span class="hljs-keyword">if</span> x &gt; <span class="hljs-nu
 <p>Read as: &quot;give me A <strong>if</strong> condition is true, <strong>else</strong> B.&quot; Use when both branches are simple expressions.</p>
 </div>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -647,7 +570,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-" lang="C" class="section" data-marpit-pagination="10" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+" lang="C" class="section" data-marpit-pagination="9" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -670,9 +593,82 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h2 id="32-iteration">3.2 Iteration</h2>
 <p>iterables · for loops · range · while loops · loop control · accumulator pattern</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="C" data-marpit-pagination="10" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="20">
+<h2 id="iterators-and-iterables">Iterators and Iterables</h2>
+<p>An <strong>iterable</strong> can produce values one at a time. An <strong>iterator</strong> is the object doing that work.</p>
+<div class="cols">
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">fruit = (<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>)
+
+itr = <span class="hljs-built_in">iter</span>(fruit)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(itr))  <span class="hljs-comment"># apple</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(itr))  <span class="hljs-comment"># banana</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(itr))  <span class="hljs-comment"># cherry</span>
+</code></pre>
+</div>
+<div>
+<ul>
+<li>Lists, tuples, strings, ranges, and dictionaries are iterable.</li>
+<li><code>iter()</code> asks for an iterator.</li>
+<li><code>next()</code> gets the next value.</li>
+<li>A <code>for</code> loop handles this protocol for you.</li>
+</ul>
+<div class="callout">
+<p>Most Python loops are loops over iterables, not loops over raw numeric positions.</p>
+</div>
+</div>
+</div>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
@@ -720,29 +716,27 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="iterators-and-iterables">Iterators and Iterables</h2>
-<p>An <strong>iterable</strong> can produce values one at a time. An <strong>iterator</strong> is the object doing that work.</p>
+;" data-marpit-pagination-total="20">
+<h2 id="looping-through-iterables">Looping Through Iterables</h2>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">fruit = (<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>)
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> fruit <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>]:
+    <span class="hljs-built_in">print</span>(fruit)
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">nums = [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]
 
-itr = <span class="hljs-built_in">iter</span>(fruit)
-
-<span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(itr))  <span class="hljs-comment"># apple</span>
-<span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(itr))  <span class="hljs-comment"># banana</span>
-<span class="hljs-built_in">print</span>(<span class="hljs-built_in">next</span>(itr))  <span class="hljs-comment"># cherry</span>
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> nums:
+    <span class="hljs-built_in">print</span>(n ** <span class="hljs-number">2</span>)
 </code></pre>
 </div>
 <div>
-<ul>
-<li>Lists, tuples, strings, ranges, and dictionaries are iterable.</li>
-<li><code>iter()</code> asks for an iterator.</li>
-<li><code>next()</code> gets the next value.</li>
-<li>A <code>for</code> loop handles this protocol for you.</li>
-</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">word = <span class="hljs-string">&quot;Python&quot;</span>
+
+<span class="hljs-keyword">for</span> letter <span class="hljs-keyword">in</span> word:
+    <span class="hljs-built_in">print</span>(letter)
+</code></pre>
 <div class="callout">
-<p>Most Python loops are loops over iterables, not loops over raw numeric positions.</p>
+<p>Use a direct <code>for item in collection:</code> loop when the item is what you need.</p>
 </div>
 </div>
 </div>
@@ -793,27 +787,30 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="looping-through-iterables">Looping Through Iterables</h2>
+;" data-marpit-pagination-total="20">
+<h2 id="range-and-index-based-loops"><code>range()</code> and Index-Based Loops</h2>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> fruit <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>]:
-    <span class="hljs-built_in">print</span>(fruit)
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">nums = [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):
+    <span class="hljs-built_in">print</span>(i)
 
-<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> nums:
-    <span class="hljs-built_in">print</span>(n ** <span class="hljs-number">2</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>):
+    <span class="hljs-built_in">print</span>(i)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">2</span>):
+    <span class="hljs-built_in">print</span>(i)
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">word = <span class="hljs-string">&quot;Python&quot;</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">numbers = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>]
 
-<span class="hljs-keyword">for</span> letter <span class="hljs-keyword">in</span> word:
-    <span class="hljs-built_in">print</span>(letter)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(numbers)):
+    numbers[i] = numbers[i] * <span class="hljs-number">2</span>
+
+<span class="hljs-built_in">print</span>(numbers)  <span class="hljs-comment"># [20, 40, 60]</span>
 </code></pre>
-<div class="callout">
-<p>Use a direct <code>for item in collection:</code> loop when the item is what you need.</p>
+<div class="callout rule">
+<p>Prefer direct iteration unless you need the index to update or compare positions.</p>
 </div>
 </div>
 </div>
@@ -864,30 +861,29 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="range-and-index-based-loops"><code>range()</code> and Index-Based Loops</h2>
+;" data-marpit-pagination-total="20">
+<h2 id="nested-loops">Nested Loops</h2>
+<p>A nested loop runs the inner loop completely for each step of the outer loop.</p>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):
-    <span class="hljs-built_in">print</span>(i)
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>):
-    <span class="hljs-built_in">print</span>(i)
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">2</span>):
-    <span class="hljs-built_in">print</span>(i)
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>):
+    <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>):
+        <span class="hljs-built_in">print</span>(row * col, end=<span class="hljs-string">&quot; &quot;</span>)
+    <span class="hljs-built_in">print</span>()
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">numbers = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>]
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">matrix = [
+    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+    [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
+]
 
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(numbers)):
-    numbers[i] = numbers[i] * <span class="hljs-number">2</span>
-
-<span class="hljs-built_in">print</span>(numbers)  <span class="hljs-comment"># [20, 40, 60]</span>
+<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> matrix:
+    <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> row:
+        <span class="hljs-built_in">print</span>(value)
 </code></pre>
-<div class="callout rule">
-<p>Prefer direct iteration unless you need the index to update or compare positions.</p>
+<div class="callout">
+<p>Nested loops are common with tables, matrices, grids, and paired comparisons.</p>
 </div>
 </div>
 </div>
@@ -938,30 +934,34 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="nested-loops">Nested Loops</h2>
-<p>A nested loop runs the inner loop completely for each step of the outer loop.</p>
+;" data-marpit-pagination-total="20">
+<h2 id="advanced-for-loop-patterns">Advanced <code>for</code> Loop Patterns</h2>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>):
-    <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>):
-        <span class="hljs-built_in">print</span>(row * col, end=<span class="hljs-string">&quot; &quot;</span>)
-    <span class="hljs-built_in">print</span>()
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">fruits = [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>]
+
+<span class="hljs-keyword">for</span> i, fruit <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(fruits):
+    <span class="hljs-built_in">print</span>(i, fruit)
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">names = [<span class="hljs-string">&quot;Ada&quot;</span>, <span class="hljs-string">&quot;Linus&quot;</span>]
+ages = [<span class="hljs-number">36</span>, <span class="hljs-number">54</span>]
+
+<span class="hljs-keyword">for</span> name, age <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(names, ages):
+    <span class="hljs-built_in">print</span>(name, age)
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">matrix = [
-    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
-    [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
-]
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">scores = {<span class="hljs-string">&quot;Ada&quot;</span>: <span class="hljs-number">92</span>, <span class="hljs-string">&quot;Linus&quot;</span>: <span class="hljs-number">85</span>}
 
-<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> matrix:
-    <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> row:
-        <span class="hljs-built_in">print</span>(value)
+<span class="hljs-keyword">for</span> name, score <span class="hljs-keyword">in</span> scores.items():
+    <span class="hljs-built_in">print</span>(name, score)
+
+<span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> scores.keys():
+    <span class="hljs-built_in">print</span>(name)
+
+<span class="hljs-keyword">for</span> score <span class="hljs-keyword">in</span> scores.values():
+    <span class="hljs-built_in">print</span>(score)
 </code></pre>
-<div class="callout">
-<p>Nested loops are common with tables, matrices, grids, and paired comparisons.</p>
-</div>
 </div>
 </div>
 </section>
@@ -1011,34 +1011,38 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="advanced-for-loop-patterns">Advanced <code>for</code> Loop Patterns</h2>
+;" data-marpit-pagination-total="20">
+<h2 id="while-loops"><code>while</code> Loops</h2>
+<p>Use <code>while</code> when repetition depends on a condition rather than a known collection.</p>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">fruits = [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>]
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">times = <span class="hljs-number">0</span>
 
-<span class="hljs-keyword">for</span> i, fruit <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(fruits):
-    <span class="hljs-built_in">print</span>(i, fruit)
+<span class="hljs-keyword">while</span> times &lt; <span class="hljs-number">3</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello!&quot;</span>)
+    times += <span class="hljs-number">1</span>
 </code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">names = [<span class="hljs-string">&quot;Ada&quot;</span>, <span class="hljs-string">&quot;Linus&quot;</span>]
-ages = [<span class="hljs-number">36</span>, <span class="hljs-number">54</span>]
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">n = <span class="hljs-number">1</span>
 
-<span class="hljs-keyword">for</span> name, age <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(names, ages):
-    <span class="hljs-built_in">print</span>(name, age)
+<span class="hljs-keyword">while</span> n &lt; <span class="hljs-number">100</span>:
+    n *= <span class="hljs-number">2</span>
+
+<span class="hljs-built_in">print</span>(n)  <span class="hljs-comment"># 128</span>
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">scores = {<span class="hljs-string">&quot;Ada&quot;</span>: <span class="hljs-number">92</span>, <span class="hljs-string">&quot;Linus&quot;</span>: <span class="hljs-number">85</span>}
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">total = <span class="hljs-number">0</span>
+value = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Number? &quot;</span>))
 
-<span class="hljs-keyword">for</span> name, score <span class="hljs-keyword">in</span> scores.items():
-    <span class="hljs-built_in">print</span>(name, score)
+<span class="hljs-keyword">while</span> value != -<span class="hljs-number">1</span>:
+    total += value
+    value = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Number? &quot;</span>))
 
-<span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> scores.keys():
-    <span class="hljs-built_in">print</span>(name)
-
-<span class="hljs-keyword">for</span> score <span class="hljs-keyword">in</span> scores.values():
-    <span class="hljs-built_in">print</span>(score)
+<span class="hljs-built_in">print</span>(total)
 </code></pre>
+<div class="callout warn">
+<p>Make sure something inside the loop can eventually make the condition false.</p>
+</div>
 </div>
 </div>
 </section>
@@ -1088,39 +1092,23 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="while-loops"><code>while</code> Loops</h2>
-<p>Use <code>while</code> when repetition depends on a condition rather than a known collection.</p>
-<div class="cols">
-<div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">times = <span class="hljs-number">0</span>
-
-<span class="hljs-keyword">while</span> times &lt; <span class="hljs-number">3</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello!&quot;</span>)
-    times += <span class="hljs-number">1</span>
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">n = <span class="hljs-number">1</span>
-
-<span class="hljs-keyword">while</span> n &lt; <span class="hljs-number">100</span>:
-    n *= <span class="hljs-number">2</span>
-
-<span class="hljs-built_in">print</span>(n)  <span class="hljs-comment"># 128</span>
-</code></pre>
-</div>
-<div>
+;" data-marpit-pagination-total="20">
+<h2 id="while-true-and-break"><code>while True</code> and <code>break</code></h2>
+<p>An infinite loop can be useful when the stopping point is easiest to test inside the loop.</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">total = <span class="hljs-number">0</span>
-value = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Number? &quot;</span>))
 
-<span class="hljs-keyword">while</span> value != -<span class="hljs-number">1</span>:
-    total += value
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
     value = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Number? &quot;</span>))
+
+    <span class="hljs-keyword">if</span> value == -<span class="hljs-number">1</span>:
+        <span class="hljs-keyword">break</span>
+
+    total += value
 
 <span class="hljs-built_in">print</span>(total)
 </code></pre>
-<div class="callout warn">
-<p>Make sure something inside the loop can eventually make the condition false.</p>
-</div>
-</div>
+<div class="callout">
+<p><code>break</code> exits the nearest loop immediately. Put the stopping test where the decision is clearest.</p>
 </div>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
@@ -1169,23 +1157,33 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="while-true-and-break"><code>while True</code> and <code>break</code></h2>
-<p>An infinite loop can be useful when the stopping point is easiest to test inside the loop.</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">total = <span class="hljs-number">0</span>
-
-<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
-    value = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Number? &quot;</span>))
-
-    <span class="hljs-keyword">if</span> value == -<span class="hljs-number">1</span>:
+;" data-marpit-pagination-total="20">
+<h2 id="loop-control-statements">Loop Control Statements</h2>
+<div class="cols">
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+    <span class="hljs-keyword">if</span> n == <span class="hljs-number">5</span>:
         <span class="hljs-keyword">break</span>
-
-    total += value
-
-<span class="hljs-built_in">print</span>(total)
+    <span class="hljs-built_in">print</span>(n)
 </code></pre>
-<div class="callout">
-<p><code>break</code> exits the nearest loop immediately. Put the stopping test where the decision is clearest.</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+    <span class="hljs-keyword">if</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">continue</span>
+    <span class="hljs-built_in">print</span>(n)
+</code></pre>
+</div>
+<div>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):
+    <span class="hljs-keyword">pass</span>
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]:
+    <span class="hljs-keyword">if</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;odd found&quot;</span>)
+        <span class="hljs-keyword">break</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;no odd numbers&quot;</span>)
+</code></pre>
+</div>
 </div>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
@@ -1234,32 +1232,32 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="loop-control-statements">Loop Control Statements</h2>
+;" data-marpit-pagination-total="20">
+<h2 id="accumulator-pattern">Accumulator Pattern</h2>
+<p>Initialize a result before the loop, update it inside the loop, then use it after the loop.</p>
 <div class="cols">
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
-    <span class="hljs-keyword">if</span> n == <span class="hljs-number">5</span>:
-        <span class="hljs-keyword">break</span>
-    <span class="hljs-built_in">print</span>(n)
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
-    <span class="hljs-keyword">if</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">continue</span>
-    <span class="hljs-built_in">print</span>(n)
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">rainfall = [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.3</span>, <span class="hljs-number">0.4</span>]
+
+total = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> amount <span class="hljs-keyword">in</span> rainfall:
+    total += amount
+
+<span class="hljs-built_in">print</span>(total)
 </code></pre>
 </div>
 <div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):
-    <span class="hljs-keyword">pass</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">wet_days = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">for</span> amount <span class="hljs-keyword">in</span> rainfall:
+    <span class="hljs-keyword">if</span> amount &gt; <span class="hljs-number">0</span>:
+        wet_days += <span class="hljs-number">1</span>
+
+<span class="hljs-built_in">print</span>(wet_days)
 </code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]:
-    <span class="hljs-keyword">if</span> n % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>:
-        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;odd found&quot;</span>)
-        <span class="hljs-keyword">break</span>
-<span class="hljs-keyword">else</span>:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;no odd numbers&quot;</span>)
-</code></pre>
+<div class="callout rule">
+<p>Common accumulators include totals, counts, minimums, maximums, and collected lists.</p>
+</div>
 </div>
 </div>
 </section>
@@ -1309,82 +1307,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
-<h2 id="accumulator-pattern">Accumulator Pattern</h2>
-<p>Initialize a result before the loop, update it inside the loop, then use it after the loop.</p>
-<div class="cols">
-<div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">rainfall = [<span class="hljs-number">0.2</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.3</span>, <span class="hljs-number">0.4</span>]
-
-total = <span class="hljs-number">0</span>
-<span class="hljs-keyword">for</span> amount <span class="hljs-keyword">in</span> rainfall:
-    total += amount
-
-<span class="hljs-built_in">print</span>(total)
-</code></pre>
-</div>
-<div>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">wet_days = <span class="hljs-number">0</span>
-
-<span class="hljs-keyword">for</span> amount <span class="hljs-keyword">in</span> rainfall:
-    <span class="hljs-keyword">if</span> amount &gt; <span class="hljs-number">0</span>:
-        wet_days += <span class="hljs-number">1</span>
-
-<span class="hljs-built_in">print</span>(wet_days)
-</code></pre>
-<div class="callout rule">
-<p>Common accumulators include totals, counts, minimums, maximums, and collected lists.</p>
-</div>
-</div>
-</div>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-" lang="C" data-marpit-pagination="20" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; display: block; box-sizing: border-box; padding: 12px 14px; white-space: pre; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h2 id="chapter-3--quick-reference">Chapter 3 — Quick Reference</h2>
 <table>
 <thead>
@@ -1394,14 +1317,6 @@ section::after { color: #aaa; font-size: 0.7em; }
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Integer division</td>
-<td><code>a // b</code> gives the whole-number quotient</td>
-</tr>
-<tr>
-<td>Modulus</td>
-<td><code>a % b</code> gives the remainder</td>
-</tr>
 <tr>
 <td>if / elif / else</td>
 <td>First matching branch wins</td>
@@ -1457,7 +1372,7 @@ section::after { color: #aaa; font-size: 0.7em; }
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-class="title" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-class="title" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -1480,7 +1395,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-" lang="C" class="title" data-marpit-pagination="21" style="--paginate:true;--class:title;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+" lang="C" class="title" data-marpit-pagination="20" style="--paginate:true;--class:title;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -1503,7 +1418,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="21">
+;" data-marpit-pagination-total="20">
 <h1 id="end-of-chapter-3">End of Chapter 3</h1>
 <p><em>Next: Chapter 4 — Functions</em></p>
 <p><em>defining functions · parameters · return values · recursion</em></p>

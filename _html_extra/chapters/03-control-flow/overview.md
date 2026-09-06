@@ -60,50 +60,7 @@ Control flow changes the order in which statements run. Chapter 3 adds two core 
 
 ## 3.1 Conditionals
 
-integer division and modulus · if / elif / else · nested conditionals · conditional expressions
-
----
-
-## Integer Division and Modulus
-
-Use `//` for whole-number division and `%` for the remainder.
-
-<div class="cols">
-<div>
-
-```python
-minutes = 105
-
-hours = minutes // 60
-remainder = minutes % 60
-
-print(hours)      # 1
-print(remainder)  # 45
-```
-
-</div>
-<div>
-
-```python
-seconds = 12345
-
-hours = seconds // 3600
-seconds = seconds % 3600
-
-minutes = seconds // 60
-seconds = seconds % 60
-
-print(hours, minutes, seconds)
-```
-
-</div>
-</div>
-
-<div class="callout">
-
-This pattern is useful whenever a large unit must be split into smaller units: seconds to minutes, cents to dollars, rows to pages.
-
-</div>
+if / elif / else · nested conditionals · Boolean expressions · conditional expressions
 
 ---
 
@@ -650,8 +607,6 @@ Common accumulators include totals, counts, minimums, maximums, and collected li
 
 | Concept | Key syntax / notes |
 |---|---|
-| Integer division | `a // b` gives the whole-number quotient |
-| Modulus | `a % b` gives the remainder |
 | if / elif / else | First matching branch wins |
 | Chained comparison | `0 < x < 10` |
 | Conditional expression | `A if condition else B` |

@@ -23,7 +23,7 @@ This checklist is for building and delivering:
 
 ### `0301-conditionals.ipynb`
 
-- control-structure overview; if / elif / else; nested conditionals; modulus and floor division; conditional expressions (ternary)
+- control-structure overview; if / elif / else; nested conditionals; Boolean expressions; conditional expressions (ternary)
 
 ### `0302-iteration.ipynb`
 
@@ -35,7 +35,7 @@ This checklist is for building and delivering:
   - 2–3 conceptual poll/discussion questions
   - 1–2 "predict the output" questions
 - Lab tasks (built, graded, wired to the lab submission API):
-  - Unit conversion with modulus/floor division; nested-conditional loyalty tier; for-loop accumulator; while-loop savings goal; conditional-expression (ternary) shipping fee
+  - Nested-conditional loyalty tier; for-loop accumulator; while-loop savings goal; conditional-expression (ternary) shipping fee
 - Homework:
   - Flow chart for a multi-branch decision; accumulator loop problem
 - Grading anchors:
@@ -52,7 +52,7 @@ This checklist is for building and delivering:
 ## Chapter 03 Delivery Order (Recommended)
 
 1. `0300-control-flow.ipynb` — Motivation and overview of conditional and loop constructs
-2. `0301-conditionals.ipynb` — control-structure overview; if / elif / else; nested conditionals; modulus and floor division; conditional expressions
+2. `0301-conditionals.ipynb` — control-structure overview; if / elif / else; nested conditionals; Boolean expressions; conditional expressions
 3. `0302-iteration.ipynb` — for and while loops; break, continue; accumulator pattern
 
 ## Coordination Note
