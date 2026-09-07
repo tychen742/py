@@ -239,19 +239,21 @@ parts:
     restart_numbering: true
     chapters:
       - file: chapters/appendices/0101-tooling
-      - file: chapters/appendices/05-tooling/0500-intro-modules
-        title: Modules and Packaging
+        title: Tooling
+      - file: chapters/appendices/jupyter/0200-intro-jupyter
+        title: Jupyter
         sections:
-          - file: chapters/appendices/05-tooling/0501-files
-          - file: chapters/appendices/05-tooling/0502-modules
-          - file: chapters/appendices/05-tooling/0503-packaging
-          - file: chapters/appendices/05-tooling/0504-coding-tooling
-      - file: chapters/appendices/0200-intro-jupyter
+          - file: chapters/appendices/jupyter/0201-python-installation
+          - file: chapters/appendices/jupyter/0202-virtual-environment
+          - file: chapters/appendices/jupyter/0203-the-notebook
+          - file: chapters/appendices/jupyter/0204-jupyter-bonus
+      - file: chapters/appendices/packaging/0500-intro-modules
+        title: Packages
         sections:
-          - file: chapters/appendices/0201-python-installation
-          - file: chapters/appendices/0202-virtual-environment
-          - file: chapters/appendices/0203-the-notebook
-          - file: chapters/appendices/0204-jupyter-bonus
+          - file: chapters/appendices/packaging/0501-files
+          - file: chapters/appendices/packaging/0502-modules
+          - file: chapters/appendices/packaging/0503-packaging
+          - file: chapters/appendices/packaging/0504-coding-tooling
   - caption: "Bibliography"
     numbered: false
     chapters:
