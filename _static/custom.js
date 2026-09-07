@@ -35,6 +35,38 @@ document.addEventListener('DOMContentLoaded', function () {
         span.textContent = convertNum(span.textContent);
     });
 
+    var headingSectionNumber = document.querySelector('h1 .section-number');
+    var appendixLetterMatch = headingSectionNumber && headingSectionNumber.textContent.match(/^([A-Z])\./);
+    if (appendixLetterMatch) {
+        var appendixLetter = appendixLetterMatch[1];
+        var figureLabelsByHash = {};
+        var figureCount = 0;
+
+        document.querySelectorAll('figure[id] figcaption .caption-number').forEach(function(span) {
+            if (!span.textContent.trim().match(/^Fig\./)) return;
+            var figure = span.closest('figure[id]');
+            if (!figure) return;
+
+            figureCount += 1;
+            var label = 'Fig. ' + appendixLetter + '.' + figureCount;
+            span.textContent = label + ' ';
+            figureLabelsByHash['#' + figure.id] = label;
+        });
+
+        document.querySelectorAll('a.reference.internal[href] .std-numref').forEach(function(span) {
+            var link = span.closest('a.reference.internal[href]');
+            var url;
+            try {
+                url = new URL(link.getAttribute('href'), window.location.href);
+            } catch (e) {
+                return;
+            }
+            if (url.pathname !== window.location.pathname) return;
+            if (!figureLabelsByHash[url.hash]) return;
+            span.textContent = figureLabelsByHash[url.hash];
+        });
+    }
+
     // 3. Prev/next footer: only convert links pointing into /appendices/
     document.querySelectorAll('.left-prev[href], .right-next[href]').forEach(function(a) {
         if (a.href.includes('/appendices/'))
