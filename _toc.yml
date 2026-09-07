@@ -239,16 +239,16 @@ parts:
     restart_numbering: true
     chapters:
       - file: chapters/appendices/0101-tooling
-        title: Tooling
+        title: Course Tooling
       - file: chapters/appendices/jupyter/0200-intro-jupyter
-        title: Jupyter
+        title: Jupyter Setup
         sections:
           - file: chapters/appendices/jupyter/0201-python-installation
           - file: chapters/appendices/jupyter/0202-virtual-environment
           - file: chapters/appendices/jupyter/0203-the-notebook
           - file: chapters/appendices/jupyter/0204-jupyter-bonus
       - file: chapters/appendices/packaging/0500-intro-modules
-        title: Packages
+        title: Modules and Packaging
         sections:
           - file: chapters/appendices/packaging/0501-files
           - file: chapters/appendices/packaging/0502-modules
