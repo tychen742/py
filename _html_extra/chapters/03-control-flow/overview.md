@@ -19,6 +19,8 @@ style: |
   .callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
   .callout.warn { background: #fff8e1; border-color: #b8860b; }
   .callout.rule { background: #f0f4ff; border-color: #5577cc; }
+  .trace { background: #f7faf7; border: 1px solid #d0e8d4; border-radius: 6px; padding: 9px 12px; margin: 8px 0; font-size: 0.78em; line-height: 1.35; }
+  .trace strong { color: #2a6b37; }
   .small { font-size: 0.84em; }
   .tiny { font-size: 0.74em; }
   img.fit { display: block; max-width: 100%; max-height: 410px; margin: 4px auto 0; object-fit: contain; }
@@ -192,6 +194,89 @@ else:
 
 ---
 
+## Trace a Branch Before You Run It
+
+<div class="cols">
+<div>
+
+```python
+score = 78
+late = True
+
+if score >= 90:
+    label = "strong"
+elif score >= 70 and not late:
+    label = "passing"
+elif score >= 70:
+    label = "late pass"
+else:
+    label = "revise"
+```
+
+</div>
+<div>
+
+<div class="trace">
+
+<strong>Trace:</strong>
+
+1. `score >= 90` is `False`.
+2. `score >= 70 and not late` is `False`.
+3. `score >= 70` is `True`.
+4. Python assigns `"late pass"` and skips the final `else`.
+
+</div>
+
+<div class="callout rule">
+
+For an `if` / `elif` chain, only the first true branch runs.
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Boolean Pitfalls to Catch Early
+
+<div class="cols">
+<div>
+
+```python
+# Problem: always true for most values
+if status == "new" or "open":
+    process_ticket()
+
+# Better
+if status == "new" or status == "open":
+    process_ticket()
+```
+
+</div>
+<div>
+
+```python
+# Problem: equality vs. assignment
+if count = 0:
+    print("empty")
+
+# Better
+if count == 0:
+    print("empty")
+```
+
+<div class="callout warn">
+
+Each side of `and` or `or` should usually be a complete Boolean expression.
+
+</div>
+
+</div>
+</div>
+
+---
+
 ## Nested vs. Combined Conditions
 
 <div class="cols">
@@ -265,6 +350,46 @@ label = "even" if n % 2 == 0 else "odd"
 Use this form for compact assignments, not for large blocks of work.
 
 </div>
+
+</div>
+</div>
+
+---
+
+## Conditional Expression Decision Test
+
+<div class="cols">
+<div>
+
+Use a conditional expression when all three are true:
+
+- You are choosing between two values.
+- Each value expression is short.
+- The condition reads clearly in the middle.
+
+<div class="callout rule">
+
+When the branches do work, use a normal `if` / `else` block.
+
+</div>
+
+</div>
+<div>
+
+```python
+# Good: value choice
+fee = 0 if total >= 50 else 7.99
+```
+
+```python
+# Too much work for one expression
+if total >= 50:
+    email = "free-shipping"
+    fee = 0
+else:
+    email = "standard-shipping"
+    fee = 7.99
+```
 
 </div>
 </div>
@@ -376,6 +501,35 @@ for name, score in scores.items():
 
 ---
 
+## Choosing Between `for` and `while`
+
+<div class="tiny">
+
+| Situation | Prefer | Why |
+|---|---|---|
+| Process every item in a list, string, file, or dictionary | `for` | The iterable already knows what the next value is. |
+| Repeat a known number of times | `for` with `range()` | The count is fixed before the loop starts. |
+| Stop based on user input or changing state | `while` | The number of repetitions is not known in advance. |
+| Keep asking until valid data arrives | `while True` + `break` | The stopping test belongs inside the loop. |
+
+</div>
+
+```python
+while True:
+    response = input("Enter yes or no: ")
+
+    if response in ["yes", "no"]:
+        break
+```
+
+<div class="callout">
+
+Start with the stopping rule, then choose the loop form.
+
+</div>
+
+---
+
 ## Nested Loops
 
 <div class="cols">
@@ -475,6 +629,49 @@ while True:
 
 ---
 
+## Avoiding Infinite Loops
+
+<div class="cols">
+<div>
+
+```python
+# Problem: counter never changes
+count = 0
+
+while count < 3:
+    print(count)
+```
+
+```python
+# Better: loop state moves
+count = 0
+
+while count < 3:
+    print(count)
+    count += 1
+```
+
+</div>
+<div>
+
+Check every `while` loop for:
+
+- an initialized state variable
+- a condition that can become false
+- an update that moves toward stopping
+- a plan for invalid or unexpected input
+
+<div class="callout warn">
+
+If the loop condition depends on a variable, the loop body usually needs to update that variable.
+
+</div>
+
+</div>
+</div>
+
+---
+
 ## Loop Control: `pass` vs. `continue`
 
 <div class="tiny">
@@ -541,6 +738,87 @@ print(wet_days)
 <div class="callout rule">
 
 Set the accumulator before the loop. Update it inside the loop. Use it after the loop.
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Accumulators Can Do More Than Sum
+
+<div class="cols">
+<div>
+
+```python
+scores = [88, 72, 95, 61]
+
+passing = 0
+for score in scores:
+    if score >= 70:
+        passing += 1
+```
+
+```python
+labels = []
+for score in scores:
+    labels.append("pass" if score >= 70 else "revise")
+```
+
+</div>
+<div>
+
+| Goal | Initial value | Loop update |
+|---|---|---|
+| Total | `0` | `total += value` |
+| Count | `0` | `count += 1` |
+| Product | `1` | `product *= value` |
+| Collection | `[]` | `items.append(value)` |
+
+<div class="callout">
+
+Name the accumulator for the result it will hold after the loop.
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Mini Activity: Predict the Path
+
+<div class="cols">
+<div>
+
+```python
+temperatures = [82, 91, 74, 99, 68]
+
+hot_days = 0
+for temp in temperatures:
+    if temp < 75:
+        continue
+    if temp >= 95:
+        break
+    hot_days += 1
+
+print(hot_days)
+```
+
+</div>
+<div>
+
+Work through the loop by hand:
+
+- Which values reach `hot_days += 1`?
+- Which value is skipped by `continue`?
+- Which value stops the loop with `break`?
+- What prints at the end?
+
+<div class="callout rule">
+
+Use a trace table when `if`, `continue`, and `break` interact.
 
 </div>
 
