@@ -40,3 +40,4 @@ See `ORGANIZATION.md`, Planned Additions.
 
 - Small data files for the Files section in `data/`: a CSV with a date column (for example, fruit sales by day) and a JSON file with nested records
 - Exercises for reading CSV rows into dicts, writing JSON, and parsing dates
+- String Formatting trim: no new materials; the examples move to Chapter 1 (see `chapters/01-intro/MATERIALS.md`)

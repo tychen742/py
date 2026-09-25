@@ -76,3 +76,10 @@ Chapter 01 planning and delivery are scoped to `chapters/01-intro/` only.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment with technical runnable coding questions
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- `str.format()` examples with the book's fruit data whose output shows positional placeholders at work (reordering and reuse), plus keyword placeholders
+- The format-spec examples and table moved from 8.1

@@ -56,6 +56,8 @@ Topics from the 2026-09-25 coverage review. Status: planned, not yet written. Wh
   - Source: move the appendix's `packaging/0501-files.ipynb` (file I/O and `pathlib`) here and expand it; retire it from the appendix.
   - When written, renumber `0802-regex` to `0803-regex` and `0803-text-analysis` to `0804-text-analysis`, and update `_toc.yml`, the landing page, the slides, and cross-references.
   *Why:* file I/O is taught only in the appendix, yet the regex and text-analysis sections read and write files; CSV, JSON, and dates are the formats data-science students handle most.
+- **`0801-strings.ipynb`, String Formatting** (between semesters, together with the Chapter 1 change): cut the section to a two-line recap that links back to 1.2, which becomes the home for output formatting. Keep the section as it is until 1.2 has the full material.
+  *Why:* one home per topic; students this semester still need the current section.
 
 ## Exercises
 

@@ -17,6 +17,13 @@ Use this sequence to avoid overlap and keep pacing clear:
 3. `0102-basic-syntax.ipynb`
    - Syntax rules, comments, print statements, built-in functions, module imports, first programs, and runnable exercises that feed into Lab 01
 
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **`0102-basic-syntax.ipynb`, Input and Output: make this the single home for output formatting** (between semesters): f-strings; the format-spec mini-language (`.2f`, `>10`, `,`, `%`); `str.format()` with positional placeholders, including reordering and reuse (for example `'{0} {1} cost ${2}'.format(6, 'bananas', 1.74)` and `'{1}, {1}!'`), and with keyword placeholders; a short note that `%`-formatting is legacy. Move this material here from 8.1's String Formatting section.
+  *Why:* output formatting is split between 1.2 and 8.1, and it belongs with output. Scheduled between semesters because students who have finished Chapter 1 would not see it.
+
 ## File Roles
 
 - `0100-py.ipynb`: Landing page — What Python is, where it runs, how to use Jupyter, chapter flow, glossary.
