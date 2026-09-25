@@ -17,14 +17,14 @@ Use this sequence to avoid overlap and keep pacing clear:
      (`try`/`except`, accessing the exception object, multiple exception types);
      `else`/`finally`; raising exceptions (with type hints vs. static vs. runtime
      checking, and custom exception classes nested under it); debugging philosophy and
-     three techniques (print-statement, assertions, bisection); logging; 6 exercises
+     three techniques (print-statement, assertions, bisection); logging; 8 exercises
 3. `0502-unit-testing.ipynb`
-   - `unittest.TestCase` (writing, running, setUp/tearDown); doctests and `doctest` module;
-     `pytest` (test discovery via `test_*.py`; assert-based syntax; comparison with `unittest`);
-     mocking external dependencies (`unittest.mock` / `pytest` monkeypatch);
-     test parametrization (`pytest.mark.parametrize`);
-     basic coverage workflow and interpretation;
-     2 exercises
+   - `pytest` (assert-based test functions; discovery via `test_*.py`; running tests from the
+     terminal, as a subprocess, and in the notebook with `ipytest`; `pytest.raises`);
+     `unittest.TestCase` (writing and running tests, `setUp`/`tearDown`, comparison with `pytest`);
+     doctests and the `doctest` module; mocking external dependencies (`unittest.mock.patch` /
+     `pytest` monkeypatch); test parametrization (`pytest.mark.parametrize`); basic coverage
+     workflow and interpretation; 5 exercises
 
 ## One-Week Delivery Scope (Required vs Enrichment)
 
@@ -37,7 +37,7 @@ Use this sequence to avoid overlap and keep pacing clear:
      exceptions, custom exception classes
    - Traceback reading, all three debugging-technique demos, and logging fundamentals
 - `0502-unit-testing.ipynb`
-   - `unittest` basics, doctest, pytest core workflow
+   - `pytest` core workflow (including `pytest.raises`), `unittest` basics with `setUp`/`tearDown`, doctest
    - Parametrized tests and one mocking example
    - Coverage basics at interpretation level
 
@@ -53,8 +53,8 @@ Use this sequence to avoid overlap and keep pacing clear:
 ## File Roles
 
 - `0500-exception-testing.ipynb`: Chapter intro — learning goals and chapter flow map. No exercises.
-- `0501-exceptions.ipynb`: Exception handling (`try`/`except`/`else`/`finally`, multiple exception types, raising and custom exceptions), an optional type-hints/static-checking aside, debugging (tracebacks and three techniques), and `logging` (levels, `basicConfig`, logging vs `print`). Exercises, in delivery order: Catching Exceptions; Safe Division with Cleanup (`finally`); Multiple Exception Types; Raising Exceptions; Using Assertions; Add Logging.
-- `0502-unit-testing.ipynb`: Unit testing with `unittest`; doctest introduction; `pytest` (test functions, discovery, assert style); mocking external calls; parametrized tests; coverage basics. Exercises: Fix the Failing Doctest; Write pytest-style tests.
+- `0501-exceptions.ipynb`: Types of errors and reading tracebacks; exception handling (`try`/`except`, multiple exception types, `else`/`finally`); raising exceptions, with a type-hints/static-checking aside and custom exception classes; debugging (print-statement, assertions, bisection); and `logging` (levels, `basicConfig`, logging vs `print`). Exercises, in delivery order: Reading a Traceback; Catching Exceptions; Multiple Exception Types; Safe Division with Cleanup (`finally`); Raising Exceptions; Custom Exception Class; Using Assertions; Add Logging.
+- `0502-unit-testing.ipynb`: `pytest` (test functions, discovery, assert style, `pytest.raises`, `ipytest`); `unittest` (`setUp`/`tearDown`, comparison with `pytest`); doctests; more testing techniques: mocking (`unittest.mock.patch`, `monkeypatch`), parametrized tests, coverage basics. Exercises, in delivery order: Write pytest-style tests; Write a TestCase for to_celsius; Fix the Failing Doctest; Mock a database lookup; Parametrize tests for is_leap_year.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Material Files

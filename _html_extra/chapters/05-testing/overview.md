@@ -104,7 +104,23 @@ Tests catch wrong behavior before users do.
 
 ## 5.1 Exceptions
 
-Tracebacks, try/except, else/finally, custom exceptions, and logging
+Error types, tracebacks, try/except, else/finally, raising exceptions, debugging, and logging
+
+---
+
+## Types of Errors
+
+| Error type | When it occurs | Example |
+|---|---|---|
+| **Syntax error** | Code violates Python grammar; the program never starts | Missing colon, unmatched quotes |
+| **Runtime error (exception)** | Something goes wrong while the program runs | Division by zero, file not found |
+| **Logic (semantic) error** | Code runs but produces the wrong result | Wrong formula |
+
+<div class="callout rule">
+
+Runtime errors raise an **exception**. If nothing handles it, the program stops and prints a **traceback**.
+
+</div>
 
 ---
 
@@ -150,6 +166,7 @@ register("twenty")
 
 - Put risky code in the `try` block.
 - Catch specific exception types.
+- Use `except ValueError as e` to inspect the error.
 - Return, retry, or explain the failure.
 
 <div class="callout warn">
@@ -216,7 +233,7 @@ def get_score(scores, name):
 <div>
 
 - `else` runs only if **no exception** occurred.
-- `finally` always runs — exception or not.
+- `finally` always runs, exception or not.
 - Use `finally` for cleanup.
 
 </div>
@@ -260,6 +277,39 @@ def withdraw(balance, amount):
     if amount > balance:
         raise OverdraftError("insufficient funds")
     return balance - amount
+```
+
+</div>
+</div>
+
+---
+
+## Debugging
+
+<div class="cols">
+<div>
+
+Exceptions tell you *that* something went wrong. Debugging finds out *why*.
+
+- **Print-statement debugging:** temporary `print()` calls, prefixed `DEBUG:`, show values and which lines ran.
+- **Assertions:** `assert` documents an assumption and fails right where it breaks.
+- **Bisection:** check the data halfway through; keep halving until you isolate the bug.
+
+<div class="callout warn">
+
+`assert` is for your own bugs. `python -O` skips every `assert`, so use `raise` to reject bad input.
+
+</div>
+
+</div>
+<div>
+
+```python
+def average(nums):
+    assert len(nums) > 0, "nums is empty"
+    total = sum(nums)
+    print(f"DEBUG: total={total}, n={len(nums)}")
+    return total / len(nums)
 ```
 
 </div>
@@ -318,6 +368,7 @@ pytest, unittest, doctest, fixtures, mocking, parametrization, and coverage
 - A small automated check for one behavior.
 - Tests one function, method, or class behavior.
 - Should be repeatable and independent.
+- The foundation under integration and end-to-end tests.
 
 <div class="callout">
 
@@ -353,7 +404,7 @@ def test_add():
 
 <div class="callout rule">
 
-Run from the terminal with `python -m pytest`.
+Run from the terminal with `python -m pytest`. In a notebook, start a cell with `%%ipytest`.
 
 </div>
 
@@ -362,13 +413,16 @@ Run from the terminal with `python -m pytest`.
 
 ```python
 # test_calc.py
-from calc import add, divide
+from calc import add, subtract, divide
 
 def test_add():
     assert add(2, 3) == 5
 
+def test_subtract():
+    assert subtract(10, 4) == 6
+
 def test_divide():
-    assert divide(10, 2) == 5
+    assert divide(10, 2) == 5.0
 ```
 
 </div>
@@ -384,6 +438,7 @@ def test_divide():
 Good tests check both normal behavior and expected failure behavior.
 
 - Use `pytest.raises` for expected exceptions.
+- Add `match=` to check the error message.
 - Test the contract, not implementation details.
 
 </div>
@@ -394,11 +449,11 @@ import pytest
 
 def divide(a, b):
     if b == 0:
-        raise ZeroDivisionError("b cannot be 0")
+        raise ValueError("b cannot be zero")
     return a / b
 
 def test_divide_by_zero():
-    with pytest.raises(ZeroDivisionError):
+    with pytest.raises(ValueError, match="cannot be zero"):
         divide(10, 0)
 ```
 
@@ -415,10 +470,11 @@ def test_divide_by_zero():
 - Python's built-in testing framework.
 - Organizes tests inside classes.
 - Uses assertion methods like `assertEqual`.
+- `setUp` / `tearDown` run before / after **each** test.
 
 <div class="callout">
 
-You will see `unittest` in many older or standard-library-oriented projects.
+`python -m unittest` discovers `test*.py` files automatically. You will see `unittest` in many older projects.
 
 </div>
 
@@ -428,12 +484,17 @@ You will see `unittest` in many older or standard-library-oriented projects.
 ```python
 import unittest
 
-class TestCalc(unittest.TestCase):
-    def test_add(self):
-        self.assertEqual(add(2, 3), 5)
+class TestFruitBasket(unittest.TestCase):
+    def setUp(self):
+        # every test gets a fresh basket
+        self.basket = ["apple", "banana"]
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_add_fruit(self):
+        self.basket.append("cherry")
+        self.assertEqual(len(self.basket), 3)
+
+    def test_starts_with_two_fruits(self):
+        self.assertEqual(len(self.basket), 2)
 ```
 
 </div>
@@ -449,6 +510,12 @@ if __name__ == "__main__":
 - Examples embedded in docstrings.
 - Useful for simple functions and documentation.
 - Best when outputs are short and stable.
+
+<div class="callout rule">
+
+Run with `python -m doctest file.py -v` or `pytest --doctest-modules`.
+
+</div>
 
 </div>
 <div>
@@ -470,17 +537,23 @@ def square(x):
 
 ---
 
-## Advanced pytest Tools
+## More Testing Techniques
 
 <div class="cols">
 <div>
 
 | Tool | Use |
 |---|---|
-| Parametrize | Run one test with many inputs |
-| Fixture | Reusable setup data or objects |
 | Mock | Replace slow or external dependencies |
-| Coverage | Find code paths tests did not run |
+| Fixture | Setup that `pytest` passes to a test, like `monkeypatch` |
+| Parametrize | Run one test with many inputs |
+| Coverage | Find lines and branches tests did not run |
+
+<div class="callout rule">
+
+`pytest --cov=my_module --cov-branch --cov-report=term-missing`
+
+</div>
 
 </div>
 <div>
@@ -488,12 +561,49 @@ def square(x):
 ```python
 import pytest
 
-@pytest.mark.parametrize(
-    "a,b,expected",
-    [(2, 3, 5), (0, 0, 0), (-1, 1, 0)]
-)
-def test_add_cases(a, b, expected):
-    assert add(a, b) == expected
+@pytest.mark.parametrize("s, expected", [
+    ("racecar", True),
+    ("hello",   False),
+    ("",        True),
+])
+def test_is_palindrome(s, expected):
+    assert is_palindrome(s) == expected
+```
+
+</div>
+</div>
+
+---
+
+## Mocking Dependencies
+
+<div class="cols">
+<div>
+
+Tests should not hit the network, a database, or real files.
+
+- `unittest.mock.patch` swaps a function for a stand-in inside a `with` block.
+- `pytest`'s `monkeypatch` fixture does the same for one test.
+
+<div class="callout warn">
+
+Patch the name **where it is looked up**. If `shop.py` does `from pricing import get_price`, patch `shop.get_price`, not `pricing.get_price`.
+
+</div>
+
+</div>
+<div>
+
+```python
+from unittest.mock import patch
+
+with patch("shop.get_price", return_value=100.0):
+    assert apply_discount("widget") == 90.0
+
+def test_apply_discount(monkeypatch):
+    monkeypatch.setattr("shop.get_price",
+                        lambda item: 100.0)
+    assert apply_discount("widget") == 90.0
 ```
 
 </div>
@@ -534,7 +644,7 @@ Testing is design feedback: if code is hard to test, it is often doing too much.
 
 ---
 
-## Chapter 5 — Quick Reference
+## Chapter 5 Quick Reference
 
 | Concept | Key syntax / notes |
 |---|---|
@@ -542,11 +652,15 @@ Testing is design feedback: if code is hard to test, it is often doing too much.
 | Exception object | `except Exception as e:` |
 | Cleanup | `finally` always runs |
 | Raise exception | `raise ValueError("message")` |
+| Custom exception | `class OutOfStockError(Exception): pass` |
+| Assertion | `assert condition, "message"` |
 | Logging | `logging.info()`, `logging.error()` |
 | pytest test | `def test_name(): assert result == expected` |
-| Expected exception | `with pytest.raises(Error):` |
-| unittest | `class TestX(unittest.TestCase):` |
+| Expected exception | `with pytest.raises(Error, match="..."):` |
+| unittest | `class TestX(unittest.TestCase):` with `setUp` |
 | doctest | Examples in docstrings with `>>>` |
+| Mock | `patch("module.name")`, `monkeypatch.setattr(...)` |
+| Parametrize | `@pytest.mark.parametrize("x, expected", [...])` |
 
 ---
 
@@ -554,6 +668,6 @@ Testing is design feedback: if code is hard to test, it is often doing too much.
 
 # End of Chapter 5
 
-*Next: Chapter 6 — Lists*
+*Next: Chapter 6: Collections*
 
 *tracebacks · exceptions · logging · pytest · unittest · doctest*

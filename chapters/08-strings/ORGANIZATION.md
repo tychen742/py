@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Chapter 08 Organization (Strings and Text)
 
 This chapter is split into:
@@ -11,10 +15,41 @@ This chapter is split into:
 
 Use this sequence to avoid overlap and keep pacing clear:
 
-1. `0800-strings.ipynb` — string and text overview
-2. `0801-strings.ipynb` — string orientation, creation/access, methods, comparison, looping/sorting, word-list application, and checkpoint exercises
-3. `0802-regex.ipynb` — regex orientation, the `re` module, syntax, advanced features, applications, and checkpoint exercises
-4. `0803-text-analysis.ipynb` — text-analysis orientation, cleaning and normalizing, word frequencies, random text, Markov generation, and checkpoint exercises
+1. `0800-strings.ipynb`: string and text overview
+2. `0801-strings.ipynb`
+   - String Creation and Accessing: quotes, escape sequences and raw strings, indexing and slicing, concatenation and repetition
+   - String Methods: case methods, searching and testing, cleaning, splitting and joining, string formatting, type-checking methods, methods reference
+   - String Comparison
+   - Looping and Sorting, including docstrings
+   - Application: Word List
+3. `0802-regex.ipynb`
+   - Backslashes in Regex Patterns: why regex patterns are written as raw strings
+   - The `re` Module and the `Match` object
+   - Metacharacters: quantifiers, greedy vs. non-greedy, anchors, character classes, groups and capturing, alternation
+   - Advanced Topics: flags, compiled patterns, lookahead and lookbehind
+   - Applications: cleaning text, string substitution, `re.fullmatch()` for validation
+4. `0803-text-analysis.ipynb`
+   - Unique words
+   - Punctuation: cleaning and normalizing words
+   - Word Frequencies: `Counter`, optional parameters, dictionary subtraction
+   - Random numbers: weighted random choice, bigrams
+   - Markov analysis: successor map, generating text
+
+### Escape sequences in 0801 and 0802
+
+Escape sequences and raw strings appear in both notebooks on purpose, with different jobs:
+
+- `0801` teaches Python string escapes (`\n`, `\t`, `\\`, `\"`) and introduces raw strings. Students need these before the string methods that follow.
+- `0802` does not re-teach them. It links back to 0801 and explains the one new idea: Python processes backslashes before the regex engine sees the pattern, so patterns are written as raw strings (`r"\d+"`, not `"\\d+"`).
+- Regex escapes such as `\d`, `\w`, `\s`, and `\.` belong in 0802's Metacharacters section, not in the opening section.
+
+## Exercises
+
+Each exercise is a `thebe-interactive` question cell followed by a `hide-input` solution cell. In delivery order:
+
+- `0801-strings.ipynb` (15): Escape Sequences and Raw Strings; Indexing and Slicing; Concatenation and Repetition; Case Methods; Searching and Testing; Cleaning Strings; Splitting and Joining; String Formatting; Type-Checking Methods; Methods Reference Practice; String Comparison; Looping Through String Lists; Sorting Lists; Writing a Docstring; Word List Application
+- `0802-regex.ipynb` (11): Regex Escape Sequences; The Match Object; Flags and Quantifiers; Regex Syntax Essentials; Capture Groups; Regex Flags; Compiled Patterns; Lookahead & Lookbehind; Download and Clean Text; String Substitution; Full String Validation
+- `0803-text-analysis.ipynb` (10): Counting Unique Words; Cleaning Words; Word Frequency Counter; Counter for Word Frequencies; Function with Optional Parameter; Dictionary Subtraction; Weighted Random Selection; Counting Bigrams; Building a Successor Map; Generate Text from Successor Map
 
 ## Source of Truth
 
@@ -24,8 +59,11 @@ Previous split subsection notebooks are preserved in `materials/_archived/ch09-s
 
 ## Material Files
 
-- `materials/08-strings/datasss/pg345.txt`: raw Project Gutenberg text used in regex and text-analysis examples.
-- `materials/08-strings/datasss/pg345_cleaned.txt`: cleaned text example.
+The notebooks download their texts into the project-level `data/` folder on first run:
+
+- `data/words.txt`: word list from Think Python, used in 0801 (Application: Word List) and 0803 (Dictionary Subtraction)
+- `data/pg345.txt` and `data/pg345_cleaned.txt`: *Dracula* from Project Gutenberg, downloaded and cleaned in 0802 (Applications)
+- `data/pg43.txt` and `data/dr_jekyll.txt`: *The Strange Case of Dr. Jekyll and Mr. Hyde* from Project Gutenberg, used throughout 0803
 
 ## Build/Quality Checklist
 

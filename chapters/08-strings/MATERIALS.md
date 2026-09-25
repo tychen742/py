@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Chapter 08 Materials (Strings and Text)
 
 This checklist is for building and delivering the string, regex, and text-analysis notebooks listed in `ORGANIZATION.md`.
@@ -5,9 +9,11 @@ This checklist is for building and delivering the string, regex, and text-analys
 ## Chapter 08 Delivery Order (Recommended)
 
 1. `0800-strings.ipynb` — String and text overview, learning objectives, glossary, and chapter flow
-2. `0801-strings.ipynb` — String creation/access, methods, comparison, looping/sorting, word lists, and checkpoint exercises
-3. `0802-regex.ipynb` — Escape sequences, raw strings, the `re` module, regex syntax, advanced regex, applications, and checkpoint exercises
-4. `0803-text-analysis.ipynb` — Cleaning text, word frequencies (manual dict + `Counter`), random text, Markov generation, and checkpoint exercises
+2. `0801-strings.ipynb` — String creation and access (including escape sequences and raw strings), methods, comparison, looping/sorting, word lists, and checkpoint exercises
+3. `0802-regex.ipynb` — Backslashes in regex patterns (builds on 0801's raw strings), the `re` module, regex syntax, advanced regex, applications, and checkpoint exercises
+4. `0803-text-analysis.ipynb` — Unique words, cleaning punctuation, word frequencies (manual dict + `Counter`), random text and bigrams, Markov generation, and checkpoint exercises
+
+See `ORGANIZATION.md` for the section-by-section sequence and the full exercise list.
 
 Previous split subsection notebooks are preserved in `materials/_archived/ch09-strings-split/`.
 
@@ -15,8 +21,11 @@ Chapter 08 planning and delivery are scoped to `chapters/08-strings/` only.
 
 ## Material Files
 
-- `materials/08-strings/datasss/pg345.txt` — raw Project Gutenberg text used in regex/text examples
-- `materials/08-strings/datasss/pg345_cleaned.txt` — cleaned text example
+The notebooks download their texts into the project-level `data/` folder on first run:
+
+- `data/words.txt` — Think Python word list (0801, 0803)
+- `data/pg345.txt`, `data/pg345_cleaned.txt` — *Dracula*, downloaded and cleaned in 0802
+- `data/pg43.txt`, `data/dr_jekyll.txt` — *Dr. Jekyll and Mr. Hyde*, used in 0803
 
 ## Assignments
 

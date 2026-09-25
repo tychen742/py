@@ -10,3 +10,4 @@ build/
 _build/
 .jupyter/
 .claude/settings.json
+.pytest_cache/

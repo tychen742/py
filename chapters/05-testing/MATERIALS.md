@@ -37,18 +37,19 @@ Use a two-tier model for one chapter per week:
   - Raising exceptions and custom exception classes
   - Reading tracebacks and all three debugging techniques (print-statement, assertions, systematic bisection)
   - `logging` fundamentals (levels, `basicConfig`, logging vs `print`)
-  - Exercises (delivery order): Catching Exceptions; Safe Division with Cleanup; Multiple Exception Types; Raising Exceptions; Using Assertions; Add Logging
+  - Exercises (delivery order): Reading a Traceback; Catching Exceptions; Multiple Exception Types; Safe Division with Cleanup; Raising Exceptions; Custom Exception Class; Using Assertions; Add Logging
 - Enrichment/project track:
   - Type hints vs. static checking (`mypy`) vs. runtime checking (optional aside after custom exceptions)
 
 ### `0502-unit-testing.ipynb`
 
 - Required core:
+  - pytest core workflow (`assert` style, discovery, `pytest.raises`)
   - `unittest.TestCase`: writing/running tests, `setUp`/`tearDown`
-  - Doctest module and pytest core workflow (`assert` style, discovery)
+  - Doctest module
   - `pytest.mark.parametrize` and one mocking example
   - Coverage basics (what % means and how to read gaps)
-  - Exercises: Fix the Failing Doctest; Write pytest-style tests
+  - Exercises (delivery order): Write pytest-style tests; Write a TestCase for to_celsius; Fix the Failing Doctest; Mock a database lookup; Parametrize tests for is_leap_year
 - Enrichment/project track:
   - Expanded mocking/stubbing cases (dependency boundaries)
   - Deeper coverage analysis and targeted test-improvement workflow

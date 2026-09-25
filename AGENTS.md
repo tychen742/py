@@ -82,7 +82,7 @@ When asked to audit, read the corresponding prompt file first and follow its ins
 | `audit content [chNN]` | `~/ai_shared/prompts/audit-content.md` | Chapter depth and thinness |
 | `audit style [chNN]` | `~/ai_shared/prompts/audit-style.md` | Prose style conformance |
 | `audit assignments [chNN]` | `~/ai_shared/prompts/audit-assignments.md` | Assignment quality |
-| `audit sync [chNN]` | `~/ai_shared/prompts/audit-sync.md` | Slides and assignments vs. current content |
+| `audit sync [chNN]` | `~/ai_shared/prompts/audit-sync.md` | Planning docs, slides, and assignments vs. current content (`docs` for planning docs only) |
 
 ## Semester Constraints
 

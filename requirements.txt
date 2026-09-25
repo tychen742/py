@@ -17,3 +17,5 @@ plotly>=5.0
 folium>=0.14
 datascience>=0.17
 otter-grader>=6.0
+pytest>=8.0
+ipytest>=0.14
