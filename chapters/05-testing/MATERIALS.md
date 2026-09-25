@@ -35,12 +35,11 @@ Use a two-tier model for one chapter per week:
 - Required core:
   - Error types; `try/except/else/finally`; multiple exception handling
   - Raising exceptions and custom exception classes
-  - Reading tracebacks and one systematic debugging technique
+  - Reading tracebacks and all three debugging techniques (print-statement, assertions, systematic bisection)
   - `logging` fundamentals (levels, `basicConfig`, logging vs `print`)
-  - Exercises: Safe Division with Cleanup; Custom Exception Class
+  - Exercises (delivery order): Catching Exceptions; Safe Division with Cleanup; Multiple Exception Types; Raising Exceptions; Using Assertions; Add Logging
 - Enrichment/project track:
-  - Additional debugging-technique demonstrations
-  - Extended logging exercise and instrumentation patterns
+  - Type hints vs. static checking (`mypy`) vs. runtime checking (optional aside after custom exceptions)
 
 ### `0502-unit-testing.ipynb`
 
@@ -82,7 +81,7 @@ Use a two-tier model for one chapter per week:
 ## Chapter 05 Delivery Order (Recommended)
 
 1. `0500-exception-testing.ipynb` — Chapter intro: learning goals and chapter map
-2. `0501-exceptions.ipynb` — Exception handling, raising, custom exceptions, debugging
+2. `0501-exceptions.ipynb` — Exception handling (incl. else/finally), multiple exceptions, raising/custom exceptions, debugging, logging
 3. `0502-unit-testing.ipynb` — unittest and doctests
 
 ## Coordination Note

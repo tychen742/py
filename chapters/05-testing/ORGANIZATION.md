@@ -13,9 +13,11 @@ Use this sequence to avoid overlap and keep pacing clear:
 1. `0500-exception-testing.ipynb`
    - Chapter introduction: learning goals, motivation, chapter flow map
 2. `0501-exceptions.ipynb`
-   - Error types (syntax/runtime/semantic); `try/except/else/finally`; multiple exception
-     handling; raising exceptions; custom exception classes;
-     debugging philosophy, traceback reading, and debugging techniques; 2 exercises
+   - Types of errors (syntax/runtime/semantic); reading tracebacks; handling exceptions
+     (`try`/`except`, accessing the exception object, multiple exception types);
+     `else`/`finally`; raising exceptions (with type hints vs. static vs. runtime
+     checking, and custom exception classes nested under it); debugging philosophy and
+     three techniques (print-statement, assertions, bisection); logging; 6 exercises
 3. `0502-unit-testing.ipynb`
    - `unittest.TestCase` (writing, running, setUp/tearDown); doctests and `doctest` module;
      `pytest` (test discovery via `test_*.py`; assert-based syntax; comparison with `unittest`);
@@ -31,8 +33,9 @@ Use this sequence to avoid overlap and keep pacing clear:
 - `0500-exception-testing.ipynb`
    - Full notebook
 - `0501-exceptions.ipynb`
-   - Error types, `try/except/else/finally`, traceback reading, custom exceptions
-   - One debugging-technique demo and logging fundamentals
+   - Error types, `try/except/else/finally`, multiple exception handling, raising
+     exceptions, custom exception classes
+   - Traceback reading, all three debugging-technique demos, and logging fundamentals
 - `0502-unit-testing.ipynb`
    - `unittest` basics, doctest, pytest core workflow
    - Parametrized tests and one mocking example
@@ -41,7 +44,8 @@ Use this sequence to avoid overlap and keep pacing clear:
 ### Enrichment / Project Track (optional, extra credit, or follow-up week)
 
 - `0501-exceptions.ipynb`
-   - Extended debugging-method comparison labs
+   - Type hints, static checking (`mypy`), and runtime checking (optional aside after
+     custom exceptions)
 - `0502-unit-testing.ipynb`
    - Advanced mocking/stubbing scenarios and richer coverage workflows
    - Additional pytest-vs-unittest architecture exercises
@@ -49,7 +53,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 ## File Roles
 
 - `0500-exception-testing.ipynb`: Chapter intro — learning goals and chapter flow map. No exercises.
-- `0501-exceptions.ipynb`: Full exception handling and debugging content; `logging` module (levels, `basicConfig`, logging vs `print`). Exercises: Safe Division with Cleanup (`finally`); Custom Exception Class; Add Logging.
+- `0501-exceptions.ipynb`: Exception handling (`try`/`except`/`else`/`finally`, multiple exception types, raising and custom exceptions), an optional type-hints/static-checking aside, debugging (tracebacks and three techniques), and `logging` (levels, `basicConfig`, logging vs `print`). Exercises, in delivery order: Catching Exceptions; Safe Division with Cleanup (`finally`); Multiple Exception Types; Raising Exceptions; Using Assertions; Add Logging.
 - `0502-unit-testing.ipynb`: Unit testing with `unittest`; doctest introduction; `pytest` (test functions, discovery, assert style); mocking external calls; parametrized tests; coverage basics. Exercises: Fix the Failing Doctest; Write pytest-style tests.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
