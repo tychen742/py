@@ -65,3 +65,10 @@ Chapter 03 planning and delivery are scoped to `chapters/03-control-flow/` only.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- `match`/`case` examples: a command dispatcher and an HTTP status-code classifier
+- One exercise contrasting a `match` statement with the equivalent `if`/`elif` chain

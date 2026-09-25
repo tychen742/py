@@ -66,6 +66,7 @@ Follow `book-authoring` for shared Jupyter Book conventions: landing page format
 
 - Landing page notebooks do not get exercises
 - All exercises (preview, lab, homework) go in the `assignments/` folder
+- Exercises are practice, not teaching. Every topic a section covers must be taught in its text (markdown explanation with examples) before any exercise uses it. A topic that appears only in an exercise counts as not covered, in planning docs and in audits.
 
 ### Account Data
 

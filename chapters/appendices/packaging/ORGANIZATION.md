@@ -25,6 +25,19 @@ This appendix is a **tooling reference for the whole book**. Students read it on
 5. `0504-coding-tooling.ipynb`
    - List comprehensions; lambda; docstrings + `help()`; type hints; `enumerate()`/`zip()`; `try`/`except`; f-string formatting
 
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **`0501-files.ipynb`**: move into the new Files section planned for Chapter 8 (`0802-files.ipynb`); leave a one-line pointer here or remove this page from the TOC.
+  *Why:* file I/O is a core topic, and Chapter 8 already depends on it.
+- **`0502-modules.ipynb`**: running a module as a script: the `if __name__ == "__main__":` guard, then command-line arguments with `sys.argv` and `argparse`.
+  *Why:* students need to run Python outside notebooks. The guard is listed in this doc (Duplication rules, File Roles) but 0502 does not teach it yet, and no other notebook does either.
+- **`0503-packaging.ipynb`**: `pyproject.toml` and `uv` for setting up a project, compared with `pip` + `requirements.txt`.
+  *Why:* current packaging practice; the appendix teaches only `pip` + `requirements.txt`.
+- **`0504-coding-tooling.ipynb`**: it re-teaches comprehensions (6.1), lambda (4.2), type hints (2.3, 4.1), `enumerate`/`zip` (6.2), `try`/`except` (5.1), and f-strings (2.1). Turn it into a one-page quick reference that links to those sections, or remove it.
+  *Why:* duplicated teaching drifts out of sync with the main chapters.
+
 ## Duplication rules
 
 - `with` statement: **0501 only** (file context)
@@ -42,11 +55,11 @@ This appendix is a **tooling reference for the whole book**. Students read it on
 
 ## Material Files
 
-Runnable examples, text files, package examples, and configuration demos for this appendix live in `materials/appendices/05-tooling/`.
+Runnable examples, text files, package examples, and configuration demos for this appendix live in `materials/appendices/packaging/`.
 
 ## Source of Truth
 
-Use `chapters/appendices/05-tooling/*` as the only appendix tooling track for planning, delivery, and assessment.
+Use `chapters/appendices/packaging/*` as the only track for this appendix unit's planning, delivery, and assessment.
 
 ## Build/Quality Checklist
 

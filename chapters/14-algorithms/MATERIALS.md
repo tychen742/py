@@ -110,3 +110,10 @@ Chapter 14 planning and delivery are algorithms-only for this course.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- Dynamic programming examples in memoized and tabulated forms, with a benchmark comparing them to plain recursion
+- Two-pointer and sliding-window examples, with exercises

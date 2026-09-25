@@ -27,7 +27,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 4. `0903-oop-advanced.ipynb`
    - Inheritance; polymorphism; method overriding; parent and child classes
    - `super()` for calling parent `__init__`; `issubclass()` for runtime class relationship checks
-   - `@dataclass` for boilerplate-free data classes
+   - `@dataclass` and `namedtuple` for lightweight data records
    - Composition vs inheritance decision guide
    - Interface-oriented design with ABC/Protocol-level concepts
    - Applied class design: card game (representing, comparing, deck operations)
@@ -35,6 +35,13 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Object copying: shallow copy vs. deep copy
    - Object identity vs. equality (`is` vs. `==`)
    - Additional advanced object-state topics
+
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **`0903-oop-advanced.ipynb`**: `enum.Enum` for a fixed set of named values, such as an order's status (`PENDING`, `SHIPPED`, `DELIVERED`), used as an attribute of a dataclass.
+  *Why:* modern class design; no chapter covers enums.
 
 ## One-Week Delivery Scope (Required vs Enrichment)
 

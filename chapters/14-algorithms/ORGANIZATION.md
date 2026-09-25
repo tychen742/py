@@ -35,6 +35,15 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Stability and in-place vs out-of-place decision criteria
    - Benchmarking across input patterns (random, sorted, reverse, duplicates)
 
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **New section `1404-dynamic-programming.ipynb`**: overlapping subproblems; top-down memoization (building on 4.3 and 10.2) vs. bottom-up tabulation; classic problems such as climbing stairs, coin change, and longest common subsequence.
+  *Why:* a core interview topic; the book mentions it once (4.3).
+- **`1402-searching.ipynb`**: two-pointer and sliding-window patterns, such as a pair sum on a sorted list and the maximum sum of k consecutive values.
+  *Why:* common interview patterns; currently only mentioned in 14.3.
+
 ## One-Week Delivery Scope (Required vs Enrichment)
 
 ### Required Core (in-class + required homework)

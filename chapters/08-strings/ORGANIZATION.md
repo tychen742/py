@@ -43,12 +43,26 @@ Escape sequences and raw strings appear in both notebooks on purpose, with diffe
 - `0802` does not re-teach them. It links back to 0801 and explains the one new idea: Python processes backslashes before the regex engine sees the pattern, so patterns are written as raw strings (`r"\d+"`, not `"\\d+"`).
 - Regex escapes such as `\d`, `\w`, `\s`, and `\.` belong in 0802's Metacharacters section, not in the opening section.
 
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **New section `0802-files.ipynb` (Files)**, taught once and then used by the rest of the chapter:
+  - reading and writing text files with `open()` and `with`; `pathlib.Path`
+  - encodings: `encoding="utf-8"`, `str` vs. `bytes`
+  - CSV files with the `csv` module (`csv.reader`, `csv.DictReader`, `csv.writer`)
+  - JSON files with the `json` module (`json.load`, `json.dump`)
+  - dates in text data with `datetime` (`strptime`, `strftime`, `timedelta`)
+  - Source: move the appendix's `packaging/0501-files.ipynb` (file I/O and `pathlib`) here and expand it; retire it from the appendix.
+  - When written, renumber `0802-regex` to `0803-regex` and `0803-text-analysis` to `0804-text-analysis`, and update `_toc.yml`, the landing page, the slides, and cross-references.
+  *Why:* file I/O is taught only in the appendix, yet the regex and text-analysis sections read and write files; CSV, JSON, and dates are the formats data-science students handle most.
+
 ## Exercises
 
 Each exercise is a `thebe-interactive` question cell followed by a `hide-input` solution cell. In delivery order:
 
 - `0801-strings.ipynb` (15): Escape Sequences and Raw Strings; Indexing and Slicing; Concatenation and Repetition; Case Methods; Searching and Testing; Cleaning Strings; Splitting and Joining; String Formatting; Type-Checking Methods; Methods Reference Practice; String Comparison; Looping Through String Lists; Sorting Lists; Writing a Docstring; Word List Application
-- `0802-regex.ipynb` (11): Regex Escape Sequences; The Match Object; Flags and Quantifiers; Regex Syntax Essentials; Capture Groups; Regex Flags; Compiled Patterns; Lookahead & Lookbehind; Download and Clean Text; String Substitution; Full String Validation
+- `0802-regex.ipynb` (11): The Match Object; Greedy and Non-greedy Quantifiers; Regex Syntax Essentials; Regex Escape Sequences; Capture Groups; Regex Flags; Compiled Patterns; Lookahead & Lookbehind; Download and Clean Text; String Substitution; Full String Validation
 - `0803-text-analysis.ipynb` (10): Counting Unique Words; Cleaning Words; Word Frequency Counter; Counter for Word Frequencies; Function with Optional Parameter; Dictionary Subtraction; Weighted Random Selection; Counting Bigrams; Building a Successor Map; Generate Text from Successor Map
 
 ## Source of Truth

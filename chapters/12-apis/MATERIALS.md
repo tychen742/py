@@ -85,3 +85,10 @@ Chapter 12 planning and delivery are scoped to `chapters/12-apis/` only.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- JSON save/load example using a saved API response
+- Parallel-requests example with a timing comparison against sequential calls

@@ -5,12 +5,12 @@ This section contains practical setup and reference materials for students.
 ## Notebook Coverage
 
 - `0101-tooling.ipynb` — Development tools and environment setup
-- `0200-intro-jupyter.ipynb` — Introduction to Jupyter notebooks
-- `0201-python-installation.ipynb` — Python installation guide
-- `0202-virtual-environment.ipynb` — Virtual environment setup
-- `0203-the-notebook.ipynb` — Jupyter notebook features and best practices
-- `0204-jupyter-bonus.ipynb` — Advanced Jupyter tips and tricks
-- `05-tooling/` — Extended tooling modules
+- `jupyter/0200-intro-jupyter.ipynb` — Introduction to Jupyter notebooks
+- `jupyter/0201-python-installation.ipynb` — Python installation guide
+- `jupyter/0202-virtual-environment.ipynb` — Virtual environment setup
+- `jupyter/0203-the-notebook.ipynb` — Jupyter notebook features and best practices
+- `jupyter/0204-jupyter-bonus.ipynb` — Advanced Jupyter tips and tricks
+- `packaging/0500`–`0504` — Modules, files, and packaging (see `packaging/MATERIALS.md`)
 
 ## Must-Have Teaching Materials
 
@@ -34,18 +34,25 @@ This section contains practical setup and reference materials for students.
 
 ## Material Files
 
-- `materials/` — Setup guides and reference materials
-- `05-tooling/` — Extended tooling modules and examples
+- `materials/appendices/packaging/` — runnable modules, the example package, and text files used by the packaging unit
+- Also in that folder: `anagram_map`, `camel-spotting-book.txt`, `config.yaml`, `demo.txt`, `notes.txt`, and `photo_info/` are used only by the archived `materials/_archived/appendix-tooling-old/0501-files_OLD.ipynb`
 
 ## Chapter Appendices Delivery Order
 
 1. `0101-tooling.ipynb` — Development tools overview
-2. `0200-intro-jupyter.ipynb` — Jupyter introduction
-3. `0201-python-installation.ipynb` — Python installation
-4. `0202-virtual-environment.ipynb` — Virtual environment setup
-5. `0203-the-notebook.ipynb` — Notebook features
-6. `0204-jupyter-bonus.ipynb` — Advanced notebook tips
-7. `05-tooling/` — Extended modules as needed
+2. `jupyter/0200-intro-jupyter.ipynb` — Jupyter introduction
+3. `jupyter/0201-python-installation.ipynb` — Python installation
+4. `jupyter/0202-virtual-environment.ipynb` — Virtual environment setup
+5. `jupyter/0203-the-notebook.ipynb` — Notebook features
+6. `jupyter/0204-jupyter-bonus.ipynb` — Advanced notebook tips
+7. `packaging/0500`–`0504` — Modules, files, and packaging as needed
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- For `0102-git.ipynb`: a git walkthrough with a sample repository and a starter `.gitignore` for Python projects
+- A `ruff` configuration example (`pyproject.toml` section) and a short before/after formatting demo
 
 ## Coordination Note
 

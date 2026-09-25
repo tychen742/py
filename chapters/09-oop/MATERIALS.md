@@ -100,3 +100,9 @@ Chapter 09 planning and delivery are scoped to `chapters/09-oop/` only.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- `Enum` example (order status used in a dataclass), plus one exercise

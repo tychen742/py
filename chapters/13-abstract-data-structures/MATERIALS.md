@@ -74,3 +74,12 @@ Chapter 13 planning and delivery are scoped to `chapters/13-abstract-data-struct
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- `Node`/`LinkedList` implementation with stack and queue built on it
+- A toy hash table (list of buckets) to show hashing and collisions
+- `heapq` examples (top-k, priority queue) and a small weighted graph for Dijkstra
+- Interview-style exercises for each structure

@@ -17,6 +17,13 @@ Use this sequence to avoid overlap and keep pacing clear:
 3. `0302-iteration.ipynb`
    - for and while loops; break, continue; accumulator pattern
 
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **`0301-conditionals.ipynb`**: `match`/`case` (Python 3.10+): matching literal values, `case _` as the default, `|` for alternatives, and capture patterns; when a plain `if`/`elif` chain is still clearer.
+  *Why:* current Python syntax; the book uses it only in passing (7.1, 10.2).
+
 ## File Roles
 
 - `0300-control-flow.ipynb`: Motivation and overview of conditional and loop constructs.

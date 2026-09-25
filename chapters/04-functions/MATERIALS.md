@@ -73,3 +73,9 @@ Chapter 04 planning and delivery are scoped to `chapters/04-functions/` only.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- Closure examples: a counter factory and `make_multiplier`, plus one exercise

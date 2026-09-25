@@ -18,14 +18,25 @@ Use this sequence to avoid overlap and keep pacing clear:
 3. `0402-function-design.ipynb`
    - Scope, pure functions vs. side effects, small-function composition, docstrings as contracts, and basic lambda functions
 4. `0403-recursion.ipynb`
-   - Recursive functions; base cases; tracing recursive calls; return-value recursion; practical limits; memoization
+   - Recursive functions; base cases; tracing recursive calls; return-value recursion; memoization; practical limits
+
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **`0402-function-design.ipynb`**: closures: nested functions, the enclosing scope, `nonlocal`, and functions that return functions (for example, a `make_multiplier` factory).
+  *Why:* decorators in 10.1 are built on closures, and no chapter teaches them.
+
+### Topic homes
+
+- Recursion's primary home is 4.3. Chapter 10 uses recursion but does not re-teach it.
 
 ## File Roles
 
 - `0400-functions.ipynb`: Chapter landing page; intro, learning goals, chapter flow, glossary.
 - `0401-functions.ipynb`: Function motivation; turtle examples; defining and calling functions; parameters, arguments, default parameters, `*args`, `**kwargs`, return values, and basic type annotations.
 - `0402-function-design.ipynb`: Scope, pure functions vs. side effects, small-function composition, docstrings as contracts, and basic lambda functions.
-- `0403-recursion.ipynb`: Recursive functions; base cases; tracing recursive calls; return-value recursion; practical limits; memoization.
+- `0403-recursion.ipynb`: Recursive functions; base cases; tracing recursive calls; return-value recursion; memoization; practical limits.
 - `MATERIALS.md`: teaching/assessment assets and prep checklist.
 
 ## Source of Truth

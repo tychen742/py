@@ -29,6 +29,15 @@ Use this sequence to avoid overlap and keep pacing clear:
      response contract validation and defensive parsing;
      resilient API client exercise
 
+## Planned Additions
+
+Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
+
+- **`1201-apis.ipynb`**: save a response to a JSON file with `json.dump` and read it back, linking to the planned Files section in Chapter 8.
+  *Why:* connects API data to the file formats taught in Chapter 8.
+- **`1202-api-reliability.ipynb` (enrichment)**: several API calls in parallel with `concurrent.futures.ThreadPoolExecutor`; `asyncio` as a pointer only.
+  *Why:* real API clients rarely call one endpoint at a time; 11.2 introduces async iteration only conceptually.
+
 ## One-Week Delivery Scope (Required vs Enrichment)
 
 ### Required Core (in-class + required homework)

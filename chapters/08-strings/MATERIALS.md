@@ -33,3 +33,10 @@ The notebooks download their texts into the project-level `data/` folder on firs
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment (built, graded, wired to the lab submission API): clean/normalize a title; normalize a ticket code; sort with `key=str.casefold`; regex digit extraction; regex `fullmatch`/`search` groups
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- Small data files for the Files section in `data/`: a CSV with a date column (for example, fruit sales by day) and a JSON file with nested records
+- Exercises for reading CSV rows into dicts, writing JSON, and parsing dates

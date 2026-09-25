@@ -62,7 +62,7 @@ This checklist is for building and delivering:
 
 ## Material Files
 
-Runnable examples, text files, package examples, and configuration demos for this appendix live in `materials/appendices/05-tooling/`.
+Runnable examples, text files, package examples, and configuration demos for this appendix live in `materials/appendices/packaging/`.
 
 ## Appendix Delivery Order (Recommended)
 
@@ -74,4 +74,11 @@ Runnable examples, text files, package examples, and configuration demos for thi
 
 ## Coordination Note
 
-Appendix tooling planning and delivery are scoped to `chapters/appendices/05-tooling/` only.
+Planning and delivery for this appendix unit are scoped to `chapters/appendices/packaging/` only.
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- An `argparse` script example in `materials/appendices/packaging/`
+- A minimal `pyproject.toml` and a `uv` walkthrough (`uv init`, `uv add`, `uv run`)

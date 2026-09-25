@@ -45,7 +45,7 @@ Last build check: `.venv/bin/jupyter-book build .` passed after the assignment n
 | Item | Title | Files | Planning | Status | Notes |
 |------|-------|-------|----------|--------|-------|
 | A1 | Tooling | `chapters/appendices/0101-tooling` | No chapter planning files | In Progress | Single appendix page in TOC. |
-| A2 | Modules, Files, and Packaging | 0500-0504 | Yes | In Progress | Runnable examples and support files moved to `materials/appendices/05-tooling/`. |
+| A2 | Modules, Files, and Packaging | 0500-0504 | Yes | In Progress | Runnable examples and support files live in `materials/appendices/packaging/`; planning docs in `chapters/appendices/packaging/`. |
 | A3 | Jupyter Setup | 0200-0204 | No chapter planning files | In Progress | |
 | A4 | Bibliography | `chapters/bibliography` | No chapter planning files | In Progress | |
 | A5 | Index | External generated index | No chapter planning files | In Progress | Final entry under Appendices. |

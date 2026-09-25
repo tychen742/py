@@ -93,3 +93,9 @@ Chapter 10 planning and delivery are scoped to `chapters/10-functional/` only.
 - `assignments/preview.ipynb` — Preview
 - `assignments/lab.ipynb` — Lab assignment
 - `assignments/homework.ipynb` — Homework questions
+
+## Planned Additions: Materials to Prepare
+
+See `ORGANIZATION.md`, Planned Additions.
+
+- No new materials; add links back to 4.2 (closures), 4.3 (recursion), and 6.1/6.3/7.3 (comprehensions)
