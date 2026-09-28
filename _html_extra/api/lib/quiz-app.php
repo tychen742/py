@@ -769,7 +769,7 @@ function py_lab_definition(string $labId): ?array
                 'q2' => "Top: 100\nMiddle: [95, 88, 76, 65]\nBottom: 50\ngold: Alice\nsilver: Bob\nbronze: Cara",
                 'q3' => "Readings: [6500, 9100, 7200, 8800, 8200]\nTop three: [9100, 8800, 8200]\nCount: 5",
                 'q4' => "Original: [10, 20, 30, 40]\nAlias: [10, 20, 30, 40]\nCopy: [10, 20, 30, 99]",
-                'q5' => "Scoreboard: {'Alice': 92, 'Bob': 68, 'Cara': 88, 'Dee': 55}\nHonor roll: ['Alice', 'Cara']",
+                'q5' => "Big sales: ['North', 'West']\nLargest: West Jan 144",
             ],
         ],
         'ch07-lab' => [
