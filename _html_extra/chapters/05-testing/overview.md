@@ -668,6 +668,6 @@ Testing is design feedback: if code is hard to test, it is often doing too much.
 
 # End of Chapter 5
 
-*Next: Chapter 6: Collections*
+*Next: Chapter 6: Sequences*
 
 *tracebacks · exceptions · logging · pytest · unittest · doctest*

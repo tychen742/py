@@ -32,9 +32,9 @@ style: |
 
 # Chapter 6
 
-Collections
+Sequences
 
-*6.1 Lists · 6.2 Tuples · 6.3 Sets*
+*6.1 Lists · 6.2 Tuples · 6.3 Aliasing and Copying*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -196,54 +196,6 @@ zip(a, b)         # pair two lists
 
 ---
 
-## Aliasing vs. Copying
-
-<div class="cols">
-<div>
-
-### Aliasing — shared reference
-```python
-a = [1, 2, 3]
-b = a          # b points to same list
-b.append(4)
-print(a)       # [1, 2, 3, 4]  ← changed!
-```
-
-### Shallow copy — independent top level
-```python
-b = a[:]       # slice copy
-b = a.copy()   # .copy() method
-b = list(a)    # list() constructor
-
-b.append(4)
-print(a)       # [1, 2, 3]  ← safe
-```
-
-</div>
-<div>
-
-### Deep copy — independent at every level
-```python
-import copy
-
-nested = [[1, 2], [3, 4]]
-deep = copy.deepcopy(nested)
-
-deep[0].append(99)
-print(nested)  # [[1, 2], [3, 4]]  ← safe
-```
-
-<div class="callout warn">
-
-Shallow copy is safe for flat lists. Use `deepcopy` when the list contains other mutable objects (nested lists, dicts).
-
-</div>
-
-</div>
-</div>
-
----
-
 <!-- _class: section -->
 
 ## 6.2 Tuples
@@ -366,147 +318,54 @@ pairs.sort(key=lambda p: p[1])
 
 <!-- _class: section -->
 
-## 6.3 Sets
+## 6.3 Aliasing and Copying
 
-Unordered collections of **unique, hashable** elements
+Names, references, and independent copies
 
 ---
 
-## Creating Sets and Membership
+## Aliasing vs. Copying
 
 <div class="cols">
 <div>
 
-### Create
+### Aliasing — shared reference
 ```python
-a = {1, 2, 3}
-b = set([3, 4, 5])    # from list
-empty = set()          # NOT {} (that's a dict)
-
-# duplicates removed automatically
-s = {1, 2, 2, 3, 3}   # {1, 2, 3}
+a = [1, 2, 3]
+b = a          # b points to same list
+b.append(4)
+print(a)       # [1, 2, 3, 4]  ← changed!
 ```
 
-### No indexing — iterate or test membership
+### Shallow copy — independent top level
 ```python
-3 in a      # True   O(1)
-6 not in a  # True
+b = a[:]       # slice copy
+b = a.copy()   # .copy() method
+b = list(a)    # list() constructor
 
-for item in a:
-    print(item)    # order not guaranteed
-```
-
-</div>
-<div>
-
-### When to use a set
-
-| Need | Use |
-|---|---|
-| Ordered, duplicates OK | `list` |
-| Fixed structure, hashable | `tuple` |
-| Unique elements, fast lookup | `set` |
-| Key-value mapping | `dict` |
-
-<div class="callout">
-
-Sets are great for **deduplication** and **membership testing**. `x in set` is O(1); `x in list` is O(n).
-
-</div>
-
-</div>
-</div>
-
----
-
-## Set Algebra and Mutation
-
-```python
-a = {1, 2, 3, 4}
-b = {3, 4, 5, 6}
-```
-
-<div class="cols">
-<div>
-
-| Operation | Operator | Method |
-|---|---|---|
-| Union | `a \| b` | `a.union(b)` |
-| Intersection | `a & b` | `a.intersection(b)` |
-| Difference | `a - b` | `a.difference(b)` |
-| Sym. difference | `a ^ b` | `a.symmetric_difference(b)` |
-
-```python
-a | b   # {1, 2, 3, 4, 5, 6}
-a & b   # {3, 4}
-a - b   # {1, 2}
-a ^ b   # {1, 2, 5, 6}
+b.append(4)
+print(a)       # [1, 2, 3]  ← safe
 ```
 
 </div>
 <div>
 
-### Modify in place
+### Deep copy — independent at every level
 ```python
-a.add(5)          # add one element
-a.update({6, 7})  # add multiple
+import copy
 
-a.remove(1)       # KeyError if missing
-a.discard(99)     # safe — no error
-a.pop()           # remove arbitrary element
+nested = [[1, 2], [3, 4]]
+deep = copy.deepcopy(nested)
+
+deep[0].append(99)
+print(nested)  # [[1, 2], [3, 4]]  ← safe
 ```
 
-### Subset / superset
-```python
-{1, 2} <= {1, 2, 3}   # True  (subset)
-{1, 2, 3} >= {1, 2}   # True  (superset)
-```
+<div class="callout warn">
+
+Shallow copy is safe for flat lists. Use `deepcopy` when the list contains other mutable objects (nested lists, dicts).
 
 </div>
-</div>
-
----
-
-## Frozensets, Hashability, and Performance
-
-<div class="cols">
-<div>
-
-### `frozenset` — immutable set
-```python
-fs = frozenset({1, 2, 3})
-# fs.add(4)   ← AttributeError
-
-# Can be a dict key or set element
-graph = {frozenset({1, 2}): "edge A"}
-```
-
-| | `set` | `frozenset` |
-|---|---|---|
-| Mutable | ✓ | ✗ |
-| Hashable | ✗ | ✓ |
-| Dict key | ✗ | ✓ |
-
-</div>
-<div>
-
-### Set comprehension
-```python
-# unique squares of even numbers
-s = {x**2 for x in range(10) if x % 2 == 0}
-# {0, 4, 16, 36, 64}
-
-# deduplicate a list
-words = ["the", "cat", "the", "mat"]
-unique = {w.lower() for w in words}
-```
-
-### O(1) membership — why it matters
-```python
-# set membership is O(1) vs O(n) for list
-big = set(range(1_000_000))
-999_999 in big   # instant
-```
 
 </div>
 </div>
@@ -519,17 +378,13 @@ big = set(range(1_000_000))
 |---|---|---|---|---|---|
 | `list` | ✓ | ✓ | ✓ | ✗ | `[1, 2]` |
 | `tuple` | ✓ | ✗ | ✓ | ✓ | `(1, 2)` |
-| `set` | ✗ | ✓ | ✗ | ✗ | `{1, 2}` |
-| `frozenset` | ✗ | ✗ | ✗ | ✓ | `frozenset({1,2})` |
 
 | Task | Idiom |
 |---|---|
-| Deduplicate | `list(set(lst))` |
 | Unpack | `a, b, *rest = lst` |
 | Copy flat list | `lst[:]` or `lst.copy()` |
 | Multiple return | `return a, b` → unpack with `x, y = f()` |
-| Set ops | `\|` `&` `-` `^` |
-| Membership | `x in s` — O(1) for set/dict, O(n) for list |
+| Membership | `x in lst` — checks each item in turn, O(n) |
 
 ---
 
@@ -539,4 +394,4 @@ big = set(range(1_000_000))
 
 *Next: Chapter 7 — Dictionaries*
 
-*key-value mappings · core operations · dictionary patterns*
+*key-value mappings · core operations · dictionary patterns · sets*

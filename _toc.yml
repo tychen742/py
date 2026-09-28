@@ -81,11 +81,11 @@ parts:
     numbered: true
     chapters:
       - file: chapters/06-collections/0600-collections
-        title: Collections
+        title: Sequences
         sections:
           - file: chapters/06-collections/0601-lists
           - file: chapters/06-collections/0602-tuples
-          - file: chapters/06-collections/0603-sets
+          - file: chapters/06-collections/0603-aliasing-copying
           - file: chapters/06-collections/assignments/index
             title: Assignments
             sections:
@@ -103,6 +103,7 @@ parts:
             title: Core Operations
           - file: chapters/07-dictionaries/0703-dict-patterns
             title: Dictionary Patterns
+          - file: chapters/07-dictionaries/0704-sets
           - file: chapters/07-dictionaries/assignments/index
             title: Assignments
             sections:

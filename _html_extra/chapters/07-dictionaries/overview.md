@@ -34,7 +34,7 @@ style: |
 
 Dictionaries
 
-*7.1 Dictionaries · 7.2 Core Operations · 7.3 Dictionary Patterns*
+*7.1 Dictionaries · 7.2 Core Operations · 7.3 Dictionary Patterns · 7.4 Sets*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -446,6 +446,155 @@ print(f"dict: {time.perf_counter()-t:.5f}s")
 
 ---
 
+<!-- _class: section -->
+
+## 7.4 Sets
+
+Unordered collections of **unique, hashable** elements
+
+---
+
+## Creating Sets and Membership
+
+<div class="cols">
+<div>
+
+### Create
+```python
+a = {1, 2, 3}
+b = set([3, 4, 5])    # from list
+empty = set()          # NOT {} (that's a dict)
+
+# duplicates removed automatically
+s = {1, 2, 2, 3, 3}   # {1, 2, 3}
+```
+
+### No indexing — iterate or test membership
+```python
+3 in a      # True   O(1)
+6 not in a  # True
+
+for item in a:
+    print(item)    # order not guaranteed
+```
+
+</div>
+<div>
+
+### When to use a set
+
+| Need | Use |
+|---|---|
+| Ordered, duplicates OK | `list` |
+| Fixed structure, hashable | `tuple` |
+| Unique elements, fast lookup | `set` |
+| Key-value mapping | `dict` |
+
+<div class="callout">
+
+Sets are great for **deduplication** and **membership testing**. `x in set` is O(1); `x in list` is O(n).
+
+</div>
+
+</div>
+</div>
+
+---
+
+## Set Algebra and Mutation
+
+```python
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+```
+
+<div class="cols">
+<div>
+
+| Operation | Operator | Method |
+|---|---|---|
+| Union | `a \| b` | `a.union(b)` |
+| Intersection | `a & b` | `a.intersection(b)` |
+| Difference | `a - b` | `a.difference(b)` |
+| Sym. difference | `a ^ b` | `a.symmetric_difference(b)` |
+
+```python
+a | b   # {1, 2, 3, 4, 5, 6}
+a & b   # {3, 4}
+a - b   # {1, 2}
+a ^ b   # {1, 2, 5, 6}
+```
+
+</div>
+<div>
+
+### Modify in place
+```python
+a.add(5)          # add one element
+a.update({6, 7})  # add multiple
+
+a.remove(1)       # KeyError if missing
+a.discard(99)     # safe — no error
+a.pop()           # remove arbitrary element
+```
+
+### Subset / superset
+```python
+{1, 2} <= {1, 2, 3}   # True  (subset)
+{1, 2, 3} >= {1, 2}   # True  (superset)
+```
+
+</div>
+</div>
+
+---
+
+## Frozensets, Hashability, and Performance
+
+<div class="cols">
+<div>
+
+### `frozenset` — immutable set
+```python
+fs = frozenset({1, 2, 3})
+# fs.add(4)   ← AttributeError
+
+# Can be a dict key or set element
+graph = {frozenset({1, 2}): "edge A"}
+```
+
+| | `set` | `frozenset` |
+|---|---|---|
+| Mutable | ✓ | ✗ |
+| Hashable | ✗ | ✓ |
+| Dict key | ✗ | ✓ |
+
+</div>
+<div>
+
+### Set comprehension
+```python
+# unique squares of even numbers
+s = {x**2 for x in range(10) if x % 2 == 0}
+# {0, 4, 16, 36, 64}
+
+# deduplicate a list
+words = ["the", "cat", "the", "mat"]
+unique = {w.lower() for w in words}
+```
+
+### O(1) membership — why it matters
+```python
+# set membership is O(1) vs O(n) for list
+big = set(range(1_000_000))
+999_999 in big   # instant
+```
+
+</div>
+</div>
+
+---
+
 ## Chapter 7 — Quick Reference
 
 | Concept | Key syntax / notes |
@@ -461,6 +610,9 @@ print(f"dict: {time.perf_counter()-t:.5f}s")
 | Group | `defaultdict(list)` — no KeyError on first access |
 | Invert | `{v: k for k, v in d.items()}` |
 | Memoize | Store previous results in a dict to avoid repeated work |
+| Sets | `{1, 2}` · `set()` for an empty set · `s.add(x)` · `s.discard(x)` |
+| Set algebra | `a \| b` · `a & b` · `a - b` · `a ^ b` |
+| Deduplicate | `list(set(lst))` |
 
 ---
 

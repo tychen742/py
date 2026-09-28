@@ -1,20 +1,20 @@
-# Chapter 06 Organization (Collections)
+# Chapter 06 Organization (Sequences)
 
 This chapter is split into:
 
 - `0600-collections.ipynb`
 - `0601-lists.ipynb`
 - `0602-tuples.ipynb`
-- `0603-sets.ipynb`
+- `0603-aliasing-copying.ipynb`
 
 ## Scope and Sequencing
 
 Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0600-collections.ipynb` — chapter scope, learning outcomes, glossary, and collection selection frame; no exercises
-2. `0601-lists.ipynb` — What Lists Are; Creating and Accessing Lists; Updating and Transforming Lists; Identity, Aliasing, and Copying; Lists in Practice
+2. `0601-lists.ipynb` — What Lists Are; Creating and Accessing Lists; Updating and Transforming Lists; Lists in Practice
 3. `0602-tuples.ipynb` — What Tuples Are; Creating and Accessing Tuples; Unpacking and Iteration Helpers; Tuple Operations and Immutability; Tuples in Function Design
-4. `0603-sets.ipynb` — What Sets Are; Creating Sets and Testing Membership; Set Algebra; Mutating Sets Safely; Frozensets, Hashability, and Performance
+4. `0603-aliasing-copying.ipynb` — Objects and Values; Aliasing; List Arguments in Functions; Shallow Copy; Deep Copy
 
 ## Source of Truth
 
