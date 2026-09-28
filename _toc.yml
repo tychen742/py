@@ -84,8 +84,8 @@ parts:
         title: Sequences
         sections:
           - file: chapters/06-collections/0601-lists
-          - file: chapters/06-collections/0602-tuples
-          - file: chapters/06-collections/0603-aliasing-copying
+          - file: chapters/06-collections/0602-aliasing-copying
+          - file: chapters/06-collections/0603-tuples
           - file: chapters/06-collections/assignments/index
             title: Assignments
             sections:

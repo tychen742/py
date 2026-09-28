@@ -20,7 +20,7 @@ Last build check: `.venv/bin/jupyter-book build .` passed after the assignment n
 
 | Chapter | Title | Sections | Assignments | Planning | Status | Notes |
 |---------|-------|----------|-------------|----------|--------|-------|
-| 06 | Sequences | 0601-0603 | Nested | Yes | In Progress | Lists, tuples, and aliasing/copying; sets moved to ch07 (2026-09-28). |
+| 06 | Sequences | 0601-0603 | Nested | Yes | In Progress | Lists, aliasing/copying, and tuples; sets moved to ch07 (2026-09-28). |
 | 07 | Dictionaries | 0701-0704 | Nested | Yes | In Progress | Dictionaries plus sets (0704, moved from ch06 on 2026-09-28). |
 | 08 | Strings and Text | 0801-0803 | Nested | Yes | In Progress | Split subsection pages folded into three section notebooks; text data moved to `materials/08-strings/datasss/`. |
 

@@ -13,7 +13,7 @@ This is the notes of the author.
 - APIs chapter is SHORT
 - find short videos < 10 minutes for each chapter
 
-- done 2026-09-28: moved sets from ch06 to ch07 (`0704-sets`), split aliasing and copying into `0603-aliasing-copying`, and renamed ch06 "Sequences". Done mid-semester by the author's decision; assignment questions swapped between ch06 and ch07.
+- done 2026-09-28: moved sets from ch06 to ch07 (`0704-sets`), split aliasing and copying into `0602-aliasing-copying` (tuples moved to `0603-tuples`), and renamed ch06 "Sequences". Done mid-semester by the author's decision; assignment questions swapped between ch06 and ch07.
   - Follow-up: `0704-sets` "Frozensets, Hashability, and Performance" repeats the hashability material in `0703-dict-patterns`; trim it to build on 0703.
 
 Move runnable artifacts out of chapters/. The chapter tree contains .py, .db, .txt, .log, .bak, .DS_Store, checkpoint, and cache files. The project convention says content lives in chapters/, while runnable/source material should live under materials/. High-priority examples: chapters/05-testing/*.py, chapters/12-iter-gen/*.db, and chapters/09-strings/datasss/*.

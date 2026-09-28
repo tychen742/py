@@ -34,7 +34,7 @@ style: |
 
 Sequences
 
-*6.1 Lists · 6.2 Tuples · 6.3 Aliasing and Copying*
+*6.1 Lists · 6.2 Aliasing and Copying · 6.3 Tuples*
 
 *← → or Space to navigate · F for fullscreen*
 
@@ -198,7 +198,63 @@ zip(a, b)         # pair two lists
 
 <!-- _class: section -->
 
-## 6.2 Tuples
+## 6.2 Aliasing and Copying
+
+Names, references, and independent copies
+
+---
+
+## Aliasing vs. Copying
+
+<div class="cols">
+<div>
+
+### Aliasing — shared reference
+```python
+a = [1, 2, 3]
+b = a          # b points to same list
+b.append(4)
+print(a)       # [1, 2, 3, 4]  ← changed!
+```
+
+### Shallow copy — independent top level
+```python
+b = a[:]       # slice copy
+b = a.copy()   # .copy() method
+b = list(a)    # list() constructor
+
+b.append(4)
+print(a)       # [1, 2, 3]  ← safe
+```
+
+</div>
+<div>
+
+### Deep copy — independent at every level
+```python
+import copy
+
+nested = [[1, 2], [3, 4]]
+deep = copy.deepcopy(nested)
+
+deep[0].append(99)
+print(nested)  # [[1, 2], [3, 4]]  ← safe
+```
+
+<div class="callout warn">
+
+Shallow copy is safe for flat lists. Use `deepcopy` when the list contains other mutable objects (nested lists, dicts).
+
+</div>
+
+</div>
+</div>
+
+---
+
+<!-- _class: section -->
+
+## 6.3 Tuples
 
 Ordered, **immutable** sequences — safe, hashable, fast
 
@@ -310,62 +366,6 @@ pairs = [("bob", 85), ("alice", 92)]
 pairs.sort(key=lambda p: p[1])
 # sort by score (second element)
 ```
-
-</div>
-</div>
-
----
-
-<!-- _class: section -->
-
-## 6.3 Aliasing and Copying
-
-Names, references, and independent copies
-
----
-
-## Aliasing vs. Copying
-
-<div class="cols">
-<div>
-
-### Aliasing — shared reference
-```python
-a = [1, 2, 3]
-b = a          # b points to same list
-b.append(4)
-print(a)       # [1, 2, 3, 4]  ← changed!
-```
-
-### Shallow copy — independent top level
-```python
-b = a[:]       # slice copy
-b = a.copy()   # .copy() method
-b = list(a)    # list() constructor
-
-b.append(4)
-print(a)       # [1, 2, 3]  ← safe
-```
-
-</div>
-<div>
-
-### Deep copy — independent at every level
-```python
-import copy
-
-nested = [[1, 2], [3, 4]]
-deep = copy.deepcopy(nested)
-
-deep[0].append(99)
-print(nested)  # [[1, 2], [3, 4]]  ← safe
-```
-
-<div class="callout warn">
-
-Shallow copy is safe for flat lists. Use `deepcopy` when the list contains other mutable objects (nested lists, dicts).
-
-</div>
 
 </div>
 </div>

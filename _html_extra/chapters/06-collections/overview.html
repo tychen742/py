@@ -57,7 +57,7 @@ section::after { color: #aaa; font-size: 0.7em; }
 ;" data-marpit-pagination-total="12">
 <h1 id="chapter-6">Chapter 6</h1>
 <p>Sequences</p>
-<p><em>6.1 Lists · 6.2 Tuples · 6.3 Aliasing and Copying</em></p>
+<p><em>6.1 Lists · 6.2 Aliasing and Copying · 6.3 Tuples</em></p>
 <p><em>← → or Space to navigate · F for fullscreen</em></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
@@ -402,8 +402,8 @@ td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
 ;" data-marpit-pagination-total="12">
-<h2 id="62-tuples">6.2 Tuples</h2>
-<p>Ordered, <strong>immutable</strong> sequences — safe, hashable, fast</p>
+<h2 id="62-aliasing-and-copying">6.2 Aliasing and Copying</h2>
+<p>Names, references, and independent copies</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
@@ -429,6 +429,137 @@ td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
 " lang="en-US" data-marpit-pagination="7" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="12">
+<h2 id="aliasing-vs-copying">Aliasing vs. Copying</h2>
+<div class="cols">
+<div>
+<h3 id="aliasing--shared-reference">Aliasing — shared reference</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+b = a          <span class="hljs-comment"># b points to same list</span>
+b.append(<span class="hljs-number">4</span>)
+<span class="hljs-built_in">print</span>(a)       <span class="hljs-comment"># [1, 2, 3, 4]  ← changed!</span>
+</code></pre>
+<h3 id="shallow-copy--independent-top-level">Shallow copy — independent top level</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">b = a[:]       <span class="hljs-comment"># slice copy</span>
+b = a.copy()   <span class="hljs-comment"># .copy() method</span>
+b = <span class="hljs-built_in">list</span>(a)    <span class="hljs-comment"># list() constructor</span>
+
+b.append(<span class="hljs-number">4</span>)
+<span class="hljs-built_in">print</span>(a)       <span class="hljs-comment"># [1, 2, 3]  ← safe</span>
+</code></pre>
+</div>
+<div>
+<h3 id="deep-copy--independent-at-every-level">Deep copy — independent at every level</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> copy
+
+nested = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]]
+deep = copy.deepcopy(nested)
+
+deep[<span class="hljs-number">0</span>].append(<span class="hljs-number">99</span>)
+<span class="hljs-built_in">print</span>(nested)  <span class="hljs-comment"># [[1, 2], [3, 4]]  ← safe</span>
+</code></pre>
+<div class="callout warn">
+<p>Shallow copy is safe for flat lists. Use <code>deepcopy</code> when the list contains other mutable objects (nested lists, dicts).</p>
+</div>
+</div>
+</div>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" class="section" data-marpit-pagination="8" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+;" data-marpit-pagination-total="12">
+<h2 id="63-tuples">6.3 Tuples</h2>
+<p>Ordered, <strong>immutable</strong> sequences — safe, hashable, fast</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
+h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
+h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
+ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
+section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.title h1 { color: white; border: none; font-size: 2.2em; }
+section.title p { color: #c8e6c9; }
+section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+section.section h2 { color: white; border: none; font-size: 1.9em; }
+section.section p { color: #c8e6c9; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
+.callout.warn { background: #fff8e1; border-color: #b8860b; }
+.callout.rule { background: #f0f4ff; border-color: #5577cc; }
+pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
+code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
+pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
+table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
+th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) td { background: #f7faf7; }
+section::after { color: #aaa; font-size: 0.7em; }
+" lang="en-US" data-marpit-pagination="9" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -509,7 +640,7 @@ point[<span class="hljs-number">0</span>:<span class="hljs-number">1</span>]   <
 </div>
 </div>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -532,7 +663,7 @@ th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
 tr:nth-child(even) td { background: #f7faf7; }
 section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" data-marpit-pagination="8" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
+" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
 h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
 h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
 h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
@@ -596,137 +727,6 @@ total(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <s
 pairs.sort(key=<span class="hljs-keyword">lambda</span> p: p[<span class="hljs-number">1</span>])
 <span class="hljs-comment"># sort by score (second element)</span>
 </code></pre>
-</div>
-</div>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-class="section" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" class="section" data-marpit-pagination="9" style="--paginate:true;--class:section;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="12">
-<h2 id="63-aliasing-and-copying">6.3 Aliasing and Copying</h2>
-<p>Names, references, and independent copies</p>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="default" data-style="section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-" lang="en-US" data-marpit-pagination="10" style="--paginate:true;--theme:default;--style:section { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 20px; color: #1a1a1a; padding: 30px 50px 60px 50px; background: white; }
-h1 { color: #2a6b37; font-size: 1.8em; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 16px; }
-h2 { color: #2a6b37; font-size: 1.35em; margin-bottom: 10px; }
-h3 { color: #b8860b; font-size: 1.05em; margin-bottom: 6px; }
-ul { margin-left: 1.2em; } li { margin-bottom: 4px; line-height: 1.4; }
-section.title { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.title h1 { color: white; border: none; font-size: 2.2em; }
-section.title p { color: #c8e6c9; }
-section.section { background: #2a6b37; color: white; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-section.section h2 { color: white; border: none; font-size: 1.9em; }
-section.section p { color: #c8e6c9; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-.callout { background: #e8f5eb; border-left: 4px solid #2a6b37; border-radius: 4px; padding: 7px 11px; margin: 8px 0; font-size: 0.72em; line-height: 1.35; }
-.callout.warn { background: #fff8e1; border-color: #b8860b; }
-.callout.rule { background: #f0f4ff; border-color: #5577cc; }
-pre { background: #f6f8fa !important; border: 1px solid #d0e8d4; border-radius: 6px; margin: 8px 0; font-size: 0.68em; line-height: 1.35; }
-code { color: #c7254e; background: #f6f8fa; border: 1px solid #e0e0e0; border-radius: 3px; padding: 1px 4px; }
-pre code { color: inherit; background: none; border: none; padding: 12px 14px; }
-table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
-th { background: #2a6b37; color: white; padding: 5px 8px; text-align: left; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; }
-tr:nth-child(even) td { background: #f7faf7; }
-section::after { color: #aaa; font-size: 0.7em; }
-;" data-marpit-pagination-total="12">
-<h2 id="aliasing-vs-copying">Aliasing vs. Copying</h2>
-<div class="cols">
-<div>
-<h3 id="aliasing--shared-reference">Aliasing — shared reference</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
-b = a          <span class="hljs-comment"># b points to same list</span>
-b.append(<span class="hljs-number">4</span>)
-<span class="hljs-built_in">print</span>(a)       <span class="hljs-comment"># [1, 2, 3, 4]  ← changed!</span>
-</code></pre>
-<h3 id="shallow-copy--independent-top-level">Shallow copy — independent top level</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">b = a[:]       <span class="hljs-comment"># slice copy</span>
-b = a.copy()   <span class="hljs-comment"># .copy() method</span>
-b = <span class="hljs-built_in">list</span>(a)    <span class="hljs-comment"># list() constructor</span>
-
-b.append(<span class="hljs-number">4</span>)
-<span class="hljs-built_in">print</span>(a)       <span class="hljs-comment"># [1, 2, 3]  ← safe</span>
-</code></pre>
-</div>
-<div>
-<h3 id="deep-copy--independent-at-every-level">Deep copy — independent at every level</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> copy
-
-nested = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]]
-deep = copy.deepcopy(nested)
-
-deep[<span class="hljs-number">0</span>].append(<span class="hljs-number">99</span>)
-<span class="hljs-built_in">print</span>(nested)  <span class="hljs-comment"># [[1, 2], [3, 4]]  ← safe</span>
-</code></pre>
-<div class="callout warn">
-<p>Shallow copy is safe for flat lists. Use <code>deepcopy</code> when the list contains other mutable objects (nested lists, dicts).</p>
-</div>
 </div>
 </div>
 </section>
