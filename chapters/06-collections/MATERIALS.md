@@ -5,7 +5,7 @@ This checklist is for building and delivering the list, tuple, and set notebooks
 ## Chapter 06 Delivery Order (Recommended)
 
 1. `0600-collections.ipynb` — Collection overview, learning objectives, glossary, and chapter flow
-2. `0601-lists.ipynb` — What Lists Are; Creating and Accessing Lists; Updating and Transforming Lists; Aliasing, Copying, and Nested Lists; Lists in Practice
+2. `0601-lists.ipynb` — What Lists Are; Creating and Accessing Lists; Updating and Transforming Lists; Identity, Aliasing, and Copying; Lists in Practice
 3. `0602-tuples.ipynb` — What Tuples Are; Creating and Accessing Tuples; Unpacking and Iteration Helpers; Tuple Operations and Immutability; Tuples in Function Design
 4. `0603-sets.ipynb` — What Sets Are; Creating Sets and Testing Membership; Set Algebra; Mutating Sets Safely; Frozensets, Hashability, and Performance
 
