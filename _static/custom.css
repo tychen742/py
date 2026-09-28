@@ -1012,3 +1012,8 @@ body.bd-auth-modal-open {
         width: auto;
     }
 }
+
+/* Chapter landing: Chapter Flow links */
+.chapter-flow a {
+  text-decoration: none;
+}
