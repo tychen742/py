@@ -256,7 +256,7 @@ Shallow copy is safe for flat lists. Use `deepcopy` when the list contains other
 
 ## 6.3 Tuples
 
-Ordered, **immutable** sequences — safe, hashable, fast
+Ordered, **immutable** sequences: fixed records that are safe to share
 
 ---
 
@@ -290,14 +290,9 @@ point[0:1]   # (3,)
 </div>
 <div>
 
-### Immutability
-```python
-point[0] = 99   # TypeError — can't modify
-```
-
 <div class="callout rule">
 
-**Use a tuple when data should not change** — coordinates, RGB colors, database rows, function return values. Tuples are hashable (can be dict keys or set elements); lists are not.
+**Use a tuple when data should not change**: coordinates, dates, rows of a report, function return values.
 
 </div>
 
@@ -306,8 +301,54 @@ point[0] = 99   # TypeError — can't modify
 | | `list` | `tuple` |
 |---|---|---|
 | Mutable | ✓ | ✗ |
-| Hashable | ✗ | ✓ |
-| Performance | good | slightly faster |
+| Methods | many | `count`, `index` |
+| Use case | collections that change | fixed records |
+
+</div>
+</div>
+
+---
+
+## Immutability
+
+<div class="cols">
+<div>
+
+### Tuples cannot change
+```python
+point = (3, 4, 5)
+point[0] = 99            # TypeError
+
+new_point = point[:2] + (0,)   # build a new tuple
+```
+
+### Tuples that contain lists
+```python
+record = ('Ana', [91, 84])
+record[1].append(77)     # OK: the list changes
+record[1] = [100]        # TypeError: can't replace
+```
+
+</div>
+<div>
+
+### Safe to share
+```python
+def add_bonus(scores):
+    scores[0] = scores[0] + 5
+
+add_bonus([80, 90])      # changes the caller's list
+add_bonus((80, 90))      # TypeError: tuple is safe
+
+def with_bonus(scores):  # return a new tuple instead
+    return tuple([s + 5 for s in scores])
+```
+
+<div class="callout warn">
+
+A tuple's items cannot be replaced, but a list inside a tuple can still change. For a fully fixed record, store only immutable values.
+
+</div>
 
 </div>
 </div>
@@ -360,12 +401,58 @@ def total(*args):    # args is a tuple
 total(1, 2, 3, 4)   # 10
 ```
 
-### Sorting by tuple key
+### Sorting with a key function
 ```python
 pairs = [("bob", 85), ("alice", 92)]
-pairs.sort(key=lambda p: p[1])
-# sort by score (second element)
+
+def second_element(t):
+    return t[1]
+
+sorted(pairs, key=second_element)  # by score
 ```
+
+</div>
+</div>
+
+---
+
+## Tuples as Records
+
+<div class="cols">
+<div>
+
+### Lists of tuples
+```python
+lines = ['North,Jan,112', 'South,Jan,98']
+
+sales = []
+for line in lines:
+    region, month, amount = line.split(',')
+    sales.append((region, month, int(amount)))
+
+for region, month, amount in sales:
+    print(region, month, amount)
+```
+
+</div>
+<div>
+
+### Named tuples
+```python
+from collections import namedtuple
+
+Sale = namedtuple('Sale', ['region', 'month', 'amount'])
+s = Sale('North', 'Jan', 112)
+
+s.amount    # 112, by name
+s[2]        # 112, by position
+```
+
+<div class="callout rule">
+
+pandas' `DataFrame.itertuples()` returns each row as a named tuple.
+
+</div>
 
 </div>
 </div>
@@ -374,16 +461,17 @@ pairs.sort(key=lambda p: p[1])
 
 ## Chapter 6 — Quick Reference
 
-| Type | Ordered | Mutable | Duplicates | Hashable | Literal |
-|---|---|---|---|---|---|
-| `list` | ✓ | ✓ | ✓ | ✗ | `[1, 2]` |
-| `tuple` | ✓ | ✗ | ✓ | ✓ | `(1, 2)` |
+| Type | Ordered | Mutable | Duplicates | Literal |
+|---|---|---|---|---|
+| `list` | ✓ | ✓ | ✓ | `[1, 2]` |
+| `tuple` | ✓ | ✗ | ✓ | `(1, 2)` |
 
 | Task | Idiom |
 |---|---|
 | Unpack | `a, b, *rest = lst` |
 | Copy flat list | `lst[:]` or `lst.copy()` |
 | Multiple return | `return a, b` → unpack with `x, y = f()` |
+| Named record | `Sale = namedtuple('Sale', ['region', 'amount'])` |
 | Membership | `x in lst` — checks each item in turn, O(n) |
 
 ---

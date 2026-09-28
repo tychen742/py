@@ -14,7 +14,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 1. `0600-collections.ipynb` — chapter scope, learning outcomes, glossary, and collection selection frame; no exercises
 2. `0601-lists.ipynb` — What Lists Are; Creating and Accessing Lists; Updating and Transforming Lists; Lists in Practice
 3. `0602-aliasing-copying.ipynb` — Objects and Values; Aliasing; List Arguments in Functions; Shallow Copy; Deep Copy
-4. `0603-tuples.ipynb` — What Tuples Are; Creating and Accessing Tuples; Unpacking and Iteration Helpers; Tuple Operations and Immutability; Tuples in Function Design
+4. `0603-tuples.ipynb` — What Tuples Are; Creating and Accessing Tuples; Immutability; Unpacking and Iteration Helpers; Tuple Operations; Tuples in Function Design; Tuples as Records
 
 ## Source of Truth
 
