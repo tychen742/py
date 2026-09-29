@@ -11,7 +11,7 @@ This checklist is for building and delivering:
 - Slide deck or notes covering:
   - Pure functions vs. side effects; immutability; first-class functions
   - Decorators (function-based and class-based, `@wraps`, timer decorator)
-  - List, dict, and set comprehensions
+  - Comprehensions as `map()`/`filter()` (syntax from 6.1, 7.3, 7.4)
   - Lambda with `map()`, `filter()`, `sorted()`
   - When to prefer comprehensions/generator expressions vs `map()`/`filter()`
   - `functools.reduce()`, `functools.partial()`, `functools.lru_cache()`
@@ -39,7 +39,7 @@ Use a two-tier model for one chapter per week:
 
 - Required core:
   - Decorators (`@wraps`, timer baseline)
-  - List/dict/set comprehensions; lambda with `map()`/`filter()`/`sorted()`
+  - Comprehensions as the counterpart of `map()`/`filter()` (links back to 6.1, 7.3, 7.4); lambda with `map()`/`filter()`/`sorted()`
   - Decision guide: comprehension/generator expression vs `map()`/`filter()`
   - Functional pipeline readability checks
 - Enrichment/project track:
@@ -98,4 +98,4 @@ Chapter 10 planning and delivery are scoped to `chapters/10-functional/` only.
 
 See `ORGANIZATION.md`, Planned Additions.
 
-- No new materials; add links back to 4.2 (closures), 4.3 (recursion), and 6.1/6.3/7.3 (comprehensions)
+- No new materials; add links back to 4.2 (closures) and 4.3 (recursion)

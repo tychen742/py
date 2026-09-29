@@ -15,7 +15,8 @@ Use this sequence to avoid overlap and keep pacing clear:
    - Conceptual framing: pure functions vs. side effects; immutability; first-class functions
 2. `1001-func-prog.ipynb`
   - Decorators (function-based and class-based, `@wraps`, timer)
-  - list/dict/set comprehensions; lambda with `map()`/`filter()`/`sorted()`
+  - lambda with `map()`/`filter()`/`sorted()`
+  - comprehensions as the functional counterpart of `map()`/`filter()`: expression part = map, `if` clause = filter; comprehensions as pure expressions (syntax is not re-taught; links back to 6.1, 7.3, 7.4, and 3.1 for conditional expressions)
   - decision criteria for comprehensions vs `map`/`filter` pipelines
   - readability and maintainability checks for functional pipelines
 3. `1002-func-practice.ipynb`
@@ -30,10 +31,9 @@ Use this sequence to avoid overlap and keep pacing clear:
 Topics from the 2026-09-25 coverage review. Status: planned, not yet written. When a topic is written, move it into the sequence above and delete it here.
 
 - **Use, don't re-teach.** Chapter 10 builds on techniques taught earlier instead of repeating them:
-  - `1001-func-prog.ipynb`, Comprehensions: keep only the functional angle (comprehensions as the Pythonic alternative to `map`/`filter`, and the decision rubric); link back to 6.1, 6.3, and 7.3 for the syntax.
   - `1001-func-prog.ipynb`, Decorators: build on closures, planned for 4.2.
   - `1002-func-practice.ipynb`, Recursion: replace the re-teaching with a link back to 4.3; keep the recursion vs. iteration comparison and use recursion in the `lru_cache` example.
-  *Why:* comprehensions are taught in Chapters 6 and 7 and recursion in Chapter 4; repeating them costs class time.
+  *Why:* closures and recursion are taught in Chapter 4; repeating them costs class time.
 
 ## One-Week Delivery Scope (Required vs Enrichment)
 
