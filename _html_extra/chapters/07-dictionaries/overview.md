@@ -212,8 +212,11 @@ person.update({"age": 30, "city": "Rolla"})
 ```python
 del person["city"]           # remove, no return
 email = person.pop("email")  # remove, return value
+phone = person.pop("phone", "N/A")  # default if missing
 last = person.popitem()      # remove last inserted pair
 ```
+
+Dictionary `pop(key, default)` uses a key and an optional fallback. List `pop(index)` uses an optional index and has no fallback. Without a fallback, a missing dictionary key raises `KeyError`. Like list `pop()`, `d.popitem()` removes the last item, but returns a `(key, value)` tuple.
 
 </div>
 <div>

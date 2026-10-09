@@ -15,7 +15,7 @@ This checklist is for building and delivering:
 
 1. `0700-dictionaries.ipynb` — Mapping overview, learning objectives, glossary, and chapter flow
 2. `0701-dictionaries.ipynb` — Dictionary overview, creation, keys, values, mapping motivation, and introductory checkpoint exercises
-3. `0702-dict-core-operations.ipynb` — Access, update, delete, membership, and iteration
+3. `0702-dict-core-operations.ipynb` — Access, update, delete (including `pop(key, default)` and its distinction from list `pop(index)`, plus `popitem()` compared with list `pop()`), membership, and iteration
 4. `0703-dict-patterns.ipynb` — Comprehensions, counting, `Counter`, `defaultdict`, inverting dictionaries, sorting by value, dictionary-as-memory patterns, and hashable tuple keys
 5. `0704-sets.ipynb` — What Sets Are; Creating Sets and Testing Membership; Set Algebra; Mutating Sets Safely; Frozensets, Hashability, and Performance (moved from Chapter 06)
 6. `assignments/preview.ipynb`, `assignments/lab.ipynb`, `assignments/homework.ipynb` — Chapter assignments
