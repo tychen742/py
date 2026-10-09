@@ -194,6 +194,36 @@ Prefer `.get(key, default)` over `dict[key]` when the key might be absent — it
 
 ---
 
+## Lists and Dictionaries: Access and Mutation
+
+Lists use positions; dictionaries use keys.
+
+| Operation | List `nums` | Dictionary `d` |
+| --- | --- | --- |
+| Read | `nums[i]` | `d[key]` |
+| Read with fallback | No `get()` equivalent | `d.get(key, default)` |
+| Replace | `nums[i] = value` (existing index) | `d[key] = value` (add or replace) |
+| Add | `nums.append(value)` or `nums.insert(i, value)` | `d[key] = value` (new key) |
+| Delete, no return | `del nums[i]` or `del nums[i:j]` | `del d[key]` |
+
+Invalid indices raise `IndexError`; missing keys raise `KeyError` when no fallback is supplied.
+
+---
+
+## Lists and Dictionaries: Removal and Inspection
+
+| Operation | List `nums` | Dictionary `d` |
+| --- | --- | --- |
+| Remove by value | `nums.remove(value)` removes first match | No `remove()`; deletion uses keys |
+| Remove and return | `nums.pop(i)`; no fallback | `d.pop(key, default)` |
+| Remove last | `nums.pop()` returns an element | `d.popitem()` returns `(key, value)` |
+| Clear | `nums.clear()` | `d.clear()` |
+| Membership | `value in nums` | `key in d`; `value in d.values()` |
+| Iterate | `for value in nums` | `for key in d`; `for key, value in d.items()` |
+| Count | `len(nums)` | `len(d)` |
+
+---
+
 ## Adding, Updating, and Deleting
 
 <div class="cols">
@@ -210,11 +240,13 @@ person.update({"age": 30, "city": "Rolla"})
 
 ### Delete
 ```python
-del person["city"]           # remove, no return
+del person["city"]           # statement, no return
 email = person.pop("email")  # remove, return value
 phone = person.pop("phone", "N/A")  # default if missing
 last = person.popitem()      # remove last inserted pair
 ```
+
+`del` also removes list elements, slices, and variable bindings. It does not return a value.
 
 Dictionary `pop(key, default)` uses a key and an optional fallback. List `pop(index)` uses an optional index and has no fallback. Without a fallback, a missing dictionary key raises `KeyError`. Like list `pop()`, `d.popitem()` removes the last item, but returns a `(key, value)` tuple.
 

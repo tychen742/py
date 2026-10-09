@@ -17,7 +17,7 @@ Use this sequence to avoid overlap and keep pacing clear:
 
 1. `0700-dictionaries.ipynb` — dictionary and mapping overview
 2. `0701-dictionaries.ipynb` — dictionary creation, mapping concepts, and introductory checkpoint exercises
-3. `0702-dict-core-operations.ipynb` — lookup, mutation, deletion (including `pop(key, default)` and its distinction from list `pop(index)`, plus `popitem()` compared with list `pop()`), membership, and iteration
+3. `0702-dict-core-operations.ipynb` — lookup, mutation, deletion (including `pop(key, default)` and its distinction from list `pop(index)`, plus `popitem()` compared with list `pop()` and the `del` statement for entries, list elements/slices, and variable bindings; list-versus-dictionary core-operation comparison table, including list-only `remove(value)`), membership, and iteration
 4. `0703-dict-patterns.ipynb` — dictionary comprehensions, counting, grouping, inversion, sorting, dictionary-as-memory patterns, and tuple keys
 5. `0704-sets.ipynb` — What Sets Are; Creating Sets and Testing Membership; Set Algebra; Mutating Sets Safely; Frozensets, Hashability, and Performance (moved from Chapter 06 on 2026-09-28; builds on the hashability material in 0703)
 6. `assignments/preview.ipynb`, `assignments/lab.ipynb`, `assignments/homework.ipynb` — chapter assignments
